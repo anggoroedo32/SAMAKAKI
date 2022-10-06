@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home_get_started.xml" value="0.1875" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
