@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    //48dp
+    <style name="regular_48">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_2</item>
+        <item name="android:textSize">@dimen/dimen_48</item>
+    </style>
+    <style name="medium_48">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_2</item>
+        <item name="android:textSize">@dimen/dimen_48</item>
+    </style>
+    <style name="semibold_48">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_2</item>
+        <item name="android:textSize">@dimen/dimen_48</item>
+    </style>
+    <style name="bold_48">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_2</item>
+        <item name="android:textSize">@dimen/dimen_48</item>
+    </style>
+
+    //36dp
+    <style name="regular_36">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_36</item>
+    </style>
+    <style name="medium_36">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_36</item>
+    </style>
+    <style name="semibold_36">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_36</item>
+    </style>
+    <style name="bold_36">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_36</item>
+    </style>
+
+    //30dp
+    <style name="regular_30">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_30</item>
+    </style>
+    <style name="medium_30">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_30</item>
+    </style>
+    <style name="semibold_30">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_30</item>
+    </style>
+    <style name="bold_30">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_30</item>
+    </style>
+
+    //24dp
+    <style name="regular_24">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_24</item>
+    </style>
+    <style name="medium_24">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_24</item>
+    </style>
+    <style name="semibold_24">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_24</item>
+    </style>
+    <style name="bold_24">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_24</item>
+    </style>
+
+    //20dp
+    <style name="regular_20">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_20</item>
+    </style>
+    <style name="medium_20">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_20</item>
+    </style>
+    <style name="semibold_20">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_20</item>
+    </style>
+    <style name="bold_20">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_20</item>
+    </style>
+
+    //18dp
+    <style name="regular_18">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_18</item>
+    </style>
+    <style name="medium_18">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_18</item>
+    </style>
+    <style name="semibold_18">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_18</item>
+    </style>
+    <style name="bold_18">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_18</item>
+    </style>
+
+    //16dp
+    <style name="regular_16">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_16</item>
+    </style>
+    <style name="medium_16">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_16</item>
+    </style>
+    <style name="semibold_16">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_16</item>
+    </style>
+    <style name="bold_16">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_16</item>
+    </style>
+
+
+    //14dp
+    <style name="regular_14">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+    <style name="medium_14">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+    <style name="semibold_14">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+    <style name="bold_14">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+
+    //12dp
+    <style name="regular_12">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
+    <style name="medium_12">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
+    <style name="semibold_12">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
+    <style name="bold_12">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_12</item>
+    </style>
+</resources>
