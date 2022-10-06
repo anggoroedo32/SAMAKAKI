@@ -199,4 +199,17 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_12</item>
     </style>
+
+
+    //button
+    <style name="ButtonStyle">
+        <item name="background">@drawable/rounded_btn</item>
+        <item name="android:textColor">@color/primary_900</item>
+    </style>
+
+    //textfield
+    <style name="TextfieldsStyle">
+        <item name="background">@drawable/rounded_textfield</item>
+        <item name="android:textColor">@color/primary_900</item>
+    </style>
 </resources>
