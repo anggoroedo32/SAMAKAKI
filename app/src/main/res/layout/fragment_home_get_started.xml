@@ -41,10 +41,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Isi Profile"
+        android:text="@string/isi_profile"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
