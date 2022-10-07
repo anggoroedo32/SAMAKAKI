@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FCF7F4">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:layout_marginStart="35dp"
-        android:text="@string/nama"/>
+        android:text="@string/name"/>
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
@@ -83,9 +84,27 @@
         android:background="@color/cardview_dark_background"/>
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="161dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center"
         android:text="@string/register"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="58dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sudah punya akun? " />
+        <TextView
+            android:id="@+id/txtView_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textStyle="bold"/>
+    </LinearLayout>
 </LinearLayout>

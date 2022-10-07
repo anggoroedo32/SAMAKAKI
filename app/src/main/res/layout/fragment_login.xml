@@ -3,15 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginFragment"
-    android:orientation="vertical">
+    tools:context=".ui.login.LoginFragment"
+    android:orientation="vertical"
+    android:background="#FCF7F4">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome"
+        android:text="@string/welcome"
         android:layout_marginStart="35dp"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
@@ -19,33 +20,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="Silahkan melakukan Login"
         android:layout_marginStart="35dp"
         android:layout_marginTop="8dp"/>
     <ImageView
         android:id="@+id/iv_login"
         android:layout_width="match_parent"
-        android:layout_height="212dp"
-        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:src="@color/cardview_dark_background"/>
+        android:src="@drawable/image_login"
+        android:scaleType="centerCrop"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:layout_marginStart="35dp"
-        android:text="Email"/>
+        android:text="@string/email"/>
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="16dp"
-        android:background="@color/cardview_dark_background"/>
+        android:background="@color/white"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="35dp"
         android:text="@string/password"/>
     <EditText
@@ -55,20 +55,20 @@
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="16dp"
         android:inputType="textPassword"
-        android:background="@color/cardview_dark_background"/>
+        android:background="@color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
         android:textAlignment="textEnd"
-        android:text="Forgot password?"
+        android:text="@string/forgot_password"
         android:layout_marginTop="20dp"
         />
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="24dp"/>
     <LinearLayout
@@ -85,7 +85,7 @@
             android:id="@+id/txtView_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
