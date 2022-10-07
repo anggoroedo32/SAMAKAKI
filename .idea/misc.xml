@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.154" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/round_btn.xml" value="0.1" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/round_textfield.xml" value="0.1" />
-        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_btn.xml" value="0.16301887379120425" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_textfield.xml" value="0.2264151024877837" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.19924529018924966" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_splash.xml" value="0.20859375" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_test.xml" value="0.2988679352838745" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/splashscreen.xml" value="0.2988679352838745" />
       </map>
     </option>
   </component>
