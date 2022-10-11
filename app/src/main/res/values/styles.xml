@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
     //48dp
     <style name="regular_48">
@@ -215,8 +215,15 @@
 
     //spinner
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/neutral_500</item>
-</style>
+    </style>
+
+    //searchview
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:editTextColor">@color/neutral_500</item>
+        <item name="android:textColorHint">@color/neutral_500</item>
+    </style>
 
 </resources>

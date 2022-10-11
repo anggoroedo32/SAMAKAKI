@@ -1,4 +1,4 @@
-package com.awp.samakaki
+package com.awp.samakaki.di
 
 import dagger.Module
 import dagger.Provides

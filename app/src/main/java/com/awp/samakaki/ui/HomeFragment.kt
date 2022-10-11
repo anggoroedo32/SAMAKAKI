@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -38,7 +39,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val spin = binding.searchFamily
         spin.onItemSelectedListener = this
 
-        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), com.bumptech.glide.R.layout.support_simple_spinner_dropdown_item, familyName)
+        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), R.layout.spinner_item, familyName)
         ad.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
         spin.adapter = ad
 

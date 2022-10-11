@@ -20,7 +20,7 @@
             android:name=".ui.FamilyTreeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:exported="true">
             <intent-filter>
