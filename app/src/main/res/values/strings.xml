@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">SAMAKAKI</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_family">Family</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="dummy_username">Yunanda Anggraini</string>
+    <string name="dummy_family_name"><font size="16">Keluarga Situmorang</font></string>
+    <string name="add_post"><font size="12">Ketikan sesuatu...</font></string>
+    <string name="foto_or_video">Foto / Video</string>
+    <string name="music">Musik</string>
+    <string name="post">Posting</string>
+    <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
 </resources>
