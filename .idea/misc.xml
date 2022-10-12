@@ -10,7 +10,7 @@
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_main2.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_dashboard.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home_get_started.xml" value="0.1875" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home_get_started.xml" value="0.1" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_notifications.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_settings.xml" value="1.09375" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/menu/bottom_nav.xml" value="0.27447916666666666" />
@@ -23,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

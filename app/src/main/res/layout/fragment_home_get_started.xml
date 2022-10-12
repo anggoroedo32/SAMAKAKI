@@ -6,47 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".HomeGetStartedFragment">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_vector"
+        android:contentDescription="@string/background" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        style="@style/bold_30prim600"
+        android:layout_width="@dimen/dimen_260"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="@string/selamat_datang_di"
+        android:layout_marginTop="213dp"
+        android:text="@string/selamat_datang_di_samakaki"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/regular_14sec300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        android:text="@string/samakaki"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:text="@string/silahkan_isi_profile_kamu_terlebih_dahulu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingVertical="24dp"
-        android:text="Silahkan isi profile kamu terlebih dahulu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/isi_profile"
+        android:text="@string/isi_profil"
+        android:layout_marginTop="@dimen/dimen_46"
+        style="@style/ButtonStyle"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
