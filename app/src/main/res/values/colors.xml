@@ -21,16 +21,16 @@
     <color name="primary_800">#19352A</color>
     <color name="primary_900">#11231C</color>
 
-    <color name="secondary_50">#FDFBF9</color>
-    <color name="secondary_100">#FCF7F4</color>
-    <color name="secondary_200">#FAF3EE</color>
-    <color name="secondary_300">#F8EFE9</color>
-    <color name="secondary_400">#F5E7DD</color>
-    <color name="secondary_500">#F1DFD2</color>
-    <color name="secondary_600">#EED7C7</color>
-    <color name="secondary_700">#BEAC9F</color>
-    <color name="secondary_800">#8F8177</color>
-    <color name="secondary_900">#5F5650</color>
+    <color name="secondary_50">#F1F5F3</color>
+    <color name="secondary_100">#E3ECE6</color>
+    <color name="secondary_200">#D5E2DA</color>
+    <color name="secondary_300">#C7D9CD</color>
+    <color name="secondary_400">#ACC5B4</color>
+    <color name="secondary_500">#90B29B</color>
+    <color name="secondary_600">#749F82</color>
+    <color name="secondary_700">#5D7F68</color>
+    <color name="secondary_800">#465F4E</color>
+    <color name="secondary_900">#2E4034</color>
 
     <color name="neutral_50">#FAFAFA</color>
     <color name="neutral_100">#F5F5f5</color>
@@ -75,6 +75,8 @@
     <color name="error_700">#B91C1C</color>
     <color name="error_800">#991B1B</color>
     <color name="error_900">#7F1D1D</color>
+
+
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A200">#FF40C4FF</color>
