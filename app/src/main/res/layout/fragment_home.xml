@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_100"
+    android:background="@color/white"
     tools:context=".ui.HomeFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -21,40 +27,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="@string/app_name"
-            app:titleTextColor="@color/primary_600"
-            android:background="@color/secondary_100"
+            app:titleTextColor="@color/title_app"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:background="@color/white"
             android:minHeight="?attr/actionBarSize" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/wrapper_search_family"
+    <SearchView
+        android:id="@+id/search_user"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/search_family_box"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp"
+        android:layout_height="46dp"
+        android:queryHint="@string/search_user"
+        app:theme="@style/AppSearchView"
+        android:searchIcon="@drawable/ic_search"
+        android:iconifiedByDefault="false"
+        android:background="@drawable/search_username_box"
+        android:queryBackground="@android:color/transparent"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar">
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
-        <ImageView
-            android:id="@+id/ic_search"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="18dp"
-            android:src="@drawable/ic_search_family" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/wrapper_search_family"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/search_family_box"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/search_user">-->
 
-        <Spinner
-            android:id="@+id/search_family"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:layout_marginLeft="12dp"
-            android:theme="@style/mySpinnerItemStyle" />
+<!--        <ImageView-->
+<!--            android:id="@+id/ic_search"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginStart="18dp"-->
+<!--            android:src="@drawable/ic_search_family" />-->
 
-    </LinearLayout>
+<!--        <Spinner-->
+<!--            android:id="@+id/search_family"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="46dp"-->
+<!--            android:layout_marginLeft="12dp"-->
+<!--            android:theme="@style/mySpinnerItemStyle" />-->
+
+<!--    </LinearLayout>-->
 
     <EditText
         android:id="@+id/ed_post"
@@ -64,14 +87,14 @@
         android:hint="@string/add_post"
         android:textSize="14sp"
         android:textColor="@color/neutral_500"
-        android:textColorHint="@color/primary_500"
+        android:fontFamily="@font/poppins_regular"
         android:inputType="textMultiLine"
         android:padding="32dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrapper_search_family" />
+        app:layout_constraintTop_toBottomOf="@+id/search_user" />
 
     <RelativeLayout
         android:id="@+id/wrapper_ic_post"
@@ -94,7 +117,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp">
 
             <ImageView
                 android:id="@+id/ic_media"
@@ -115,41 +139,12 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/add_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/add_media">
-
-            <ImageView
-                android:id="@+id/ic_music"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_music"
-                android:layout_gravity="center_vertical" />
-
-            <TextView
-                android:id="@+id/music_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/music"
-                android:textSize="12sp"
-                android:textColor="@color/neutral_500"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical" />
-
-        </LinearLayout>
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_post"
             android:layout_width="82dp"
             android:layout_height="38dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/primary_300"
+            android:backgroundTint="@color/primary_600"
+            android:fontFamily="@font/poppins_medium"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -161,7 +156,11 @@
             android:stateListAnimator="@null"
             android:text="@string/post"
             android:textAllCaps="false"
-            app:cornerRadius="12dp" />
+            android:textColor="@color/white"
+            app:cornerRadius="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 
@@ -179,3 +178,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

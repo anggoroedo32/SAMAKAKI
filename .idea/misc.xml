@@ -15,6 +15,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_profile.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_search.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/search_box.xml" value="0.285" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/search_username_box.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/wrap_ic_search_family.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_family_tree.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -22,7 +23,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_chat.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_family.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_home.xml" value="0.67" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_profile.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/layout_post_content.xml" value="0.5" />
