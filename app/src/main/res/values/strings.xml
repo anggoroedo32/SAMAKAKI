@@ -17,4 +17,12 @@
     <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
     <string name="search_user"><font size="14">Search username...</font></string>
     <string name="title_search">Search</string>
+
+    //splashscreen
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="samakaki_splash">SAMAKAKI</string>
+    <string name="welcome_splash">Welcome</string>
+    <string name="get_started_splash">Get Started</string>
 </resources>
