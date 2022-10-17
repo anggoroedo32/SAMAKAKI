@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_family"
-        android:name="com.awp.samakaki.ui.FamilyFragment"
+        android:name="com.awp.samakaki.ui.FamilyTreeFragment"
         android:label="@string/title_family"
         tools:layout="@layout/fragment_family" />
 

@@ -16,4 +16,5 @@
     <string name="post">Posting</string>
     <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
     <string name="search_user"><font size="14">Search username...</font></string>
+    <string name="title_search">Search</string>
 </resources>

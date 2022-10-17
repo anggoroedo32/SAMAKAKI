@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.bumptech.glide.Glide
@@ -32,6 +33,8 @@ abstract class FamilyTreeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_family_tree)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val graph = createGraph()
         recyclerView = findViewById(R.id.rv_family_tree)
@@ -40,7 +43,9 @@ abstract class FamilyTreeActivity : AppCompatActivity() {
         setupGraphView(graph)
 
         setupFab(graph)
+
     }
+
 
     private fun setupGraphView(graph: Graph) {
         adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
