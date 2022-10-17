@@ -14,11 +14,12 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = SplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         getStarted()
     }
     private fun getStarted() {
         binding.btnGetstarted.setOnClickListener {
-            startActivity(Intent(this, LoginFragment::class.java))
+
             finish()
         }
     }

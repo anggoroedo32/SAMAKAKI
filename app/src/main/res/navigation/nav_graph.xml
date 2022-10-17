@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@layout/splashscreen">
+
+    <activity
+        android:id="@+id/splash_activity"
+        android:name="com.awp.samakaki.SplashScreenActivity"
+        android:label="Splash Activity"
+        tools:layout="@layout/splashscreen"/>
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.awp.samakaki.ui.login.LoginFragment"
+        android:label="Login Fragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_fragment_to_register_fragment"
+            app:destination="@id/register_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.awp.samakaki.ui.register.RegisterFragment"
+        android:label="Register Fragment"
+        tools:layout="@layout/fragment_register"/>
+</navigation>
