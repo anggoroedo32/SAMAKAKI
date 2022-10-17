@@ -5,30 +5,37 @@
       <map>
         <entry key="..\:/Users/User/.gradle/caches/transforms-3/eb0e76209b998c16c3c6862556c297ef/transformed/appcompat-1.5.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_post.xml" value="0.285" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_post_content.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_post_down.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_post_up.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_spinner.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/bg_user_info_post_content.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_chat.xml" value="0.285" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_chat_filled.xml" value="0.3405" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_chat_outlined.xml" value="0.3405" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_chat_selector.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_dropdown_arrow.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_notifications.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_profile.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_search.xml" value="0.285" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/ic_settings.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/search_box.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/search_username_box.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/drawable/wrap_ic_search_family.xml" value="0.285" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_family_tree.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/activity_main2.xml" value="0.23731884057971014" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_chat.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_family.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_home.xml" value="0.67" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_family_tree.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_home.xml" value="0.17706237424547283" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/fragment_profile.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/layout_post_content.xml" value="0.5" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/node.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/spinner_item.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/layout/splashscreen.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/menu/menu_family_tree_orientation.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/SAMAKAKI/app/src/main/res/menu/menu_home.xml" value="0.3009833262077811" />

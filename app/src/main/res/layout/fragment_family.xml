@@ -6,23 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.DataFamilyTree">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <com.otaliastudios.zoom.ZoomLayout
         android:id="@+id/zoomLayout"
         android:layout_width="match_parent"
@@ -30,8 +13,9 @@
         android:scrollbars="vertical|horizontal"
         app:hasClickableChildren="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_family_tree"

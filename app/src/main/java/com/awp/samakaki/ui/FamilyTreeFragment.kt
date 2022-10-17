@@ -12,11 +12,6 @@ import dev.bandb.graphview.layouts.tree.TreeEdgeDecoration
 
 class FamilyTreeFragment : FamilyFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
     override fun setLayoutManager() {
         val configuration = BuchheimWalkerConfiguration.Builder()
             .setSiblingSeparation(100)
@@ -57,39 +52,6 @@ class FamilyTreeFragment : FamilyFragment() {
         graph.addEdge(node4, node11)
         graph.addEdge(node11, node12)
         return graph
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_family_tree_orientation, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val builder = BuchheimWalkerConfiguration.Builder()
-            .setSiblingSeparation(100)
-            .setLevelSeparation(300)
-            .setSubtreeSeparation(300)
-        val itemId = item.itemId
-        when (itemId) {
-            R.id.topToBottom -> {
-                builder.setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
-            }
-            R.id.bottomToTop -> {
-                builder.setOrientation(BuchheimWalkerConfiguration.ORIENTATION_BOTTOM_TOP)
-            }
-            R.id.leftToRight -> {
-                builder.setOrientation(BuchheimWalkerConfiguration.ORIENTATION_LEFT_RIGHT)
-            }
-            R.id.rightToLeft -> {
-                builder.setOrientation(BuchheimWalkerConfiguration.ORIENTATION_RIGHT_LEFT)
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
-        recyclerView.layoutManager = context?.let { BuchheimWalkerLayoutManager(it, builder.build()) }
-        recyclerView.adapter = adapter
-        return true
     }
 
 }

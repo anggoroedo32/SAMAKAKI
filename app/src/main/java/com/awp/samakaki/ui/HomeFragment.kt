@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -43,13 +43,20 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.notification -> startActivity(Intent(context, DataFamilyTree::class.java))
+                R.id.settings -> Toast.makeText(context, "Clicked Setting", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
 
-        val spin = binding.searchFamily
-        spin.onItemSelectedListener = this
-
-        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), R.layout.spinner_item, familyName)
-        ad.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
-        spin.adapter = ad
+//        val spin = binding.searchFamily
+//        spin.onItemSelectedListener = this
+//
+//        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), R.layout.spinner_item, familyName)
+//        ad.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+//        spin.adapter = ad
 
         val btnPost = binding.btnPost
         btnPost.setOnClickListener {
@@ -59,47 +66,21 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(context,
-            familyName[position],
-            Toast.LENGTH_LONG)
-            .show()
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
+//    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//        Toast.makeText(context,
+//            familyName[position],
+//            Toast.LENGTH_LONG)
+//            .show()
+//    }
+//
+//    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
         super.onCreateOptionsMenu(menu, inflater)
 
-        val searchItem = menu?.findItem(R.id.auto_complete)
-        val searchView = searchItem?.actionView as SearchView
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.clearFocus()
-                searchView.setQuery("", false)
-                searchItem.collapseActionView()
-                Toast.makeText(context, "Looking for $query", Toast.LENGTH_SHORT).show()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-        })
-
-
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.auto_complete -> {
-                Toast.makeText(context, "Looking for autocomplete", Toast.LENGTH_SHORT).show()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

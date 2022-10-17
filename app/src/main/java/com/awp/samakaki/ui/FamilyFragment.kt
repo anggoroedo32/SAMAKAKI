@@ -48,9 +48,6 @@ abstract class FamilyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = binding.toolbar
-        toolbar.inflateMenu(R.menu.menu_family_tree_orientation)
-
         val graph = createGraph()
         recyclerView = binding.rvFamilyTree
         setLayoutManager()
