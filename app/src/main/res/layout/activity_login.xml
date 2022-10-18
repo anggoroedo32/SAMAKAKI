@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment"
+    tools:context=".ui.authentication.LoginActivity"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +60,9 @@
             android:layout_marginTop="16dp"
             android:inputType="textPassword"
             style="@style/TextfieldsStyle"/>
+
         <TextView
+            android:id="@+id/tv_forgot_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
@@ -70,16 +71,18 @@
             android:layout_marginTop="20dp"
             style="@style/regular_12"
             android:textColor="@color/primary_600"/>
+
         <Button
             android:id="@+id/btn_login"
             android:layout_width="@dimen/dimen_161"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="@string/login"
             android:layout_marginHorizontal="35dp"
             android:layout_marginTop="24dp"
             android:layout_gravity="center"
             style="@style/ButtonStyle"
             android:backgroundTint="@color/primary_500"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

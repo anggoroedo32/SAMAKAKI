@@ -1,13 +1,19 @@
 package com.awp.samakaki.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class PostsResponse(
 
 	@field:SerializedName("data")
-	val data: Data? = null
+	val data: Data? = null,
+
+	@field:SerializedName("post")
+	val post: List<PostItem>? = null
 )
 
+@Parcelize
 data class PostItem(
 
 	@field:SerializedName("updated_at")
@@ -23,17 +29,17 @@ data class PostItem(
 	val id: Int? = null,
 
 	@field:SerializedName("title")
-	val title: Any? = null,
+	val title: String? = null,
 
 	@field:SerializedName("descriptions")
-	val descriptions: Any? = null,
+	val descriptions: String? = null,
 
 	@field:SerializedName("status")
-	val status: Any? = null
-)
+	val status: String? = null
+) : Parcelable
 
 data class Data(
 
 	@field:SerializedName("post")
-	val post: List<PostItem?>? = null
+	val post: List<PostItem>? = null
 )

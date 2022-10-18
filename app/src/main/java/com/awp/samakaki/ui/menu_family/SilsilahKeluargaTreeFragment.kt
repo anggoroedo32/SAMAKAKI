@@ -1,16 +1,12 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu_family
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.awp.samakaki.R
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import dev.bandb.graphview.layouts.tree.TreeEdgeDecoration
 
-class FamilyTreeFragment : FamilyFragment() {
+class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
 
     override fun setLayoutManager() {
         val configuration = BuchheimWalkerConfiguration.Builder()

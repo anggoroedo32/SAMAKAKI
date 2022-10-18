@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add_profile.AddProfileFragment"
+    tools:context=".ui.SelamatDatangActivity"
     android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/image_add_profile"/>
+        android:src="@drawable/image_add_profile"
+        android:layout_marginTop="@dimen/dimen_32"
+        android:layout_marginHorizontal="@dimen/dimen_32"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,8 +69,9 @@
         android:hint="@string/masukkan_foto"
         style="@style/TextfieldsStyle"
         app:drawableRightCompat="@drawable/ic_baseline_cloud_upload_24" />
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_email_verification"
+        android:id="@+id/btn_isi_profil"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50"

@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.email_verification.EmailVerificationFragment">
+    tools:context=".ui.authentication.KodeVerifikasiActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
@@ -124,7 +123,7 @@
         android:id="@+id/btn_email_verification"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_35"
         android:layout_marginTop="@dimen/dimen_70"
         android:text="@string/verifikasi_email"

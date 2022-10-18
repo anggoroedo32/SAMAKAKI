@@ -62,7 +62,7 @@
                 tools:src="@drawable/dummy_post_img" />
 
             <TextView
-                android:id="@+id/tv_post"
+                android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem"

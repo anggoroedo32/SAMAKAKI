@@ -3,25 +3,38 @@ package com.awp.samakaki.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
+import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
+import com.awp.samakaki.response.PostItem
+import com.awp.samakaki.viewmodel.PostsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModels<PostsViewModel>()
+    private lateinit var postsAdapter: PostsAdapter
 
     var familyName = arrayOf<String?>(
         "Suharto Family",
         "Keluarga Cemara",
         "Arisan Keluarga"
     )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +44,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +72,22 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        viewModel.getAllPosts()
+        viewModel.listAllPosts.observe(viewLifecycleOwner) {
+            it.post?.let { it1 -> rvPosts(it1) }
+        }
+
+
+    }
+
+    private fun rvPosts(list: List<PostItem>) {
+        val recyclerViewPosts: RecyclerView = binding.rvPost
+        postsAdapter = PostsAdapter(list)
+        recyclerViewPosts.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = postsAdapter
+        }
     }
 
 //    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

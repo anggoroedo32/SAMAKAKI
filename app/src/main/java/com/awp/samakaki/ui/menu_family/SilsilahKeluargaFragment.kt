@@ -1,12 +1,10 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu_family
 
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
@@ -16,16 +14,14 @@ import com.google.android.material.snackbar.Snackbar
 import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
-import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
-import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import java.util.*
 
-abstract class FamilyFragment : Fragment() {
+abstract class SilsilahKeluargaFragment : Fragment() {
 
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
     protected lateinit var recyclerView: RecyclerView
-    protected lateinit var adapter: AbstractGraphAdapter<FamilyFragment.NodeViewHolder>
+    protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
     private lateinit var fab: FloatingActionButton
     private var currentNode: Node? = null
     private var nodeCount = 1
