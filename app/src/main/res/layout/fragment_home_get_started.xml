@@ -52,14 +52,13 @@
     <Button
         android:id="@+id/button"
         style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_161"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="@dimen/dimen_44"
         android:text="@string/isi_profil"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
