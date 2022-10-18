@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">SAMAKAKI</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_family">Family</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="dummy_username">Yunanda Anggraini</string>
+    <string name="dummy_family_name"><font size="16">Keluarga Situmorang</font></string>
+    <string name="add_post">Ketikan sesuatu...</string>
+    <string name="foto_or_video">Foto / Video</string>
+    <string name="music">Musik</string>
+    <string name="post">Posting</string>
+    <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
+    <string name="search_user"><font size="14">Search username...</font></string>
+    <string name="title_search">Search</string>
+
+    //splashscreen
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="samakaki_splash">SAMAKAKI</string>
+    <string name="welcome_splash">Welcome</string>
+    <string name="get_started_splash">Get Started</string>
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="title_settings">Setting</string>
 </resources>
