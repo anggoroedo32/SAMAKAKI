@@ -25,9 +25,6 @@
             android:name=".ui.add_family.AddFamily"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:exported="true">
