@@ -1,24 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.ChatFragment">
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profile"
+        android:layout_width="113dp"
+        android:layout_height="112dp"
+        android:layout_margin="@dimen/dimen_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/TV_profilename"
+        app:layout_constraintBottom_toTopOf="@id/RV_profile"
+        tools:scrCompat="@tools:profile_pic"/>
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/TV_profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/semibold_16prim500"
+        android:layout_marginTop="@dimen/dimen_25"
+        android:layout_marginStart="@dimen/dimen_10"
+        app:layout_constraintStart_toEndOf="@id/img_profile"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Iwan Bule"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:background="@drawable/rounded_btn15"
+        style="@style/ButtonStyle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_edit"
+        app:iconSize="@dimen/dimen_16"
+        android:text="@string/edit_profile"
+        android:layout_margin="@dimen/dimen_10"
+        app:layout_constraintStart_toEndOf="@id/img_profile"
+        app:layout_constraintTop_toBottomOf="@id/TV_profilename"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_etc"
+        android:background="@drawable/rounded_btn15"
+        style="@style/ButtonStyle3"
+        android:text="@string/dotdotdot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10"
+        app:layout_constraintStart_toEndOf="@id/btn_save"
+        app:layout_constraintTop_toBottomOf="@id/TV_profilename"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="@string/title_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:padding="@dimen/dimen_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/img_profile"
+        tools:listitem="@tools:sample/avatars"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
