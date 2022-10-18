@@ -1,5 +1,6 @@
 package com.awp.samakaki.di
 
+import com.awp.samakaki.data.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,9 +27,13 @@ class ApplicationModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("") // BASE URL
+        .baseUrl("https://sama-kaki.herokuapp.com/api/v1/") // BASE URL
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
 }
