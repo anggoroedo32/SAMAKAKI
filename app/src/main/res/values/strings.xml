@@ -8,4 +8,6 @@
     <string name="samakaki_splash">SAMAKAKI</string>
     <string name="welcome_splash">Welcome</string>
     <string name="get_started_splash">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
