@@ -8,4 +8,21 @@
     <string name="samakaki_splash">SAMAKAKI</string>
     <string name="welcome_splash">Welcome</string>
     <string name="get_started_splash">Get Started</string>
+    <string name="save">Save</string>
+    <string name="dotdotdot">. . .</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="photo_profile">Photo Profile</string>
+    <string name="edit">Edit</string>
+    <string name="bio">Bio</string>
+    <string name="nama">Nama</string>
+    <string name="nama_kamu">Nama kamu</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="no_telepon_kamu">No Telepon kamu</string>
+    <string name="lokasi_kamu">Lokasi kamu</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="status_pernikahan">Status Pernikahan</string>
+    <string name="status_kamu">Status kamu</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
+
 </resources>
