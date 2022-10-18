@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/profile_fragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_profile"
@@ -29,7 +30,7 @@
         tools:text="Iwan Bule"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_ed_profile"
         android:background="@drawable/rounded_btn15"
         style="@style/ButtonStyle2"
         android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10"
-        app:layout_constraintStart_toEndOf="@id/btn_save"
+        app:layout_constraintStart_toEndOf="@id/btn_ed_profile"
         app:layout_constraintTop_toBottomOf="@id/TV_profilename"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -61,7 +62,6 @@
         android:padding="@dimen/dimen_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile"
-        tools:listitem="@tools:sample/avatars"/>
+        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

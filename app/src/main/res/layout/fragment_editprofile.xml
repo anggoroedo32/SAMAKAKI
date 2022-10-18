@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_editprofile"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:id="@+id/edit_profile_fragment"
+    tools:context=".ui.EditProfileFragment">
 
         <TextView
             android:id="@+id/tv_photo_profile"
