@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SAMAKAKI</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_family">Family</string>
@@ -27,4 +26,43 @@
     <string name="get_started_splash">Get Started</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
     <string name="title_settings">Setting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="change_password">Ubah Password</string>
+    <string name="verifikasi_email">Verifikasi Email</string>
+    <string name="isi_profil">Isi Profil</string>
+    <string name="masukkan_foto">Masukkan Foto</string>
+    <string name="silahkan_melakukan_verifikasi_akun">Silahkan Melakukan Verifikasi Akun</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="minta_kode_lagi">Minta kode lagi</string>
+    <string name="tidak_menerima_kode">Tidak menerima kode?</string>
+    <string name="kode_verifikasi_telah_di_kirim_ke_email_kamu">Kode Verifikasi telah di kirim ke email kamu</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="alamat">Alamat</string>
+    <string name="isi_profil_kamu">Isi Profil Kamu!!</string>
+    <string name="status_nikah">Status Nikah</string>
+    <string name="privasi">Privasi</string>
+    <string name="data_keluarga_kamu">DATA KELUARGA KAMU</string>
+    <string name="nama_keluarga">Nama Keluarga</string>
+    <string name="anggota_keluarga">Anggota Keluarga</string>
+    <string name="nama">Nama</string>
+    <string name="nomor_telephone">Nomor Telephone</string>
+    <string name="hubungan">Hubungan</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="welcome">Welcome</string>
+    <string name="silahkan_melakukan_login">Silahkan melakukan Login</string>
+    <string name="email_kamu">Email kamu</string>
+    <string name="forgot_password_2">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="tambah_anggota">Tambah Anggota</string>
+    <string name="keluarga">Keluarga</string>
+    <string name="status">Status</string>
+    <string name="simpan">Simpan</string>
 </resources>

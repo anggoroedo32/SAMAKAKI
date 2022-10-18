@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.awp.samakaki">
+    package="com.awp.samakaki" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" />
@@ -17,9 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAMAKAKI"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
             android:name=".ui.FamilyTreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.add_family.AddFamily"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
