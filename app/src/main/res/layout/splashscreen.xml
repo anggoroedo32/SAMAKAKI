@@ -2,70 +2,73 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/primary_50"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreenActivity">
 
     <ImageView
-        android:id="@+id/img_splash"
-        android:src="@drawable/splash_img"
+        android:id="@+id/vector1"
+        android:src="@drawable/garis2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_30"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageView
+        android:id="@+id/vector2"
+        android:src="@drawable/garis1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_splash"
+        android:src="@drawable/splash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv2"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vector1"/>
 
     <TextView
         android:id="@+id/tv1"
         style="@style/bold_30prim600"
+        android:textColor="@color/warning_500"
         android:text="@string/samakaki_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
-        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal550"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal400"/>
 
     <TextView
         android:id="@+id/tv2"
         style="@style/semibold_16prim500"
-        android:text="@string/welcome_splash"
+        android:textColor="@color/warning_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
-        app:layout_constraintBottom_toTopOf="@id/tv1"/>
+        android:text="@string/welcome_splash"
+        app:layout_constraintBottom_toTopOf="@id/tv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_getstarted"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_started_splash"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal650"/>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_64"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.08"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv1"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal550"
+        android:id="@+id/guideline_horizontal400"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="550dp" />
+        app:layout_constraintGuide_begin="500dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal650"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="650dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
