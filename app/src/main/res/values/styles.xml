@@ -25,7 +25,15 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
         <item name="android:gravity">center</item>
-        <item name="android:color">@color/primary_600</item>
+        <item name="android:textColor">@color/primary_600</item>
+    </style>
+
+    <style name="bold_20sec500">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondary_500</item>
     </style>
 
     <style name="regular_18">
@@ -77,6 +85,14 @@
         <item name="android:textSize">@dimen/dimen_16</item>
     </style>
 
+
+    <style name="regular_14sec500">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondary_500</item>
+    </style>
 
     <style name="regular_14sec300">
         <item name="fontFamily">@font/poppins_regular</item>

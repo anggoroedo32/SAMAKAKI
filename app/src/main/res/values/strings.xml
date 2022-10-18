@@ -65,4 +65,10 @@
     <string name="keluarga">Keluarga</string>
     <string name="status">Status</string>
     <string name="simpan">Simpan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="samakaki">SAMAKAKI</string>
+    <string name="selamat_datang_di">Selamat Datang di</string>
+    <string name="silahkan_isi_profile_kamu_terlebih_dahulu">Silahkan isi profile kamu terlebih dahulu</string>
+    <string name="selamat_datang_di_samakaki">Selamat Datang di SAMAKAKI</string>
+    <string name="background">background</string>
 </resources>
