@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="500dp" />
+        app:layout_constraintGuide_end="391dp" />
 
 
 

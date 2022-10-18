@@ -86,5 +86,7 @@
     <string name="status_kamu">Status kamu</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
     <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
 </resources>

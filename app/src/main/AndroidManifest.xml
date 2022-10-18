@@ -23,40 +23,49 @@
         <activity
             android:name=".ui.authentication.RegisterActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.authentication.KodeVerifikasiActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.authentication.ForgotPasswordActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.authentication.LoginActivity"
             android:exported="false" />
+
         <activity android:name=".ui.authentication.ResetPasswordActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.SelamatDatangActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.SplashScreenActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.FamilyTreeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.IsiProfilActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true"
-            android:label="@string/title_activity_main" >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.FamilyTreeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.IsiProfilActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+
         <activity
             android:name=".ui.DataFamilyTree"
             android:exported="false" />

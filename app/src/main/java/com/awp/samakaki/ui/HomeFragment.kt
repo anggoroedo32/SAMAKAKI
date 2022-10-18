@@ -15,6 +15,7 @@ import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.viewmodel.PostsViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -75,6 +76,15 @@ class HomeFragment : Fragment() {
         viewModel.getAllPosts()
         viewModel.listAllPosts.observe(viewLifecycleOwner) {
             it.post?.let { it1 -> rvPosts(it1) }
+        }
+
+        val addMedia = binding.addMedia
+        addMedia.setOnClickListener {
+            val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_media, null)
+            dialog?.setCancelable(true)
+            dialog?.setContentView(view)
+            dialog?.show()
         }
 
 
