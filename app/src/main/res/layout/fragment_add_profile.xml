@@ -4,20 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add_profile.AddProfileFragment"
-    android:background="@color/secondary_100">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_vector"
-        android:scaleType="fitXY"/>
+    tools:context=".ui.add_profile.AddProfileFragment">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="377dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_35"
-        android:layout_marginTop="@dimen/dimen_135"
-        android:background="@color/secondary_600"
+        android:layout_marginTop="@dimen/dimen_80"
+        android:paddingVertical="@dimen/dimen_42"
+        android:background="#D5E2DA"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,9 +22,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_28"
             android:text="Isi Profil Kamu!!"
-            style="@style/medium_16"/>
+            style="@style/bold_16"/>
 
         <EditText
             android:id="@+id/et_address"
@@ -71,6 +66,15 @@
             android:focusable="false"
             android:cursorVisible="false"
             android:hint="Privasi"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginTop="@dimen/dimen_22"
+            android:paddingEnd="@dimen/dimen_16"
+            android:drawableRight="@drawable/ic_baseline_cloud_upload_24"
+            android:hint="Masukkan Foto"
+            style="@style/TextfieldsStyle"/>
     </LinearLayout>
 
     <Button
@@ -83,7 +87,9 @@
         android:layout_marginTop="@dimen/dimen_60"
         android:backgroundTint="@color/primary_500"
         android:text="Isi Profil"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.040" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,18 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreenActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
-
     <ImageView
         android:id="@+id/img_splash"
         android:src="@drawable/splash_img"
@@ -50,7 +38,6 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_getstarted"
         style="@style/ButtonStyle"
-        android:backgroundTint="@color/primary_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_started_splash"
