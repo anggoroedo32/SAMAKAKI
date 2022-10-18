@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add_family.AddFamily"
-    android:background="@color/secondary_100">
+    tools:context=".ui.add_family.AddFamily">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_vector"
-        android:scaleType="fitXY"/>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -19,7 +13,7 @@
         android:paddingVertical="@dimen/dimen_28"
         android:layout_marginHorizontal="@dimen/dimen_35"
         android:layout_marginTop="@dimen/dimen_80"
-        android:background="@color/secondary_600"
+        android:background="@color/secondary_200"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,14 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="DATA KELUARGA KAMU"
+            android:text="@string/data_keluarga_kamu"
             style="@style/medium_16"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:text="Nama Keluarga"/>
+            android:text="@string/nama_keluarga"/>
         <EditText
             android:id="@+id/et_address"
             style="@style/TextfieldsStyle"
@@ -43,13 +37,13 @@
             android:layout_height="@dimen/dimen_40"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_16"
-            android:hint="Nama Keluarga"/>
+            android:hint="@string/nama_keluarga"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_20"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:text="Anggota Keluarga"/>
+            android:text="@string/anggota_keluarga"/>
         <EditText
             android:id="@+id/et_birthday"
             style="@style/TextfieldsStyle"
@@ -59,7 +53,7 @@
             android:layout_marginTop="@dimen/dimen_16"
             android:focusable="false"
             android:cursorVisible="false"
-            android:hint="Nama" />
+            android:hint="@string/nama" />
 
         <EditText
             android:id="@+id/et_status"
@@ -70,7 +64,7 @@
             android:layout_marginTop="@dimen/dimen_16"
             android:focusable="false"
             android:cursorVisible="false"
-            android:hint="Nomor Telephone"/>
+            android:hint="@string/nomor_telephone"/>
 
         <EditText
             android:id="@+id/et_privacy"
@@ -81,19 +75,19 @@
             android:layout_marginTop="@dimen/dimen_16"
             android:focusable="false"
             android:cursorVisible="false"
-            android:hint="Hubungan"/>
+            android:hint="@string/hubungan"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_add_profile"
         style="@style/ButtonStyle"
-        android:layout_width="@dimen/dimen_161"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/dimen_35"
         android:layout_marginTop="@dimen/dimen_60"
         android:backgroundTint="@color/primary_500"
-        android:text="Isi Profil"
+        android:text="@string/isi_profil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

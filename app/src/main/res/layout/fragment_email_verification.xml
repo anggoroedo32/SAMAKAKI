@@ -33,13 +33,13 @@
                 style="@style/medium_18black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Verifikasi Email" />
+                android:text="@string/verifikasi_email" />
 
             <TextView
                 style="@style/regular_14sec300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kode Verifikasi telah di kirim ke email kamu" />
+                android:text="@string/kode_verifikasi_telah_di_kirim_ke_email_kamu" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tidak menerima kode? "
+            android:text="@string/tidak_menerima_kode"
             tools:layout_editor_absoluteX="143dp"
             tools:layout_editor_absoluteY="573dp" />
 
@@ -116,7 +116,7 @@
             android:id="@+id/txtView_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Minta kode lagi"
+            android:text="@string/minta_kode_lagi"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_pop_up"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/secondary_100">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/dimen_28"
-            android:background="@color/secondary_600"
+            android:background="@color/secondary_200"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Tambah Anggota" />
+                    android:text="@string/tambah_anggota" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -45,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_20"
                 android:layout_marginHorizontal="@dimen/dimen_35"
-                android:text="Keluarga"/>
+                android:text="@string/keluarga"/>
             <EditText
                 android:id="@+id/et_address"
                 style="@style/TextfieldsStyle"
@@ -53,7 +52,7 @@
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_16"
-                android:hint="Nama"/>
+                android:hint="@string/nama"/>
 
             <EditText
                 android:id="@+id/et_birthday"
@@ -64,7 +63,7 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:focusable="false"
                 android:cursorVisible="false"
-                android:hint="Nomor Telephone" />
+                android:hint="@string/nomor_telephone" />
 
             <EditText
                 android:id="@+id/et_status"
@@ -75,18 +74,18 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:focusable="false"
                 android:cursorVisible="false"
-                android:hint="Status"/>
+                android:hint="@string/status"/>
 
             <Button
                 android:id="@+id/btn_add_profile"
                 style="@style/ButtonStyle"
-                android:layout_width="@dimen/dimen_161"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_28"
                 android:backgroundTint="@color/primary_500"
-                android:text="Simpan"/>
+                android:text="@string/simpan"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

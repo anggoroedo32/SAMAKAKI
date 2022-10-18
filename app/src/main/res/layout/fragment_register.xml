@@ -16,7 +16,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register"
             android:layout_marginTop="27dp"
             android:layout_marginStart="35dp"
             style="@style/medium_18black"/>
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:text="Name"
+            android:text="@string/name"
             style="@style/regular_14black"/>
         <EditText
             android:id="@+id/et_name"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
-            android:text="Email"
+            android:text="@string/email"
             style="@style/regular_14black"/>
 
         <EditText
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
-            android:text="Nomor Telephone"
+            android:text="@string/nomor_telephone"
             style="@style/regular_14black"/>
 
         <EditText
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
-            android:text="Password"
+            android:text="@string/password"
             style="@style/regular_14black"/>
 
         <EditText
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
-            android:text="Confirm Password"/>
+            android:text="@string/confirm_password"/>
 
         <EditText
             android:id="@+id/et_confirm_password"
@@ -143,12 +143,12 @@
         <Button
             android:id="@+id/btn_register"
             style="@style/ButtonStyle"
-            android:layout_width="@dimen/dimen_161"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="35dp"
             android:backgroundTint="@color/primary_500"
-            android:text="Register"
+            android:text="@string/register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,14 +168,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sudah punya akun? "
+                android:text="@string/sudah_punya_akun"
                 tools:layout_editor_absoluteX="143dp"
                 tools:layout_editor_absoluteY="573dp"/>
             <TextView
                 android:id="@+id/txtView_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login"
                 android:textStyle="bold"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

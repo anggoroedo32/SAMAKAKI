@@ -1,95 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add_profile.AddProfileFragment">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    tools:context=".ui.add_profile.AddProfileFragment"
+    android:orientation="vertical">
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_35"
-        android:layout_marginTop="@dimen/dimen_80"
-        android:paddingVertical="@dimen/dimen_42"
-        android:background="#D5E2DA"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Isi Profil Kamu!!"
-            style="@style/bold_16"/>
-
-        <EditText
-            android:id="@+id/et_address"
-            style="@style/TextfieldsStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_32"
-            android:hint="Alamat"/>
-
-        <EditText
-            android:id="@+id/et_birthday"
-            style="@style/TextfieldsStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_22"
-            android:focusable="false"
-            android:cursorVisible="false"
-            android:hint="Tanggal Lahir" />
-
-        <EditText
-            android:id="@+id/et_status"
-            style="@style/TextfieldsStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_22"
-            android:focusable="false"
-            android:cursorVisible="false"
-            android:hint="Status Nikah"/>
-
-        <EditText
-            android:id="@+id/et_privacy"
-            style="@style/TextfieldsStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_22"
-            android:focusable="false"
-            android:cursorVisible="false"
-            android:hint="Privasi"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_22"
-            android:paddingEnd="@dimen/dimen_16"
-            android:drawableRight="@drawable/ic_baseline_cloud_upload_24"
-            android:hint="Masukkan Foto"
-            style="@style/TextfieldsStyle"/>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_add_profile"
-        style="@style/ButtonStyle"
-        android:layout_width="@dimen/dimen_161"
-        android:layout_height="50dp"
+        android:src="@drawable/image_add_profile"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="@string/isi_profil_kamu"
+        style="@style/bold_16"/>
+
+    <EditText
+        android:id="@+id/et_address"
+        style="@style/TextfieldsStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
         android:layout_marginHorizontal="@dimen/dimen_35"
-        android:layout_marginTop="@dimen/dimen_60"
-        android:backgroundTint="@color/primary_500"
-        android:text="Isi Profil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.040" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="@dimen/dimen_32"
+        android:hint="@string/alamat"/>
+
+    <EditText
+        android:id="@+id/et_birthday"
+        style="@style/TextfieldsStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginHorizontal="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_22"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:hint="@string/tanggal_lahir" />
+
+    <EditText
+        android:id="@+id/et_status"
+        style="@style/TextfieldsStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginHorizontal="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_22"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:hint="@string/status_nikah"/>
+
+    <EditText
+        android:id="@+id/et_privacy"
+        style="@style/TextfieldsStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginHorizontal="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_22"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:hint="@string/privasi"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_76"
+        android:layout_marginHorizontal="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_22"
+        android:paddingEnd="@dimen/dimen_16"
+        android:hint="@string/masukkan_foto"
+        style="@style/TextfieldsStyle"
+        app:drawableRightCompat="@drawable/ic_baseline_cloud_upload_24" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_email_verification"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_marginHorizontal="@dimen/dimen_35"
+        android:layout_marginTop="@dimen/dimen_40"
+        android:text="@string/isi_profil"
+        app:layout_constraintTop_toBottomOf="@id/tv_code" />
+</LinearLayout>
