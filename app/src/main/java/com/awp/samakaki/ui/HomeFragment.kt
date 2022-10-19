@@ -1,27 +1,10 @@
 package com.awp.samakaki.ui
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.*
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
@@ -90,14 +73,21 @@ class HomeFragment : Fragment() {
             it.post?.let { it1 -> rvPosts(it1) }
         }
 
+
         val addMedia = binding.addMedia
         addMedia.setOnClickListener {
-            val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
-            val view = layoutInflater.inflate(R.layout.fragment_bottom_sheet, null)
-            dialog?.setCancelable(true)
-            dialog?.setContentView(view)
-            dialog?.show()
+            val sortRecipesBottomSheet = BottomSheetFragment()
+            sortRecipesBottomSheet.show(childFragmentManager,sortRecipesBottomSheet.tag)
         }
+
+//        val addMedia = binding.addMedia
+//        addMedia.setOnClickListener {
+//            val dialog = context?.let { it1 -> BottomSheetDialog(it1) }
+//            val view = layoutInflater.inflate(R.layout.fragment_bottom_sheet, null)
+//            dialog?.setCancelable(true)
+//            dialog?.setContentView(view)
+//            dialog?.show()
+//        }
 
 
     }

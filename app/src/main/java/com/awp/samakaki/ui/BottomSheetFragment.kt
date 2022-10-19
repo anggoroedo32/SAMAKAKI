@@ -28,6 +28,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val btnCamera = binding.wrapCamera
         btnCamera.setOnClickListener {
             Toast.makeText(context, "Clicked on camera", Toast.LENGTH_SHORT).show()
+            dismiss()
         }
     }
 
