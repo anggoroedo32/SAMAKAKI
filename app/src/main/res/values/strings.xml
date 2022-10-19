@@ -10,4 +10,8 @@
     <string name="get_started_splash">Get Started</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_notification">Notification</string>
+    <string name="title_settings">Settings</string>
+    <string name="keluarga">Keluarga</string>
+    <string name="personal">Personal</string>
 </resources>
