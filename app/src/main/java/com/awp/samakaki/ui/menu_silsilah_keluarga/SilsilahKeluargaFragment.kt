@@ -1,4 +1,4 @@
-package com.awp.samakaki.ui.menu_family
+package com.awp.samakaki.ui.menu_silsilah_keluarga
 
 import android.os.Bundle
 import android.view.*

@@ -88,5 +88,6 @@
     <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="failed_camera">Failed To Bring Up The Camera</string>
 
 </resources>

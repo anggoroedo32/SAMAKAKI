@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.awp.samakaki.ui.HomeFragment"
+        android:name="com.awp.samakaki.ui.menu_beranda.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_family"
-        android:name="com.awp.samakaki.ui.menu_family.SilsilahKeluargaTreeFragment"
+        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaTreeFragment"
         android:label="@string/title_family"
         tools:layout="@layout/fragment_family" />
 
