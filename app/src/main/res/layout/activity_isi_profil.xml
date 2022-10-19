@@ -82,7 +82,7 @@
         android:id="@+id/btn_add_profile"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/dimen_35"
         android:layout_marginTop="@dimen/dimen_60"

@@ -74,7 +74,7 @@
         android:id="@+id/btn_isi_profil"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_35"
         android:layout_marginTop="@dimen/dimen_40"
         android:text="@string/isi_profil"
