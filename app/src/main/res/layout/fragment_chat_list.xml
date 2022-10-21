@@ -28,48 +28,16 @@
             app:titleTextAppearance="@style/bold_18prim500"
             app:titleTextColor="@color/primary_500" />
 
-
     </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar">
-
-        <Button
-            android:id="@+id/btn_personal"
-            style="@style/bold_12"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_38"
-            android:layout_marginHorizontal="@dimen/dimen_4"
-            android:background="@drawable/btn_selector"
-            android:paddingHorizontal="@dimen/dimen_24"
-            android:text="@string/personal"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btn_family"
-            style="@style/bold_12"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_38"
-            android:layout_marginHorizontal="@dimen/dimen_4"
-            android:background="@drawable/btn_selector"
-            android:paddingHorizontal="@dimen/dimen_24"
-            android:text="@string/keluarga"
-            android:textAllCaps="false" />
-    </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tl_chat_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="@dimen/dimen_0"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar" />
@@ -78,9 +46,11 @@
         android:id="@+id/vp_chat_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dimen_15"
+        android:background="@drawable/rounded_chat_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tl_chat_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

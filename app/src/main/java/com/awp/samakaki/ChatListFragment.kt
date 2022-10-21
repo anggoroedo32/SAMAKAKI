@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.databinding.FragmentChatListBinding
@@ -17,8 +18,6 @@ class ChatListFragment : Fragment() {
     private var _binding: FragmentChatListBinding? = null
     private val binding get()= _binding!!
     private lateinit var viewPagerAdapter: ViewPagerAdapter
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +51,12 @@ class ChatListFragment : Fragment() {
                     1 -> tab.text = "Keluarga"
                 }
             }.attach()
+
+            for (i in 0..2) {
+                val textView = LayoutInflater.from(requireContext()).inflate(R.layout.tab_layout, null)
+                    as TextView
+                binding.tlChatList.getTabAt(i)?.customView = textView
+            }
         }
     }
 

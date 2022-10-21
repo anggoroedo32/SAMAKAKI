@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PersonalChatFragment"
-    android:background="@color/secondary_50">
+    android:background="@drawable/rounded_chat_list">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chat_personal"

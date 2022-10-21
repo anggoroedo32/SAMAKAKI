@@ -49,6 +49,7 @@
     <style name="semibold_no_padding_18">
         <item name="fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">@dimen/dimen_18</item>
+        <item name="android:textColor">#585555</item>
     </style>
 
     <style name="bold_18prim600">
@@ -91,6 +92,14 @@
         <item name="android:textSize">@dimen/dimen_16</item>
     </style>
 
+
+    <style name="bold_14prim600">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:color">@color/primary_600</item>
+    </style>
 
     <style name="regular_14sec300">
         <item name="fontFamily">@font/poppins_regular</item>

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/bottom_line.xml" value="0.2105" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/btn_selector.xml" value="0.1925" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2015" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/ic_notifications.xml" value="0.1935" />
@@ -11,13 +12,19 @@
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_btn.xml" value="0.2" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_btn_2.xml" value="0.1935" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_btn_2_outlined.xml" value="0.1935" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_chat_list.xml" value="0.2015" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_img_btn.xml" value="0.207" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_textfield.xml" value="0.1935" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/tab_bg_selector.xml" value="0.205" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/tab_selected_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/tab_text_selector.xml" value="0.1" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/tab_unselected_bg.xml" value="0.1" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/vector_5.xml" value="0.2015" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_main.xml" value="0.1829861111111111" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_main2.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_splash_screen.xml" value="0.22530996152201796" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/cardview_chat_list.xml" value="0.264" />
-        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_chat_list.xml" value="0.264" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_chat_list.xml" value="0.22530996152201796" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_dashboard.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_family_chat.xml" value="0.15220179563916203" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_family_get_started.xml" value="0.152" />
@@ -26,6 +33,7 @@
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_notifications.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_personal_chat.xml" value="0.15220179563916203" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_settings.xml" value="1.09375" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/tab_layout.xml" value="0.8" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/menu/bottom_nav.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1829861111111111" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/menu/menu_home.xml" value="0.15220179563916203" />
