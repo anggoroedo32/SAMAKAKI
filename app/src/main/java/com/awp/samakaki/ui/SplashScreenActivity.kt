@@ -9,6 +9,7 @@ import android.view.WindowManager
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySplashScreenBinding
 import com.awp.samakaki.ui.authentication.LoginActivity
+import com.awp.samakaki.ui.authentication.RegisterActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -25,7 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         )
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.
