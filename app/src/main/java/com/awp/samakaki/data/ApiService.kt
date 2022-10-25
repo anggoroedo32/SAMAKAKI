@@ -2,6 +2,7 @@ package com.awp.samakaki.data
 
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.response.Data
+import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
 import okhttp3.RequestBody
@@ -22,5 +23,6 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): Response<RegisterResponse>
 
-
+    @POST("posts")
+    suspend fun createPosts(postItem: String): Response<PostsResponse>
 }
