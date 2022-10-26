@@ -22,5 +22,9 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): Response<RegisterResponse>
 
+    suspend fun createFamily(
+
+    )
+
 
 }
