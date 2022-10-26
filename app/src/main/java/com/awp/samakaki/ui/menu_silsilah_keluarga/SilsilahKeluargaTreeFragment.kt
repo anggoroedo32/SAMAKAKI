@@ -46,19 +46,15 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
         val node11 = com.awp.samakaki.utils.Node(nodeText)
         val node12 = com.awp.samakaki.utils.Node(nodeText)
 
-        graph.addEdge(node11, node1)
-        graph.addEdge(node10, node2)
         graph.addEdge(node1, node2)
-//        graph.addEdge(node1, node3)
-//        graph.addEdge(node1, node4)
-//        graph.addEdge(node9, node1)
-//        graph.addEdge(node2, node5)
-//        graph.addEdge(node2, node6)
-//        graph.addEdge(node6, node7)
-//        graph.addEdge(node6, node8)
-//        graph.addEdge(node4, node10)
-//        graph.addEdge(node4, node11)
-//        graph.addEdge(node11, node12)
+        graph.addEdge(node1, node3)
+        graph.addEdge(node1, node4)
+        graph.addEdge(node2, node5)
+        graph.addEdge(node2, node6)
+        graph.addEdge(node6, node7)
+        graph.addEdge(node6, node8)
+        graph.addEdge(node4, node10)
+        graph.addEdge(node4, node11)
 
         return graph
     }

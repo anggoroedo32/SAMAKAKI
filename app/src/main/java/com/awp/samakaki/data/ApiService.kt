@@ -23,13 +23,11 @@ interface ApiService {
     suspend fun register(
         @Body registerRequest: RegisterRequest
     ): Response<RegisterResponse>
+
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
 
-    suspend fun createFamily(
-
-    )
 
 
 }
