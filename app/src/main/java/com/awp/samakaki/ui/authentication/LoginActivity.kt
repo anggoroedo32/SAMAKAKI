@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun processLogin(data: LoginResponse?) {
-        textMessage("Success:" + data?.status)
+        textMessage("Success: " + data?.status)
         val token = data?.dataLogin?.token
         Log.d("ini_data", "ini_data: $data")
         Log.d("tokenLogin", "ini_token: $token")

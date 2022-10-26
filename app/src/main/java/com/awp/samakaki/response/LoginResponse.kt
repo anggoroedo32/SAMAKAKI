@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 data class LoginResponse(
 
-    @field:SerializedName("dataLogin")
+    @field:SerializedName("data")
     val dataLogin: DataLogin,
 
     @field:SerializedName("status")
@@ -14,15 +14,15 @@ data class LoginResponse(
 )
 
 data class DataLogin(
-    @field:SerializedName("users")
-    val users: Users,
+    @field:SerializedName("user")
+    val users: UserLogin,
 
     @field:SerializedName("token")
     val token: String? = null
 )
 
 @Parcelize
-data class Users(
+data class UserLogin(
 
     @field:SerializedName("name")
     val name: String? = null,
