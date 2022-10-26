@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_editprofile"
+    android:padding="20dp"
+    android:id="@+id/edit_profile_fragment"
+    tools:context=".ui.EditProfileFragment">
+
+        <TextView
+            android:id="@+id/tv_photo_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/photo_profile"
+            style="@style/medium_16"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/edit"
+            style="@style/medium_16"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_edit_profile"
+            android:layout_width="113dp"
+            android:layout_height="112dp"
+            android:layout_margin="@dimen/dimen_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_photo_profile"
+            tools:scrCompat="@tools:profile_pic"/>
+
+    <TextView
+        android:id="@+id/tv_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:text="@string/bio"
+        style="@style/medium_16"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_edit_profile"/>
+
+    <TextView
+        android:id="@+id/tv_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6"
+        android:text="@string/nama"
+        style="@style/medium_12"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal"/>
+
+        <EditText
+            android:id="@+id/ET_Name"
+            style="@style/TextfieldsStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/nama_kamu"
+            app:layout_constraintTop_toBottomOf="@id/tv_Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_NoTlp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6"
+        android:text="@string/nomor_telepon"
+        style="@style/medium_12"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ET_Name"/>
+
+            <EditText
+                android:id="@+id/ET_NoTlp"
+                style="@style/TextfieldsStyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/no_telepon_kamu"
+                app:layout_constraintTop_toBottomOf="@id/tv_NoTlp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_Lokasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_6"
+            android:text="@string/lokasi"
+            style="@style/medium_12"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ET_NoTlp"/>
+
+            <EditText
+                android:id="@+id/ET_Lokasi"
+                style="@style/TextfieldsStyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/lokasi_kamu"
+                app:layout_constraintTop_toBottomOf="@id/tv_Lokasi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6"
+        android:text="@string/status_pernikahan"
+        style="@style/medium_12"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
+
+            <EditText
+                android:id="@+id/ET_Status"
+                style="@style/TextfieldsStyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/status_kamu"
+                app:layout_constraintTop_toBottomOf="@id/tv_Status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_Tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_6"
+        android:text="@string/tanggal_lahir"
+        style="@style/medium_12"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@id/ET_Status"/>
+
+            <EditText
+                android:id="@+id/ET_Tanggal"
+                style="@style/TextfieldsStyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/tanggal_lahir_kamu"
+                app:layout_constraintTop_toBottomOf="@id/tv_Tanggal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_getstarted"
+                style="@style/ButtonStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ET_Tanggal"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_64"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.01"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="220dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>

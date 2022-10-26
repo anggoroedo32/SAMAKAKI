@@ -1,3 +1,103 @@
 <resources>
     <string name="app_name">SAMAKAKI</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_family">Family</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="dummy_username">Yunanda Anggraini</string>
+    <string name="dummy_family_name"><font size="16">Keluarga Situmorang</font></string>
+    <string name="add_post">Ketikan sesuatu...</string>
+    <string name="foto_or_video">Foto / Video</string>
+    <string name="music">Musik</string>
+    <string name="post">Posting</string>
+    <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
+    <string name="search_user"><font size="14">Search username...</font></string>
+    <string name="title_search">Search</string>
+
+    //splashscreen
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="samakaki_splash">SAMAKAKI</string>
+    <string name="welcome_splash">Welcome</string>
+    <string name="get_started_splash">Get Started</string>
+    <string name="title_notification">Notification</string>
+    <string name="personal">Personal</string>
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="title_settings">Setting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="change_password">Ubah Password</string>
+    <string name="verifikasi_email">Verifikasi Email</string>
+    <string name="isi_profil">Isi Profil</string>
+    <string name="masukkan_foto">Masukkan Foto</string>
+    <string name="silahkan_melakukan_verifikasi_akun">Silahkan Melakukan Verifikasi Akun</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="minta_kode_lagi">Minta kode lagi</string>
+    <string name="tidak_menerima_kode">Tidak menerima kode?</string>
+    <string name="kode_verifikasi_telah_di_kirim_ke_email_kamu">Kode Verifikasi telah di kirim ke email kamu</string>
+    <string name="alamat">Alamat</string>
+    <string name="isi_profil_kamu">Isi Profil Kamu!!</string>
+    <string name="status_nikah">Status Nikah</string>
+    <string name="privasi">Privasi</string>
+    <string name="data_keluarga_kamu">DATA KELUARGA KAMU</string>
+    <string name="nama_keluarga">Nama Keluarga</string>
+    <string name="anggota_keluarga">Anggota Keluarga</string>
+    <string name="nomor_telephone">Nomor Telephone</string>
+    <string name="hubungan">Hubungan</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="welcome">Welcome</string>
+    <string name="silahkan_melakukan_login">Silahkan melakukan Login</string>
+    <string name="email_kamu">Email kamu</string>
+    <string name="forgot_password_2">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="belum_punya_akun">Belum Punya Akun?</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="tambah_anggota">Tambah Anggota</string>
+    <string name="keluarga">Keluarga</string>
+    <string name="status">Status</string>
+    <string name="simpan">Simpan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="samakaki">SAMAKAKI</string>
+    <string name="selamat_datang_di">Selamat Datang di</string>
+    <string name="silahkan_isi_profile_kamu_terlebih_dahulu">Silahkan isi profile kamu terlebih dahulu</string>
+    <string name="selamat_datang_di_samakaki">Selamat Datang di SAMAKAKI</string>
+    <string name="background">background</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="save">Save</string>
+    <string name="dotdotdot">. . .</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="photo_profile">Photo Profile</string>
+    <string name="edit">Edit</string>
+    <string name="bio">Bio</string>
+    <string name="nama">Nama</string>
+    <string name="nama_kamu">Nama kamu</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="no_telepon_kamu">No Telepon kamu</string>
+    <string name="lokasi_kamu">Lokasi kamu</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="status_pernikahan">Status Pernikahan</string>
+    <string name="status_kamu">Status kamu</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="failed_camera">Failed To Bring Up The Camera</string>
+    <string name="er_empty_email">Fill in your email</string>
+    <string name="err_empty_name">Fill in your name</string>
+    <string name="err_empty_phone">Fill in your phone number</string>
+    <string name="err_empty_password">Fill in your password</string>
+    <string name="err_empty_confirmPassword">Fill in your password confirmation</string>
+    <string name="err_password_did_not_match">Password did not match</string>
+    <string name="err_wrong_email_format">Wrong email format</string>
+    <string name="edit_photo">Edit Photo</string>
+
 </resources>

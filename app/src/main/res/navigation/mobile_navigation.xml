@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.awp.samakaki.ui.menu_beranda.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_family"
+        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaTreeFragment"
+        android:label="@string/title_family"
+        tools:layout="@layout/fragment_family" />
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.awp.samakaki.ChatListFragment"
+        android:label="@string/title_chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.awp.samakaki.ui.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

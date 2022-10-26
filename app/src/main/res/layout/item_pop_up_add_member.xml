@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_pop_up"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/dimen_28"
+            android:background="@color/secondary_200"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dimen_16">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/medium_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/tambah_anggota" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_close_24" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:text="@string/keluarga"/>
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:hint="@string/nama"/>
+
+            <EditText
+                android:id="@+id/et_birthday"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:hint="@string/nomor_telephone" />
+
+            <EditText
+                android:id="@+id/et_status"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:hint="@string/status"/>
+
+            <Button
+                android:id="@+id/btn_add_profile"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_28"
+                android:backgroundTint="@color/primary_500"
+                android:text="@string/simpan"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

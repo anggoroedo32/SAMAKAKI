@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.authentication.LoginActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="16dp"
+            style="@style/medium_18black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/silahkan_melakukan_login"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="8dp"
+            style="@style/regular_14black" />
+        <ImageView
+            android:id="@+id/iv_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:src="@drawable/image_login"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:text="@string/email"
+            style="@style/regular_14black"/>
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/email_kamu"
+            style="@style/TextfieldsStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="35dp"
+            android:text="@string/password"
+            style="@style/regular_14black"/>
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="16dp"
+            android:inputType="textPassword"
+            style="@style/TextfieldsStyle"/>
+
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:textAlignment="textEnd"
+            android:text="@string/forgot_password_2"
+            android:layout_marginTop="20dp"
+            style="@style/regular_12"
+            android:textColor="@color/primary_600"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="@dimen/dimen_161"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            style="@style/ButtonStyle"
+            android:backgroundTint="@color/primary_500"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/dimen_16">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/belum_punya_akun" />
+            <TextView
+                android:id="@+id/txtView_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
