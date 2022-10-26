@@ -25,8 +25,8 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val isCreate = MutableLiveData<BaseResponse<PostsResponse>>()
-    val observeIsCreate: LiveData<BaseResponse<PostsResponse>> = isCreate
+    private val isCreate = MutableLiveData<PostsResponse>()
+    val observeIsCreate: LiveData<PostsResponse> = isCreate
 
     fun getAllPosts(){
         viewModelScope.launch {
@@ -52,7 +52,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                 try {
                     val response = repository.createPosts(postItem)
                     repository.createPosts(postItem)
-                    isCreate.value = BaseResponse.Success(response.body())
+                    isCreate.value = response.body()
                 } catch (e: Throwable) {
                     BaseResponse.Error(e.toString())
                 }

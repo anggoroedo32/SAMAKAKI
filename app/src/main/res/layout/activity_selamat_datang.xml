@@ -38,28 +38,34 @@
         android:focusable="false"
         android:cursorVisible="false"
         android:hint="@string/tanggal_lahir" />
-
-    <EditText
-        android:id="@+id/et_status"
-        style="@style/TextfieldsStyle"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40"
         android:layout_marginHorizontal="@dimen/dimen_35"
-        android:layout_marginTop="@dimen/dimen_22"
-        android:focusable="false"
-        android:cursorVisible="false"
-        android:hint="@string/status_nikah"/>
+        android:layout_marginTop="@dimen/dimen_22">
+        <AutoCompleteTextView
+            android:id="@+id/et_status"
+            style="@style/TextfieldsStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/status_nikah"/>
 
-    <EditText
-        android:id="@+id/et_privacy"
-        style="@style/TextfieldsStyle"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40"
         android:layout_marginHorizontal="@dimen/dimen_35"
-        android:layout_marginTop="@dimen/dimen_22"
-        android:focusable="false"
-        android:cursorVisible="false"
-        android:hint="@string/privasi"/>
+        android:layout_marginTop="@dimen/dimen_22">
+        <AutoCompleteTextView
+            android:id="@+id/et_privacy"
+            style="@style/TextfieldsStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/privasi"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_76"

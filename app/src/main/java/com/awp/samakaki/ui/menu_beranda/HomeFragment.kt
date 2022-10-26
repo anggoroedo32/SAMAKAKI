@@ -12,8 +12,10 @@ import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.response.PostItem
+import com.awp.samakaki.ui.authentication.LoginActivity
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import hilt_aggregated_deps._com_awp_samakaki_ui_MainActivity_GeneratedInjector
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -96,7 +98,14 @@ class HomeFragment : Fragment() {
 
     private fun createPosts(){
         val caption = binding.edPost.text.toString()
-        viewModel.createPosts(caption)
+        viewModel.observeIsCreate.observe(viewLifecycleOwner){
+            it.let { 
+                if(it != null){
+                    viewModel.createPosts(caption)
+                    Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 
