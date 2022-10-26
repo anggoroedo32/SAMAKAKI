@@ -98,5 +98,6 @@
     <string name="err_empty_confirmPassword">Fill in your password confirmation</string>
     <string name="err_password_did_not_match">Password did not match</string>
     <string name="err_wrong_email_format">Wrong email format</string>
+    <string name="edit_photo">Edit Photo</string>
 
 </resources>
