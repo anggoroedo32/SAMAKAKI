@@ -52,6 +52,19 @@ abstract class SilsilahKeluargaFragment : Fragment() {
 
         setupFab(graph)
 
+        val isHavingData = true
+
+        val familyTree = binding.wrapFamilyTree
+        val isiProfil = binding.wrapIsiProfil
+
+        if (isHavingData == true) {
+            familyTree.visibility = View.VISIBLE
+            isiProfil.visibility = View.GONE
+        } else {
+            familyTree.visibility = View.GONE
+            isiProfil.visibility = View.VISIBLE
+        }
+
     }
 
     private fun setupGraphView(graph: com.awp.samakaki.utils.Graph) {

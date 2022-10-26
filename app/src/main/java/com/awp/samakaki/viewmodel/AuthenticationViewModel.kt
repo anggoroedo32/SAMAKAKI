@@ -48,7 +48,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                     password = password
                 )
 
-                val response = repository.login(loginRequest)
+                val response = repository.login(loginRequest = loginRequest)
                 if (response.code() == 200) {
                     _loginResponse.value = BaseResponse.Success(response.body())
                     Log.d("login", "success_login: ${response.body()}")

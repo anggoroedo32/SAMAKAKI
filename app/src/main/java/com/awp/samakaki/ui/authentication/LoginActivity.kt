@@ -3,15 +3,17 @@ package com.awp.samakaki.ui.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityLoginBinding
+import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
-import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,17 +27,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val btnLogin = binding.btnLogin
         btnLogin.setOnClickListener {
+
             val email = binding.etEmail.text.trim().toString()
             val password = binding.etPassword.text.trim().toString()
-
-            if (email.isEmpty()){
-                binding.etEmail.error = getString(R.string.er_empty_email)
-            }
-            if (password.isEmpty()){
-                binding.etPassword.error = getString(R.string.err_empty_password)
-            }
 
             when{
                 email.isEmpty() -> {
@@ -48,16 +45,24 @@ class LoginActivity : AppCompatActivity() {
                     binding.etPassword.error = getString(R.string.err_empty_password)
                 }
                 else -> {
-                    startActivity(Intent(this, SelamatDatangActivity::class.java))
-//                    authenticationViewModel.login(email = email, password = password)
-//                    authenticationViewModel.loginResponse.observe(this) {
-//                       when(it) {
-//                           is BaseResponse.Success -> startActivity(Intent(this, SelamatDatangActivity::class.java))
-//                           is BaseResponse.Error -> textMessage(it.msg.toString())
-//                       }
-//                    }
+                    authenticationViewModel.login(email = email, password = password)
+                    authenticationViewModel.loginResponse.observe(this) {
+                       when(it) {
+                           is BaseResponse.Loading -> {
+                               showLoading()
+                           }
+                           is BaseResponse.Success -> {
+                               stopLoading()
+                               processLogin(it.data)
+                           }
+                           is BaseResponse.Error -> {
+                               textMessage(it.msg.toString())
+                           }
+                       }
+                    }
                 }
             }
+
         }
 
         val tvRegister = binding.txtViewRegister
@@ -74,6 +79,33 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+    private fun navigateToHome() {
+        val intent = Intent(this, SelamatDatangActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        startActivity(intent)
+    }
+
+    fun processLogin(data: LoginResponse?) {
+        textMessage("Success:" + data?.status)
+        val token = data?.dataLogin?.token
+        Log.d("ini_data", "ini_data: $data")
+        Log.d("tokenLogin", "ini_token: $token")
+        if (!token.isNullOrEmpty()) {
+            token.let { SessionManager.saveAuthToken(this, it) }
+            navigateToHome()
+        }
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
+    }
+
     private fun textMessage(s: String) {
         Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
     }

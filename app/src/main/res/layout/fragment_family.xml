@@ -6,36 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".ui.DataFamilyTree">
 
-    <com.otaliastudios.zoom.ZoomLayout
-        android:id="@+id/zoomLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrap_family_tree"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical|horizontal"
-        app:hasClickableChildren="true"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_family_tree"
+        <com.otaliastudios.zoom.ZoomLayout
+            android:id="@+id/zoomLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="50dp"
-            tools:listitem="@layout/node" />
+            android:scrollbars="vertical|horizontal"
+            app:hasClickableChildren="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.otaliastudios.zoom.ZoomLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_family_tree"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="50dp"
+                tools:listitem="@layout/node" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        android:visibility="gone"
-        tools:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/zoomLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
+        </com.otaliastudios.zoom.ZoomLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addNode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="@dimen/dimen_30"
+            android:layout_marginBottom="@dimen/dimen_50"
+            android:src="@drawable/ic_add"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/zoomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrap_isi_profil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginTop="@dimen/dimen_80"
+            android:background="@color/secondary_200"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/dimen_28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/medium_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/data_keluarga_kamu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="@string/nama_keluarga" />
+
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:hint="@string/nama_keluarga" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:text="@string/anggota_keluarga" />
+
+            <EditText
+                android:id="@+id/et_birthday"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/nama" />
+
+            <EditText
+                android:id="@+id/et_status"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/nomor_telephone" />
+
+            <EditText
+                android:id="@+id/et_privacy"
+                style="@style/TextfieldsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:hint="@string/hubungan" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_add_profile"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginTop="@dimen/dimen_60"
+            android:backgroundTint="@color/primary_500"
+            android:text="@string/isi_profil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
