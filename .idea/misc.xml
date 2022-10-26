@@ -46,7 +46,12 @@
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_editprofile.xml" value="0.2264151024877837" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.13521695257315844" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family_tree.xml" value="0.13521695257315844" />
-        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.4528302049755674" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home_get_started.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_personal_chat.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.18113208199022698" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/layout_post_content.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/spinner_item.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/menu/bottom_nav_menu.xml" value="0.275" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/menu/menu_family_tree_orientation.xml" value="0.275" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/menu/menu_home.xml" value="0.275" />
@@ -58,5 +63,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
