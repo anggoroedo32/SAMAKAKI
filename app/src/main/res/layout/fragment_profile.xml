@@ -54,6 +54,14 @@
         app:layout_constraintTop_toBottomOf="@id/TV_profilename"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <ImageView
+        android:id="@+id/ic_house"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:src="@drawable/ic_house_outline_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_profile"
         android:layout_width="match_parent"
