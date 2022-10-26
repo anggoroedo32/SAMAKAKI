@@ -6,20 +6,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
+import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
+
 import javax.inject.Inject
+import kotlin.Exception
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel(){
 
     private val _registerResponse = MutableLiveData<BaseResponse<RegisterResponse>>()
     val registerResponse: LiveData<BaseResponse<RegisterResponse>> = _registerResponse
+
+    private val _loginResponse = MutableLiveData<BaseResponse<LoginResponse>>()
+    val loginResponse: LiveData<BaseResponse<LoginResponse>> = _loginResponse
 
 //    fun register(name: String, email: String, phone: String, password: String){
 //        viewModelScope.launch {
@@ -33,6 +39,29 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
 //            }
 //        }
 //    }
+
+    fun login(email: String, password: String){
+        viewModelScope.launch {
+            try {
+                val loginRequest = LoginRequest(
+                    email = email,
+                    password = password
+                )
+
+                val response = repository.login(loginRequest)
+                if (response.code() == 200) {
+                    _loginResponse.value = BaseResponse.Success(response.body())
+                    Log.d("login", "success_login: ${response.body()}")
+                } else {
+                    _loginResponse.value = BaseResponse.Error(response.message().toString())
+                    Log.d("login", "failure_login: ${BaseResponse.Error(response.message())}")
+                }
+            } catch (e: Exception){
+                _loginResponse.value = BaseResponse.Error(e.message)
+                Log.d("login", "err_login: ${e.message}")
+            }
+        }
+    }
 
     fun register(name: String, email: String, phone: String, password: String){
         viewModelScope.launch {

@@ -1,7 +1,9 @@
 package com.awp.samakaki.data
 
+import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.response.Data
+import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
 import okhttp3.RequestBody
@@ -21,6 +23,9 @@ interface ApiService {
     suspend fun register(
         @Body registerRequest: RegisterRequest
     ): Response<RegisterResponse>
+    suspend fun login(
+        @Body loginRequest: LoginRequest
+    ): Response<LoginResponse>
 
 
 }
