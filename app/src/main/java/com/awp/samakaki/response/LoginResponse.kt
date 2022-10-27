@@ -33,3 +33,9 @@ data class UserLogin(
     @field:SerializedName("email")
     val email: String? = null
 ) : Parcelable
+
+data class MessageLoginResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null
+)

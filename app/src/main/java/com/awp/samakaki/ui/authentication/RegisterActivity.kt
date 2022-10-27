@@ -43,21 +43,21 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.etConfirmPassword.text.trim().toString()
 
 
-            if (name.isEmpty()){
-                binding.etName.error = getString(R.string.err_empty_name)
-            }
-            if (email.isEmpty()) {
-                binding.etEmail.error = getString(R.string.er_empty_email)
-            }
-            if (phone.isEmpty()) {
-                binding.etNoTelp.error = getString(R.string.err_empty_phone)
-            }
-            if (password.isEmpty()){
-                binding.etPassword.error = getString(R.string.err_empty_password)
-            }
-            if (confirmPassword.isEmpty()) {
-                binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
-            }
+//            if (name.isEmpty()){
+//                binding.etName.error = getString(R.string.err_empty_name)
+//            }
+//            if (email.isEmpty()) {
+//                binding.etEmail.error = getString(R.string.er_empty_email)
+//            }
+//            if (phone.isEmpty()) {
+//                binding.etNoTelp.error = getString(R.string.err_empty_phone)
+//            }
+//            if (password.isEmpty()){
+//                binding.etPassword.error = getString(R.string.err_empty_password)
+//            }
+//            if (confirmPassword.isEmpty()) {
+//                binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
+//            }
 
 
             when{

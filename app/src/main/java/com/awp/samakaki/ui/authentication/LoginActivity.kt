@@ -88,10 +88,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun processLogin(data: LoginResponse?) {
-        textMessage("Success: " + data?.status)
+        textMessage("Login berhasil")
         val token = data?.dataLogin?.token
-        Log.d("ini_data", "ini_data: $data")
-        Log.d("tokenLogin", "ini_token: $token")
         if (!token.isNullOrEmpty()) {
             token.let { SessionManager.saveAuthToken(this, it) }
             navigateToHome()
