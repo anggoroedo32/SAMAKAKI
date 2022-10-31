@@ -35,6 +35,8 @@
         style="@style/bold_30prim600"
         android:textColor="@color/warning_500"
         android:text="@string/samakaki_splash"
+        android:padding="0dp"
+        android:paddingVertical="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_splash"
+        android:layout_marginTop="20dp"
+        android:padding="0dp"
         app:layout_constraintTop_toBottomOf="@id/img_splash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -58,6 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_started_splash"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv1"/>

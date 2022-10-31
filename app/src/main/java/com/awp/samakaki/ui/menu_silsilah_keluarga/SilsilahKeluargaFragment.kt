@@ -1,32 +1,42 @@
 package com.awp.samakaki.ui.menu_silsilah_keluarga
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
+import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
 import java.util.*
 
+@AndroidEntryPoint
 abstract class SilsilahKeluargaFragment : Fragment() {
 
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
     protected lateinit var recyclerView: RecyclerView
-    protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
+    protected lateinit var adapter: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>
     private lateinit var fab: FloatingActionButton
-    private var currentNode: Node? = null
+    private var currentNode: com.awp.samakaki.utils.Node? = null
     private var nodeCount = 1
+    private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
+    private lateinit var sessionManager: SessionManager
 
-    abstract fun createGraph(): Graph
+    abstract fun createGraph(): com.awp.samakaki.utils.Graph
     abstract fun setLayoutManager()
     abstract fun setEdgeDecoration()
 
@@ -52,10 +62,41 @@ abstract class SilsilahKeluargaFragment : Fragment() {
 
         setupFab(graph)
 
+        val familyTree = binding.wrapFamilyTree
+        val isiProfil = binding.wrapIsiProfil
+        val isHavingData = true
+
+        val token = context?.let { SessionManager.getToken(it) }
+        if (token != null) {
+            familyTreeViewModel.userRelations(token = token)
+        }
+        Log.d("ini_token_user", "ini_token ${sessionManager.USER_TOKEN}")
+        familyTreeViewModel.userRelations.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Loading -> showLoading()
+
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+
+        if (isHavingData == false) {
+            familyTree.visibility = View.VISIBLE
+            isiProfil.visibility = View.GONE
+        } else {
+            familyTree.visibility = View.GONE
+            isiProfil.visibility = View.VISIBLE
+        }
+
     }
 
-    private fun setupGraphView(graph: Graph) {
-        adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
+    private fun setupGraphView(graph: com.awp.samakaki.utils.Graph) {
+        adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.node, parent, false)
@@ -75,10 +116,10 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
-    private fun setupFab(graph: Graph) {
+    private fun setupFab(graph: com.awp.samakaki.utils.Graph) {
         fab = binding.addNode
         fab.setOnClickListener {
-            val newNode = Node(nodeText)
+            val newNode = com.awp.samakaki.utils.Node(nodeText)
             if (currentNode != null) {
                 graph.addEdge(currentNode!!, newNode)
             } else {
@@ -119,5 +160,17 @@ abstract class SilsilahKeluargaFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
+    }
+
+    private fun textMessage(s: String) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
 }
