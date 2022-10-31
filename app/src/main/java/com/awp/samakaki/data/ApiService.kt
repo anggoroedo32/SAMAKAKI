@@ -2,10 +2,7 @@ package com.awp.samakaki.data
 
 import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
-import com.awp.samakaki.response.Data
-import com.awp.samakaki.response.LoginResponse
-import com.awp.samakaki.response.PostsResponse
-import com.awp.samakaki.response.RegisterResponse
+import com.awp.samakaki.response.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -27,5 +24,6 @@ interface ApiService {
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
 
-
+    @POST("posts")
+    suspend fun createPosts(postItem: String): Response<PostsResponse>
 }

@@ -6,13 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_editprofile"
-    android:padding="20dp"
     android:id="@+id/edit_profile_fragment"
     tools:context=".ui.EditProfileFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_editprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/white"
+                android:minHeight="?attr/actionBarSize" >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_back_ios"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile"
+                    style="@style/semibold_18"
+                    android:textColor="@color/primary_600"/>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
         <TextView
             android:id="@+id/tv_photo_profile"
             android:layout_width="wrap_content"
@@ -21,8 +51,8 @@
             android:text="@string/photo_profile"
             style="@style/medium_16"
             android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_edit_profile"
@@ -32,7 +62,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_photo_profile"
-            tools:scrCompat="@tools:profile_pic"/>
+            tools:src="@drawable/dummy_avatar"/>
 
 
     <com.google.android.material.button.MaterialButton
@@ -58,7 +88,7 @@
         android:text="@string/bio"
         style="@style/medium_16"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/btn_ed_photo"/>
 
     <TextView
@@ -70,19 +100,44 @@
         style="@style/medium_12"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_bio"/>
 
         <EditText
             android:id="@+id/ET_Name"
             style="@style/TextfieldsStyle2"
+            android:hint="@string/nama_kamu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/nama_kamu"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="@dimen/dimen_8"
             app:layout_constraintTop_toBottomOf="@id/tv_Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
+        <TextView
+            android:id="@+id/tv_Tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_6"
+            android:text="@string/tanggal_lahir"
+            style="@style/medium_12"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ET_Name"/>
+
+        <EditText
+            android:id="@+id/ET_Tanggal"
+            style="@style/TextfieldsStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/tanggal_lahir_kamu"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@id/tv_Tanggal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
         android:id="@+id/tv_NoTlp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +146,7 @@
         style="@style/medium_12"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/ET_Name"/>
+        app:layout_constraintTop_toBottomOf="@id/ET_Tanggal"/>
 
             <EditText
                 android:id="@+id/ET_NoTlp"
@@ -99,6 +154,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/no_telepon_kamu"
+                android:drawableStart="@drawable/ic_telephone_green"
+                android:drawablePadding="@dimen/dimen_8"
                 app:layout_constraintTop_toBottomOf="@id/tv_NoTlp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -114,17 +171,42 @@
             app:layout_constraintStart_toStartOf="@id/guideline_vertical"
             app:layout_constraintTop_toBottomOf="@id/ET_NoTlp"/>
 
-            <EditText
-                android:id="@+id/ET_Lokasi"
-                style="@style/TextfieldsStyle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/lokasi_kamu"
-                app:layout_constraintTop_toBottomOf="@id/tv_Lokasi"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/ET_Lokasi"
+            style="@style/TextfieldsStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_mark"
+            android:drawablePadding="@dimen/dimen_8"
+            android:hint="@string/lokasi_kamu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Lokasi" />
 
-    <TextView
+        <TextView
+            android:id="@+id/tv_gantiPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_6"
+            android:text="@string/ganti_password"
+            style="@style/medium_12"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
+
+        <EditText
+            android:id="@+id/ET_GantiPassword"
+            style="@style/TextfieldsStyle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_baru"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@id/tv_gantiPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
         android:id="@+id/tv_Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,48 +215,37 @@
         style="@style/medium_12"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
+        app:layout_constraintTop_toBottomOf="@id/ET_GantiPassword"/>
 
-            <EditText
-                android:id="@+id/ET_Status"
-                style="@style/TextfieldsStyle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/status_kamu"
-                app:layout_constraintTop_toBottomOf="@id/tv_Status"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ET_Status"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="352dp"
+            android:layout_height="@dimen/dimen_45"
+            app:layout_constraintTop_toBottomOf="@id/tv_Status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        <AutoCompleteTextView
+            android:id="@+id/et_status"
+            style="@style/TextfieldsStyle2"
+            android:drawableStart="@drawable/ic_users_green"
+            android:drawablePadding="@dimen/dimen_8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/status_nikah"
+            android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_Tanggal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_6"
-        android:text="@string/tanggal_lahir"
-        style="@style/medium_12"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/ET_Status"/>
-
-            <EditText
-                android:id="@+id/ET_Tanggal"
-                style="@style/TextfieldsStyle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/tanggal_lahir_kamu"
-                app:layout_constraintTop_toBottomOf="@id/tv_Tanggal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_getstarted"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save"
                 style="@style/ButtonStyle4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
+            android:layout_marginVertical="@dimen/dimen_20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ET_Tanggal"
+                app:layout_constraintTop_toBottomOf="@id/ET_Status"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
 
@@ -184,15 +255,9 @@
         android:layout_height="@dimen/dimen_64"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.01"
+        app:layout_constraintGuide_percent="0.03"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="270dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -99,5 +99,17 @@
     <string name="err_password_did_not_match">Password did not match</string>
     <string name="err_wrong_email_format">Wrong email format</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="password_baru">Password Baru</string>
 
+    <string-array name="status">
+        <item>Single</item>
+        <item>Merrid</item>
+        <item>Beforce</item>
+    </string-array>
+    <string-array name="privacy">
+        <item>Private</item>
+        <item>Protected</item>
+        <item>Public</item>
+    </string-array>
 </resources>

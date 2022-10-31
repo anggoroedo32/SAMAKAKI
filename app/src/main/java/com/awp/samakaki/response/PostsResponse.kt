@@ -35,7 +35,10 @@ data class PostItem(
 	val descriptions: String? = null,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String? = null,
+
+	@field:SerializedName("link")
+	val link: String? = null
 ) : Parcelable
 
 data class Data(

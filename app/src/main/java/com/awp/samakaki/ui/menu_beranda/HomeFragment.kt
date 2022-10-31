@@ -1,16 +1,9 @@
 package com.awp.samakaki.ui.menu_beranda
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +12,10 @@ import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.response.PostItem
+import com.awp.samakaki.ui.authentication.LoginActivity
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
+import hilt_aggregated_deps._com_awp_samakaki_ui_MainActivity_GeneratedInjector
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -86,7 +80,10 @@ class HomeFragment : Fragment() {
             sortRecipesBottomSheet.show(childFragmentManager,sortRecipesBottomSheet.tag)
         }
 
-
+        val buttonPost:Button = binding.btnPost
+        buttonPost.setOnClickListener(){
+            createPosts()
+        }
     }
 
     private fun rvPosts(list: List<PostItem>) {
@@ -99,6 +96,17 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun createPosts(){
+        val caption = binding.edPost.text.toString()
+        viewModel.observeIsCreate.observe(viewLifecycleOwner){
+            it.let { 
+                if(it != null){
+                    viewModel.createPosts(caption)
+                    Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 
 //    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
