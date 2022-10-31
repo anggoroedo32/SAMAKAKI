@@ -99,5 +99,6 @@
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="token">Token</string>
 
 </resources>
