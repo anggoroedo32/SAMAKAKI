@@ -18,8 +18,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthenticationViewModel @Inject constructor(private val repository: RemoteRepository) :
-    ViewModel() {
+class AuthenticationViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
     private val _registerResponse = MutableLiveData<BaseResponse<RegisterResponse>>()
     val registerResponse: LiveData<BaseResponse<RegisterResponse>> = _registerResponse
@@ -40,13 +39,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.login(loginRequest = loginRequest)
                 if (response.code() == 200) {
                     _loginResponse.value = BaseResponse.Success(response.body())
-                    Log.d("login", "success_login: ${response.body()}")
+//                    Log.d("login", "success_login: ${response.body()}")
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageLoginResponse>() {}.type
                     var errorResponse: MessageLoginResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _loginResponse.value = BaseResponse.Error(errorResponse.message.toString())
-                    Log.d("login", "failure_login: ${errorResponse.message.toString()}")
+//                    Log.d("login", "failure_login: ${errorResponse.message.toString()}")
                 }
 
             } catch (e: HttpException) {
@@ -73,13 +72,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.register(registerRequest = registerRequest)
                 if (response.code() == 200) {
                     _registerResponse.value = BaseResponse.Success(response.body())
-                    Log.d("register", "success_register: ${response.body()}")
+//                    Log.d("register", "success_register: ${response.body()}")
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageResponse>() {}.type
                     var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _registerResponse.value = BaseResponse.Error(errorResponse.message.toString())
-                    Log.d("register", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
+//                    Log.d("register", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
                 }
 
             } catch (e: HttpException) {

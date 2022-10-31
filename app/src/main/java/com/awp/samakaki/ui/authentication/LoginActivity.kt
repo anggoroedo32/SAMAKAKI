@@ -47,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
                 else -> {
                     authenticationViewModel.login(email = email, password = password)
                     authenticationViewModel.loginResponse.observe(this) {
+                        Log.d("data_login_activity", "data outside when ${it}")
                        when(it) {
                            is BaseResponse.Loading -> {
                                showLoading()

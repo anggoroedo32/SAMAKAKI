@@ -5,11 +5,9 @@ import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
+import com.awp.samakaki.response.UserRelationsResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ApiService {
@@ -27,6 +25,12 @@ interface ApiService {
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
+
+    @GET("user_relations")
+    suspend fun userRelations(
+        @Header("Authorization") token: String
+    ): Response<UserRelationsResponse>
+
 
 
 }
