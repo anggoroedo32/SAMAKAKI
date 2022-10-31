@@ -12,7 +12,7 @@
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_isi_profil.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_login.xml" value="0.16" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_register.xml" value="0.2" />
-        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_selamat_datang.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_selamat_datang.xml" value="0.25" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_undang_keluarga.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/dropdown_item.xml" value="0.203125" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.20416666666666666" />
@@ -28,6 +28,7 @@
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/layout_post_content.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/node.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/notification.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/spinner_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/menu/menu_family_tree_orientation.xml" value="0.20416666666666666" />
         <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/menu/menu_home.xml" value="0.20416666666666666" />
       </map>

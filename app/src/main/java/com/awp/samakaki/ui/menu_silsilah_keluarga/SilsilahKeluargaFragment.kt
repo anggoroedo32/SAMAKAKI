@@ -21,12 +21,12 @@ abstract class SilsilahKeluargaFragment : Fragment() {
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
     protected lateinit var recyclerView: RecyclerView
-    protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
+    protected lateinit var adapter: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>
     private lateinit var fab: FloatingActionButton
-    private var currentNode: Node? = null
+    private var currentNode: com.awp.samakaki.utils.Node? = null
     private var nodeCount = 1
 
-    abstract fun createGraph(): Graph
+    abstract fun createGraph(): com.awp.samakaki.utils.Graph
     abstract fun setLayoutManager()
     abstract fun setEdgeDecoration()
 
@@ -54,8 +54,8 @@ abstract class SilsilahKeluargaFragment : Fragment() {
 
     }
 
-    private fun setupGraphView(graph: Graph) {
-        adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
+    private fun setupGraphView(graph: com.awp.samakaki.utils.Graph) {
+        adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.node, parent, false)
@@ -75,10 +75,10 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
-    private fun setupFab(graph: Graph) {
+    private fun setupFab(graph: com.awp.samakaki.utils.Graph) {
         fab = binding.addNode
         fab.setOnClickListener {
-            val newNode = Node(nodeText)
+            val newNode = com.awp.samakaki.utils.Node(nodeText)
             if (currentNode != null) {
                 graph.addEdge(currentNode!!, newNode)
             } else {

@@ -1,7 +1,16 @@
 package com.awp.samakaki.ui.menu_silsilah_keluarga
 
+import android.graphics.Color
+import android.graphics.CornerPathEffect
+import android.graphics.Paint
+import com.awp.samakaki.utils.Edge
+import dev.bandb.graphview.decoration.edge.ArrowEdgeDecoration
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
+import dev.bandb.graphview.layouts.energy.FruchtermanReingoldLayoutManager
+import dev.bandb.graphview.layouts.layered.SugiyamaArrowEdgeDecoration
+import dev.bandb.graphview.layouts.layered.SugiyamaConfiguration
+import dev.bandb.graphview.layouts.layered.SugiyamaLayoutManager
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import dev.bandb.graphview.layouts.tree.TreeEdgeDecoration
@@ -9,33 +18,34 @@ import dev.bandb.graphview.layouts.tree.TreeEdgeDecoration
 class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
 
     override fun setLayoutManager() {
-        val configuration = BuchheimWalkerConfiguration.Builder()
+        val configuration = com.awp.samakaki.utils.BuchheimWalkerConfiguration.Builder()
             .setSiblingSeparation(100)
             .setLevelSeparation(100)
             .setSubtreeSeparation(100)
-            .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
+            .setOrientation(com.awp.samakaki.utils.BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
             .build()
-        recyclerView.layoutManager = context?.let { BuchheimWalkerLayoutManager(it, configuration) }
+        recyclerView.layoutManager = context?.let { com.awp.samakaki.utils.BuchheimWalkerLayoutManager(it, configuration) }
     }
 
     override fun setEdgeDecoration() {
-        recyclerView.addItemDecoration(TreeEdgeDecoration())
+        recyclerView.addItemDecoration(com.awp.samakaki.utils.TreeEdgeDecoration())
     }
 
-    override fun createGraph(): Graph {
-        val graph = Graph()
-        val node1 = Node(nodeText)
-        val node2 = Node(nodeText)
-        val node3 = Node(nodeText)
-        val node4 = Node(nodeText)
-        val node5 = Node(nodeText)
-        val node6 = Node(nodeText)
-        val node8 = Node(nodeText)
-        val node7 = Node(nodeText)
-        val node9 = Node(nodeText)
-        val node10 = Node(nodeText)
-        val node11 = Node(nodeText)
-        val node12 = Node(nodeText)
+    override fun createGraph(): com.awp.samakaki.utils.Graph {
+        val graph = com.awp.samakaki.utils.Graph()
+        val node1 = com.awp.samakaki.utils.Node(nodeText)
+        val node2 = com.awp.samakaki.utils.Node(nodeText)
+        val node3 = com.awp.samakaki.utils.Node(nodeText)
+        val node4 = com.awp.samakaki.utils.Node(nodeText)
+        val node5 = com.awp.samakaki.utils.Node(nodeText)
+        val node6 = com.awp.samakaki.utils.Node(nodeText)
+        val node8 = com.awp.samakaki.utils.Node(nodeText)
+        val node7 = com.awp.samakaki.utils.Node(nodeText)
+        val node9 = com.awp.samakaki.utils.Node(nodeText)
+        val node10 = com.awp.samakaki.utils.Node(nodeText)
+        val node11 = com.awp.samakaki.utils.Node(nodeText)
+        val node12 = com.awp.samakaki.utils.Node(nodeText)
+
         graph.addEdge(node1, node2)
         graph.addEdge(node1, node3)
         graph.addEdge(node1, node4)
@@ -43,10 +53,9 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
         graph.addEdge(node2, node6)
         graph.addEdge(node6, node7)
         graph.addEdge(node6, node8)
-        graph.addEdge(node4, node9)
         graph.addEdge(node4, node10)
         graph.addEdge(node4, node11)
-        graph.addEdge(node11, node12)
+
         return graph
     }
 
