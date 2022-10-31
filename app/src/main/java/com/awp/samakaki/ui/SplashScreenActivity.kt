@@ -20,16 +20,16 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN
+//        )
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000) // 3000 is the delayed time in milliseconds.
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val intent = Intent(this, RegisterActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }, 3000)
 
         val btnGetStarted = binding.btnGetstarted
         btnGetStarted.setOnClickListener {

@@ -7,6 +7,10 @@ import com.awp.samakaki.response.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
+import com.awp.samakaki.response.LoginResponse
+import com.awp.samakaki.response.PostsResponse
+import com.awp.samakaki.response.RegisterResponse
+import com.awp.samakaki.response.UserRelationsResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -24,6 +28,7 @@ interface ApiService {
 
     @POST("posts")
     suspend fun createPosts(postItem: String): Response<PostsResponse>
+    @POST("login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
@@ -33,5 +38,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         biodataRequest: BiodataRequest
     ): Response<BiodataResponse>
+
+    @GET("user_relations")
+    suspend fun userRelations(
+        @Header("Authorization") token: String
+    ): Response<UserRelationsResponse>
 
 }

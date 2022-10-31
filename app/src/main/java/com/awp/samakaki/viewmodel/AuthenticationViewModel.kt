@@ -8,18 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
-import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.response.LoginResponse
-import com.awp.samakaki.response.PostsResponse
-import com.awp.samakaki.response.RegisterResponse
+import com.awp.samakaki.response.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
-import kotlin.Exception
 
 @HiltViewModel
-class AuthenticationViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel(){
+class AuthenticationViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
     private val _registerResponse = MutableLiveData<BaseResponse<RegisterResponse>>()
     val registerResponse: LiveData<BaseResponse<RegisterResponse>> = _registerResponse
@@ -27,43 +26,39 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     private val _loginResponse = MutableLiveData<BaseResponse<LoginResponse>>()
     val loginResponse: LiveData<BaseResponse<LoginResponse>> = _loginResponse
 
-//    fun register(name: String, email: String, phone: String, password: String){
-//        viewModelScope.launch {
-//            repository.register(name, email, phone, password).let {
-//                if (it.isSuccessful) {
-//                    Log.d("register_success", it.body().toString())
-//                    _registerResponse.postValue(it.body())
-//                }else {
-//                    Log.d("register_fail", it.body().toString())
-//                }
-//            }
-//        }
-//    }
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
+
                 val loginRequest = LoginRequest(
                     email = email,
                     password = password
                 )
 
-                val response = repository.login(loginRequest)
+                val response = repository.login(loginRequest = loginRequest)
                 if (response.code() == 200) {
                     _loginResponse.value = BaseResponse.Success(response.body())
-                    Log.d("login", "success_login: ${response.body()}")
+//                    Log.d("login", "success_login: ${response.body()}")
                 } else {
-                    _loginResponse.value = BaseResponse.Error(response.message().toString())
-                    Log.d("login", "failure_login: ${BaseResponse.Error(response.message())}")
+                    val gson = Gson()
+                    val type = object : TypeToken<MessageLoginResponse>() {}.type
+                    var errorResponse: MessageLoginResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _loginResponse.value = BaseResponse.Error(errorResponse.message.toString())
+//                    Log.d("login", "failure_login: ${errorResponse.message.toString()}")
                 }
-            } catch (e: Exception){
-                _loginResponse.value = BaseResponse.Error(e.message)
-                Log.d("login", "err_login: ${e.message}")
+
+            } catch (e: HttpException) {
+                BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+            } catch (e: IOException) {
+                BaseResponse.Error("Cek kembali koneksi internet anda")
+            } catch (e: Exception) {
+                _registerResponse.value = BaseResponse.Error(msg = "Sebentar, ada sesuatu yang salah")
             }
         }
     }
 
-    fun register(name: String, email: String, phone: String, password: String){
+    fun register(name: String, email: String, phone: String, password: String) {
         viewModelScope.launch {
             try {
 
@@ -74,19 +69,27 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                     password = password
                 )
 
-                val response = repository.register(registerRequest)
-                if(response.code() == 200) {
+                val response = repository.register(registerRequest = registerRequest)
+                if (response.code() == 200) {
                     _registerResponse.value = BaseResponse.Success(response.body())
-                    Log.d("register", "success_register: ${response.body()}")
+//                    Log.d("register", "success_register: ${response.body()}")
                 } else {
-                    _registerResponse.value = BaseResponse.Error(response.message().toString())
-                    Log.d("register", "failure_register: ${BaseResponse.Error(response.message())}")
+                    val gson = Gson()
+                    val type = object : TypeToken<MessageResponse>() {}.type
+                    var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _registerResponse.value = BaseResponse.Error(errorResponse.message.toString())
+//                    Log.d("register", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
                 }
-            } catch (e: Exception){
-                _registerResponse.value = BaseResponse.Error(e.message)
-                Log.d("register", "err_register: ${e.message}")
+
+            } catch (e: HttpException) {
+              BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+            } catch (e: IOException) {
+              BaseResponse.Error("Cek kembali koneksi internet anda")
+            } catch (e: Exception) {
+                _registerResponse.value = BaseResponse.Error(msg = "Sebentar, ada sesuatu yang salah")
             }
         }
     }
+
 
 }

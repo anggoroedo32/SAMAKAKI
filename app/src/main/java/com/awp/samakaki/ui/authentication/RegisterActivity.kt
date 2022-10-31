@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
@@ -42,21 +43,21 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.etConfirmPassword.text.trim().toString()
 
 
-            if (name.isEmpty()){
-                binding.etName.error = getString(R.string.err_empty_name)
-            }
-            if (email.isEmpty()) {
-                binding.etEmail.error = getString(R.string.er_empty_email)
-            }
-            if (phone.isEmpty()) {
-                binding.etNoTelp.error = getString(R.string.err_empty_phone)
-            }
-            if (password.isEmpty()){
-                binding.etPassword.error = getString(R.string.err_empty_password)
-            }
-            if (confirmPassword.isEmpty()) {
-                binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
-            }
+//            if (name.isEmpty()){
+//                binding.etName.error = getString(R.string.err_empty_name)
+//            }
+//            if (email.isEmpty()) {
+//                binding.etEmail.error = getString(R.string.er_empty_email)
+//            }
+//            if (phone.isEmpty()) {
+//                binding.etNoTelp.error = getString(R.string.err_empty_phone)
+//            }
+//            if (password.isEmpty()){
+//                binding.etPassword.error = getString(R.string.err_empty_password)
+//            }
+//            if (confirmPassword.isEmpty()) {
+//                binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
+//            }
 
 
             when{
@@ -83,7 +84,14 @@ class RegisterActivity : AppCompatActivity() {
                     authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
                     authenticationViewModel.registerResponse.observe(this) {
                         when(it) {
-                            is BaseResponse.Success -> startActivity(Intent(this, LoginActivity::class.java))
+                            is BaseResponse.Loading -> {
+                                showLoading()
+                            }
+                            is BaseResponse.Success -> {
+                                stopLoading()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                                textMessage("Akun Anda Sudah Dibuat")
+                            }
                             is BaseResponse.Error -> textMessage(it.msg.toString())
                         }
                     }
@@ -91,6 +99,14 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
     }
 
     private fun textMessage(s: String) {

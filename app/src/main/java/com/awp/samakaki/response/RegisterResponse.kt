@@ -4,23 +4,24 @@ import com.google.gson.annotations.SerializedName
 
 data class RegisterResponse(
 
-	@field:SerializedName("dataRegister")
-	val dataRegister: DataRegister? = null,
+	@field:SerializedName("data")
+	val data: DataRegister? = null,
 
 	@field:SerializedName("status")
 	val status: String? = null
+
 )
 
 data class DataRegister(
 
 	@field:SerializedName("user")
-	val user: User? = null,
+	val userRegister: UserRegister? = null,
 
 	@field:SerializedName("token")
 	val token: String? = null
 )
 
-data class User(
+data class UserRegister(
 
 	@field:SerializedName("updated_at")
 	val updatedAt: String? = null,
@@ -48,4 +49,16 @@ data class User(
 
 	@field:SerializedName("reset_password_token")
 	val resetPasswordToken: Any? = null
+)
+
+data class MessageResponse(
+
+	@field:SerializedName("message")
+	val message: Message? = null
+)
+
+data class Message(
+
+	@field:SerializedName("email")
+	val email: List<String>? = null
 )
