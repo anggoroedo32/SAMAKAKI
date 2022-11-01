@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityLoginBinding
 import com.awp.samakaki.helper.SessionManager
-import com.awp.samakaki.helper.SingleLiveEvent
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.ui.SelamatDatangActivity
@@ -94,6 +93,8 @@ class LoginActivity : AppCompatActivity() {
     fun processLogin(data: LoginResponse?) {
         textMessage("Login berhasil")
         val token = data?.dataLogin?.token
+        val id = data?.dataLogin?.users?.id
+        id.let { SessionManager.saveIdUser(this, id!!) }
         if (!token.isNullOrEmpty()) {
             token.let { SessionManager.saveAuthToken(this, it) }
             navigateToHome()

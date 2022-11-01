@@ -7,9 +7,18 @@ import com.awp.samakaki.R
 object SessionManager {
 
     const val USER_TOKEN = "user_token"
+    const val USER_ID = "user_id"
 
     fun saveAuthToken(context: Context, token: String) {
         saveString(context, USER_TOKEN, token)
+    }
+
+    fun saveIdUser(context: Context, id: Int) {
+        saveInt(context, USER_ID, id)
+    }
+
+    fun getIdUser(context: Context): String? {
+        return getString(context, USER_ID)
     }
 
     fun getToken(context: Context): String? {
@@ -22,13 +31,26 @@ object SessionManager {
         val editor = prefs.edit()
         editor.putString(key, value)
         editor.apply()
-
     }
 
     fun getString(context: Context, key: String): String? {
         val prefs: SharedPreferences =
             context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         return prefs.getString(this.USER_TOKEN, null)
+    }
+
+    fun saveInt(context: Context, key: String, value: Int) {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt(key, value)
+        editor.apply()
+    }
+
+    fun getInt(context: Context, key: String): Int? {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+        return prefs.getInt(this.USER_ID, 0)
     }
 
     fun clearData(context: Context){
