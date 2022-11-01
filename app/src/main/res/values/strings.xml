@@ -48,8 +48,8 @@
     <string name="data_keluarga_kamu">DATA KELUARGA KAMU</string>
     <string name="nama_keluarga">Nama Keluarga</string>
     <string name="anggota_keluarga">Anggota Keluarga</string>
-    <string name="nomor_telephone">Nomor Telephone</string>
-    <string name="hubungan">Hubungan</string>
+    <string name="nomor_telephone">Nomor Telepon</string>
+    <string name="hubungan">Status Hubungan</string>
     <string name="konfirmasi">Konfirmasi</string>
     <string name="welcome">Welcome</string>
     <string name="silahkan_melakukan_login">Silahkan melakukan Login</string>
@@ -99,5 +99,8 @@
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="undang">Undang</string>
+    <string name="err_empty_family_name">Masukkan nama keluarga</string>
+    <string name="err_empty_family_member">Masukkan nama anggota keluarga yang ingin anda undang</string>
 
 </resources>

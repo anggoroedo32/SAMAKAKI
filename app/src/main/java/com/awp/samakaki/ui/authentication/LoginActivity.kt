@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityLoginBinding
 import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.helper.SingleLiveEvent
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.ui.SelamatDatangActivity
@@ -48,18 +49,20 @@ class LoginActivity : AppCompatActivity() {
                     authenticationViewModel.login(email = email, password = password)
                     authenticationViewModel.loginResponse.observe(this) {
                         Log.d("data_login_activity", "data outside when ${it}")
-                       when(it) {
-                           is BaseResponse.Loading -> {
-                               showLoading()
-                           }
-                           is BaseResponse.Success -> {
-                               stopLoading()
-                               processLogin(it.data)
-                           }
-                           is BaseResponse.Error -> {
-                               textMessage(it.msg.toString())
-                           }
-                       }
+                        it.getContentIfNotHandled()?.let {
+                            when(it) {
+                                is BaseResponse.Loading -> {
+                                    showLoading()
+                                }
+                                is BaseResponse.Success -> {
+                                    stopLoading()
+                                    processLogin(it.data)
+                                }
+                                is BaseResponse.Error -> {
+                                    textMessage(it.msg.toString())
+                                }
+                            }
+                        }
                     }
                 }
             }
