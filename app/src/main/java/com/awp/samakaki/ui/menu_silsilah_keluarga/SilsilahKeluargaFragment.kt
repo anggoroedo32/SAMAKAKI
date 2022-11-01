@@ -30,26 +30,30 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
     protected lateinit var recyclerView: RecyclerView
+    protected lateinit var recyclerViewDataTop: RecyclerView
     protected lateinit var adapter: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>
-    private lateinit var fab: FloatingActionButton
+    protected lateinit var adapterDataTop: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>
     private var currentNode: com.awp.samakaki.utils.Node? = null
     private var nodeCount = 1
     private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
 
     abstract fun createGraph(): com.awp.samakaki.utils.Graph
+    abstract fun createGraphDataTop(): com.awp.samakaki.utils.Graph
     abstract fun setLayoutManager()
+    abstract fun setLayoutManagerDataTop()
     abstract fun setEdgeDecoration()
+    abstract fun setEdgeDecorationDataTop()
 
     var hubungan = arrayOf<String?>(
-        "father",
-        "mother",
-        "siblings",
-        "child",
-        "grandfather",
-        "grandmother",
-        "grandchild",
-        "husband",
-        "wife"
+        "Father",
+        "Mother",
+        "Siblings",
+        "Child",
+        "Grandfather",
+        "Grandmother",
+        "Grandchild",
+        "Husband",
+        "Wife"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,12 +76,16 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         super.onViewCreated(view, savedInstanceState)
 
         val graph = createGraph()
+        val graphDataTop = createGraphDataTop()
         recyclerView = binding.rvFamilyTree
+        recyclerViewDataTop = binding.rvFamilyTreeDataTop
         setLayoutManager()
+        setLayoutManagerDataTop()
         setEdgeDecoration()
+        setEdgeDecorationDataTop()
         setupGraphView(graph)
+        setupGraphViewDataTop(graphDataTop)
 
-        setupFab(graph)
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
@@ -99,7 +107,9 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
 
                 is BaseResponse.Success -> {
                     stopLoading()
-                    if (it.data?.data?.relationDetail!!.isEmpty()) {
+                    val relationData = it.data?.data?.relation
+                    Log.d("relation_data", "hasilnya $relationData")
+                    if (relationData.isNullOrEmpty()) {
                         isiProfil.visibility = View.VISIBLE
                     } else {
                         familyTree.visibility = View.VISIBLE
@@ -131,6 +141,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                     binding.etNoTelp.error = getString(R.string.err_empty_phone)
                 }
                 else -> {
+
                     val createFamilyUserRequest = CreateFamilyTreeRequest(
                         name = familyName
                     )
@@ -186,7 +197,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(context, hubungan[position], Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -201,7 +212,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
 
             override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
                 Glide.with(holder.itemView.context)
-                    .load("https://www.themealdb.com/images/ingredients/Lime.png")
+                    .load(R.drawable.dummy_avatar)
                     .centerInside()
                     .into(holder.imgProfile)
                 holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
@@ -212,27 +223,27 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         }
     }
 
-    private fun setupFab(graph: com.awp.samakaki.utils.Graph) {
-        fab = binding.addNode
-        fab.setOnClickListener {
-            val newNode = com.awp.samakaki.utils.Node(nodeText)
-            if (currentNode != null) {
-                graph.addEdge(currentNode!!, newNode)
-            } else {
-                graph.addNode(newNode)
+    private fun setupGraphViewDataTop(graph: com.awp.samakaki.utils.Graph) {
+        adapterDataTop = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>() {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolderDataTop {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.node, parent, false)
+                return NodeViewHolderDataTop(view)
             }
-            adapter.notifyDataSetChanged()
-        }
-        fab.setOnLongClickListener {
-            if (currentNode != null) {
-                graph.removeNode(currentNode!!)
-                currentNode = null
-                adapter.notifyDataSetChanged()
-                fab.hide()
+
+            override fun onBindViewHolder(holder: NodeViewHolderDataTop, position: Int) {
+                Glide.with(holder.itemView.context)
+                    .load(R.drawable.dummy_avatar)
+                    .centerInside()
+                    .into(holder.imgProfile)
+                holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
             }
-            true
+        }.apply {
+            this.submitGraph(graph)
+            recyclerViewDataTop.adapter = this
         }
     }
+
 
     protected inner class NodeViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textView: TextView = itemView.findViewById(R.id.name)
@@ -240,11 +251,21 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
 
         init {
             itemView.setOnClickListener {
-                if (!fab.isShown) {
-                    fab.show()
-                }
                 currentNode = adapter.getNode(bindingAdapterPosition)
                 Snackbar.make(itemView, "Clicked on " + adapter.getNodeData(bindingAdapterPosition)?.toString(),
+                    Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    protected inner class NodeViewHolderDataTop internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var textView: TextView = itemView.findViewById(R.id.name)
+        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
+
+        init {
+            itemView.setOnClickListener {
+                currentNode = adapter.getNode(bindingAdapterPosition)
+                Snackbar.make(itemView, "Clicked on " + adapterDataTop.getNodeData(bindingAdapterPosition)?.toString(),
                     Snackbar.LENGTH_SHORT).show()
             }
         }

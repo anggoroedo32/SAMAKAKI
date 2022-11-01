@@ -40,7 +40,7 @@ interface ApiService {
     @GET("user_relations")
     suspend fun findUserRelations(
         @Header("Authorization") token: String
-    ): Response<UserRelationsResponse>
+    ): Response<GetUserRelationResponse>
 
     @POST("password/reset")
     suspend fun resetPassword(

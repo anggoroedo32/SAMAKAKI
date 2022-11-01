@@ -45,9 +45,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                 }
                                 is BaseResponse.Success -> {
                                     stopLoading()
+                                    textMessage("Token sudah dikirimkan ke email anda")
                                     val intent = Intent(this, ResetPasswordActivity::class.java)
                                     startActivity(intent)
-                                    textMessage("Token sudah dikirimkan ke email anda")
                                 }
                                 is BaseResponse.Error -> {
                                     textMessage(it.msg.toString())

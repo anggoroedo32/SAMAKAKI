@@ -27,13 +27,27 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
         recyclerView.layoutManager = context?.let { com.awp.samakaki.utils.BuchheimWalkerLayoutManager(it, configuration) }
     }
 
+    override fun setLayoutManagerDataTop() {
+        val configuration = com.awp.samakaki.utils.BuchheimWalkerConfiguration.Builder()
+            .setSiblingSeparation(100)
+            .setLevelSeparation(100)
+            .setSubtreeSeparation(100)
+            .setOrientation(com.awp.samakaki.utils.BuchheimWalkerConfiguration.ORIENTATION_BOTTOM_TOP)
+            .build()
+        recyclerViewDataTop.layoutManager = context?.let { com.awp.samakaki.utils.BuchheimWalkerLayoutManager(it, configuration) }
+    }
+
     override fun setEdgeDecoration() {
         recyclerView.addItemDecoration(com.awp.samakaki.utils.TreeEdgeDecoration())
     }
 
+    override fun setEdgeDecorationDataTop() {
+        recyclerViewDataTop.addItemDecoration(com.awp.samakaki.utils.TreeEdgeDecoration())
+    }
+
     override fun createGraph(): com.awp.samakaki.utils.Graph {
         val graph = com.awp.samakaki.utils.Graph()
-        val node1 = com.awp.samakaki.utils.Node(nodeText)
+        val node1 = com.awp.samakaki.utils.Node("parent")
         val node2 = com.awp.samakaki.utils.Node(nodeText)
         val node3 = com.awp.samakaki.utils.Node(nodeText)
         val node4 = com.awp.samakaki.utils.Node(nodeText)
@@ -57,6 +71,34 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
         graph.addEdge(node4, node11)
 
         return graph
+    }
+
+    override fun createGraphDataTop(): com.awp.samakaki.utils.Graph {
+        val graphDataTop = com.awp.samakaki.utils.Graph()
+        val node1 = com.awp.samakaki.utils.Node("parent")
+        val node2 = com.awp.samakaki.utils.Node(nodeText)
+        val node3 = com.awp.samakaki.utils.Node(nodeText)
+        val node4 = com.awp.samakaki.utils.Node(nodeText)
+        val node5 = com.awp.samakaki.utils.Node(nodeText)
+        val node6 = com.awp.samakaki.utils.Node(nodeText)
+        val node8 = com.awp.samakaki.utils.Node(nodeText)
+        val node7 = com.awp.samakaki.utils.Node(nodeText)
+        val node9 = com.awp.samakaki.utils.Node(nodeText)
+        val node10 = com.awp.samakaki.utils.Node(nodeText)
+        val node11 = com.awp.samakaki.utils.Node(nodeText)
+        val node12 = com.awp.samakaki.utils.Node(nodeText)
+
+        graphDataTop.addEdge(node1, node2)
+        graphDataTop.addEdge(node1, node3)
+        graphDataTop.addEdge(node1, node4)
+        graphDataTop.addEdge(node2, node5)
+        graphDataTop.addEdge(node2, node6)
+        graphDataTop.addEdge(node6, node7)
+        graphDataTop.addEdge(node6, node8)
+        graphDataTop.addEdge(node4, node10)
+        graphDataTop.addEdge(node4, node11)
+
+        return graphDataTop
     }
 
 }

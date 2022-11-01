@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class UserRelationsResponse(
 
 	@field:SerializedName("data")
-	val data: DataUserRelations? = null,
+	val data: DataUserRelations,
 
 	@field:SerializedName("status")
 	val status: String? = null

@@ -56,9 +56,9 @@ class ResetPasswordActivity : AppCompatActivity() {
                             }
                             is BaseResponse.Success -> {
                                 stopLoading()
+                                textMessage("Password berhasil diubah")
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
-                                textMessage("Password berhasil diubah")
                             }
                             is BaseResponse.Error -> {
                                 textMessage(it.msg.toString())
