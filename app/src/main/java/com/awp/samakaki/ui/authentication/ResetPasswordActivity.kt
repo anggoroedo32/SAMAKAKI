@@ -30,23 +30,44 @@ class ResetPasswordActivity : AppCompatActivity() {
             val password = binding.etPassword.text.trim().toString()
             val token = binding.etToken.text.trim().toString()
 
-            authenticationViewModel.resetPassword(email = email, password = password, token = token)
-            authenticationViewModel.resetPasswordResponse.observe(this) {
-                when(it) {
-                    is BaseResponse.Loading -> {
-                        showLoading()
-                    }
-                    is BaseResponse.Success -> {
-                        stopLoading()
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        textMessage("Password berhasil diubah")
-                    }
-                    is BaseResponse.Error -> {
-                        textMessage(it.msg.toString())
+            when {
+                email.isEmpty() -> {
+                    binding.etEmail.error = getString(R.string.er_empty_email)
+                }
+                !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    binding.etEmail.error = getString(R.string.err_wrong_email_format)
+                }
+                password.isEmpty() -> {
+                    binding.etPassword.error = getString(R.string.err_empty_password)
+                }
+                token.isEmpty() -> {
+                    binding.etToken.error = getString(R.string.err_empty_token)
+                }
+                else -> {
+                    authenticationViewModel.resetPassword(
+                        email = email,
+                        password = password,
+                        token = token
+                    )
+                    authenticationViewModel.resetPasswordResponse.observe(this) {
+                        when (it) {
+                            is BaseResponse.Loading -> {
+                                showLoading()
+                            }
+                            is BaseResponse.Success -> {
+                                stopLoading()
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                                textMessage("Password berhasil diubah")
+                            }
+                            is BaseResponse.Error -> {
+                                textMessage(it.msg.toString())
+                            }
+                        }
                     }
                 }
             }
+
         }
 
     }
@@ -60,6 +81,6 @@ class ResetPasswordActivity : AppCompatActivity() {
     }
 
     private fun textMessage(s: String) {
-        Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 }

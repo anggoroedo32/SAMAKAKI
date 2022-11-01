@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.etConfirmPassword.text.trim().toString()
 
 
-            if (name.isEmpty()){
+            if (name.isEmpty()) {
                 binding.etName.error = getString(R.string.err_empty_name)
             }
             if (email.isEmpty()) {
@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
             if (phone.isEmpty()) {
                 binding.etNoTelp.error = getString(R.string.err_empty_phone)
             }
-            if (password.isEmpty()){
+            if (password.isEmpty()) {
                 binding.etPassword.error = getString(R.string.err_empty_password)
             }
             if (confirmPassword.isEmpty()) {
@@ -60,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
 
-            when{
+            when {
                 name.isEmpty() -> {
                     binding.etName.error = getString(R.string.err_empty_name)
                 }
@@ -81,9 +81,14 @@ class RegisterActivity : AppCompatActivity() {
                     binding.etPassword.error = getString(R.string.err_password_did_not_match)
                 }
                 else -> {
-                    authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
+                    authenticationViewModel.register(
+                        name = name,
+                        email = email,
+                        phone = phone,
+                        password = password
+                    )
                     authenticationViewModel.registerResponse.observe(this) {
-                        when(it) {
+                        when (it) {
                             is BaseResponse.Loading -> {
                                 showLoading()
                             }
@@ -110,10 +115,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun textMessage(s: String) {
-        Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
-
-
 
 
 }

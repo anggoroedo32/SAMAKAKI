@@ -29,27 +29,37 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
             val email = binding.etEmail.text.trim().toString()
 
-            authenticationViewModel.forgotToken(email = email)
-            authenticationViewModel.forgotTokenResponse.observe(this) {
-                when(it) {
-                    is BaseResponse.Loading -> {
-                        showLoading()
-                    }
-                    is BaseResponse.Success -> {
-                        stopLoading()
-                        val intent = Intent(this, ResetPasswordActivity::class.java)
-                        startActivity(intent)
-                        textMessage("Token sudah dikirimkan ke email anda")
-                    }
-                    is BaseResponse.Error -> {
-                        textMessage(it.msg.toString())
+            when {
+                email.isEmpty() -> {
+                    binding.etEmail.error = getString(R.string.er_empty_email)
+                }
+                !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    binding.etEmail.error = getString(R.string.err_wrong_email_format)
+                }
+                    else -> {
+                        authenticationViewModel.forgotToken(email = email)
+                        authenticationViewModel.forgotTokenResponse.observe(this) {
+                            when (it) {
+                                is BaseResponse.Loading -> {
+                                    showLoading()
+                                }
+                                is BaseResponse.Success -> {
+                                    stopLoading()
+                                    val intent = Intent(this, ResetPasswordActivity::class.java)
+                                    startActivity(intent)
+                                    textMessage("Token sudah dikirimkan ke email anda")
+                                }
+                                is BaseResponse.Error -> {
+                                    textMessage(it.msg.toString())
+                                }
+                            }
+                        }
                     }
                 }
+
             }
 
         }
-
-    }
 
     fun stopLoading() {
         binding.prgbar.visibility = View.GONE
@@ -64,3 +74,4 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
 }
+
