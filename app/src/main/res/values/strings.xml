@@ -96,9 +96,11 @@
     <string name="err_empty_phone">Masukkan nomor telepon</string>
     <string name="err_empty_password">Masukkan password</string>
     <string name="err_empty_confirmPassword">Masukkan konfirmasi</string>
+    <string name="err_empty_token">Masukkan token</string>
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="token">Token</string>
     <string name="undang">Undang</string>
     <string name="err_empty_family_name">Masukkan nama keluarga</string>
     <string name="err_empty_family_member">Masukkan nama anggota keluarga yang ingin anda undang</string>
