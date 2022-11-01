@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
+import com.awp.samakaki.viewmodel.AuthenticationViewModel
+import com.awp.samakaki.viewmodel.ProfileViewModel
 
 
 @Suppress("DEPRECATION")
@@ -17,6 +21,7 @@ class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditprofileBinding? = null
     private val binding get() = _binding!!
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
 
     override fun onCreateView(
@@ -39,6 +44,11 @@ class EditProfileFragment : Fragment() {
             context?.let { ArrayAdapter(it,R.layout.dropdown_item,statusDropdown) }
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
+
+
+        profileViewModel.findUser.observe(viewLifecycleOwner) {
+
+        }
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {

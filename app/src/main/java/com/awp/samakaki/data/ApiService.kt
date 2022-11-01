@@ -2,6 +2,7 @@ package com.awp.samakaki.data
 
 import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
+import com.awp.samakaki.request.UserRequest
 import com.awp.samakaki.response.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -36,6 +37,12 @@ interface ApiService {
     suspend fun userRelations(
         @Header("Authorization") token: String
     ): Response<UserRelationsResponse>
+
+    @GET("users")
+    suspend fun findUser(
+        @Header("Authorization") token: String,
+        @Body userRequest: UserRequest
+    ): Response<FindUserResponse>
 
 
 
