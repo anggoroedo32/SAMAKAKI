@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.DataFamilyTree">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/title_app"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wrap_family_tree"
         android:layout_width="match_parent"
@@ -61,78 +82,103 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/bg_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.3"
+            android:src="@drawable/ic_ilustrasi_input_data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_80"
-            android:background="@color/secondary_200"
+            android:background="@drawable/bg_isi_profil_keluarga"
             android:orientation="vertical"
-            android:paddingVertical="@dimen/dimen_28"
+            android:paddingVertical="@dimen/dimen_32"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                style="@style/medium_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/data_keluarga_kamu" />
+                android:text="@string/data_keluarga_kamu"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/primary_600"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_16"
-                android:text="@string/nama_keluarga" />
+                android:text="@string/nama_keluarga"
+                android:textColor="@color/neutral_500"/>
 
             <EditText
-                android:id="@+id/et_address"
+                android:id="@+id/et_family_name"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_10"
                 android:hint="@string/nama_keluarga" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_16"
                 android:text="@string/anggota_keluarga" />
 
             <EditText
-                android:id="@+id/et_birthday"
+                android:id="@+id/et_nama"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
+                android:hint="@string/nama"
                 android:layout_height="@dimen/dimen_40"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginHorizontal="@dimen/dimen_35"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_16"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:hint="@string/nama" />
+                android:text="@string/nomor_telepon" />
 
             <EditText
-                android:id="@+id/et_status"
+                android:id="@+id/et_no_telp"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:cursorVisible="false"
-                android:focusable="false"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:inputType="number"
                 android:hint="@string/nomor_telephone" />
 
-            <EditText
-                android:id="@+id/et_privacy"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_35"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="@string/hubungan" />
+
+            <Spinner
+                android:id="@+id/et_hubungan"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginTop="@dimen/dimen_10"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:hint="@string/hubungan" />
@@ -145,9 +191,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_60"
+            android:layout_marginTop="@dimen/dimen_40"
             android:backgroundTint="@color/primary_500"
-            android:text="@string/isi_profil"
+            android:text="@string/undang"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

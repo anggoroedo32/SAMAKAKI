@@ -48,18 +48,20 @@ class LoginActivity : AppCompatActivity() {
                     authenticationViewModel.login(email = email, password = password)
                     authenticationViewModel.loginResponse.observe(this) {
                         Log.d("data_login_activity", "data outside when ${it}")
-                       when(it) {
-                           is BaseResponse.Loading -> {
-                               showLoading()
-                           }
-                           is BaseResponse.Success -> {
-                               stopLoading()
-                               processLogin(it.data)
-                           }
-                           is BaseResponse.Error -> {
-                               textMessage(it.msg.toString())
-                           }
-                       }
+                        it.getContentIfNotHandled()?.let {
+                            when(it) {
+                                is BaseResponse.Loading -> {
+                                    showLoading()
+                                }
+                                is BaseResponse.Success -> {
+                                    stopLoading()
+                                    processLogin(it.data)
+                                }
+                                is BaseResponse.Error -> {
+                                    textMessage(it.msg.toString())
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -91,6 +93,8 @@ class LoginActivity : AppCompatActivity() {
     fun processLogin(data: LoginResponse?) {
         textMessage("Login berhasil")
         val token = data?.dataLogin?.token
+        val id = data?.dataLogin?.users?.id
+        id.let { SessionManager.saveIdUser(this, id!!) }
         if (!token.isNullOrEmpty()) {
             token.let { SessionManager.saveAuthToken(this, it) }
             navigateToHome()

@@ -1,8 +1,15 @@
 package com.awp.samakaki.repository
 
 import com.awp.samakaki.data.ApiService
+import com.awp.samakaki.request.CreateFamilyTreeRequest
+import com.awp.samakaki.request.CreateRelationsRequest
+import com.awp.samakaki.request.ForgotTokenRequest
 import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.RegisterRequest
+import com.awp.samakaki.response.*
+import com.awp.samakaki.request.ResetPasswordRequest
+import com.awp.samakaki.response.*
+import retrofit2.Call
 import com.awp.samakaki.request.UserRequest
 import com.awp.samakaki.response.*
 import retrofit2.Response
@@ -12,9 +19,13 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
 
     suspend fun getAllPosts(): Response<PostsResponse> = apiService.getAllPosts()
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
-    suspend fun createPosts(postItem: String): Response<PostsResponse> = apiService.createPosts(postItem)
     suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> = apiService.login(loginRequest)
     suspend fun userRelations(token: String): Response<UserRelationsResponse> = apiService.userRelations(token)
     suspend fun findUser(token: String, userRequest: UserRequest): Response<FindUserResponse> = apiService.findUser(token, userRequest)
+    suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
+    suspend fun createUserRelations(token: String, createRelationsRequest: CreateRelationsRequest): Response<CreateUserRelationsResponse> = apiService.createUserRelations(token, createRelationsRequest)
+    suspend fun createFamilyTree(token: String, createFamilyTreeRequest: CreateFamilyTreeRequest): Response<CreateFamilyTreeResponse> = apiService.createFamilyTree(token, createFamilyTreeRequest)
 
+    suspend fun forgotToken(forgotTokenRequest: ForgotTokenRequest): Response<ForgotTokenResponse> = apiService.forgotToken(forgotTokenRequest)
+    suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse> = apiService.resetPassword(resetPasswordRequest)
 }

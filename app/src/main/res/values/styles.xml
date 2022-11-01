@@ -25,6 +25,7 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
         <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primary_600</item>
     </style>
 
     <style name="bold_20sec500">
@@ -111,7 +112,6 @@
 
     <style name="regular_14prim600">
         <item name="android:fontFamily">@font/poppins_regular</item>
-        <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_14</item>
         <item name="android:gravity">center</item>
@@ -168,9 +168,12 @@
 
     <style name="ButtonStyle">
         <item name="android:background">@drawable/rounded_btn</item>
-        <item name="android:paddingHorizontal" tools:targetApi="o">@dimen/dimen_34</item>
-        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_12</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/dimen_35</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_5</item>
+        <item name="android:layout_height">@dimen/dimen_48</item>
         <item name="android:textColor">@color/primary_50</item>
+        <item name="background">@drawable/rounded_btn</item>
+        <item name="android:paddingHorizontal" tools:targetApi="o">@dimen/dimen_34</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">@dimen/dimen_14</item>
         <item name="android:textAlignment">center</item>
@@ -208,13 +211,16 @@
 
     <style name="TextfieldsStyle">
         <item name="android:width">290dp</item>
-        <item name="android:height">@dimen/dimen_40</item>
+        <item name="android:paddingEnd">@dimen/dimen_8</item>
+        <item name="android:drawablePadding">@dimen/dimen_10</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/dimen_35</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
         <item name="android:background">@drawable/rounded_textfield</item>
         <item name="android:textColor">@color/neutral_500</item>
-        <item name="android:textSize">@dimen/dimen_14</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColorHint">@color/neutral_400</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingStart">@dimen/dimen_14</item>
-        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
     </style>
 
     <style name="TextfieldsStyle2">
@@ -266,6 +272,5 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-
 
 </resources>

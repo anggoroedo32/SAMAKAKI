@@ -10,8 +10,10 @@ import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityRegisterBinding
+import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.RegisterResponse
+import com.awp.samakaki.ui.MainActivity
 import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
@@ -31,6 +33,12 @@ class RegisterActivity : AppCompatActivity() {
         val tvLogin = binding.txtViewLogin
         tvLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        val token = SessionManager.getToken(this)
+        if (!token.isNullOrBlank()) {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -83,16 +91,18 @@ class RegisterActivity : AppCompatActivity() {
                 else -> {
                     authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
                     authenticationViewModel.registerResponse.observe(this) {
-                        when(it) {
-                            is BaseResponse.Loading -> {
-                                showLoading()
+                        it.getContentIfNotHandled()?.let {
+                            when(it) {
+                                is BaseResponse.Loading -> {
+                                    showLoading()
+                                }
+                                is BaseResponse.Success -> {
+                                    stopLoading()
+                                    startActivity(Intent(this, LoginActivity::class.java))
+                                    textMessage("Akun Anda Sudah Dibuat")
+                                }
+                                is BaseResponse.Error -> textMessage(it.msg.toString())
                             }
-                            is BaseResponse.Success -> {
-                                stopLoading()
-                                startActivity(Intent(this, LoginActivity::class.java))
-                                textMessage("Akun Anda Sudah Dibuat")
-                            }
-                            is BaseResponse.Error -> textMessage(it.msg.toString())
                         }
                     }
                 }
