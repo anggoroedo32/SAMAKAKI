@@ -13,7 +13,7 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
     private val _createBiodataResponse = MutableLiveData<BiodataResponse>()
     val createBiodataResponse: LiveData<BiodataResponse> = _createBiodataResponse
 
-    fun createBiodata(address: String, dob: String, marriageStatus: String, status: String){
+    fun createBiodata(token: String, address: String, dob: String, marriageStatus: String, status: String){
         viewModelScope.launch {
             try {
                 val biodataRequest = BiodataRequest(
@@ -22,7 +22,7 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
                     marriageStatus = marriageStatus,
                     status = status
                 )
-                val response = repository.createBiodata(biodataRequest)
+                val response = repository.createBiodata(token, biodataRequest)
                 if(response.code() == 200) {
                     _createBiodataResponse.value = response.body()
                     Log.d("data_biodata", "success_creating: ${response.body()}")

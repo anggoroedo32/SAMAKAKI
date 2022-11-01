@@ -41,7 +41,7 @@ data class PostItem(
 	val link: String? = null
 ) : Parcelable
 
-data class Data(
+data class DataPosts(
 
 	@field:SerializedName("post")
 	val post: List<PostItem>? = null

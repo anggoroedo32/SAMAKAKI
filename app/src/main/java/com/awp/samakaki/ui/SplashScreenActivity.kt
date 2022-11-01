@@ -20,6 +20,10 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 //        window.setFlags(
 //            WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //            WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -33,7 +37,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val btnGetStarted = binding.btnGetstarted
         btnGetStarted.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 

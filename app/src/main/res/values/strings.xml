@@ -73,7 +73,7 @@
     <string name="background">background</string>
     <string name="reset_password">Reset Password</string>
     <string name="save">Save</string>
-    <string name="dotdotdot">. . .</string>
+    <string name="dotdotdot">...</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="photo_profile">Photo Profile</string>
     <string name="edit">Edit</string>
@@ -99,6 +99,8 @@
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="password_baru">Password Baru</string>
 
     <string-array name="status">
         <item>Belum Menikah</item>
