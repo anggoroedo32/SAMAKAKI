@@ -20,7 +20,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
     private val _findUser = MutableLiveData<BaseResponse<FindUserResponse>>()
     val findUser: LiveData<BaseResponse<FindUserResponse>> = _findUser
 
-    fun userRelations(token: String, id: String){
+    fun findUser(token: String, id: String){
         viewModelScope.launch {
             try {
 

@@ -1,11 +1,6 @@
 package com.awp.samakaki.data
 
-import com.awp.samakaki.request.ForgotTokenRequest
-import com.awp.samakaki.request.CreateFamilyTreeRequest
-import com.awp.samakaki.request.CreateRelationsRequest
-import com.awp.samakaki.request.LoginRequest
-import com.awp.samakaki.request.RegisterRequest
-import com.awp.samakaki.request.ResetPasswordRequest
+import com.awp.samakaki.request.*
 import com.awp.samakaki.response.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody

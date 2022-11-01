@@ -45,18 +45,18 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
         }
     }
 
-    fun createPosts(postItem: String){
-        viewModelScope.launch {
-            _loading.value = true
-            viewModelScope.launch {
-                try {
-                    val response = repository.createPosts(postItem)
-                    repository.createPosts(postItem)
-                    isCreate.value = response.body()
-                } catch (e: Throwable) {
-                    BaseResponse.Error(e.toString())
-                }
-            }
-        }
-    }
+//    fun createPosts(postItem: String){
+//        viewModelScope.launch {
+//            _loading.value = true
+//            viewModelScope.launch {
+//                try {
+//                    val response = repository.createPosts(postItem)
+//                    repository.createPosts(postItem)
+//                    isCreate.value = response.body()
+//                } catch (e: Throwable) {
+//                    BaseResponse.Error(e.toString())
+//                }
+//            }
+//        }
+//    }
 }

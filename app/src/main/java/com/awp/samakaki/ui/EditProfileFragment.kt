@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
+import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 
@@ -45,9 +48,18 @@ class EditProfileFragment : Fragment() {
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
 
-
+        val token = context?.let { SessionManager.getToken(it) }
+        val id = context?.let { SessionManager.getIdUser(it) }
+        id?.let { profileViewModel.findUser("Bearer $token", it) }
         profileViewModel.findUser.observe(viewLifecycleOwner) {
-
+            when(it) {
+                is BaseResponse.Loading -> showLoading()
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                }
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
         }
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
@@ -64,6 +76,18 @@ class EditProfileFragment : Fragment() {
             }
 
         })
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
+    }
+
+    private fun textMessage(s: String) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
 
 }
