@@ -101,6 +101,7 @@
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
     <string name="token">Token</string>
+    <string name="edit_profil">Edit Profil</string>
     <string name="undang">Undang</string>
     <string name="err_empty_family_name">Masukkan nama keluarga</string>
     <string name="err_empty_family_member">Masukkan nama anggota keluarga yang ingin anda undang</string>
