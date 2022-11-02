@@ -11,6 +11,8 @@ import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.PostsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.Response
 import javax.inject.Inject
 import kotlin.math.log
@@ -24,8 +26,8 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val isCreate = MutableLiveData<PostsResponse>()
-    val observeIsCreate: LiveData<PostsResponse> = isCreate
+    private val isCreate = MutableLiveData<BaseResponse<PostsResponse>>()
+    val observeIsCreate: LiveData<BaseResponse<PostsResponse>> = isCreate
 
     fun getAllPosts(){
         viewModelScope.launch {
@@ -44,13 +46,13 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
         }
     }
 
-    fun createPosts(token: String, postRequest: PostRequest){
+    fun createPosts(
+        token: String, descriptions: RequestBody, status: RequestBody, content: MultipartBody.Part){
         viewModelScope.launch {
             _loading.value = true
             viewModelScope.launch {
                 try {
-                    val response = repository.createPosts(token, postRequest)
-                    isCreate.value = response.body()
+                    val response = repository.createPosts(token, descriptions, status, content)
                 } catch (e: Throwable) {
                     BaseResponse.Error(e.toString())
                 }

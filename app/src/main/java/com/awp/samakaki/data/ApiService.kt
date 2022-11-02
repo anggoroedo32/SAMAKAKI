@@ -26,16 +26,19 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): Response<RegisterResponse>
 
-    @POST("posts")
-
-    suspend fun createPosts(
-        @Header("Authorization") token: String,
-        postRequest: PostRequest): Response<PostsResponse>
-
     @POST("login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
+
+    @Multipart
+    @POST("posts")
+    suspend fun createPosts(
+        @Header("Authorization") token: String,
+        @Part("descriptions") descriptions: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part content: MultipartBody.Part
+        ): Response<PostsResponse>
 
     @Multipart
     @POST("biodata_users")
@@ -46,7 +49,7 @@ interface ApiService {
         @Part("marriage_status") marriage_status: RequestBody,
         @Part("status") status: RequestBody,
         @Part file: MultipartBody.Part
-    ): Response<TryResponse>
+    ): Response<BiodataResponse>
 
     @GET("user_relations")
     suspend fun userRelations(

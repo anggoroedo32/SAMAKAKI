@@ -18,14 +18,17 @@ import javax.inject.Inject
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getAllPosts(): Response<PostsResponse> = apiService.getAllPosts()
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
-    suspend fun createPosts(token: String, postRequest: PostRequest): Response<PostsResponse> = apiService.createPosts(token, postRequest)
+    suspend fun createPosts(token: String,
+                            descriptions: RequestBody,
+                            status: RequestBody,
+                            content: MultipartBody.Part): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
     suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> = apiService.login(loginRequest)
     suspend fun createBiodata(token: String,
                               dob: RequestBody,
                               address: RequestBody,
                               marriage_status: RequestBody,
                               status: RequestBody,
-                              file: MultipartBody.Part): Response<TryResponse> = apiService.createBiodata(
+                              file: MultipartBody.Part): Response<BiodataResponse> = apiService.createBiodata(
         token,
         dob,
         address,

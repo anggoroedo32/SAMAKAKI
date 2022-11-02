@@ -6,7 +6,6 @@ import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.BiodataRequest
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.BiodataResponse
-import com.awp.samakaki.response.TryResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -15,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepository): ViewModel() {
-    private val _createBiodataResponse = MutableLiveData<BaseResponse<TryResponse>>()
-    val createBiodataResponse: LiveData<BaseResponse<TryResponse>> = _createBiodataResponse
+    private val _createBiodataResponse = MutableLiveData<BaseResponse<BiodataResponse>>()
+    val createBiodataResponse: LiveData<BaseResponse<BiodataResponse>> = _createBiodataResponse
 
     fun createBiodata(
         token: String,
