@@ -3,7 +3,9 @@ package com.awp.samakaki.data
 import com.awp.samakaki.request.ForgotTokenRequest
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
+import com.awp.samakaki.request.BiodataRequest
 import com.awp.samakaki.request.LoginRequest
+import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.request.ResetPasswordRequest
 import com.awp.samakaki.response.*
@@ -11,6 +13,11 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import com.awp.samakaki.response.*
+import com.awp.samakaki.response.*
+import com.awp.samakaki.response.LoginResponse
+import com.awp.samakaki.response.PostsResponse
+import com.awp.samakaki.response.RegisterResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -37,6 +44,26 @@ interface ApiService {
     ): Response<ForgotTokenResponse>
 
     @Headers("Content-Type: application/json")
+    @Multipart
+    @POST("posts")
+    suspend fun createPosts(
+        @Header("Authorization") token: String,
+        @Part("descriptions") descriptions: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part content: MultipartBody.Part
+        ): Response<PostsResponse>
+
+    @Multipart
+    @POST("biodata_users")
+    suspend fun createBiodata(
+        @Header("Authorization") token: String,
+        @Part("dob") dob: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("marriage_status") marriage_status: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part file: MultipartBody.Part
+    ): Response<BiodataResponse>
+
     @GET("user_relations")
     suspend fun findUserRelations(
         @Header("Authorization") token: String

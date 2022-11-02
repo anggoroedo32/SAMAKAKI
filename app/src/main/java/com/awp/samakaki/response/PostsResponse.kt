@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class PostsResponse(
 
 	@field:SerializedName("data")
-	val data: DataPostingan? = null,
+	val dataPosts: DataPosts? = null,
 
 	@field:SerializedName("post")
 	val post: List<PostItem>? = null
@@ -35,11 +35,17 @@ data class PostItem(
 	val descriptions: String? = null,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String? = null,
+
+	@field:SerializedName("link")
+	val link: String? = null
 ) : Parcelable
 
-data class DataPostingan(
+data class DataPosts(
 
 	@field:SerializedName("post")
-	val post: List<PostItem>? = null
+	val post: List<PostItem>? = null,
+
+	@field:SerializedName("token")
+	val token: String? = null
 )

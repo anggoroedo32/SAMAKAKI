@@ -6,17 +6,17 @@
     //exam bold_30black
     //yg belum dikasih warna berarti belum dipakai di uiux
     <style name="regular_30">
-        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
     </style>
     <style name="medium_30">
-        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
     </style>
     <style name="semibold_30">
-        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
     </style>
@@ -25,11 +25,10 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/primary_600</item>
     </style>
 
     <style name="bold_20sec500">
-        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_20</item>
         <item name="android:gravity">center</item>
@@ -37,19 +36,19 @@
     </style>
 
     <style name="regular_18">
-        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
     </style>
     <style name="medium_18black">
-        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
         <item name="android:gravity">center</item>
         <item name="android:color">@color/black</item>
     </style>
     <style name="semibold_18">
-        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
     </style>
@@ -60,7 +59,7 @@
         <item name="android:textColor">@color/primary_500</item>
     </style>
     <style name="bold_18prim600">
-        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
         <item name="android:gravity">center</item>
@@ -86,7 +85,7 @@
         <item name="android:color">@color/primary_500</item>
     </style>
     <style name="bold_16">
-        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_16</item>
     </style>

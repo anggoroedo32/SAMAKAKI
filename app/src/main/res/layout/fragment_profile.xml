@@ -15,19 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/TV_profilename"
-        app:layout_constraintBottom_toTopOf="@id/RV_profile"
-        tools:scrCompat="@tools:profile_pic"/>
+        tools:src="@drawable/dummy_avatar"/>
 
     <TextView
         android:id="@+id/TV_profilename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/semibold_16prim500"
-        android:layout_marginTop="@dimen/dimen_25"
         android:layout_marginStart="@dimen/dimen_10"
         app:layout_constraintStart_toEndOf="@id/img_profile"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Iwan Bule"/>
+        app:layout_constraintTop_toTopOf="@id/img_profile"
+        tools:text="Yunanda Anggraini"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_ed_profile"
@@ -52,16 +50,99 @@
         android:layout_margin="@dimen/dimen_10"
         app:layout_constraintStart_toEndOf="@id/btn_ed_profile"
         app:layout_constraintTop_toBottomOf="@id/TV_profilename"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        />
+
+    <ImageView
+        android:id="@+id/ic_house"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:src="@drawable/ic_house_outline_green"
+        android:layout_marginTop="@dimen/dimen_30"
+        app:layout_constraintStart_toStartOf="@id/img_profile"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"/>
+
+    <ImageView
+        android:id="@+id/ic_users"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:src="@drawable/ic_users_green"
+        android:layout_marginTop="@dimen/dimen_27"
+        app:layout_constraintStart_toStartOf="@id/ic_house"
+        app:layout_constraintTop_toBottomOf="@id/ic_house"/>
+
+    <ImageView
+        android:id="@+id/ic_calendar"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:src="@drawable/ic_calendarblank_green"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/ic_house"/>
+
+    <ImageView
+        android:id="@+id/ic_telephone"
+        android:layout_width="@dimen/dimen_20"
+        android:layout_height="@dimen/dimen_20"
+        android:src="@drawable/ic_telephone_green"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/ic_users"/>
+
+    <TextView
+        android:id="@+id/tv_alamat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/regular_14prim600"
+        app:layout_constraintStart_toEndOf="@id/ic_house"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"
+        android:layout_marginTop="@dimen/dimen_29"
+        android:layout_marginStart="@dimen/dimen_5"
+        tools:text="Surabaya" />
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/regular_14prim600"
+        app:layout_constraintStart_toEndOf="@id/ic_users"
+        app:layout_constraintTop_toBottomOf="@id/tv_alamat"
+        android:layout_marginTop="@dimen/dimen_24"
+        android:layout_marginStart="@dimen/dimen_5"
+        tools:text="Sudah Nikah" />
+    <TextView
+        android:id="@+id/tv_tgllahir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/regular_14prim600"
+        app:layout_constraintStart_toEndOf="@id/ic_calendar"
+        app:layout_constraintTop_toTopOf="@id/tv_alamat"
+        android:layout_marginStart="@dimen/dimen_5"
+        tools:text="21 Januari 1999" />
+
+    <TextView
+        android:id="@+id/tv_nohp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/regular_14prim600"
+        app:layout_constraintStart_toEndOf="@id/ic_telephone"
+        app:layout_constraintTop_toTopOf="@id/tv_status"
+        android:layout_marginStart="@dimen/dimen_5"
+        tools:text="08212321546" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_profile"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10"
         android:padding="@dimen/dimen_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/ic_users"
+        tools:listitem="@layout/layout_post_content"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_64"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
