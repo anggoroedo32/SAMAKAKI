@@ -6,33 +6,43 @@ import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.BiodataRequest
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.BiodataResponse
+import com.awp.samakaki.response.TryResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
+@HiltViewModel
 class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepository): ViewModel() {
-    private val _createBiodataResponse = MutableLiveData<BiodataResponse>()
-    val createBiodataResponse: LiveData<BiodataResponse> = _createBiodataResponse
+    private val _createBiodataResponse = MutableLiveData<BaseResponse<TryResponse>>()
+    val createBiodataResponse: LiveData<BaseResponse<TryResponse>> = _createBiodataResponse
 
-    fun createBiodata(token: String, address: String, dob: String, marriageStatus: String, status: String){
+    fun createBiodata(
+        token: String,
+//        address: RequestBody,
+//        dob: RequestBody,
+        marriageStatus: RequestBody,
+        status: RequestBody,
+        avatar: MultipartBody.Part
+    ){
         viewModelScope.launch {
-            try {
-                val biodataRequest = BiodataRequest(
-                    address = address,
-                    dob = dob,
-                    marriageStatus = marriageStatus,
-                    status = status
+                val response = repository.createBiodata(
+                    token = token,
+//                    address = address,
+//                    dob = dob,
+                    marriage_status = marriageStatus,
+                    status = status,
+                    file = avatar
                 )
-                val response = repository.createBiodata(token, biodataRequest)
+
                 if(response.code() == 200) {
-                    _createBiodataResponse.value = response.body()
+                    _createBiodataResponse.value = BaseResponse.Success(response.body())
                     Log.d("data_biodata", "success_creating: ${response.body()}")
                 } else {
-                    _createBiodataResponse.value = response.body()
+                    _createBiodataResponse.value = BaseResponse.Error("Erorr Create Biodata")
                     Log.d("data_biodata", "failure_creatuing: ${BaseResponse.Error(response.message())}")
                 }
-            } catch (e: Exception){
-
             }
         }
     }
-}

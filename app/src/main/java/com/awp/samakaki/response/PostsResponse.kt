@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class PostsResponse(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val dataPosts: DataPosts? = null,
 
 	@field:SerializedName("post")
 	val post: List<PostItem>? = null
@@ -44,5 +44,8 @@ data class PostItem(
 data class DataPosts(
 
 	@field:SerializedName("post")
-	val post: List<PostItem>? = null
+	val post: List<PostItem>? = null,
+
+	@field:SerializedName("token")
+	val token: String? = null
 )

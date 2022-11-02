@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
+import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.ui.authentication.LoginActivity
 import com.awp.samakaki.viewmodel.PostsViewModel
@@ -98,10 +99,11 @@ class HomeFragment : Fragment() {
 
     private fun createPosts(){
         val caption = binding.edPost.text.toString()
+        val tokenGet = context?.let { SessionManager.getToken(it) }
         viewModel.observeIsCreate.observe(viewLifecycleOwner){
             it.let { 
                 if(it != null){
-                    viewModel.createPosts(caption)
+//                    viewModel.createPosts("Bearer $tokenGet", caption)
                     Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()
                 }
             }

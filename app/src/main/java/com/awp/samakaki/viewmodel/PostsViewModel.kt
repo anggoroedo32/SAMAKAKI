@@ -6,9 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
+import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.response.Data
-import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.response.PostsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -45,13 +44,12 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
         }
     }
 
-    fun createPosts(postItem: String){
+    fun createPosts(token: String, postRequest: PostRequest){
         viewModelScope.launch {
             _loading.value = true
             viewModelScope.launch {
                 try {
-                    val response = repository.createPosts(postItem)
-                    repository.createPosts(postItem)
+                    val response = repository.createPosts(token, postRequest)
                     isCreate.value = response.body()
                 } catch (e: Throwable) {
                     BaseResponse.Error(e.toString())

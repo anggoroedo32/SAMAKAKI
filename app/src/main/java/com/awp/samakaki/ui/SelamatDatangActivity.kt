@@ -2,23 +2,42 @@ package com.awp.samakaki.ui
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
+import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.IsiProfilViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.log
 
+
+@AndroidEntryPoint
 class SelamatDatangActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySelamatDatangBinding
@@ -27,30 +46,54 @@ class SelamatDatangActivity : AppCompatActivity() {
     private val calendar = Calendar.getInstance()
     private var dateFormater: String? = null
 
+    private var imageFile: File? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelamatDatangBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dateFormater = SimpleDateFormat("dd/MM/yyyy").format(calendar.time)
+        dateFormater = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+        val btnIsiProfil = binding.btnIsiProfil
+
+        btnIsiProfil.setOnClickListener{
+            insertProfile()
+            Toast.makeText(this, "button", Toast.LENGTH_SHORT).show()
+        }
 
         //Input Configuration
         inputConf()
 
-        //Intent and post isi profile
-        insertProfile()
 
         //Date Picker
         getDate()
+
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-         imageUri = data?.data
-            ivUploadImg.visibility = View.VISIBLE
-         ivUploadImg.setImageURI(imageUri)
-      }
-    }
+//    private fun chooseImage(){
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(Intent.createChooser(intent,"Select image"), PICK_IMAGE)
+//    }
+
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        Log.d("picture", "onActivityResult: sebelum if")
+//        if (requestCode == PICK_IMAGE && data != null){
+//            imageUri = data.data
+//            try {
+//                Log.d("picture", "onActivityResult: picture error")
+//                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+//                ivUploadImg.setImageBitmap(bitmap)
+//                ivUploadImg.visibility = View.VISIBLE
+//            }catch (e: IOException){
+//                Log.d("picture", "onActivityResult: picture error")
+//                e.printStackTrace()
+//            }
+//        }
+//    }
 
     private fun inputConf(){
         //Dropdown Status
@@ -66,64 +109,150 @@ class SelamatDatangActivity : AppCompatActivity() {
         autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
 
         //Open Galery
+//        val launcher = registerForActivityResult<Intent, ActivityResult>(
+//            ActivityResultContracts.StartActivityForResult()
+//        ) { result: ActivityResult ->
+//            if (result.resultCode == RESULT_OK
+//                && result.data != null
+//            ) {
+//                val photoUri = result.data?.data
+//                //use photoUri here
+//                ivUploadImg.visibility = View.VISIBLE
+//                ivUploadImg.setImageURI(photoUri)
+//            }
+//        }
         ivUploadImg = binding.ivUploadImage
         val tvUploadImg = binding.tvUploadImage
         tvUploadImg.setOnClickListener{
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, PICK_IMAGE)
+            pickImageLauncher.launch("image/*")
         }
     }
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()){
+            imageUri = it!!
+            ivUploadImg.setImageURI(it)
+            ivUploadImg.visibility = View.VISIBLE
+            imageFile = uriToFile(imageUri!!, this)
+        }
 
     private fun insertProfile() {
-        val btnIsiProfil = binding.btnIsiProfil
-        btnIsiProfil.setOnClickListener {
-            val address = binding.etAddress.text.toString()
-            val dob = binding.etBirthday.text.toString()
-            var marriageStatus = binding.etStatus.text.toString()
-            var status = binding.etPrivacy.text.toString().lowercase()
-            lateinit var newMarriageStatus: String
+        val address = binding.etAddress.text.toString()
+        val dob = binding.etBirthday.text.toString()
+        var marriageStatus = binding.etStatus.text.toString()
+        var status = binding.etPrivacy.text.toString().lowercase()
 
-            when {
-                address.isEmpty() -> {
-                    binding.etAddress.error = "Isi alamatmu"
-                }
-                dob.isEmpty() -> {
-                    binding.etBirthday.error = "Isi tanggal lahirmu"
-                }
-                marriageStatus.isEmpty() -> {
-                    binding.etStatus.error = "Pilih status pernikahanmu"
-                }
-                marriageStatus.contains("Belum Menikah") -> {
-                    newMarriageStatus = "single"
-                }
-                marriageStatus.contains("Menikah") -> {
-                    newMarriageStatus = "married"
-                }
-                marriageStatus.contains("Cerai") -> {
-                    newMarriageStatus = "divorced"
-                }
-                status.isEmpty() -> {
-                    binding.etPrivacy.error = "Pilih privasi akunmu"
-                }
+        Log.d("insert_profile_sini", "address: $address")
+        Log.d("insert_profile_sini", "dob: $dob")
+        Log.d("insert_profile_sini", "marriageStatus: $marriageStatus")
+        Log.d("insert_profile_sini", "status: $status")
 
-                else -> {
-                    viewModelIsiProfile.createBiodata(address, dob, newMarriageStatus, status)
-                    viewModelIsiProfile.createBiodataResponse.observe(this) {
-                        it.let {
-                            if (it != null){
-                                val intent = Intent(this, MainActivity::class.java)
-                                startActivity(intent)
-                                Toast.makeText(this, "Success Insert", Toast.LENGTH_SHORT).show()
-                                Log.d("it_data", it.toString())
-                            } else {
-                                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
-                                Log.d("it_data_failure", it.toString())
-                            }
-                        }
-                    }
+        when {
+            address.isEmpty() -> {
+                binding.etAddress.error = "Isi alamatmu"
+            }
+            dob.isEmpty() -> {
+                binding.etBirthday.error = "Isi tanggal lahirmu"
+            }
+            marriageStatus.isEmpty() -> {
+                binding.etStatus.error = "Pilih status pernikahanmu"
+            }
+//            marriageStatus.contains("Belum Menikah")||
+//                    marriageStatus.contains("Menikah")||
+//                    marriageStatus.contains("Cerai")-> {
+//                newMarriageStatus = when {
+//                    marriageStatus.contains("Belum Menikah") -> {
+//                        "single"
+//                    }
+//                    marriageStatus.contains("Menikah") -> {
+//                        "married"
+//                    }
+//                    else -> {
+//                        "divorced"
+//                    }
+//                }
+//            }
+            status.isEmpty() -> {
+                binding.etPrivacy.error = "Pilih privasi akunmu"
+            }
+
+
+            else -> {
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                //Convert
+                insertViewModel()
+            }
+        }
+    }
+    private fun insertViewModel(){
+        val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
+        val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
+        var marriageStatus = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
+        var status = binding.etPrivacy.text.toString().lowercase().toRequestBody("text/plain".toMediaType())
+        var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
+        val avatar = requestImage?.let {
+            MultipartBody.Part.createFormData(
+                "avatar",
+                imageFile?.name,
+                it
+            )
+        }
+        var tokenGet = SessionManager.getToken(this)
+        viewModelIsiProfile.createBiodata(
+            "Bearer $tokenGet",
+//            address,
+//            dob,
+            marriageStatus,
+            status,
+            avatar!!
+        )
+
+        viewModelIsiProfile.createBiodataResponse.observe(this) {
+            when(it) {
+                is BaseResponse.Loading -> {
+                    showLoading()
+                }
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                }
+                is BaseResponse.Error -> {
+                    textMessage(it.msg.toString())
                 }
             }
         }
+    }
+
+    fun uriToFile(selectedImg: Uri, context: Context): File {
+        val contentResolver: ContentResolver = context.contentResolver
+        val myFile = createCustomTempFile(context)
+
+        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+        val outputStream: OutputStream = FileOutputStream(myFile)
+        val buf = ByteArray(1024)
+        var len: Int
+        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+        outputStream.close()
+        inputStream.close()
+
+        return myFile
+    }
+
+    fun createCustomTempFile(context: Context): File {
+        val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile("ExampleTime", ".jpg", storageDir)
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
+    }
+
+    private fun textMessage(s: String) {
+        Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
     }
 
     private fun getDate(){
@@ -136,7 +265,7 @@ class SelamatDatangActivity : AppCompatActivity() {
                 this,
                 { view, year, monthOfYear, dayOfMonth ->
                     dateTime.set(year,month,day)
-                    dateFormater = SimpleDateFormat("dd/MM/yyyy").format(dateTime.time)
+                    dateFormater = SimpleDateFormat("yyyy-MM-dd").format(dateTime.time)
                     binding.etBirthday.setText(dateFormater)
                 },
                 year,

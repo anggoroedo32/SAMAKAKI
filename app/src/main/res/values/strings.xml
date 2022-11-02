@@ -103,9 +103,9 @@
     <string name="password_baru">Password Baru</string>
 
     <string-array name="status">
-        <item>Belum Menikah</item>
-        <item>Menikah</item>
-        <item>Cerai</item>
+        <item>single</item>
+        <item>married</item>
+        <item>divorced</item>
     </string-array>
     <string-array name="privacy">
         <item>Private</item>

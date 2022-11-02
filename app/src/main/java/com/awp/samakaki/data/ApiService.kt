@@ -2,12 +2,15 @@ package com.awp.samakaki.data
 
 import com.awp.samakaki.request.BiodataRequest
 import com.awp.samakaki.request.LoginRequest
+import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.response.*
 import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
 import com.awp.samakaki.response.UserRelationsResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -24,18 +27,27 @@ interface ApiService {
     ): Response<RegisterResponse>
 
     @POST("posts")
-    suspend fun createPosts(postItem: String): Response<PostsResponse>
+
+    suspend fun createPosts(
+        @Header("Authorization") token: String,
+        postRequest: PostRequest): Response<PostsResponse>
 
     @POST("login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
 
+    @Multipart
+    @Headers("Content-Type: application/json")
     @POST("biodata_users")
     suspend fun createBiodata(
         @Header("Authorization") token: String,
-        biodataRequest: BiodataRequest
-    ): Response<BiodataResponse>
+//        @Part("dob") dob: RequestBody,
+//        @Part("address") address: RequestBody,
+        @Part("marriage_status") marriage_status: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part file: MultipartBody.Part
+    ): Response<TryResponse>
 
     @GET("user_relations")
     suspend fun userRelations(

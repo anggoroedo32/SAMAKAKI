@@ -13,5 +13,7 @@ data class BiodataRequest(
     @SerializedName("marriage_status")
     val marriageStatus: String,
     @SerializedName("status")
-    val status: String
+    val status: String,
+    @SerializedName("avatar")
+    val avatar: String
 ) : Parcelable
