@@ -1,9 +1,16 @@
 package com.awp.samakaki.ui.menu_silsilah_keluarga
 
+import android.R.attr.label
+import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -13,16 +20,12 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
 import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.response.CreateFamilyTreeResponse
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.bumptech.glide.Glide
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import dev.bandb.graphview.AbstractGraphAdapter
-import dev.bandb.graphview.graph.Graph
-import dev.bandb.graphview.graph.Node
 import java.util.*
+
 
 @AndroidEntryPoint
 abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -45,15 +48,15 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
     abstract fun setEdgeDecorationDataTop()
 
     var hubungan = arrayOf<String?>(
-        "Father",
-        "Mother",
-        "Siblings",
-        "Child",
-        "Grandfather",
-        "Grandmother",
-        "Grandchild",
-        "Husband",
-        "Wife"
+        "father",
+        "mother",
+        "siblings",
+        "child",
+        "grandfather",
+        "grandmother",
+        "grandchild",
+        "husband",
+        "wife"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,7 +150,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                     )
 
                     familyTreeViewModel.createFamilyTree("Bearer $token", createFamilyUserRequest )
-                    familyTreeViewModel.createFamilyTree.observe(viewLifecycleOwner) {
+                    familyTreeViewModel.createFamilyTree.observe(viewLifecycleOwner) { it ->
                         when(it) {
                             is BaseResponse.Loading -> showLoading()
 
@@ -170,6 +173,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                         is BaseResponse.Success -> {
                                             stopLoading()
                                             it.data
+//                                            showDialog(link = it.data?.data?.invitaionToken!!)
                                             isiProfil.visibility = View.GONE
                                             familyTree.visibility = View.VISIBLE
                                         }
@@ -195,6 +199,35 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         spin.adapter = ad
 
     }
+
+    private fun showDialog(link: String) {
+        var dialog: AlertDialog? = null
+        val builder = AlertDialog.Builder(context)
+        val view = layoutInflater.inflate(R.layout.dialog, null)
+        val edLink : EditText = view.findViewById(R.id.ed_link)
+        val btnClose : Button = view.findViewById(R.id.close_btn)
+        val btnCopy : Button = view.findViewById(R.id.btn_copy)
+        btnCopy.setOnClickListener {
+            copyTextToClipboard(edLink.toString())
+        }
+
+        edLink.setText(link)
+        btnClose.setOnClickListener (View.OnClickListener {
+            dialog?.dismiss()
+        })
+
+
+        builder.setView(view)
+        dialog?.show()
+    }
+
+    private fun copyTextToClipboard(link: String) {
+        val clipboardManager: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("text", link.toString())
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
+    }
+
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 

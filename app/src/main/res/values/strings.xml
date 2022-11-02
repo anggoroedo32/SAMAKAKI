@@ -104,5 +104,9 @@
     <string name="undang">Undang</string>
     <string name="err_empty_family_name">Masukkan nama keluarga</string>
     <string name="err_empty_family_member">Masukkan nama anggota keluarga yang ingin anda undang</string>
+    <string name="share_link">Bagikan link undangan</string>
+    <string name="link">Link</string>
+    <string name="share_link_on">Bagikan link</string>
+    <string name="copy">Copy</string>
 
 </resources>

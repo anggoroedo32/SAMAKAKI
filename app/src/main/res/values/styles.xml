@@ -222,6 +222,26 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
     </style>
 
+    <style name="DialogCopyButton">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopRight">@dimen/dimen_12</item>
+        <item name="cornerSizeBottomRight">@dimen/dimen_12</item>
+    </style>
+
+    <style name="DialogEditText">
+        <item name="android:width">290dp</item>
+        <item name="android:height">@dimen/dimen_40</item>
+        <item name="android:drawablePadding">@dimen/dimen_6</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/dimen_36</item>
+        <item name="android:background">@drawable/dialog_ed</item>
+        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/neutral_400</item>
+        <item name="android:paddingStart">@dimen/dimen_14</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
+    </style>
+
     <style name="TextfieldsStyle2">
         <item name="android:width">352dp</item>
         <item name="android:height">@dimen/dimen_45</item>
