@@ -80,10 +80,10 @@ class HomeFragment : Fragment() {
             sortRecipesBottomSheet.show(childFragmentManager,sortRecipesBottomSheet.tag)
         }
 
-//        val buttonPost:Button = binding.btnPost
-//        buttonPost.setOnClickListener(){
-//            createPosts()
-//        }
+        val buttonPost:Button = binding.btnPost
+        buttonPost.setOnClickListener(){
+            createPosts()
+        }
     }
 
     private fun rvPosts(list: List<PostItem>) {
@@ -96,17 +96,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    private fun createPosts(){
-//        val caption = binding.edPost.text.toString()
-//        viewModel.observeIsCreate.observe(viewLifecycleOwner){
-//            it.let {
-//                if(it != null){
-//                    viewModel.createPosts(caption)
-//                    Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+    private fun createPosts(){
+        val caption = binding.edPost.text.toString()
+        viewModel.observeIsCreate.observe(viewLifecycleOwner){
+            it.let {
+                if(it != null){
+                    viewModel.createPosts(caption)
+                    Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 
 //    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

@@ -184,29 +184,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_Lokasi" />
 
         <TextView
-            android:id="@+id/tv_gantiPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_6"
-            android:text="@string/ganti_password"
-            style="@style/medium_12"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-            app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
-
-        <EditText
-            android:id="@+id/ET_GantiPassword"
-            style="@style/TextfieldsStyle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/password_baru"
-            android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="@dimen/dimen_8"
-            app:layout_constraintTop_toBottomOf="@id/tv_gantiPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
         android:id="@+id/tv_Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -215,7 +192,7 @@
         style="@style/medium_12"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-        app:layout_constraintTop_toBottomOf="@id/ET_GantiPassword"/>
+        app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ET_Status"

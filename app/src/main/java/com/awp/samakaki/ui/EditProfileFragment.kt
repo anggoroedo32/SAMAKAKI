@@ -1,10 +1,9 @@
 package com.awp.samakaki.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -17,15 +16,21 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
+import com.google.android.material.appbar.AppBarLayout
+import dagger.hilt.android.AndroidEntryPoint
 
 
-@Suppress("DEPRECATION")
+@AndroidEntryPoint
 class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditprofileBinding? = null
     private val binding get() = _binding!!
     private val profileViewModel by viewModels<ProfileViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,8 +54,9 @@ class EditProfileFragment : Fragment() {
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
 
         val token = context?.let { SessionManager.getToken(it) }
-        val id = context?.let { SessionManager.getIdUser(it) }
-        id?.let { profileViewModel.findUser("Bearer $token", it) }
+        val id = SessionManager.getIdUser(requireContext())
+        Log.d("id_dari_edit_profile", id.toString())
+        profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
         profileViewModel.findUser.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Loading -> showLoading()

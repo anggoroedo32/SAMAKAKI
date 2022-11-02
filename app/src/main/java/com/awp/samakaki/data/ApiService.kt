@@ -15,6 +15,9 @@ interface ApiService {
     @GET("posts")
     suspend fun getAllPosts(): Response<PostsResponse>
 
+    @POST("posts")
+    suspend fun createPosts(postItem: String): Response<PostsResponse>
+
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -41,12 +44,18 @@ interface ApiService {
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<ResetPasswordResponse>
-    @GET("users")
+
+    @GET("biodata_users/{id}")
     suspend fun findUser(
         @Header("Authorization") token: String,
-        @Body userRequest: UserRequest
+        @Path("id") id: String
     ): Response<FindUserResponse>
 
+    @PUT("editprofile/{id}")
+    suspend fun  editProfile(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<EditProfileResponse>
 
     @POST("relations")
     suspend fun createUserRelations(
