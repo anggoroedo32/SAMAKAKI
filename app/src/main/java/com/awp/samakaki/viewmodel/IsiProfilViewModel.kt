@@ -20,8 +20,8 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
 
     fun createBiodata(
         token: String,
-//        address: RequestBody,
-//        dob: RequestBody,
+        address: RequestBody,
+        dob: RequestBody,
         marriageStatus: RequestBody,
         status: RequestBody,
         avatar: MultipartBody.Part
@@ -29,8 +29,8 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
         viewModelScope.launch {
                 val response = repository.createBiodata(
                     token = token,
-//                    address = address,
-//                    dob = dob,
+                    address = address,
+                    dob = dob,
                     marriage_status = marriageStatus,
                     status = status,
                     file = avatar

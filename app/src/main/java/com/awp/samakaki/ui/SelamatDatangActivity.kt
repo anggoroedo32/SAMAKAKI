@@ -198,10 +198,11 @@ class SelamatDatangActivity : AppCompatActivity() {
             )
         }
         var tokenGet = SessionManager.getToken(this)
+        Log.e("TAG", "insertViewModel: $address , $dob , ", )
         viewModelIsiProfile.createBiodata(
-            "Bearer $tokenGet",
-//            address,
-//            dob,
+            "bearer $tokenGet",
+            address,
+            dob,
             marriageStatus,
             status,
             avatar!!

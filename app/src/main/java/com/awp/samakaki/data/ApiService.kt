@@ -38,12 +38,11 @@ interface ApiService {
     ): Response<LoginResponse>
 
     @Multipart
-    @Headers("Content-Type: application/json")
     @POST("biodata_users")
     suspend fun createBiodata(
         @Header("Authorization") token: String,
-//        @Part("dob") dob: RequestBody,
-//        @Part("address") address: RequestBody,
+        @Part("dob") dob: RequestBody,
+        @Part("address") address: RequestBody,
         @Part("marriage_status") marriage_status: RequestBody,
         @Part("status") status: RequestBody,
         @Part file: MultipartBody.Part
