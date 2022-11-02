@@ -173,7 +173,9 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                         is BaseResponse.Success -> {
                                             stopLoading()
                                             it.data
-//                                            showDialog(link = it.data?.data?.invitaionToken!!)
+                                            val invitationToken = it.data?.data?.invitaionToken
+                                            showDialog(link = invitationToken!!)
+                                            Log.d("isinya_token" , "isi_token : $invitationToken")
                                             isiProfil.visibility = View.GONE
                                             familyTree.visibility = View.VISIBLE
                                         }
