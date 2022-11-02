@@ -53,12 +53,18 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
     </style>
+    <style name="semibold_18prim500">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_18</item>
+        <item name="android:textColor">@color/primary_500</item>
+    </style>
     <style name="bold_18prim600">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_18</item>
         <item name="android:gravity">center</item>
-        <item name="android:color">@color/primary_600</item>
+        <item name="android:textColor">@color/primary_600</item>
     </style>
 
     //16dp
@@ -94,6 +100,14 @@
         <item name="android:textColor">@color/secondary_500</item>
     </style>
 
+    <style name="regular_14prim500">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primary_500</item>
+    </style>
+
     <style name="regular_14sec300">
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
@@ -126,6 +140,14 @@
         <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
+
+    <style name="semibold_14sec500">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondary_500</item>
     </style>
     <style name="bold_14">
         <item name="android:fontFamily">@font/poppins_bold</item>

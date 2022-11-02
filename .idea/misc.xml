@@ -3,16 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_bg.xml" value="0.1925" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_btn.xml" value="0.1925" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_textfield.xml" value="0.1925" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_kode_verifikasi.xml" value="0.264" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_login.xml" value="0.1829861111111111" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_register.xml" value="0.22530996152201796" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_reset_password.xml" value="0.22530996152201796" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_splash_screen.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_family_get_started.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home_get_started.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_settings.xml" value="0.1829861111111111" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bottom_sheet_card_media.xml" value="0.318" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_switch_camera.xml" value="0.3415" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_btn.xml" value="0.185" />
@@ -62,5 +66,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>
