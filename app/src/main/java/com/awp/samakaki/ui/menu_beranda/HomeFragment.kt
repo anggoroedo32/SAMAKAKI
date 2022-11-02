@@ -63,12 +63,6 @@ class HomeFragment : Fragment() {
             true
         }
 
-//        val spin = binding.searchFamily
-//        spin.onItemSelectedListener = this
-//
-//        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), R.layout.spinner_item, familyName)
-//        ad.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
-//        spin.adapter = ad
 
 
         viewModel.getAllPosts()
@@ -112,15 +106,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-//    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//        Toast.makeText(context,
-//            familyName[position],
-//            Toast.LENGTH_LONG)
-//            .show()
-//    }
-//
-//    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)

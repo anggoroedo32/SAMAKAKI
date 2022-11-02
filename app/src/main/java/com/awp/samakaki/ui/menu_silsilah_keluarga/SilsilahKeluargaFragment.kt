@@ -10,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
@@ -94,7 +96,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
-                R.id.settings -> Toast.makeText(context, "Clicked Settings", Toast.LENGTH_SHORT).show()
+                R.id.settings -> findNavController().navigate(R.id.action_navigation_family_to_settingsFragment)
             }
             true
         }

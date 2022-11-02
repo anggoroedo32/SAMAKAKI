@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.databinding.FragmentChatListBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -36,7 +37,7 @@ class ChatListFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.notification -> Toast.makeText(context, "Clicked Notification", Toast.LENGTH_SHORT).show()
-                R.id.settings -> Toast.makeText(context, "Clicked Setting", Toast.LENGTH_SHORT).show()
+                R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
             }
             true
         }
