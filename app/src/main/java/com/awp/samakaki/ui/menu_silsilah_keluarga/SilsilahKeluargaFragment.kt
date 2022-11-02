@@ -1,16 +1,15 @@
 package com.awp.samakaki.ui.menu_silsilah_keluarga
 
-import android.R.attr.label
-import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -116,6 +115,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                         isiProfil.visibility = View.VISIBLE
                     } else {
                         familyTree.visibility = View.VISIBLE
+//                        isiProfil.visibility = View.VISIBLE
                     }
                 }
 
@@ -131,7 +131,6 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
             val phone = binding.etNoTelp.text.trim().toString()
             val relationship = binding.etHubungan
             val dataRelationship = relationship.selectedItem.toString()
-
 
             when {
                 familyName.isEmpty() -> {
@@ -165,7 +164,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                     family_tree_id = idFamilyTree.toString()
                                 )
 
-                                familyTreeViewModel.createUserRelations("Bearer $token", createUserRelationsRequest)
+                                familyTreeViewModel.createUserRelations("Bearer $token", familyName, dataRelationship, idFamilyTree.toString())
                                 familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
                                     when(it) {
                                         is BaseResponse.Loading -> showLoading()
@@ -173,11 +172,11 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                         is BaseResponse.Success -> {
                                             stopLoading()
                                             it.data
-                                            val invitationToken = it.data?.data?.invitaionToken
-                                            showDialog(link = invitationToken!!)
-                                            Log.d("isinya_token" , "isi_token : $invitationToken")
                                             isiProfil.visibility = View.GONE
                                             familyTree.visibility = View.VISIBLE
+                                            val invitationToken = it.data?.dataCreate?.invitaionToken
+                                            showDialog(link = it.data?.dataCreate?.invitaionToken)
+                                            Log.d("isinya_token" , it.data?.dataCreate?.invitaionToken.toString())
                                         }
 
                                         is BaseResponse.Error -> (it.msg.toString())
@@ -202,31 +201,39 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
 
     }
 
-    private fun showDialog(link: String) {
-        var dialog: AlertDialog? = null
-        val builder = AlertDialog.Builder(context)
-        val view = layoutInflater.inflate(R.layout.dialog, null)
-        val edLink : EditText = view.findViewById(R.id.ed_link)
-        val btnClose : Button = view.findViewById(R.id.close_btn)
-        val btnCopy : Button = view.findViewById(R.id.btn_copy)
-        btnCopy.setOnClickListener {
-            copyTextToClipboard(edLink.toString())
-        }
+    private fun showDialog(link: String?) {
+
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog)
+
+        val btnClose = dialog.findViewById<ImageView>(R.id.close_btn)
+        val edLink = dialog.findViewById<EditText>(R.id.ed_link)
+        val btnCopy = dialog.findViewById<Button>(R.id.btn_copy)
+
+        Log.d("link_edLinkValue", edLink.text.toString())
+
 
         edLink.setText(link)
-        btnClose.setOnClickListener (View.OnClickListener {
-            dialog?.dismiss()
-        })
 
+        btnCopy.setOnClickListener {
+            copyTextToClipboard(edLink.text.toString())
+        }
 
-        builder.setView(view)
-        dialog?.show()
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.setCancelable(true)
+        dialog.show()
+
     }
 
     private fun copyTextToClipboard(link: String) {
+        Log.d("link_copy", link)
         val clipboardManager: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clipData = ClipData.newPlainText("text", link.toString())
         clipboardManager.setPrimaryClip(clipData)
+
+
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
 
