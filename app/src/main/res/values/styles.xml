@@ -25,6 +25,7 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
         <item name="android:textSize">@dimen/dimen_30</item>
         <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primary_600</item>
     </style>
 
     <style name="bold_20sec500">

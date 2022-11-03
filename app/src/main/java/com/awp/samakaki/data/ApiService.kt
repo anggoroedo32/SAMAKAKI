@@ -8,6 +8,7 @@ import com.awp.samakaki.request.LoginRequest
 import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.request.RegisterRequest
 import com.awp.samakaki.request.ResetPasswordRequest
+import com.awp.samakaki.request.*
 import com.awp.samakaki.response.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -18,6 +19,7 @@ import com.awp.samakaki.response.LoginResponse
 import com.awp.samakaki.response.PostsResponse
 import com.awp.samakaki.response.RegisterResponse
 import okhttp3.MultipartBody
+import com.awp.samakaki.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -73,6 +75,18 @@ interface ApiService {
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<ResetPasswordResponse>
+
+    @GET("biodata_users/{id}")
+    suspend fun findUser(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<FindUserResponse>
+
+    @PUT("editprofile/{id}")
+    suspend fun  editProfile(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<EditProfileResponse>
 
     @POST("relations")
     suspend fun createUserRelations(

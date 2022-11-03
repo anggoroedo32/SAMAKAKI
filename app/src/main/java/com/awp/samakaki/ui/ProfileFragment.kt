@@ -7,13 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
+import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentProfileBinding
+import com.awp.samakaki.viewmodel.PostsViewModel
+import com.awp.samakaki.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<ProfileViewModel>()
+    private lateinit var postsAdapter: PostsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,

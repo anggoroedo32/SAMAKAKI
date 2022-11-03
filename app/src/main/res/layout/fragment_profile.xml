@@ -93,7 +93,7 @@
         style="@style/regular_14prim600"
         app:layout_constraintStart_toEndOf="@id/ic_house"
         app:layout_constraintTop_toBottomOf="@id/img_profile"
-        android:layout_marginTop="@dimen/dimen_29"
+        android:layout_marginTop="@dimen/dimen_25"
         android:layout_marginStart="@dimen/dimen_5"
         tools:text="Surabaya" />
     <TextView
@@ -103,7 +103,7 @@
         style="@style/regular_14prim600"
         app:layout_constraintStart_toEndOf="@id/ic_users"
         app:layout_constraintTop_toBottomOf="@id/tv_alamat"
-        android:layout_marginTop="@dimen/dimen_24"
+        android:layout_marginTop="@dimen/dimen_15"
         android:layout_marginStart="@dimen/dimen_5"
         tools:text="Sudah Nikah" />
     <TextView

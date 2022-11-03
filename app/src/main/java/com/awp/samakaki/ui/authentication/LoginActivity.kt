@@ -94,7 +94,8 @@ class LoginActivity : AppCompatActivity() {
         textMessage("Login berhasil")
         val token = data?.dataLogin?.token
         val id = data?.dataLogin?.users?.id
-        id.let { SessionManager.saveIdUser(this, id!!) }
+        SessionManager.saveIdUser(this, id!!)
+        Log.d("id_dari_login", "isinya $id")
         if (!token.isNullOrEmpty()) {
             token.let { SessionManager.saveAuthToken(this, it) }
             navigateToHome()

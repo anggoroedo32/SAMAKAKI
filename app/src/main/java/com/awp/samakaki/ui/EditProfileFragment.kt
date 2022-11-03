@@ -1,23 +1,36 @@
 package com.awp.samakaki.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
+import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.viewmodel.AuthenticationViewModel
+import com.awp.samakaki.viewmodel.ProfileViewModel
+import com.google.android.material.appbar.AppBarLayout
+import dagger.hilt.android.AndroidEntryPoint
 
 
-@Suppress("DEPRECATION")
+@AndroidEntryPoint
 class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditprofileBinding? = null
     private val binding get() = _binding!!
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +53,21 @@ class EditProfileFragment : Fragment() {
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
 
+        val token = context?.let { SessionManager.getToken(it) }
+        val id = SessionManager.getIdUser(requireContext())
+        Log.d("id_dari_edit_profile", id.toString())
+        profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
+        profileViewModel.findUser.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Loading -> showLoading()
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                }
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 val fragmentManager = parentFragmentManager
@@ -54,6 +82,18 @@ class EditProfileFragment : Fragment() {
             }
 
         })
+    }
+
+    fun stopLoading() {
+        binding.prgbar.visibility = View.GONE
+    }
+
+    fun showLoading() {
+        binding.prgbar.visibility = View.VISIBLE
+    }
+
+    private fun textMessage(s: String) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
 
 }

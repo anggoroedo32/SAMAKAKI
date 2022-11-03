@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
         val caption = binding.edPost.text.toString()
         val tokenGet = context?.let { SessionManager.getToken(it) }
         viewModel.observeIsCreate.observe(viewLifecycleOwner){
-            it.let { 
+            it.let {
                 if(it != null){
 //                    viewModel.createPosts("Bearer $tokenGet", caption)
                     Toast.makeText(context, "Create Success", Toast.LENGTH_SHORT).show()

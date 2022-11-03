@@ -17,8 +17,8 @@ object SessionManager {
         saveInt(context, USER_ID, id)
     }
 
-    fun getIdUser(context: Context): String? {
-        return getString(context, USER_ID)
+    fun getIdUser(context: Context): Int? {
+        return getInt(context, USER_ID)
     }
 
     fun getToken(context: Context): String? {

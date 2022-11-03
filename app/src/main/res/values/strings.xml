@@ -100,6 +100,8 @@
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
     <string name="edit_photo">Edit Photo</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="password_baru">Password Baru</string>
     <string name="token">Token</string>
     <string name="edit_profil">Edit Profil</string>
     <string name="undang">Undang</string>
@@ -109,8 +111,6 @@
     <string name="link">Link</string>
     <string name="share_link_on">Bagikan link</string>
     <string name="copy">Copy</string>
-    <string name="ganti_password">Ganti Password</string>
-    <string name="password_baru">Password Baru</string>
     <string name="err_empty_status">Masukkan status hubungan anda</string>
 
     <string-array name="status">
