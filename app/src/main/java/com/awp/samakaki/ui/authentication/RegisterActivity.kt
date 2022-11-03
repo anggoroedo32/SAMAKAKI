@@ -1,29 +1,32 @@
 package com.awp.samakaki.ui.authentication
 
+import android.R
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import com.awp.samakaki.R
+import androidx.appcompat.app.AppCompatActivity
 import com.awp.samakaki.databinding.ActivityRegisterBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.response.RegisterResponse
 import com.awp.samakaki.ui.MainActivity
-import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
-import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private val authenticationViewModel by viewModels<AuthenticationViewModel>()
+
+    // creating a variable for our text view
+    private lateinit var messageTV: TextView
+    private var uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +45,27 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // initializing our variable
+        messageTV = binding.etTokenInvitation
+        // getting the data from our intent in our uri.
+        uri = intent.data
+
+        // checking if the uri is null or not.
+        if (uri != null) {
+            // if the uri is not null then we are getting
+            // the path segments and storing it in list.
+            val parameters = uri!!.pathSegments
+
+            // after that we are extracting string
+            // from that parameters.
+            val param = parameters[parameters.size - 1]
+
+            // on below line we are setting that
+            // string to our text view which
+            // we got as params.
+            messageTV.text = param
+        }
+
         val btnRegister = binding.btnRegister
         btnRegister.setOnClickListener {
             val name = binding.etName.text.trim().toString()
@@ -51,42 +75,25 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.etConfirmPassword.text.trim().toString()
 
 
-//            if (name.isEmpty()){
-//                binding.etName.error = getString(R.string.err_empty_name)
-//            }
-//            if (email.isEmpty()) {
-//                binding.etEmail.error = getString(R.string.er_empty_email)
-//            }
-//            if (phone.isEmpty()) {
-//                binding.etNoTelp.error = getString(R.string.err_empty_phone)
-//            }
-//            if (password.isEmpty()){
-//                binding.etPassword.error = getString(R.string.err_empty_password)
-//            }
-//            if (confirmPassword.isEmpty()) {
-//                binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
-//            }
-
-
             when{
                 name.isEmpty() -> {
-                    binding.etName.error = getString(R.string.err_empty_name)
+                    binding.etName.error = getString(com.awp.samakaki.R.string.err_empty_name)
                 }
                 email.isEmpty() -> {
-                    binding.etEmail.error = getString(R.string.er_empty_email)
+                    binding.etEmail.error = getString(com.awp.samakaki.R.string.er_empty_email)
                 }
                 !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                    binding.etEmail.error = getString(R.string.err_wrong_email_format)
+                    binding.etEmail.error = getString(com.awp.samakaki.R.string.err_wrong_email_format)
                 }
                 password.isEmpty() -> {
-                    binding.etPassword.error = getString(R.string.err_empty_password)
+                    binding.etPassword.error = getString(com.awp.samakaki.R.string.err_empty_password)
                 }
                 confirmPassword.isEmpty() -> {
-                    binding.etConfirmPassword.error = getString(R.string.err_empty_confirmPassword)
+                    binding.etConfirmPassword.error = getString(com.awp.samakaki.R.string.err_empty_confirmPassword)
                 }
                 password != confirmPassword -> {
-                    binding.etConfirmPassword.error = getString(R.string.err_password_did_not_match)
-                    binding.etPassword.error = getString(R.string.err_password_did_not_match)
+                    binding.etConfirmPassword.error = getString(com.awp.samakaki.R.string.err_password_did_not_match)
+                    binding.etPassword.error = getString(com.awp.samakaki.R.string.err_password_did_not_match)
                 }
                 else -> {
                     authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
