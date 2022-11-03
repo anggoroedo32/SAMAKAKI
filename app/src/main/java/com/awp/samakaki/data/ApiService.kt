@@ -88,6 +88,11 @@ interface ApiService {
         @Path("id") id: String
     ): Response<EditProfileResponse>
 
+    @POST("invitation/register")
+    suspend fun registerWithToken(
+        @Body registerWithTokenRequest: RegisterWithTokenRequest
+    ): Response<RegisterWithInvitationResponse>
+
     @POST("relations")
     suspend fun createUserRelations(
         @Header("Authorization") token: String,

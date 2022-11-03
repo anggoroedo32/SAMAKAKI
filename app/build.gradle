@@ -86,4 +86,7 @@ dependencies {
     implementation "androidx.camera:camera-view:${camerax_version}"
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Custom Notification
+    implementation "io.github.nikartm:image-support:2.0.0"
 }

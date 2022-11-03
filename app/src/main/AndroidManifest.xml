@@ -27,41 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.authentication.RegisterActivity"
-            android:exported="true">
-
-            <!-- as we want to open main activity from our link so we are specifying
-                            only in main activity or we can specify that in different activity as well -->
-            <!-- on below line we are adding intent filter to our MainActivity -->
-            <intent-filter>
-                <!-- below line is to set the action to our intent to view -->
-                <action android:name="android.intent.action.VIEW" />
-
-                <!-- on below line we are adding a default category to our intent -->
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <!-- on below line we are adding a category to make our app browsable -->
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- on below line we are specifying the host name and
-                    the scheme type from which we will be calling our app -->
-                <data
-                    android:host="www.chaitanyamunje.com"
-                    android:scheme="https" />
-            </intent-filter>
-
-            <!-- below is the same filter as above just the scheme is changed to http -->
-            <!-- so we can open our app with the url starting with https and http as well -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="www.chaitanyamunje.com"
-                    android:scheme="http" />
-            </intent-filter>
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ui.authentication.KodeVerifikasiActivity"
             android:exported="false" />
@@ -86,6 +52,38 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- Make sure you explicitly set android:autoVerify to "true". -->
+            <intent-filter android:autoVerify="true" tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- If a user clicks on a shared link that uses the "http" scheme, your
+                     app should be able to delegate that traffic to "https". -->
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <!-- Include one or more domains that should be verified. -->
+                <data android:host="www.samakaki.com" />
+            </intent-filter>
+
+<!--            <intent-filter android:autoVerify="true">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <data android:scheme="https" />-->
+<!--                <data android:host="www.samakaki.com" />-->
+<!--            </intent-filter>-->
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <data android:scheme="http" />-->
+<!--                <data android:host="www.example.com" />-->
+<!--            </intent-filter>-->
 
         </activity>
         <activity
