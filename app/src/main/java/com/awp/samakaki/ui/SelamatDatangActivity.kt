@@ -20,11 +20,13 @@ import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.IsiProfilViewModel
+import com.awp.samakaki.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -45,7 +47,7 @@ class SelamatDatangActivity : AppCompatActivity() {
     private lateinit var ivUploadImg: ImageView
     private val calendar = Calendar.getInstance()
     private var dateFormater: String? = null
-
+    private val profileViewModel by viewModels<ProfileViewModel>()
     private var imageFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +68,27 @@ class SelamatDatangActivity : AppCompatActivity() {
 
         //Date Picker
         getDate()
+
+        val token = SessionManager.getToken(this)
+        val id = SessionManager.getIdUser(this)
+
+        profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
+        profileViewModel.findUser.observe(this) {
+            when(it) {
+                is BaseResponse.Loading -> showLoading()
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                    Log.d("isi_data_biodata", "isinya : " + it.data?.data.toString())
+                    if (it.data?.data?.biodata.isNullOrEmpty()) {
+
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
 
 
     }

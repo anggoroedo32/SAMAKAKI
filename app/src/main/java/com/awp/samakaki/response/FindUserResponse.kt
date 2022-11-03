@@ -1,28 +1,45 @@
 package com.awp.samakaki.response
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class FindUserResponseItem(
+data class FindUserResponse(
+
+	@field:SerializedName("data")
+	val data: DataBiodataUser? = null,
+
+	@field:SerializedName("status")
+	val status: String? = null
+)
+
+data class BiodataUser(
+
+	@field:SerializedName("address")
+	val address: String? = null,
 
 	@field:SerializedName("phone")
 	val phone: String? = null,
 
+	@field:SerializedName("dob")
+	val dob: String? = null,
+
 	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("id")
-	val id: Int? = null,
+	@field:SerializedName("avatar")
+	val avatar: String? = null,
 
 	@field:SerializedName("email")
-	val email: String? = null
-) : Parcelable
+	val email: String? = null,
 
-@Parcelize
-data class FindUserResponse(
+	@field:SerializedName("marriage_status")
+	val marriageStatus: String? = null,
 
-	@field:SerializedName("findUserResponse")
-	val findUserResponse: List<FindUserResponseItem?>? = null
-) : Parcelable
+	@field:SerializedName("status")
+	val status: String? = null
+)
+
+data class DataBiodataUser(
+
+	@field:SerializedName("biodata")
+	val biodata: List<BiodataUser>? = null
+)
