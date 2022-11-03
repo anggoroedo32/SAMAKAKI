@@ -176,9 +176,9 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                             it.data
                                             isiProfil.visibility = View.GONE
                                             familyTree.visibility = View.VISIBLE
-                                            val invitationToken = it.data?.dataCreate?.invitaionToken
-                                            showDialog(link = it.data?.dataCreate?.invitaionToken)
-                                            Log.d("isinya_token" , it.data?.dataCreate?.invitaionToken.toString())
+                                            val invitationToken = it.data?.data?.invitaionToken
+                                            showDialog(link = it.data?.data?.invitaionToken)
+                                            Log.d("isinya_token" , it.data?.data?.invitaionToken.toString())
                                         }
 
                                         is BaseResponse.Error -> (it.msg.toString())

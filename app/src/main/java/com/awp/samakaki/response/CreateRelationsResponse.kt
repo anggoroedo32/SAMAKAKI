@@ -5,34 +5,28 @@ import com.google.gson.annotations.SerializedName
 data class CreateRelationsResponse(
 
 	@field:SerializedName("data")
-	val dataCreate: Data? = null,
+	val data: Data? = null,
 
 	@field:SerializedName("status")
 	val status: String? = null
 )
 
-data class Relation(
-
-	@field:SerializedName("data")
-	val dataRelation: Data? = null,
-
-	@field:SerializedName("status")
-	val status: String? = null,
+data class Data(
 
 	@field:SerializedName("number")
 	val number: Int? = null,
 
-	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
+	@field:SerializedName("user_relation")
+	val userRelation: UserRelation? = null,
 
 	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("created_at")
-	val createdAt: String? = null,
-
 	@field:SerializedName("id")
 	val id: Int? = null,
+
+	@field:SerializedName("invitaion_token")
+	val invitaionToken: String? = null,
 
 	@field:SerializedName("position")
 	val position: String? = null,
@@ -41,19 +35,7 @@ data class Relation(
 	val relationName: String? = null
 )
 
-data class Data(
-
-	@field:SerializedName("user_relation")
-	val userRelation: List<UserRelationItem?>? = null,
-
-	@field:SerializedName("relation")
-	val relation: Relation? = null,
-
-	@field:SerializedName("invitaion_token")
-	val invitaionToken: String? = null
-)
-
-data class UserRelationItem(
+data class UserRelation(
 
 	@field:SerializedName("connected_user_id")
 	val connectedUserId: Any? = null,
@@ -61,23 +43,14 @@ data class UserRelationItem(
 	@field:SerializedName("family_tree_id")
 	val familyTreeId: Int? = null,
 
-	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
-
 	@field:SerializedName("user_id")
 	val userId: Int? = null,
-
-	@field:SerializedName("created_at")
-	val createdAt: String? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,
 
 	@field:SerializedName("status")
 	val status: String? = null,
-
-	@field:SerializedName("token")
-	val token: String? = null,
 
 	@field:SerializedName("relation_id")
 	val relationId: Int? = null
