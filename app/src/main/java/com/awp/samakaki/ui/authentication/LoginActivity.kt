@@ -12,8 +12,10 @@ import com.awp.samakaki.databinding.ActivityLoginBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.LoginResponse
+import com.awp.samakaki.ui.MainActivity
 import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
+import com.awp.samakaki.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val authenticationViewModel by viewModels<AuthenticationViewModel>()
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
                 else -> {
                     authenticationViewModel.login(email = email, password = password)
                     authenticationViewModel.loginResponse.observe(this) {
-                        Log.d("data_login_activity", "data outside when ${it}")
                         it.getContentIfNotHandled()?.let {
                             when(it) {
                                 is BaseResponse.Loading -> {
@@ -83,15 +85,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun navigateToHome() {
-        val intent = Intent(this, SelamatDatangActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-        startActivity(intent)
-    }
-
     fun processLogin(data: LoginResponse?) {
-        textMessage("Login berhasil")
         val token = data?.dataLogin?.token
         val id = data?.dataLogin?.users?.id
         SessionManager.saveIdUser(this, id!!)
@@ -100,6 +94,35 @@ class LoginActivity : AppCompatActivity() {
             token.let { SessionManager.saveAuthToken(this, it) }
             navigateToHome()
         }
+
+
+    }
+
+    private fun navigateToHome() {
+        val getToken = SessionManager.getToken(this)
+        val getId = SessionManager.getIdUser(this)
+        Log.d("tokendari_login", "isinya $getId")
+        Log.d("idnavigate_dari_login", "isinya $getToken")
+
+        profileViewModel.findUser(token = "Bearer $getToken!!", id = getId.toString())
+        profileViewModel.findUser.observe(this) {
+            when(it) {
+                is BaseResponse.Loading -> showLoading()
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }
+                is BaseResponse.Error -> {
+                    val intent = Intent(this, SelamatDatangActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }
+            }
+        }
+
     }
 
     fun stopLoading() {

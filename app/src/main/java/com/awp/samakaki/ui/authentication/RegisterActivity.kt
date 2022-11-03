@@ -15,6 +15,7 @@ import com.awp.samakaki.databinding.ActivityRegisterBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.ui.MainActivity
+import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,11 +40,6 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val token = SessionManager.getToken(this)
-        if (!token.isNullOrBlank()) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         val invitationToken = intent.getStringExtra("invit")
         val ss:String = intent.getStringExtra("invit").toString()
@@ -82,6 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.etPassword.error = getString(com.awp.samakaki.R.string.err_password_did_not_match)
                 }
                 else -> {
+
                     if (invitationToken.isNullOrEmpty()) {
                         authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
                         authenticationViewModel.registerResponse.observe(this) {
@@ -99,6 +96,7 @@ class RegisterActivity : AppCompatActivity() {
                                 }
                             }
                         }
+
                     } else if(!invitationToken.isNullOrEmpty()) {
                         authenticationViewModel.registerWithToken(name = name, email = email, phone = phone, password = password, token = invitationToken)
                         authenticationViewModel.registerWithTokenResponse.observe(this) {
@@ -129,7 +127,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+        binding.prgbar.visibility = View.GONE
     }
 
     private fun textMessage(s: String) {

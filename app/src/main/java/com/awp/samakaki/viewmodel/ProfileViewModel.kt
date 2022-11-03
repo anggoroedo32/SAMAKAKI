@@ -28,7 +28,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                     _findUser.postValue(BaseResponse.Success(response.body()))
                     Log.d("edit_profile", "success_get_error_edit: ${response.body()}")
                 } else {
-                    _findUser.postValue(BaseResponse.Error(msg = "Anda belum mengisi biodata profil"))
+                    _findUser.postValue(BaseResponse.Error(msg = "Silahkan mengisi biodata anda"))
                     Log.d("edit_profile", "isi_error_edit: ${response.message()}")
                 }
             } catch (e: HttpException) {
