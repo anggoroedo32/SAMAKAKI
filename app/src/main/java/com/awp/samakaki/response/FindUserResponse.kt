@@ -41,5 +41,5 @@ data class BiodataUser(
 data class DataBiodataUser(
 
 	@field:SerializedName("biodata")
-	val biodata: List<BiodataUser>? = null
+	val biodata: BiodataUser? = null
 )

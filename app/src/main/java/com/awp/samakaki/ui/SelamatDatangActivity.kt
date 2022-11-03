@@ -59,7 +59,7 @@ class SelamatDatangActivity : AppCompatActivity() {
 
         btnIsiProfil.setOnClickListener{
             insertProfile()
-            Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
+
         }
 
         //Input Configuration
@@ -79,11 +79,9 @@ class SelamatDatangActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     it.data
-                    Log.d("isi_data_biodata", "isinya : " + it.data?.data.toString())
-                    if (it.data?.data?.biodata.isNullOrEmpty()) {
-
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                    Log.d("isi_biodata_dob", "isinya : " + it.data?.data?.biodata?.dob.toString())
+                    when {
+                        it.data?.data?.biodata?.address!!.isNotEmpty() -> startActivity(Intent(this, MainActivity::class.java))
                     }
                 }
                 is BaseResponse.Error -> textMessage(it.msg.toString())
@@ -151,6 +149,8 @@ class SelamatDatangActivity : AppCompatActivity() {
             }
         }
     }
+
+
     private fun insertViewModel(){
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
@@ -183,6 +183,7 @@ class SelamatDatangActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     it.data
+                    Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
