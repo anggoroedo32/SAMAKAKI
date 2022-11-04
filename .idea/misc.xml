@@ -3,59 +3,71 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/.gradle/caches/transforms-3/172beacec6e104bb9c82274f85196ccd/transformed/appcompat-1.5.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/badge_background.xml" value="0.244" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_dialog.xml" value="0.1615" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_isi_profil_keluarga.xml" value="0.3405" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_bg.xml" value="0.1925" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_btn.xml" value="0.1925" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/drawable/rounded_textfield.xml" value="0.1925" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_forgot_password.xml" value="0.264" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_kode_verifikasi.xml" value="0.264" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_login.xml" value="0.1829861111111111" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_register.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_reset_password.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/activity_splash_screen.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/cardview_chat_list.xml" value="0.6" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/cardview_general_notifications.xml" value="0.2" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/cardview_invitation_notification.xml" value="0.22685185185185186" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/custom_action_item_layout.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_family_get_started.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_home_get_started.xml" value="0.22530996152201796" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_notifications.xml" value="0.1829861111111111" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_notifocation.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_personal_chat.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/fragment_settings.xml" value="0.1829861111111111" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/item_pop_up_add_member.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/layout_post_content.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/node.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/notification.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/spinner_item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/layout/tab_layout.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Bima Aria/AndroidStudioProjects/samakaki-mobile-development/app/src/main/res/menu/menu_home.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bottom_sheet_card_media.xml" value="0.318" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/dialog_btn.xml" value="0.1615" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/dialog_ed.xml" value="0.1615" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_copy.xml" value="0.1615" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_notifications.xml" value="0.244" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_switch_camera.xml" value="0.3415" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_btn.xml" value="0.185" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_btn10.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_line_up.xml" value="0.318" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_textfield.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_add_family.xml" value="0.18" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_add_pprofile.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_camera.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_forgot_password.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_isi_profil.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_kode_verifikasi.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_selamat_datang.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_reset_password.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_selamat_datang.xml" value="0.1468721668177697" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/bottom_sheet_media.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/cardview_chat_list.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/custom_action_item_layout.xml" value="0.75" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog.xml" value="0.33" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dropdown_item.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_add_profile.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_chat.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_chat_list.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_edit_profile.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_editprofile.xml" value="0.26745240253853125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_email_verification.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family_tree.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_forgot_password_email_confirmation.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home.xml" value="0.26745240253853125" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home_get_started.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home_get_started.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_isi_profil.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_login.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_notifications.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.26745240253853125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_register.xml" value="0.14673913043478262" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_settings.xml" value="0.20036264732547598" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/item_pop_up_add_member.xml" value="0.18" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/layout_post_content.xml" value="0.1675929884566054" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/spinner_item.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/splashscreen.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/menu/menu_family_tree_orientation.xml" value="0.3009833262077811" />
@@ -63,10 +75,17 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

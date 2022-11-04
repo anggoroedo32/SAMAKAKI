@@ -91,6 +91,11 @@
         <item name="android:textSize">@dimen/dimen_16</item>
     </style>
 
+    <style name="regular_14">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
+    </style>
 
     <style name="regular_14sec500">
         <item name="android:fontFamily">@font/poppins_regular</item>
