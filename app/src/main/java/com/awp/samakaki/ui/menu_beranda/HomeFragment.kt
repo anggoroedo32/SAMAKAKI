@@ -19,8 +19,8 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import ru.nikartm.support.BadgePosition
-import ru.nikartm.support.ImageBadgeView
+//import ru.nikartm.support.BadgePosition
+//import ru.nikartm.support.ImageBadgeView
 
 
 
@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         "Arisan Keluarga"
     )
 
-    private var imageBadgeView: ImageBadgeView? = null
+//    private var imageBadgeView: ImageBadgeView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
         val toolbar = binding.toolbarHomepage
 
         toolbar.inflateMenu(R.menu.menu_home)
-        initNotificationCounter()
+//        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
@@ -93,13 +93,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initNotificationCounter() {
-        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
-        val value = 5
-        imageBadgeView?.setBadgeValue(value)
-            ?.setMaxBadgeValue(20)
-            ?.setLimitBadgeValue(true)
-    }
+//    private fun initNotificationCounter() {
+//        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+//        val value = 5
+//        imageBadgeView?.setBadgeValue(value)
+//            ?.setMaxBadgeValue(20)
+//            ?.setLimitBadgeValue(true)
+//    }
 
 
     private fun rvPosts(list: List<PostItem>) {
