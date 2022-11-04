@@ -71,6 +71,11 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<GetUserRelationResponse>
 
+    @GET("notifications")
+    suspend fun getNotificationByUser(
+        @Header("Authorization") token: String
+    ): Response<NotificationsResponse>
+
     @POST("password/reset")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest

@@ -36,10 +36,10 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 val response = repository.findUserRelations(token)
                 if (response.code() == 200){
                     _findUserRelations.value = BaseResponse.Success(response.body())
-                    Log.d("find_relations", "success_create_user_relation: ${response.body()}")
+                    Log.d("find_relations", "success_find_user_relation: ${response.body()}")
                 } else {
                     _findUserRelations.value = BaseResponse.Error(msg = "Silahkan buat keluarga anda")
-                    Log.d("find_relations", "error_create_user_relation: ${response.message()}")
+                    Log.d("find_relations", "error_find_user_relation: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
