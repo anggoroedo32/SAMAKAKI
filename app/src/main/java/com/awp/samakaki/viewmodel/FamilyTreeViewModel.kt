@@ -92,7 +92,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                     Log.d("family_tree", "success_create_family_tree: ${response.body()}")
                 } else {
                     _createFamilyTree.value = BaseResponse.Error(msg = response.message())
-                    Log.d("family_tree", "success_create_family_tree: ${response.message()}")
+                    Log.d("family_tree", "error_create_family_tree: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
