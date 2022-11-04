@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.awp.samakaki.databinding.ActivityRegisterBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
@@ -25,8 +26,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private val authenticationViewModel by viewModels<AuthenticationViewModel>()
-
-    // creating a variable for our text view
     private lateinit var tokenInvitation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +33,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        loadingState()
         val tvLogin = binding.txtViewLogin
         tvLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -82,11 +83,7 @@ class RegisterActivity : AppCompatActivity() {
                         authenticationViewModel.registerResponse.observe(this) {
                             it.getContentIfNotHandled()?.let {
                                 when(it) {
-                                    is BaseResponse.Loading -> {
-                                        showLoading()
-                                    }
                                     is BaseResponse.Success -> {
-                                        stopLoading()
                                         startActivity(Intent(this, LoginActivity::class.java))
                                         textMessage("Akun Anda Sudah Dibuat")
                                     }
@@ -100,11 +97,7 @@ class RegisterActivity : AppCompatActivity() {
                         authenticationViewModel.registerWithTokenResponse.observe(this) {
                             it.getContentIfNotHandled()?.let {
                                 when(it) {
-                                    is BaseResponse.Loading -> {
-                                        showLoading()
-                                    }
                                     is BaseResponse.Success -> {
-                                        stopLoading()
                                         startActivity(Intent(this, LoginActivity::class.java))
                                         textMessage("Akun Anda Sudah Dibuat")
                                     }
@@ -118,14 +111,14 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         }
+
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.GONE
+    private fun loadingState(){
+        authenticationViewModel.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

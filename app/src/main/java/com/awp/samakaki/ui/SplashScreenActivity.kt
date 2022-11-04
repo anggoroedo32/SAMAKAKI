@@ -54,12 +54,12 @@ class SplashScreenActivity : AppCompatActivity() {
 
         }
 
-        val btnGetStarted = binding.btnGetstarted
-        btnGetStarted.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            intent.putExtra("invit", invitToken)
-            startActivity(intent)
-        }
+//        val btnGetStarted = binding.btnGetstarted
+//        btnGetStarted.setOnClickListener {
+//            val intent = Intent(this, RegisterActivity::class.java)
+//            intent.putExtra("invit", invitToken)
+//            startActivity(intent)
+//        }
 
         Handler(Looper.getMainLooper()).postDelayed({
 
@@ -74,9 +74,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 profileViewModel.findUser(token = "Bearer $getToken!!", id = getId.toString())
                 profileViewModel.findUser.observe(this) {
                     when(it) {
-                        is BaseResponse.Loading -> showLoading()
                         is BaseResponse.Success -> {
-                            stopLoading()
                             it.data
                             val intent = Intent(this, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -100,14 +98,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
         }, 3000)
 
-    }
-
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
     }
 
     private fun textMessage(s: String) {

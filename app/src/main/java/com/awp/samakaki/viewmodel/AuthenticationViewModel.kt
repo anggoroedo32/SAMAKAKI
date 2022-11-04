@@ -36,7 +36,11 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     private val _registerWithTokenResponse = MutableLiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>>()
     val registerWithTokenResponse: LiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>> = _registerWithTokenResponse
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     fun login(email: String, password: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -68,6 +72,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     }
 
     fun register(name: String, email: String, phone: String, password: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -99,6 +104,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     }
 
     fun registerWithToken(name: String, email: String, phone: String, password: String, token: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -134,6 +140,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
 
 
     fun forgotToken(email: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val forgotTokenRequest = ForgotTokenRequest(email = email)
@@ -154,6 +161,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     }
 
     fun resetPassword(email: String, password: String, token: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val resetPasswordRequest = ResetPasswordRequest(

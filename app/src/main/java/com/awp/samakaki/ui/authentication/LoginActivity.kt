@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityLoginBinding
 import com.awp.samakaki.helper.SessionManager
@@ -52,11 +53,7 @@ class LoginActivity : AppCompatActivity() {
                     authenticationViewModel.loginResponse.observe(this) {
                         it.getContentIfNotHandled()?.let {
                             when(it) {
-                                is BaseResponse.Loading -> {
-                                    showLoading()
-                                }
                                 is BaseResponse.Success -> {
-                                    stopLoading()
                                     processLogin(it.data)
                                 }
                                 is BaseResponse.Error -> {
@@ -69,6 +66,8 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+
+        loadingState()
 
         val tvRegister = binding.txtViewRegister
         tvRegister.setOnClickListener {
@@ -107,9 +106,7 @@ class LoginActivity : AppCompatActivity() {
         profileViewModel.findUser(token = "Bearer $getToken!!", id = getId.toString())
         profileViewModel.findUser.observe(this) {
             when(it) {
-                is BaseResponse.Loading -> showLoading()
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
                     val intent = Intent(this, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -125,12 +122,16 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
+    private fun loadingState(){
+        authenticationViewModel.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
 
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+        profileViewModel.loading.observe(this) {
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

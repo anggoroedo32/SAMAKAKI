@@ -27,14 +27,19 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     private val _createFamilyTree = MutableLiveData<BaseResponse<CreateFamilyTreeResponse>>()
     val createFamilyTree: LiveData<BaseResponse<CreateFamilyTreeResponse>> = _createFamilyTree
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     fun findUserRelations(token: String){
         viewModelScope.launch {
             try {
                 val response = repository.findUserRelations(token)
                 if (response.code() == 200){
                     _findUserRelations.value = BaseResponse.Success(response.body())
+                    Log.d("find_relations", "success_create_user_relation: ${response.body()}")
                 } else {
                     _findUserRelations.value = BaseResponse.Error(msg = "Silahkan buat keluarga anda")
+                    Log.d("find_relations", "error_create_user_relation: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
@@ -47,6 +52,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     }
 
     fun createUserRelations(token: String, familyName: String, dataRelationship: String, idFamilyTree: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -77,6 +83,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     }
 
     fun createFamilyTree(token: String, createFamilyTreeRequest: CreateFamilyTreeRequest){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.createFamilyTree(token, createFamilyTreeRequest)

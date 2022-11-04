@@ -17,10 +17,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel(){
+
     private val _findUser = MutableLiveData<BaseResponse<FindUserResponse>>()
     val findUser: LiveData<BaseResponse<FindUserResponse>> = _findUser
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     fun findUser(token: String, id: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.findUser(token, id)

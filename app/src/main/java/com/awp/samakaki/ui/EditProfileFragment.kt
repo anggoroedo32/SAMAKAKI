@@ -14,7 +14,6 @@ import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,9 +58,7 @@ class EditProfileFragment : Fragment() {
         profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
         profileViewModel.findUser.observe(viewLifecycleOwner) {
             when(it) {
-                is BaseResponse.Loading -> showLoading()
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
                 }
                 is BaseResponse.Error -> textMessage(it.msg.toString())
@@ -82,14 +79,6 @@ class EditProfileFragment : Fragment() {
             }
 
         })
-    }
-
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
     }
 
     private fun textMessage(s: String) {

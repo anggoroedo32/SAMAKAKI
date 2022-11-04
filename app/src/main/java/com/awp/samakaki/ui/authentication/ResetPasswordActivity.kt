@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityResetPasswordBinding
 import com.awp.samakaki.response.BaseResponse
@@ -22,6 +23,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadingState()
 
         val btnUbahPassword = binding.btnUbahPassword
         btnUbahPassword.setOnClickListener {
@@ -51,11 +53,7 @@ class ResetPasswordActivity : AppCompatActivity() {
                     )
                     authenticationViewModel.resetPasswordResponse.observe(this) {
                         when (it) {
-                            is BaseResponse.Loading -> {
-                                showLoading()
-                            }
                             is BaseResponse.Success -> {
-                                stopLoading()
                                 textMessage("Password berhasil diubah")
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
@@ -72,12 +70,11 @@ class ResetPasswordActivity : AppCompatActivity() {
 
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+    private fun loadingState(){
+        authenticationViewModel.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

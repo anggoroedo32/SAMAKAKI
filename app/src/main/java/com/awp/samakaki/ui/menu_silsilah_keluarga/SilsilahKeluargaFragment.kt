@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isEmpty
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -89,7 +90,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         setEdgeDecorationDataTop()
         setupGraphView(graph)
         setupGraphViewDataTop(graphDataTop)
-
+        loadingState()
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
@@ -107,17 +108,13 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         familyTreeViewModel.findUserRelations("Bearer $token")
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
             when(it) {
-                is BaseResponse.Loading -> showLoading()
-
                 is BaseResponse.Success -> {
-                    stopLoading()
                     val relationData = it.data?.data?.relation
                     Log.d("relation_data", "hasilnya $relationData")
                     if (relationData.isNullOrEmpty()) {
                         isiProfil.visibility = View.VISIBLE
                     } else {
                         familyTree.visibility = View.VISIBLE
-//                        isiProfil.visibility = View.VISIBLE
                     }
                 }
 
@@ -153,10 +150,8 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                     familyTreeViewModel.createFamilyTree("Bearer $token", createFamilyUserRequest )
                     familyTreeViewModel.createFamilyTree.observe(viewLifecycleOwner) { it ->
                         when(it) {
-                            is BaseResponse.Loading -> showLoading()
 
                             is BaseResponse.Success -> {
-                                stopLoading()
                                 it.data
                                 val idFamilyTree = it.data?.data?.id
 
@@ -169,10 +164,8 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
                                 familyTreeViewModel.createUserRelations("Bearer $token", familyName, dataRelationship, idFamilyTree.toString())
                                 familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
                                     when(it) {
-                                        is BaseResponse.Loading -> showLoading()
 
                                         is BaseResponse.Success -> {
-                                            stopLoading()
                                             it.data
                                             isiProfil.visibility = View.GONE
                                             familyTree.visibility = View.VISIBLE
@@ -323,12 +316,12 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         _binding = null
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+    private fun loadingState(){
+        familyTreeViewModel.loading.observe(viewLifecycleOwner){
+            val progressBar =  binding.prgbar
+            progressBar.isVisible = !it
+            progressBar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

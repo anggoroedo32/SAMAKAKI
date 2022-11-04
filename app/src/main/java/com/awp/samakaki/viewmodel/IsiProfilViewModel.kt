@@ -14,8 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepository): ViewModel() {
+
     private val _createBiodataResponse = MutableLiveData<BaseResponse<BiodataResponse>>()
     val createBiodataResponse: LiveData<BaseResponse<BiodataResponse>> = _createBiodataResponse
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
     fun createBiodata(
         token: String,
@@ -25,6 +29,7 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
         status: RequestBody,
         avatar: MultipartBody.Part
     ){
+        _loading.value = true
         viewModelScope.launch {
                 val response = repository.createBiodata(
                     token = token,
