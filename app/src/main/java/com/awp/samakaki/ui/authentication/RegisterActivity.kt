@@ -40,11 +40,9 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         val invitationToken = intent.getStringExtra("invit")
         val ss:String = intent.getStringExtra("invit").toString()
-        Log.d("isi_invitation__ss", "token $ss")
-        Log.d("isi_invitation", "token $invitationToken")
+
         tokenInvitation = binding.etTokenInvitation
         tokenInvitation.text = invitationToken
 

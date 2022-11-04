@@ -43,8 +43,6 @@ class HomeFragment : Fragment() {
 
     private var imageBadgeView: ImageBadgeView? = null
 
-    var textCartItemCount: TextView? = null
-    var mCartItemCount = 11
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

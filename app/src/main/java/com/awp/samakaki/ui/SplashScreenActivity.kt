@@ -29,7 +29,6 @@ class SplashScreenActivity : AppCompatActivity() {
     private lateinit var messageTV: TextView
     var invitToken : String? = null
     private var uri: Uri? = null
-
     private val profileViewModel by viewModels<ProfileViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,17 +45,15 @@ class SplashScreenActivity : AppCompatActivity() {
         uri = intent.data
 
         if (uri != null) {
+
             val parameters = uri!!.pathSegments
             val param = parameters[parameters.size - 1]
-
 
             messageTV.text = param
             invitToken = param
 
         }
 
-        Log.d("isi_param", "param $invitToken")
-        Log.d("isi_parameters", "parameters $invitToken")
         val btnGetStarted = binding.btnGetstarted
         btnGetStarted.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -71,8 +68,6 @@ class SplashScreenActivity : AppCompatActivity() {
             val getId = SessionManager.getIdUser(this)
             val token = SessionManager.getToken(this)
 
-            Log.d("tokendari_login", "isinya $getId")
-            Log.d("idnavigate_dari_login", "isinya $getToken")
 
             if (!token.isNullOrEmpty()) {
 
@@ -101,6 +96,8 @@ class SplashScreenActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+
+
         }, 3000)
 
     }
