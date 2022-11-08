@@ -29,28 +29,33 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_ed_profile"
-        android:background="@drawable/rounded_btn15"
         style="@style/ButtonStyle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_edit"
-        app:iconSize="@dimen/dimen_16"
+        android:layout_width="126dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="@dimen/dimen_10"
         android:text="@string/edit_profile"
-        android:layout_margin="@dimen/dimen_10"
-        app:layout_constraintStart_toEndOf="@id/img_profile"
-        app:layout_constraintTop_toBottomOf="@id/TV_profilename"/>
+        android:textSize="@dimen/dimen_10"
+        app:icon="@drawable/ic_edit"
+        app:iconTint="@color/white"
+        app:iconSize="@dimen/dimen_16"
+        android:layout_marginEnd="@dimen/dimen_30"
+        app:layout_constraintEnd_toStartOf="@+id/btn_etc"
+        app:layout_constraintTop_toBottomOf="@id/TV_profilename"
+        tools:ignore="SpUsage" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_etc"
         android:background="@drawable/rounded_btn15"
         style="@style/ButtonStyle3"
         android:text="@string/dotdotdot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10"
-        app:layout_constraintStart_toEndOf="@id/btn_ed_profile"
+        android:textSize="@dimen/dimen_10"
+        android:layout_width="@dimen/dimen_53"
+        android:layout_height="@dimen/dimen_34"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginEnd="@dimen/dimen_30"
         app:layout_constraintTop_toBottomOf="@id/TV_profilename"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpUsage" />
 
     <ImageView
         android:id="@+id/ic_house"

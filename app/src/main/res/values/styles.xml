@@ -210,6 +210,7 @@
     <style name="ButtonStyle2">
         <item name="android:width">@dimen/dimen_127</item>
         <item name="android:height">@dimen/dimen_34</item>
+        <item name="android:drawable">@drawable/rounded_btn15</item>
         <item name="android:background">@drawable/rounded_btn15</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>

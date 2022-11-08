@@ -1,5 +1,6 @@
 package com.awp.samakaki.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -10,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.helper.SessionManager
@@ -52,6 +54,12 @@ class EditProfileFragment : Fragment() {
             context?.let { ArrayAdapter(it,R.layout.dropdown_item,statusDropdown) }
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
+
+        val btnBack = binding.btnBack
+
+        btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
 
         val name = binding.ETName
         val dob = binding.ETTanggal
@@ -103,5 +111,7 @@ class EditProfileFragment : Fragment() {
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
+
+
 
 }
