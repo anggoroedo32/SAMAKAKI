@@ -60,24 +60,6 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
                 is BaseResponse.Success -> {
                     it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
                     relationName = it.data?.data?.unread?.map { it.relation.toString() }?.joinToString { it }
-//                    val mapToString = relationMap.
-                    Log.d("relation_name", relationName.toString())
-
-//                    val btnAcc = view.findViewById<ImageButton>(R.id.ib_accept)
-//                    btnAcc.setOnClickListener {
-//                        familyTreeViewModel.updateRelation(token.toString(), invitationToken.toString(),
-//                            relationName.toString()
-//                        )
-//                        familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
-//                            when(it) {
-//                                is BaseResponse.Success -> {
-//                                    it.data
-//                                }
-//                                is BaseResponse.Error -> textMessage(it.msg.toString())
-//                            }
-//                        }
-//                    }
-
                 }
 
                 is BaseResponse.Error -> textMessage(it.msg.toString())
@@ -90,10 +72,6 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
         val token = SessionManager.getToken(requireContext())
         val invitationToken = SessionManager.getInvitation(requireContext())
-        Log.d("token_notif", "isinya_invitation : $invitationToken")
-        Log.d("token_notif", "isinya : $token")
-
-
         familyTreeViewModel.updateRelation("Bearer $token", invitationToken.toString(), relationName.toString())
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
             when(it) {
