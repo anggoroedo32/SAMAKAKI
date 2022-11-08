@@ -26,9 +26,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("posts")
-    suspend fun getAllPosts(): Response<PostsResponse>
-
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -45,7 +42,6 @@ interface ApiService {
         @Body forgotTokenRequest: ForgotTokenRequest
     ): Response<ForgotTokenResponse>
 
-    @Headers("Content-Type: application/json")
     @Multipart
     @POST("posts")
     suspend fun createPosts(
@@ -65,6 +61,23 @@ interface ApiService {
         @Part("status") status: RequestBody,
         @Part file: MultipartBody.Part
     ): Response<BiodataResponse>
+
+    @POST("password/reset")
+    suspend fun resetPassword(
+        @Body resetPasswordRequest: ResetPasswordRequest
+    ): Response<ResetPasswordResponse>
+
+    @POST("relations")
+    suspend fun createUserRelations(
+        @Header("Authorization") token: String,
+        @Body createRelationsRequest: CreateRelationsRequest
+    ): Response<CreateRelationsResponse>
+
+    @POST("family_trees")
+    suspend fun createFamilyTree(
+        @Header("Authorization") token: String,
+        @Body createFamilyTreeRequest: CreateFamilyTreeRequest
+    ): Response<CreateFamilyTreeResponse>
 
     @Multipart
     @PUT("editprofile/{id}")
@@ -90,10 +103,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<NotificationsResponse>
 
-    @POST("password/reset")
-    suspend fun resetPassword(
-        @Body resetPasswordRequest: ResetPasswordRequest
-    ): Response<ResetPasswordResponse>
+    @GET("user/posts")
+    suspend fun getAllPostsByUser(
+        @Header("Authorization") token: String
+    ): Response<PostsResponse>
 
     @GET("biodata_users/{id}")
     suspend fun findUser(
@@ -106,16 +119,5 @@ interface ApiService {
         @Body registerWithTokenRequest: RegisterWithTokenRequest
     ): Response<RegisterWithInvitationResponse>
 
-    @POST("relations")
-    suspend fun createUserRelations(
-        @Header("Authorization") token: String,
-        @Body createRelationsRequest: CreateRelationsRequest
-    ): Response<CreateRelationsResponse>
-
-    @POST("family_trees")
-    suspend fun createFamilyTree(
-        @Header("Authorization") token: String,
-        @Body createFamilyTreeRequest: CreateFamilyTreeRequest
-    ): Response<CreateFamilyTreeResponse>
 
 }

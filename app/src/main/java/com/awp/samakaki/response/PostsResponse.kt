@@ -7,45 +7,43 @@ import kotlinx.parcelize.Parcelize
 data class PostsResponse(
 
 	@field:SerializedName("data")
-	val dataPosts: DataPosts? = null,
+	val data: DataPosts? = null,
 
-	@field:SerializedName("post")
-	val post: List<PostItem>? = null
+	@field:SerializedName("status")
+	val status: String? = null
 )
 
 @Parcelize
-data class PostItem(
-
-	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
-
-	@field:SerializedName("user_id")
-	val userId: Int? = null,
-
-	@field:SerializedName("created_at")
-	val createdAt: String? = null,
+data class PostsItem(
 
 	@field:SerializedName("id")
 	val id: Int? = null,
 
-	@field:SerializedName("title")
-	val title: String? = null,
-
 	@field:SerializedName("descriptions")
 	val descriptions: String? = null,
 
-	@field:SerializedName("status")
-	val status: String? = null,
+	@field:SerializedName("user")
+	val user: UserPosts? = null,
 
-	@field:SerializedName("link")
-	val link: String? = null
+	@field:SerializedName("content")
+	val content: String? = null,
+
+	@field:SerializedName("status")
+	val status: String? = null
 ) : Parcelable
 
 data class DataPosts(
 
-	@field:SerializedName("post")
-	val post: List<PostItem>? = null,
-
-	@field:SerializedName("token")
-	val token: String? = null
+	@field:SerializedName("posts")
+	val posts: List<PostsItem?>? = null
 )
+
+@Parcelize
+data class UserPosts(
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("avatar")
+	val avatar: String? = null
+): Parcelable
