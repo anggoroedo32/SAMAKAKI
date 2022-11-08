@@ -76,6 +76,13 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<NotificationsResponse>
 
+    @PUT("accepted/invitation")
+    suspend fun updateRelation(
+        @Header("Authorization") token: String,
+        @Query("token") invitationToken: String,
+        @Body updateRelationRequest: UpdateRelationRequest
+    ): Response<UpdateRelationsResponse>
+
     @POST("password/reset")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest

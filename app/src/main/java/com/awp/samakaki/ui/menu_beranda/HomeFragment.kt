@@ -16,14 +16,13 @@ import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.PostItem
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import ru.nikartm.support.BadgePosition
 import ru.nikartm.support.ImageBadgeView
-
-
-
 
 
 @AndroidEntryPoint
@@ -34,14 +33,16 @@ class HomeFragment : Fragment() {
 
     private val viewModel by viewModels<PostsViewModel>()
     private lateinit var postsAdapter: PostsAdapter
-
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
+    var notificationsCount: Int = 0
+    private var imageBadgeView: ImageBadgeView? = null
     var familyName = arrayOf<String?>(
         "Suharto Family",
         "Keluarga Cemara",
         "Arisan Keluarga"
     )
 
-    private var imageBadgeView: ImageBadgeView? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +68,6 @@ class HomeFragment : Fragment() {
         initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
             }
             true
@@ -94,11 +94,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
         imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
-        val value = 5
-        imageBadgeView?.setBadgeValue(value)
-            ?.setMaxBadgeValue(20)
-            ?.setLimitBadgeValue(true)
+
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+//        imageBadgeView?.setBadgeValue(notificationsCount)
+//            ?.setMaxBadgeValue(99)
+//            ?.setLimitBadgeValue(true)
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
+        }
     }
 
 
@@ -137,6 +153,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun textMessage(s: String) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
 
 

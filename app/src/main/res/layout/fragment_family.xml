@@ -73,6 +73,19 @@
 
         </com.otaliastudios.zoom.ZoomLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_people"
+            app:backgroundTint="@color/secondary_600"
+            app:tint="@android:color/white"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -82,7 +95,7 @@
         android:id="@+id/wrap_isi_profil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_40"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_isi_profil_keluarga"
             android:orientation="vertical"
             android:paddingVertical="@dimen/dimen_32"
@@ -117,28 +130,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/data_keluarga_kamu"
-                android:textSize="16sp"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primary_600"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:text="@string/nama_keluarga"
-                android:textColor="@color/neutral_500"/>
-
-            <EditText
-                android:id="@+id/et_family_name"
-                style="@style/TextfieldsStyle"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:maxLines="1"
-                android:hint="@string/nama_keluarga" />
+                android:text="@string/data_keluarga_kamu"
+                android:textColor="@color/primary_600"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -151,11 +146,11 @@
                 android:id="@+id/et_nama"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
-                android:hint="@string/nama"
-                android:maxLines="1"
                 android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_10"
-                android:layout_marginHorizontal="@dimen/dimen_35"/>
+                android:maxLines="1"
+                android:paddingEnd="6dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,8 +166,9 @@
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_10"
+                android:paddingEnd="6dp"
                 android:inputType="number"
-                android:hint="@string/nomor_telephone" />
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -181,16 +177,34 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:text="@string/hubungan" />
 
-            <Spinner
-                android:id="@+id/et_hubungan"
-                style="@style/TextfieldsStyle"
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/et_hubungan"-->
+<!--                style="@style/TextfieldsStyle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dimen_40"-->
+<!--                android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                android:layout_marginTop="@dimen/dimen_10"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                android:hint="@string/hubungan"-->
+<!--                android:paddingEnd="6dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:hint="@string/hubungan" />
+                android:layout_height="@dimen/dimen_46"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/dimen_8" >
+                <AutoCompleteTextView
+                    android:id="@+id/et_hubungan"
+                    android:focusable="false"
+                    style="@style/TextfieldsStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingEnd="6dp"
+                    android:textColor="@color/neutral_400"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <Button

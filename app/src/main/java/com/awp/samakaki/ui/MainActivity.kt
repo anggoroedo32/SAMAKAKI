@@ -2,6 +2,7 @@ package com.awp.samakaki.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityMainBinding
+import com.awp.samakaki.helper.SessionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
 
+        val isiTokenInvit = SessionManager.getToken(this)
+        Log.d("isi_tokennnnn_invit", "token $isiTokenInvit")
 
 
     }

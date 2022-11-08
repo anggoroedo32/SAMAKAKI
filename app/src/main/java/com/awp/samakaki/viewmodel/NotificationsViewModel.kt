@@ -8,20 +8,22 @@ import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.NotificationsResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+@HiltViewModel
 class NotificationsViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
     private val _getNotifications = MutableLiveData<BaseResponse<NotificationsResponse>>()
     val getNotifications: LiveData<BaseResponse<NotificationsResponse>> = _getNotifications
 
-
     fun getNotifications(token: String) {
         viewModelScope.launch {
             try {
+                Log.d("isi_token_repo", token).toString()
                 val response = repository.getNotificationByUser(token)
                 if (response.code() == 200) {
                     _getNotifications.postValue(BaseResponse.Success(response.body()))

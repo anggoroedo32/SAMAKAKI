@@ -13,8 +13,8 @@ data class CreateRelationsResponse(
 
 data class Data(
 
-	@field:SerializedName("number")
-	val number: Int? = null,
+	@field:SerializedName("code")
+	val code: String? = null,
 
 	@field:SerializedName("user_relation")
 	val userRelation: UserRelation? = null,
@@ -28,9 +28,6 @@ data class Data(
 	@field:SerializedName("invitaion_token")
 	val invitaionToken: String? = null,
 
-	@field:SerializedName("position")
-	val position: String? = null,
-
 	@field:SerializedName("relation_name")
 	val relationName: String? = null
 )
@@ -39,9 +36,6 @@ data class UserRelation(
 
 	@field:SerializedName("connected_user_id")
 	val connectedUserId: Any? = null,
-
-	@field:SerializedName("family_tree_id")
-	val familyTreeId: Int? = null,
 
 	@field:SerializedName("user_id")
 	val userId: Int? = null,

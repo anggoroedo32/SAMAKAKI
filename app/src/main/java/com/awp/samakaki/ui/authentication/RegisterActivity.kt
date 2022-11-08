@@ -1,6 +1,5 @@
 package com.awp.samakaki.ui.authentication
 
-import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -42,7 +41,8 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val invitationToken = intent.getStringExtra("invit")
-        val ss:String = intent.getStringExtra("invit").toString()
+        SessionManager.saveInvitation(this, intent.getStringExtra("invit").toString())
+        Log.d("isi_tokennnnn", "token $invitationToken")
 
         tokenInvitation = binding.etTokenInvitation
         tokenInvitation.text = invitationToken
