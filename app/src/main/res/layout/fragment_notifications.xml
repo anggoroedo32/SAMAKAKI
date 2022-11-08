@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8"
         android:text="Undangan"
+        android:textColor="@color/neutral_700"
         android:layout_marginHorizontal="@dimen/dimen_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,49 +45,29 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_undangan"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_160"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/cardview_invitation_notification"
         app:layout_constraintTop_toBottomOf="@+id/tv_undangan"
         android:layout_marginHorizontal="@dimen/dimen_20" />
 
-    <TextView
-        android:id="@+id/tv_terbaru"
-        style="@style/semibold_18"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:text="Terbaru"
-        android:layout_marginHorizontal="@dimen/dimen_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_undangan" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_terbaca"-->
+<!--        style="@style/semibold_18"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/dimen_8"-->
+<!--        android:text="Sudah Dibaca"-->
+<!--        android:layout_marginHorizontal="@dimen/dimen_20"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/rv_undangan" />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_terbaru"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_60"
-        tools:listitem="@layout/cardview_general_notifications"
-        app:layout_constraintTop_toBottomOf="@+id/tv_terbaru"
-        android:layout_marginHorizontal="@dimen/dimen_20"/>
-
-    <TextView
-        android:id="@+id/tv_terbaca"
-        style="@style/semibold_18"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:text="Sudah Dibaca"
-        android:layout_marginHorizontal="@dimen/dimen_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_terbaru" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_120"
-        tools:listitem="@layout/cardview_general_notifications"
-        app:layout_constraintTop_toBottomOf="@+id/tv_terbaca"
-        android:layout_marginHorizontal="@dimen/dimen_20"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/dimen_120"-->
+<!--        tools:listitem="@layout/cardview_general_notifications"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_terbaca"-->
+<!--        android:layout_marginHorizontal="@dimen/dimen_20"/>-->
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/prgbar"

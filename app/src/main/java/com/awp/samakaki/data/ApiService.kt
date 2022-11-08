@@ -26,6 +26,9 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @GET("posts")
+    suspend fun getAllPosts(): Response<PostsResponse>
+
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -42,6 +45,7 @@ interface ApiService {
         @Body forgotTokenRequest: ForgotTokenRequest
     ): Response<ForgotTokenResponse>
 
+    @Headers("Content-Type: application/json")
     @Multipart
     @POST("posts")
     suspend fun createPosts(
@@ -62,10 +66,44 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Response<BiodataResponse>
 
+    @GET("user_relations")
+    suspend fun findUserRelations(
+        @Header("Authorization") token: String
+    ): Response<GetUserRelationResponse>
+
+    @GET("notifications")
+    suspend fun getNotificationByUser(
+        @Header("Authorization") token: String
+    ): Response<NotificationsResponse>
+
+    @PUT("accepted/invitation")
+    suspend fun updateRelation(
+        @Header("Authorization") token: String,
+        @Query("token") invitationToken: String,
+        @Body updateRelationRequest: UpdateRelationRequest
+    ): Response<UpdateRelationsResponse>
+
     @POST("password/reset")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<ResetPasswordResponse>
+
+    @GET("biodata_users/{id}")
+    suspend fun findUser(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<FindUserResponse>
+
+    @PUT("editprofile/{id}")
+    suspend fun  editProfile(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<EditProfileResponse>
+
+    @POST("invitation/register")
+    suspend fun registerWithToken(
+        @Body registerWithTokenRequest: RegisterWithTokenRequest
+    ): Response<RegisterWithInvitationResponse>
 
     @POST("relations")
     suspend fun createUserRelations(
@@ -78,46 +116,5 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body createFamilyTreeRequest: CreateFamilyTreeRequest
     ): Response<CreateFamilyTreeResponse>
-
-    @Multipart
-    @PUT("editprofile/{id}")
-    suspend fun  editProfile(
-        @Header("Authorization") token: String,
-        @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody,
-        @Part("phone") phone: RequestBody,
-        @Part("dob") dob: RequestBody,
-        @Part("address") address: RequestBody,
-        @Part("marriage_status") marriage_status: RequestBody,
-        @Part("status") status: RequestBody,
-        @Part file: MultipartBody.Part
-    ): Response<EditProfileResponse>
-
-    @GET("user_relations")
-    suspend fun findUserRelations(
-        @Header("Authorization") token: String
-    ): Response<GetUserRelationResponse>
-
-    @GET("notifications")
-    suspend fun getNotificationByUser(
-        @Header("Authorization") token: String
-    ): Response<NotificationsResponse>
-
-    @GET("user/posts")
-    suspend fun getAllPostsByUser(
-        @Header("Authorization") token: String
-    ): Response<PostsResponse>
-
-    @GET("biodata_users/{id}")
-    suspend fun findUser(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
-    ): Response<FindUserResponse>
-
-    @POST("invitation/register")
-    suspend fun registerWithToken(
-        @Body registerWithTokenRequest: RegisterWithTokenRequest
-    ): Response<RegisterWithInvitationResponse>
-
 
 }

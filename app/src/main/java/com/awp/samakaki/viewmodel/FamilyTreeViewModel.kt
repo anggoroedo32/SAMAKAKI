@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
+import com.awp.samakaki.request.UpdateRelationRequest
 import com.awp.samakaki.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +24,9 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
 
     private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationsResponse>>()
     val createUserRelations: LiveData<BaseResponse<CreateRelationsResponse>> = _createUserRelations
+
+    private val _updateRelations = MutableLiveData<BaseResponse<UpdateRelationsResponse>>()
+    val updateRelations: LiveData<BaseResponse<UpdateRelationsResponse>> = _updateRelations
 
     private val _createFamilyTree = MutableLiveData<BaseResponse<CreateFamilyTreeResponse>>()
     val createFamilyTree: LiveData<BaseResponse<CreateFamilyTreeResponse>> = _createFamilyTree
@@ -51,15 +55,12 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
         }
     }
 
-    fun createUserRelations(token: String, familyName: String, dataRelationship: String, idFamilyTree: String) {
-        _loading.value = true
+    fun createUserRelations(token: String, familyName: String, dataRelationship: String) {
         viewModelScope.launch {
             try {
-
                 val createRelationsRequest = CreateRelationsRequest(
                     name = familyName,
-                    relation_name = dataRelationship,
-                    family_tree_id = idFamilyTree
+                    relation_name = dataRelationship
                 )
 
                 val response = repository.createUserRelations(token, createRelationsRequest)
@@ -69,6 +70,35 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 } else {
                     _createUserRelations.postValue(BaseResponse.Error(msg = response.message()))
                     Log.d("user_relations", "failure_create_user_relation: ${response.message()}")
+                }
+            } catch (e: HttpException) {
+                BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+                Log.d("user_relations", "failure_user_relation: ${e.message}")
+            } catch (e: IOException) {
+                BaseResponse.Error("Cek kembali koneksi internet anda")
+            } catch (e: Exception) {
+                _findUserRelations.postValue(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah"))
+                Log.d("user_relations", "failure_user_relation: ${e.message}")
+            }
+        }
+    }
+
+    fun updateRelation(token: String, invitationToken: String, relationName: String) {
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+
+                val updateRelationRequest = UpdateRelationRequest (
+                    relation_name = relationName
+                )
+
+                val response = repository.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
+                if (response.code() == 200) {
+                    _updateRelations.postValue(BaseResponse.Success(response.body()))
+                    Log.d("update_relations", "success_update_user_relation: ${response.body()}")
+                } else {
+                    _updateRelations.postValue(BaseResponse.Error(response.message()))
+                    Log.d("update_relations", "failure_update_user_relation: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")

@@ -1,6 +1,8 @@
 package com.awp.samakaki.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class NotificationsResponse(
 
@@ -11,6 +13,7 @@ data class NotificationsResponse(
 	val status: String? = null
 )
 
+@Parcelize
 data class UnreadItem(
 
 	@field:SerializedName("date")
@@ -36,7 +39,7 @@ data class UnreadItem(
 
 	@field:SerializedName("relation")
 	val relation: String? = null
-)
+): Parcelable
 
 data class ReadItem(
 
@@ -68,8 +71,8 @@ data class ReadItem(
 data class DataNotifications(
 
 	@field:SerializedName("read")
-	val read: List<ReadItem?>? = null,
+	val read: List<ReadItem>,
 
 	@field:SerializedName("unread")
-	val unread: List<UnreadItem?>? = null
+	val unread: List<UnreadItem>
 )

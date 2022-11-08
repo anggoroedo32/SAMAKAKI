@@ -8,17 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.databinding.FragmentChatListBinding
+import com.awp.samakaki.helper.SessionManager
+import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
+import ru.nikartm.support.ImageBadgeView
 
-
+@AndroidEntryPoint
 class ChatListFragment : Fragment() {
 
     private var _binding: FragmentChatListBinding? = null
     private val binding get()= _binding!!
     private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
+
+    private var imageBadgeView: ImageBadgeView? = null
+    var notificationsCount: Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +45,10 @@ class ChatListFragment : Fragment() {
         val toolbar = binding.toolbarHomepage
 
         toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.notification -> Toast.makeText(context, "Clicked Notification", Toast.LENGTH_SHORT).show()
+//                R.id.notification -> findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
             }
             true
@@ -61,12 +73,37 @@ class ChatListFragment : Fragment() {
         }
     }
 
+    private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+//        imageBadgeView?.setBadgeValue(notificationsCount)
+//            ?.setMaxBadgeValue(99)
+//            ?.setLimitBadgeValue(true)
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-
-
+    private fun textMessage(s: String) {
+        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+    }
 
 }

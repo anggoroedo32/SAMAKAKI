@@ -89,6 +89,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
 
             } else if (token.isNullOrEmpty()) {
+//                SessionManager.saveInvitationToken(this, invitToken.toString())
                 val intent = Intent(this, RegisterActivity::class.java)
                 intent.putExtra("invit", invitToken)
                 startActivity(intent)

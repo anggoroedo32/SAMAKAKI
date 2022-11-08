@@ -1,5 +1,6 @@
 package com.awp.samakaki.repository
 
+import android.util.Log
 import com.awp.samakaki.data.ApiService
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
@@ -67,6 +68,7 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
     suspend fun findUserRelations(token: String): Response<GetUserRelationResponse> = apiService.findUserRelations(token)
     suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)
+    suspend fun updateRelation(token: String, invitationToken: String, updateRelationRequest: UpdateRelationRequest): Response<UpdateRelationsResponse> = apiService.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
     suspend fun createUserRelations(token: String, createRelationsRequest: CreateRelationsRequest): Response<CreateRelationsResponse> = apiService.createUserRelations(token, createRelationsRequest)
     suspend fun createFamilyTree(token: String, createFamilyTreeRequest: CreateFamilyTreeRequest): Response<CreateFamilyTreeResponse> = apiService.createFamilyTree(token, createFamilyTreeRequest)
     suspend fun registerWithToken(registerWithTokenRequest: RegisterWithTokenRequest): Response<RegisterWithInvitationResponse> = apiService.registerWithToken(registerWithTokenRequest)

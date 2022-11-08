@@ -2,10 +2,7 @@ package com.awp.samakaki.request
 
 import com.google.gson.annotations.SerializedName
 
-class CreateRelationsRequest (
-
-    @SerializedName("name")
-    var name: String,
+class UpdateRelationRequest(
 
     @SerializedName("relation_name")
     var relation_name: String

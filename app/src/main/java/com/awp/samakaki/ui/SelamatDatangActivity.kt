@@ -125,8 +125,9 @@ class SelamatDatangActivity : AppCompatActivity() {
 
 
             else -> {
-//                var intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
+                var intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
                 //Convert
                 insertViewModel()
             }
@@ -163,8 +164,6 @@ class SelamatDatangActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     it.data
-                    var intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
                     Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
                 }
                 is BaseResponse.Error -> {

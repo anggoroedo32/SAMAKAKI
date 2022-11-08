@@ -23,14 +23,16 @@ import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import ru.nikartm.support.ImageBadgeView
 import java.util.*
 
 
 @AndroidEntryPoint
-abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelectedListener {
+abstract class SilsilahKeluargaFragment : Fragment() {
 
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
@@ -41,6 +43,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
     private var currentNode: com.awp.samakaki.utils.Node? = null
     private var nodeCount = 1
     private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
 
     abstract fun createGraph(): com.awp.samakaki.utils.Graph
     abstract fun createGraphDataTop(): com.awp.samakaki.utils.Graph
@@ -49,6 +52,8 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
     abstract fun setEdgeDecoration()
     abstract fun setEdgeDecorationDataTop()
 
+    private var imageBadgeView: ImageBadgeView? = null
+    var notificationsCount: Int = 0
     var hubungan = arrayOf<String?>(
         "father",
         "mother",
@@ -60,6 +65,8 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         "husband",
         "wife"
     )
+
+    var dataRelationship: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,11 +99,18 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         setupGraphViewDataTop(graphDataTop)
         loadingState()
 
+        //Dropdown Relationship
+        val relationshipDropdown = resources.getStringArray(R.array.relationship)
+        val relationshipDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,relationshipDropdown)
+        val autoCompleteRelationship = binding.etHubungan
+        autoCompleteRelationship.setAdapter(relationshipDropdownAdapter)
+
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
+//                R.id.notification -> findNavController().navigate(R.id.action_navigation_family_to_notificationsFragment)
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_family_to_settingsFragment)
             }
             true
@@ -122,78 +136,88 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
             }
         }
 
+        val fab = binding.fab
+        fab.setOnClickListener {
+            familyTree.visibility = View.GONE
+            isiProfil.visibility = View.VISIBLE
+        }
+
 
         val btnAddProfile = binding.btnAddProfile
         btnAddProfile.setOnClickListener {
-            val familyName = binding.etFamilyName.text.trim().toString()
-            val familyMember = binding.etNama.text.trim().toString()
+            val name = binding.etNama.text.trim().toString()
             val phone = binding.etNoTelp.text.trim().toString()
-            val relationship = binding.etHubungan
-            val dataRelationship = relationship.selectedItem.toString()
+            val relationship = binding.etHubungan.text.toString()
+
+            when{
+                relationship == "Adek Pertama" -> dataRelationship = "adek_pertama"
+                relationship == "Adek Kedua" -> dataRelationship = "adek_kedua"
+                relationship == "Adek Ketiga" -> dataRelationship = "adek_ketiga"
+                relationship == "Bapak" -> dataRelationship = "bapak"
+                relationship == "Ibu" -> dataRelationship = "ibu"
+                relationship == "Anak Pertama" -> dataRelationship = "anak_pertama"
+                relationship == "Anak Kedua" -> dataRelationship = "anak_kedua"
+                relationship == "Anak Ketiga" -> dataRelationship = "anak_ketiga"
+                relationship == "Kakek Dari Bapak" -> dataRelationship = "kakek_dari_bapak"
+                relationship == "Nenek Dari Bapak" -> dataRelationship = "nenek_dari_bapak"
+                relationship == "Kakek Dari Ibu" -> dataRelationship = "kakek_dari_ibu"
+                relationship == "Nenek Dari Ibu" -> dataRelationship = "nenek_dari_ibu"
+            }
+
 
             when {
-                familyName.isEmpty() -> {
-                    binding.etFamilyName.error = getString(R.string.err_empty_family_name)
-                }
-                familyMember.isEmpty() -> {
+                name.isEmpty() -> {
                     binding.etNama.error = getString(R.string.err_empty_family_member)
                 }
                 phone.isEmpty() -> {
                     binding.etNoTelp.error = getString(R.string.err_empty_phone)
                 }
                 else -> {
-
-                    val createFamilyUserRequest = CreateFamilyTreeRequest(
-                        name = familyName
-                    )
-
-                    familyTreeViewModel.createFamilyTree("Bearer $token", createFamilyUserRequest )
-                    familyTreeViewModel.createFamilyTree.observe(viewLifecycleOwner) { it ->
+                    familyTreeViewModel.createUserRelations("Bearer $token", name, dataRelationship.toString())
+                    Log.d("isinya_data_relation" , dataRelationship.toString())
+                    familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
                         when(it) {
-
                             is BaseResponse.Success -> {
                                 it.data
-                                val idFamilyTree = it.data?.data?.id
-
-                                val createUserRelationsRequest = CreateRelationsRequest(
-                                    name = familyName,
-                                    relation_name = dataRelationship,
-                                    family_tree_id = idFamilyTree.toString()
-                                )
-
-                                familyTreeViewModel.createUserRelations("Bearer $token", familyName, dataRelationship, idFamilyTree.toString())
-                                familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
-                                    when(it) {
-
-                                        is BaseResponse.Success -> {
-                                            it.data
-                                            isiProfil.visibility = View.GONE
-                                            familyTree.visibility = View.VISIBLE
-                                            val invitationToken = it.data?.data?.invitaionToken
-                                            showDialog(link = it.data?.data?.invitaionToken)
-                                            Log.d("isinya_token" , it.data?.data?.invitaionToken.toString())
-                                        }
-
-                                        is BaseResponse.Error -> (it.msg.toString())
-                                    }
-                                }
-
+                                isiProfil.visibility = View.GONE
+                                familyTree.visibility = View.VISIBLE
+                                val invitationToken = it.data?.data?.invitaionToken
+                                showDialog(link = it.data?.data?.invitaionToken)
+                                Log.d("isinya_token" , it.data?.data?.invitaionToken.toString())
                             }
 
-                            is BaseResponse.Error -> textMessage(it.msg.toString())
+                            is BaseResponse.Error -> (it.msg.toString())
                         }
                     }
                 }
+
             }
         }
 
-        val spin = binding.etHubungan
-        spin.onItemSelectedListener = this
+    }
 
-        val ad: ArrayAdapter<*> = ArrayAdapter(requireContext(), R.layout.spinner_item, hubungan)
-        ad.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
-        spin.adapter = ad
+    private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
 
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+//        imageBadgeView?.setBadgeValue(notificationsCount)
+//            ?.setMaxBadgeValue(99)
+//            ?.setLimitBadgeValue(true)
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_family_to_notificationsFragment)
+        }
     }
 
     private fun showDialog(link: String?) {
@@ -208,7 +232,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         Log.d("link_edLinkValue", edLink.text.toString())
 
 
-        edLink.setText(link)
+        edLink.setText("www.samakaki.com/$link")
 
         btnCopy.setOnClickListener {
             copyTextToClipboard(edLink.text.toString())
@@ -217,7 +241,7 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
         btnClose.setOnClickListener {
             dialog.dismiss()
         }
-        dialog.setCancelable(true)
+        dialog.setCancelable(false)
         dialog.show()
 
     }
@@ -231,13 +255,6 @@ abstract class SilsilahKeluargaFragment : Fragment(), AdapterView.OnItemSelected
 
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
-
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     private fun setupGraphView(graph: com.awp.samakaki.utils.Graph) {
         adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
