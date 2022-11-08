@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityForgotPasswordBinding
 import com.awp.samakaki.response.BaseResponse
@@ -23,6 +24,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadingState()
 
         val btnKonfirmasi = binding.btnKonfirmasi
         btnKonfirmasi.setOnClickListener {
@@ -40,11 +42,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                         authenticationViewModel.forgotToken(email = email)
                         authenticationViewModel.forgotTokenResponse.observe(this) {
                             when (it) {
-                                is BaseResponse.Loading -> {
-                                    showLoading()
-                                }
                                 is BaseResponse.Success -> {
-                                    stopLoading()
                                     textMessage("Token sudah dikirimkan ke email anda")
                                     val intent = Intent(this, ResetPasswordActivity::class.java)
                                     startActivity(intent)
@@ -55,18 +53,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             }
                         }
                     }
-                }
-
             }
 
         }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
     }
 
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+    private fun loadingState(){
+        authenticationViewModel.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

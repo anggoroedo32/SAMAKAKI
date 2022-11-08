@@ -10,13 +10,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +47,6 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnBack = binding.btnBack
         val statusDropdown = resources.getStringArray(R.array.status)
         val statusDropdownAdapter =
             context?.let { ArrayAdapter(it,R.layout.dropdown_item,statusDropdown) }
@@ -58,7 +56,8 @@ class EditProfileFragment : Fragment() {
         val name = binding.ETName
         val dob = binding.ETTanggal
         val phone = binding.ETNoTlp
-        val status = binding.etStatus
+        val mariageStatus = binding.etStatus
+        val avatar = binding.imgEditProfile
 
 
         val token = context?.let { SessionManager.getToken(it) }
@@ -67,21 +66,21 @@ class EditProfileFragment : Fragment() {
         profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
         profileViewModel.findUser.observe(viewLifecycleOwner) {
             when(it) {
-                is BaseResponse.Loading -> showLoading()
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
-                    Log.d("isi_name", )
                     name.setText(it.data?.data?.biodata?.name)
                     dob.setText(it.data?.data?.biodata?.dob)
                     phone.setText(it.data?.data?.biodata?.phone)
-                    status.setText(it.data?.data?.biodata?.marriageStatus)
+                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
+
+                    Glide.with(this)
+                        .load(it.data?.data?.biodata?.avatar)
+                        .centerInside()
+                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+                        .into(avatar)
+
                 }
                 is BaseResponse.Error -> textMessage(it.msg.toString())
-            }
-
-            btnBack.setOnClickListener {
-                findNavController().popBackStack()
             }
         }
 
@@ -101,17 +100,8 @@ class EditProfileFragment : Fragment() {
         })
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
-    }
-
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
-
 
 }

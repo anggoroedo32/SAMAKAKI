@@ -71,6 +71,11 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<GetUserRelationResponse>
 
+    @GET("notifications")
+    suspend fun getNotificationByUser(
+        @Header("Authorization") token: String
+    ): Response<NotificationsResponse>
+
     @POST("password/reset")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
@@ -87,6 +92,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): Response<EditProfileResponse>
+
+    @POST("invitation/register")
+    suspend fun registerWithToken(
+        @Body registerWithTokenRequest: RegisterWithTokenRequest
+    ): Response<RegisterWithInvitationResponse>
 
     @POST("relations")
     suspend fun createUserRelations(

@@ -1,13 +1,14 @@
 package com.awp.samakaki.ui.menu_beranda
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,10 +17,14 @@ import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.PostItem
-import com.awp.samakaki.ui.authentication.LoginActivity
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._com_awp_samakaki_ui_MainActivity_GeneratedInjector
+import ru.nikartm.support.BadgePosition
+import ru.nikartm.support.ImageBadgeView
+
+
+
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -35,6 +40,9 @@ class HomeFragment : Fragment() {
         "Keluarga Cemara",
         "Arisan Keluarga"
     )
+
+    private var imageBadgeView: ImageBadgeView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +62,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val toolbar = binding.toolbarHomepage
+
         toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
@@ -83,6 +93,15 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun initNotificationCounter() {
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+        val value = 5
+        imageBadgeView?.setBadgeValue(value)
+            ?.setMaxBadgeValue(20)
+            ?.setLimitBadgeValue(true)
+    }
+
+
     private fun rvPosts(list: List<PostItem>) {
         val recyclerViewPosts: RecyclerView = binding.rvPost
         postsAdapter = PostsAdapter(list)
@@ -110,6 +129,7 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
         super.onCreateOptionsMenu(menu, inflater)
+
 
     }
 

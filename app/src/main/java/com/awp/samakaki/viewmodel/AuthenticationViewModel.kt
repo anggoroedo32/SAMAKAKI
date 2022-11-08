@@ -7,13 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.helper.SingleLiveEvent
 import com.awp.samakaki.repository.RemoteRepository
-import com.awp.samakaki.request.ForgotTokenRequest
-import com.awp.samakaki.request.LoginRequest
-import com.awp.samakaki.request.RegisterRequest
+import com.awp.samakaki.request.*
 import com.awp.samakaki.response.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.awp.samakaki.request.ResetPasswordRequest
 import com.awp.samakaki.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -36,20 +33,14 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     private val _resetPasswordResponse = MutableLiveData<BaseResponse<ResetPasswordResponse>>()
     val resetPasswordResponse: LiveData<BaseResponse<ResetPasswordResponse>> = _resetPasswordResponse
 
-//    fun register(name: String, email: String, phone: String, password: String){
-//        viewModelScope.launch {
-//            repository.register(name, email, phone, password).let {
-//                if (it.isSuccessful) {
-//                    Log.d("register_success", it.body().toString())
-//                    _registerResponse.postValue(it.body())
-//                }else {
-//                    Log.d("register_fail", it.body().toString())
-//                }
-//            }
-//        }
-//    }
+    private val _registerWithTokenResponse = MutableLiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>>()
+    val registerWithTokenResponse: LiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>> = _registerWithTokenResponse
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
     fun login(email: String, password: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -81,6 +72,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     }
 
     fun register(name: String, email: String, phone: String, password: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
 
@@ -94,13 +86,11 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.register(registerRequest = registerRequest)
                 if (response.code() == 200) {
                     _registerResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
-//                    Log.d("register", "success_register: ${response.body()}")
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageResponse>() {}.type
                     var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _registerResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
-//                    Log.d("register", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
                 }
 
             } catch (e: HttpException) {
@@ -113,8 +103,44 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
         }
     }
 
+    fun registerWithToken(name: String, email: String, phone: String, password: String, token: String) {
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+
+                val registerWithTokenRequest = RegisterWithTokenRequest(
+                    name = name,
+                    email = email,
+                    phone = phone,
+                    password = password,
+                    token = token
+                )
+
+                val response = repository.registerWithToken(registerWithTokenRequest = registerWithTokenRequest)
+                if (response.code() == 200) {
+                    _registerWithTokenResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
+                    Log.d("register_with_token", "success_register: ${response.body()}")
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<MessageResponse>() {}.type
+                    var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _registerWithTokenResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
+                    Log.d("register_with_token", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
+                }
+
+            } catch (e: HttpException) {
+                BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+            } catch (e: IOException) {
+                BaseResponse.Error("Cek kembali koneksi internet anda")
+            } catch (e: Exception) {
+                _registerResponse.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Data bermasalah")))
+            }
+        }
+    }
+
 
     fun forgotToken(email: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val forgotTokenRequest = ForgotTokenRequest(email = email)
@@ -135,6 +161,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     }
 
     fun resetPassword(email: String, password: String, token: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val resetPasswordRequest = ResetPasswordRequest(

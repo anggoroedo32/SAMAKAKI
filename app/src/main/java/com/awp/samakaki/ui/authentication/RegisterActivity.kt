@@ -4,16 +4,19 @@ import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.awp.samakaki.databinding.ActivityRegisterBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.ui.MainActivity
+import com.awp.samakaki.ui.SelamatDatangActivity
 import com.awp.samakaki.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,48 +26,26 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private val authenticationViewModel by viewModels<AuthenticationViewModel>()
-
-    // creating a variable for our text view
-    private lateinit var messageTV: TextView
-    private var uri: Uri? = null
+    private lateinit var tokenInvitation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        loadingState()
         val tvLogin = binding.txtViewLogin
         tvLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        val token = SessionManager.getToken(this)
-        if (!token.isNullOrBlank()) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        val invitationToken = intent.getStringExtra("invit")
+        val ss:String = intent.getStringExtra("invit").toString()
 
-        // initializing our variable
-        messageTV = binding.etTokenInvitation
-        // getting the data from our intent in our uri.
-        uri = intent.data
-
-        // checking if the uri is null or not.
-        if (uri != null) {
-            // if the uri is not null then we are getting
-            // the path segments and storing it in list.
-            val parameters = uri!!.pathSegments
-
-            // after that we are extracting string
-            // from that parameters.
-            val param = parameters[parameters.size - 1]
-
-            // on below line we are setting that
-            // string to our text view which
-            // we got as params.
-            messageTV.text = param
-        }
+        tokenInvitation = binding.etTokenInvitation
+        tokenInvitation.text = invitationToken
 
         val btnRegister = binding.btnRegister
         btnRegister.setOnClickListener {
@@ -96,34 +77,48 @@ class RegisterActivity : AppCompatActivity() {
                     binding.etPassword.error = getString(com.awp.samakaki.R.string.err_password_did_not_match)
                 }
                 else -> {
-                    authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
-                    authenticationViewModel.registerResponse.observe(this) {
-                        it.getContentIfNotHandled()?.let {
-                            when(it) {
-                                is BaseResponse.Loading -> {
-                                    showLoading()
+
+                    if (invitationToken.isNullOrEmpty()) {
+                        authenticationViewModel.register(name = name, email = email, phone = phone, password = password)
+                        authenticationViewModel.registerResponse.observe(this) {
+                            it.getContentIfNotHandled()?.let {
+                                when(it) {
+                                    is BaseResponse.Success -> {
+                                        startActivity(Intent(this, LoginActivity::class.java))
+                                        textMessage("Akun Anda Sudah Dibuat")
+                                    }
+                                    is BaseResponse.Error -> textMessage(it.msg.toString())
                                 }
-                                is BaseResponse.Success -> {
-                                    stopLoading()
-                                    startActivity(Intent(this, LoginActivity::class.java))
-                                    textMessage("Akun Anda Sudah Dibuat")
+                            }
+                        }
+
+                    } else if(!invitationToken.isNullOrEmpty()) {
+                        authenticationViewModel.registerWithToken(name = name, email = email, phone = phone, password = password, token = invitationToken)
+                        authenticationViewModel.registerWithTokenResponse.observe(this) {
+                            it.getContentIfNotHandled()?.let {
+                                when(it) {
+                                    is BaseResponse.Success -> {
+                                        startActivity(Intent(this, LoginActivity::class.java))
+                                        textMessage("Akun Anda Sudah Dibuat")
+                                    }
+                                    is BaseResponse.Error -> textMessage(it.msg.toString())
                                 }
-                                is BaseResponse.Error -> textMessage(it.msg.toString())
                             }
                         }
                     }
+
                 }
             }
 
         }
+
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
+    private fun loadingState(){
+        authenticationViewModel.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {
