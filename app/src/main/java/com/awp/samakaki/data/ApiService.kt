@@ -66,6 +66,20 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Response<BiodataResponse>
 
+    @Multipart
+    @PUT("editprofile/{id}")
+    suspend fun  editProfile(
+        @Header("Authorization") token: String,
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("dob") dob: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("marriage_status") marriage_status: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part file: MultipartBody.Part
+    ): Response<EditProfileResponse>
+
     @GET("user_relations")
     suspend fun findUserRelations(
         @Header("Authorization") token: String
@@ -86,12 +100,6 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): Response<FindUserResponse>
-
-    @PUT("editprofile/{id}")
-    suspend fun  editProfile(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
-    ): Response<EditProfileResponse>
 
     @POST("invitation/register")
     suspend fun registerWithToken(

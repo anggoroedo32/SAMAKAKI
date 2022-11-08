@@ -112,6 +112,7 @@
     <string name="share_link_on">Bagikan link</string>
     <string name="copy">Copy</string>
     <string name="err_empty_status">Masukkan status hubungan anda</string>
+    <string name="err_empty_dob">Isi tanggal kelahiran kamu</string>
 
     <string-array name="status">
         <item>single</item>
