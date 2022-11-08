@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.LayoutPostContentBinding
+import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.PostsItem
 import com.bumptech.glide.Glide
 
-class PostsAdapter(private var list: List<PostsItem>) : RecyclerView.Adapter<PostsAdapter.PostsViewHolder>() {
+class PostsAdapter(private var list: List<DataItem>) : RecyclerView.Adapter<PostsAdapter.PostsViewHolder>() {
 
     inner class PostsViewHolder (val binding: LayoutPostContentBinding): RecyclerView.ViewHolder(binding.root)
 

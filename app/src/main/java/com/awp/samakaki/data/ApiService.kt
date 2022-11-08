@@ -84,10 +84,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Response<GetUserRelationResponse>
 
-    @GET("user/posts")
+    @GET("posts")
     suspend fun getAllPostsByUser(
         @Header("Authorization") token: String
-    ): Response<PostsResponse>
+    ): Response<NewPostsResponse>
 
     @GET("biodata_users/{id}")
     suspend fun findUser(

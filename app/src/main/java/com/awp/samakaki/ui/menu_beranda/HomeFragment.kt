@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,6 +25,7 @@ import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.DataPosts
 import com.awp.samakaki.response.PostsItem
 import com.awp.samakaki.viewmodel.PostsViewModel
@@ -47,6 +49,7 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<PostsViewModel>()
     private lateinit var postsAdapter: PostsAdapter
     private var imageFile: File? = null
+    private var _status: String = "public"
 
 
     var familyName = arrayOf<String?>(
@@ -93,18 +96,58 @@ class HomeFragment : Fragment() {
 
         val buttonPost:Button = binding.btnPost
         buttonPost.setOnClickListener(){
-            insertViewModelPosts()
+            _status?.let { it1 -> insertViewModelPosts(it1) }
         }
 
         val switchButton: SwitchCompat = binding.switchButton
         switchButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-
+                _status = "private"
+            } else {
+                _status = "public"
             }
         }
         ivUploadImg = binding.ivUploadImage
         binding.addMedia.setOnClickListener{
             pickImageLauncher.launch("image/*")
+        }
+    }
+
+    private fun insertViewModelPosts(status: String){
+        val caption = binding.edPost.text.toString().toRequestBody("text/plain".toMediaType())
+        var isStatus = status.toRequestBody("text/plain".toMediaType())
+        var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
+        var content = requestImage?.let {
+            MultipartBody.Part.createFormData(
+                "content",
+                imageFile?.name,
+                it
+            )
+        }
+        var tokenGet = SessionManager.getToken(requireContext())
+        viewModel.createPosts(
+            "bearer $tokenGet",
+            caption,
+            isStatus,
+            content!!
+        )
+
+        viewModel.createPostResponse.observe(viewLifecycleOwner){
+            when(it){
+                is BaseResponse.Loading -> {
+                    showLoading()
+                }
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    it.data
+                    val destination = findNavController().currentDestination?.id
+                    findNavController().popBackStack(destination!!,true)
+                    findNavController().navigate(destination)
+                }
+                is BaseResponse.Error -> {
+                    textMessage(it.msg.toString())
+                }
+            }
         }
     }
 
@@ -131,6 +174,22 @@ class HomeFragment : Fragment() {
         return myFile
     }
 
+    private fun refresh(context: Context){
+        context?.let {
+            val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
+            fragmentManager?.let {
+                val currentFragment = fragmentManager.findFragmentById(R.id.homeFragment)
+                currentFragment?.let {
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.detach(it)
+                    fragmentTransaction.attach(it)
+                    fragmentTransaction.commit()
+                }
+            }
+        }
+
+    }
+
     private fun observeData(){
         viewModel.listAllPosts.observe(viewLifecycleOwner) {
             when(it){
@@ -139,7 +198,7 @@ class HomeFragment : Fragment() {
                 }
                 is BaseResponse.Success -> {
                     stopLoading()
-                    rvPosts(it.data?.data?.posts as List<PostsItem>)
+                    it.data?.data?.let { it1 -> rvPosts(it1) }
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
@@ -147,46 +206,11 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    private fun rvPosts(list: List<PostsItem>) {
+    private fun rvPosts(list: List<DataItem>) {
         val recyclerViewPosts: RecyclerView = binding.rvPost
         recyclerViewPosts.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = PostsAdapter(list)
-        }
-    }
-
-    private fun insertViewModelPosts(){
-        val caption = binding.edPost.text.toString().toRequestBody("text/plain".toMediaType())
-        val status = "public".toRequestBody("text/plain".toMediaType())
-        var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
-        var content = requestImage?.let {
-            MultipartBody.Part.createFormData(
-                "content",
-                imageFile?.name,
-                it
-            )
-        }
-        var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.createPosts(
-            "bearer $tokenGet",
-            caption,
-            status,
-            content!!
-        )
-
-        viewModel.createPostResponse.observe(viewLifecycleOwner){
-            when(it){
-                is BaseResponse.Loading -> {
-                    showLoading()
-                }
-                is BaseResponse.Success -> {
-                    stopLoading()
-                    it.data
-                }
-                is BaseResponse.Error -> {
-                    textMessage(it.msg.toString())
-                }
-            }
         }
     }
 
