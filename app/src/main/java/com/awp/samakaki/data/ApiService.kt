@@ -26,9 +26,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("posts")
-    suspend fun getAllPosts(): Response<PostsResponse>
-
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -45,7 +42,6 @@ interface ApiService {
         @Body forgotTokenRequest: ForgotTokenRequest
     ): Response<ForgotTokenResponse>
 
-    @Headers("Content-Type: application/json")
     @Multipart
     @POST("posts")
     suspend fun createPosts(
@@ -66,27 +62,10 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Response<BiodataResponse>
 
-    @GET("user_relations")
-    suspend fun findUserRelations(
-        @Header("Authorization") token: String
-    ): Response<GetUserRelationResponse>
-
     @POST("password/reset")
     suspend fun resetPassword(
         @Body resetPasswordRequest: ResetPasswordRequest
     ): Response<ResetPasswordResponse>
-
-    @GET("biodata_users/{id}")
-    suspend fun findUser(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
-    ): Response<FindUserResponse>
-
-    @PUT("editprofile/{id}")
-    suspend fun  editProfile(
-        @Header("Authorization") token: String,
-        @Path("id") id: String
-    ): Response<EditProfileResponse>
 
     @POST("relations")
     suspend fun createUserRelations(
@@ -99,5 +78,27 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body createFamilyTreeRequest: CreateFamilyTreeRequest
     ): Response<CreateFamilyTreeResponse>
+
+    @GET("user_relations")
+    suspend fun findUserRelations(
+        @Header("Authorization") token: String
+    ): Response<GetUserRelationResponse>
+
+    @GET("user/posts")
+    suspend fun getAllPostsByUser(
+        @Header("Authorization") token: String
+    ): Response<PostsResponse>
+
+    @GET("biodata_users/{id}")
+    suspend fun findUser(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<FindUserResponse>
+
+    @PUT("editprofile/{id}")
+    suspend fun  editProfile(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<EditProfileResponse>
 
 }
