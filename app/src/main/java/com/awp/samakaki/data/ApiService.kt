@@ -26,9 +26,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("posts")
-    suspend fun getAllPosts(): Response<PostsResponse>
-
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -45,7 +42,6 @@ interface ApiService {
         @Body forgotTokenRequest: ForgotTokenRequest
     ): Response<ForgotTokenResponse>
 
-    @Headers("Content-Type: application/json")
     @Multipart
     @POST("posts")
     suspend fun createPosts(
@@ -116,5 +112,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body createFamilyTreeRequest: CreateFamilyTreeRequest
     ): Response<CreateFamilyTreeResponse>
+
+
+    @GET("posts")
+    suspend fun getAllPostsByUser(
+        @Header("Authorization") token: String
+    ): Response<NewPostsResponse>
 
 }

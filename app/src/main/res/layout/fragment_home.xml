@@ -3,12 +3,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.menu_beranda.HomeFragment">
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/homeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -34,7 +36,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/search_user"
         android:layout_width="match_parent"
         android:layout_height="46dp"
@@ -78,23 +80,41 @@
 <!--            android:theme="@style/mySpinnerItemStyle" />-->
 
 <!--    </LinearLayout>-->
-
-    <EditText
-        android:id="@+id/ed_post"
+    <LinearLayout
+        android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_post_up"
-        android:hint="@string/add_post"
-        android:textSize="14sp"
-        android:textColor="@color/neutral_500"
-        android:fontFamily="@font/poppins_regular"
-        android:inputType="textMultiLine"
-        android:padding="32dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/bg_post_up"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_user" />
+        app:layout_constraintTop_toBottomOf="@+id/search_user">
+        <ImageView
+            android:id="@+id/iv_upload_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerInside"
+            android:visibility = "gone"
+            tools:src="@drawable/ic_launcher_background"
+            android:layout_marginBottom="@dimen/dimen_12"/>
+        <EditText
+            android:id="@+id/ed_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_post"
+            android:textSize="14sp"
+            android:textColor="@color/neutral_500"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textMultiLine"
+            android:padding="32dp"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/wrapper_ic_post"
@@ -103,13 +123,13 @@
         android:layout_centerVertical="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="-2dp"
-        android:background="@drawable/bg_post_down"
         android:paddingHorizontal="12dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:background = "#F1F5F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_post">
+        app:layout_constraintTop_toBottomOf="@+id/content_layout">
 
         <LinearLayout
             android:id="@+id/add_media"
@@ -163,6 +183,44 @@
             app:cornerRadius="12dp" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/wrapper_ic_privacy"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/bg_post_down"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrapper_ic_post">
+
+        <TextView
+            android:id="@+id/tv_post_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:text="Postingan kamu privasi?"
+            android:textColor="@color/neutral_500"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:checked="false" />
+    </RelativeLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_post"
@@ -173,7 +231,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrapper_ic_post"
+        app:layout_constraintTop_toBottomOf="@+id/wrapper_ic_privacy"
         tools:listitem="@layout/layout_post_content" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
