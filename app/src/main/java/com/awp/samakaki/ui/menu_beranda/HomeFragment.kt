@@ -124,6 +124,7 @@ class HomeFragment : Fragment() {
                 it
             )
         }
+
         var tokenGet = SessionManager.getToken(requireContext())
         viewModel.createPosts(
             "bearer $tokenGet",
