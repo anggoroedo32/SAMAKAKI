@@ -65,7 +65,7 @@ interface ApiService {
     @GET("user_relations")
     suspend fun findUserRelations(
         @Header("Authorization") token: String
-    ): Response<GetUserRelationResponse>
+    ): Response<UserRelationsResponse>
 
     @GET("notifications")
     suspend fun getNotificationByUser(

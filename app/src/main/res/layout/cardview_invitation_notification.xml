@@ -21,6 +21,34 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/relation"
+        style="@style/regular_14"
+        android:paddingVertical="@dimen/dimen_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_10"
+        android:textColor="@color/neutral_400"
+        tools:text="Bapak"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/invit_token"
+        style="@style/regular_14"
+        android:paddingVertical="@dimen/dimen_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_10"
+        android:textColor="@color/neutral_400"
+        tools:text="asdasdasdasd"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/relation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/notif_message"
         style="@style/regular_14"
         android:paddingVertical="@dimen/dimen_6"
@@ -28,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_10"
         android:textColor="@color/neutral_400"
-        android:text="Anda di invit ke dalam family tree oleh dummy, apakah anda mengenal dummy?"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        tools:text="Anda di invit ke dalam family tree oleh dummy, apakah anda mengenal dummy?"
+        app:layout_constraintTop_toBottomOf="@+id/invit_token"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

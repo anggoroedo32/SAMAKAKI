@@ -28,6 +28,7 @@ import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.DataPosts
 import com.awp.samakaki.response.PostsItem
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,6 +36,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import ru.nikartm.support.ImageBadgeView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -47,6 +49,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var ivUploadImg: ImageView
     private val viewModel by viewModels<PostsViewModel>()
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
+    private var imageBadgeView: ImageBadgeView? = null
     private lateinit var postsAdapter: PostsAdapter
     private var imageFile: File? = null
     private var _status: String = "public"
@@ -77,9 +81,10 @@ class HomeFragment : Fragment() {
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
+//                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
             }
             true
@@ -110,6 +115,27 @@ class HomeFragment : Fragment() {
         ivUploadImg = binding.ivUploadImage
         binding.addMedia.setOnClickListener{
             pickImageLauncher.launch("image/*")
+        }
+    }
+
+    private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
         }
     }
 

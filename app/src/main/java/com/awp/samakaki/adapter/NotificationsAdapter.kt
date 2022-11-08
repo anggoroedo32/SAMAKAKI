@@ -23,6 +23,8 @@ class NotificationsAdapter (private var list: List<UnreadItem>) : RecyclerView.A
         val list = list[position]
         holder.binding.username.text = list!!.invitingName
         holder.binding.notifMessage.text = list!!.descriptions
+        holder.binding.relation.text = list!!.relation
+        holder.binding.invitToken.text = list!!.invitationToken
         holder.binding.ibAccept.setOnClickListener {
             listener?.onCard(list)
         }
