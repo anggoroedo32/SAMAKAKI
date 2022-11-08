@@ -14,35 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_17"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_editprofile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/semibold_18prim500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:text="@string/edit_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
-                android:background="@color/white"
-                android:minHeight="?attr/actionBarSize" >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_back_ios"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit_profile"
-                    style="@style/semibold_18"
-                    android:textColor="@color/primary_600"/>
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
         <TextView
             android:id="@+id/tv_photo_profile"
             android:layout_width="wrap_content"
@@ -52,7 +45,7 @@
             style="@style/medium_16"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-            app:layout_constraintTop_toBottomOf="@id/app_bar"/>
+            app:layout_constraintTop_toBottomOf="@id/btn_back"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_edit_profile"

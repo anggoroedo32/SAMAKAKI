@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.helper.SessionManager
@@ -47,11 +48,18 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val btnBack = binding.btnBack
         val statusDropdown = resources.getStringArray(R.array.status)
         val statusDropdownAdapter =
             context?.let { ArrayAdapter(it,R.layout.dropdown_item,statusDropdown) }
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
+
+        val name = binding.ETName
+        val dob = binding.ETTanggal
+        val phone = binding.ETNoTlp
+        val status = binding.etStatus
+
 
         val token = context?.let { SessionManager.getToken(it) }
         val id = SessionManager.getIdUser(requireContext())
@@ -63,8 +71,17 @@ class EditProfileFragment : Fragment() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     it.data
+                    Log.d("isi_name", )
+                    name.setText(it.data?.data?.biodata?.name)
+                    dob.setText(it.data?.data?.biodata?.dob)
+                    phone.setText(it.data?.data?.biodata?.phone)
+                    status.setText(it.data?.data?.biodata?.marriageStatus)
                 }
                 is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
 
@@ -95,5 +112,6 @@ class EditProfileFragment : Fragment() {
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
+
 
 }
