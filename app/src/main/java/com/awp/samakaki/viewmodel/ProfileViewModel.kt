@@ -55,6 +55,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
 
     fun editProfile(
         token: String,
+        id: String,
         name: RequestBody,
         email: RequestBody,
         phone: RequestBody,
@@ -62,13 +63,14 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
         dob: RequestBody,
         marriageStatus: RequestBody,
         status: RequestBody,
-        avatar: MultipartBody.Part
+        avatar: MultipartBody.Part?
     ){
         _loading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.editProfile(
                     token = token,
+                    id = id,
                     name = name,
                     email = email,
                     phone = phone,
@@ -76,7 +78,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                     dob = dob,
                     marriage_status = marriageStatus,
                     status = status,
-                    file = avatar
+                    file = avatar!!
                 )
 
                 if (response.code() == 200) {

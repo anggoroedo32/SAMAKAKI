@@ -90,10 +90,19 @@ interface ApiService {
         @Path("id") id: String
     ): Response<FindUserResponse>
 
+    @Multipart
     @PUT("editprofile/{id}")
     suspend fun  editProfile(
         @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Part("id") id: String,
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("dob") dob: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("marriage_status") marriageStatus: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part file: MultipartBody.Part
     ): Response<EditProfileResponse>
 
     @POST("invitation/register")
