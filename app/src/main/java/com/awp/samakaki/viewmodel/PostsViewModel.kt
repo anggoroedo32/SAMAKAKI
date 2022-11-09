@@ -47,7 +47,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     }
 
     fun createPosts(
-        token: String, descriptions: RequestBody, status: RequestBody, content: MultipartBody.Part){
+        token: String, descriptions: RequestBody, status: RequestBody, content: MultipartBody.Part?){
         viewModelScope.launch {
             _loading.value = true
             viewModelScope.launch {

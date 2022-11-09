@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var ivUploadImg: ImageView
     private val viewModel by viewModels<PostsViewModel>()
-    private lateinit var postsAdapter: PostsAdapter
     private var imageFile: File? = null
     private var _status: String = "public"
 
@@ -117,25 +116,23 @@ class HomeFragment : Fragment() {
         val caption = binding.edPost.text.toString().toRequestBody("text/plain".toMediaType())
         var isStatus = status.toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
-        var content = requestImage?.let {
-            MultipartBody.Part.createFormData(
-                "content",
-                imageFile?.name,
-                it
-            )
+        var content = requestImage.let {
+            it?.let { it1 ->
+                MultipartBody.Part.createFormData(
+                    "content",
+                    imageFile?.name,
+                    it1
+                )
+            }
         }
 
         var tokenGet = SessionManager.getToken(requireContext())
-        if (content != null) {
-            viewModel.createPosts(
-                "bearer $tokenGet",
-                caption,
-                isStatus,
-                content
-            )
-        }else {
-            Toast.makeText(requireContext(), "Gambar belum dimasukkan", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.createPosts(
+            "bearer $tokenGet",
+            caption,
+            isStatus,
+            content
+        )
 
         viewModel.createPostResponse.observe(viewLifecycleOwner){
             when(it){
@@ -158,10 +155,10 @@ class HomeFragment : Fragment() {
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()){
-            imageUri = it!!
+            imageUri = it
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
-            imageFile = uriToFile(imageUri!!, requireContext())
+            imageFile = imageUri?.let { it1 -> uriToFile(it1, requireContext()) }
         }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
@@ -192,7 +189,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun observeData(){

@@ -27,7 +27,7 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun createPosts(token: String,
                             descriptions: RequestBody,
                             status: RequestBody,
-                            content: MultipartBody.Part): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
+                            content: MultipartBody.Part?): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
     suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> = apiService.login(loginRequest)
     suspend fun createBiodata(token: String,
                               dob: RequestBody,

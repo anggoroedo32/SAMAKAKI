@@ -48,7 +48,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part("descriptions") descriptions: RequestBody,
         @Part("status") status: RequestBody,
-        @Part content: MultipartBody.Part
+        @Part content: MultipartBody.Part?
         ): Response<PostsResponse>
 
     @Multipart
