@@ -9,6 +9,7 @@
     android:background="@color/white"
     tools:context=".ui.menu_beranda.HomeFragment">
 
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/homeFragment"
     android:layout_width="match_parent"

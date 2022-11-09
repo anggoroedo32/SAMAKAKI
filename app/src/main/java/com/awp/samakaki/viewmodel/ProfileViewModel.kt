@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
-import com.awp.samakaki.request.UserRequest
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.EditProfileResponse
 import com.awp.samakaki.response.FindUserResponse
@@ -55,7 +54,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
 
     fun editProfile(
         token: String,
-        id: String,
+        id: Int?,
         name: RequestBody,
         email: RequestBody,
         phone: RequestBody,
@@ -67,10 +66,11 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
     ){
         _loading.value = true
         viewModelScope.launch {
+            Log.e("TAG", "editProfile: $name")
             try {
                 val response = repository.editProfile(
                     token = token,
-                    id = id,
+                    id = id!!,
                     name = name,
                     email = email,
                     phone = phone,
@@ -78,23 +78,25 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                     dob = dob,
                     marriage_status = marriageStatus,
                     status = status,
-                    file = avatar!!
+                    file = avatar
                 )
-
+                Log.e("TAG", "editProfile: $dob", )
                 if (response.code() == 200) {
                     _editProfile.postValue(BaseResponse.Success(response.body()))
-                    Log.d("edit_profile", "success_edited: ${response.body()}")
+                    Log.e("edit_profile", "success_edited: ${response.body()}")
                 } else {
                     _editProfile.postValue(BaseResponse.Error("Erorr Create Biodata"))
-                    Log.d("edit_profile", "failure_edited: ${BaseResponse.Error(response.message())}")
+                    Log.e("edit_profile", "failure_edited: ${BaseResponse.Error(response.message())}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
-            } catch (e: Exception) {
-                _findUser.postValue(BaseResponse.Error(msg = "Sebentar, sedang ada masalah"))
             }
+//            catch (e: Exception) {
+//                _findUser.postValue(BaseResponse.Error(msg = e.message))
+//                Log.d("edit_profile", "got_exception: ${BaseResponse.Error(e.toString() )}")
+//            }
         }
     }
 

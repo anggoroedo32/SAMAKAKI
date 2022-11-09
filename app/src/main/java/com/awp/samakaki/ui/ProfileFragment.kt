@@ -22,10 +22,12 @@ import com.awp.samakaki.viewmodel.IsiProfilViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
@@ -55,6 +57,7 @@ class ProfileFragment : Fragment() {
 
         val name = binding.TVProfilename
         val dob = binding.tvTgllahir
+        val address = binding.tvAlamat
         val phone = binding.tvNohp
         val mariageStatus = binding.tvStatus
         val avatar = binding.imgProfile
@@ -70,6 +73,7 @@ class ProfileFragment : Fragment() {
                     it.data
                     name.setText(it.data?.data?.biodata?.name)
                     dob.setText(it.data?.data?.biodata?.dob)
+                    address.setText(it.data?.data?.biodata?.address)
                     phone.setText(it.data?.data?.biodata?.phone)
                     mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 

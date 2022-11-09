@@ -91,10 +91,10 @@ interface ApiService {
     ): Response<FindUserResponse>
 
     @Multipart
-    @PUT("editprofile/{id}")
+    @PUT("biodata_users/{id}")
     suspend fun  editProfile(
         @Header("Authorization") token: String,
-        @Part("id") id: String,
+        @Path ("id") id: Int,
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("phone") phone: RequestBody,
@@ -102,7 +102,7 @@ interface ApiService {
         @Part("address") address: RequestBody,
         @Part("marriage_status") marriageStatus: RequestBody,
         @Part("status") status: RequestBody,
-        @Part file: MultipartBody.Part
+        @Part file: MultipartBody.Part?
     ): Response<EditProfileResponse>
 
     @POST("invitation/register")

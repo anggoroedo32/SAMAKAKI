@@ -1,5 +1,6 @@
 package com.awp.samakaki.ui
 
+import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -35,6 +36,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -82,6 +84,7 @@ class EditProfileFragment : Fragment() {
         val autoCompletePrivacy = binding.etStatusakun
         autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
 
+        getDate()
 
         val btnBack = binding.btnBack
 
@@ -112,8 +115,8 @@ class EditProfileFragment : Fragment() {
                     phone.setText(it.data?.data?.biodata?.phone)
                     email.setText(it.data?.data?.biodata?.email)
                     address.setText(it.data?.data?.biodata?.address)
-                    status.setText(it.data?.data?.biodata?.status)
-                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
+//                    status.setText(it.data?.data?.biodata?.status)
+//                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 
                     Glide.with(this)
                         .load(it.data?.data?.biodata?.avatar)
@@ -216,14 +219,20 @@ class EditProfileFragment : Fragment() {
             )
         }
 
-
         // TODO: ngenteni rampung sing ngedit layout sik, layout e durung lengkap dan belum sesuai data dari BE
-
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
-        profileViewModel.editProfile("Bearer $token", id.toString(), name, email, dob, phone, address, status, marriageStatus, avatar)
+        profileViewModel.editProfile("Bearer $token", id, name, email, phone, address , dob, marriageStatus, status, avatar)
         profileViewModel.editProfile.observe(viewLifecycleOwner) {
-
+            when(it) {
+                is BaseResponse.Success -> {
+                    it.data
+                    findNavController().popBackStack()
+                }
+                is BaseResponse.Error -> {
+                    textMessage(it.msg.toString())
+                }
+            }
         }
 
 
@@ -236,6 +245,28 @@ class EditProfileFragment : Fragment() {
     companion object{
         private val PICK_IMAGE = 100
         private var imageUriEd: Uri? = null
+    }
+
+    private fun getDate(){
+        binding.ETTanggal.setOnClickListener {
+            var day = calendar.get(Calendar.DAY_OF_MONTH)
+            var month = calendar.get(Calendar.MONTH)
+            var year = calendar.get(Calendar.YEAR)
+            val dateTime = Calendar.getInstance()
+            context?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    { view, year, monthOfYear, dayOfMonth ->
+                        dateTime.set(year,month,day)
+                        dateFormater = SimpleDateFormat("yyyy-MM-dd").format(dateTime.time)
+                        binding.ETTanggal.setText(dateFormater)
+                    },
+                    year,
+                    month,
+                    day
+                ).show()
+            }
+        }
     }
 
 
