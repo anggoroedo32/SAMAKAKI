@@ -115,8 +115,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
                     } else {
                         familyTree.visibility = View.VISIBLE
                         setupGraphView(graph)
-//                        setupGraphViewDataTop(graphDataTop, it.data?.data?.currentUser!!)
-
                     }
                 }
 
