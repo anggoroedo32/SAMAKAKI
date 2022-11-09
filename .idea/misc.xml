@@ -3,6 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.127" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/drawable/add_photo.xml" value="0.127" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/drawable/ic_profile_filled.xml" value="0.127" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/drawable/rounded_textfield.xml" value="0.127" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_camera.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_family_tree.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_isi_profil.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_login.xml" value="0.16" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_main.xml" value="0.13179347826086957" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_selamat_datang.xml" value="0.25" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/activity_undang_keluarga.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/dropdown_item.xml" value="0.203125" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_chat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_editprofile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_family.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_family_tree.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_home.xml" value="0.17050891692040018" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_home_get_started.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_isi_profil.xml" value="0.13179347826086957" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_isi_profil_keluarga.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/item_pop_up_add_member.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/layout_post_content.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/node.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/notification.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/layout/spinner_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/menu/menu_family_tree_orientation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Project App/Android/SAMAKAKI-MSIB/app/src/main/res/menu/menu_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_isi_profil_keluarga.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bottom_sheet_card_media.xml" value="0.318" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_switch_camera.xml" value="0.3415" />
