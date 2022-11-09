@@ -82,9 +82,12 @@ class EditProfileFragment : Fragment() {
         }
 
         val name = binding.ETName
+        val email = binding.ETEmail
         val dob = binding.ETTanggal
         val phone = binding.ETNoTlp
+        val address = binding.et
         val mariageStatus = binding.etStatus
+        val status = binding.ETStatusAkun
         val avatar = binding.imgEditProfile
 
 
@@ -202,8 +205,12 @@ class EditProfileFragment : Fragment() {
 
         // TODO: ngenteni rampung sing ngedit layout sik, layout e durung lengkap dan belum sesuai data dari BE
 
-//        val token = SessionManager.getToken(requireContext())
-//        profileViewModel.editProfile("Bearer $token", name, dob, phone, marriageStatus, avatar)
+        val token = SessionManager.getToken(requireContext())
+        val id = SessionManager.getIdUser(requireContext())
+        profileViewModel.editProfile("Bearer $token", id, name, dob, phone, marriageStatus, avatar)
+        profileViewModel.editProfile.observe(viewLifecycleOwner) {
+
+        }
 
 
     }
