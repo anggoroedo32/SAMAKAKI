@@ -19,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
-    private val _findUserRelations = MutableLiveData<BaseResponse<GetUserRelationResponse>>()
-    val findUserRelations: LiveData<BaseResponse<GetUserRelationResponse>> = _findUserRelations
+    private val _findUserRelations = MutableLiveData<BaseResponse<UserRelationsResponse>>()
+    val findUserRelations: LiveData<BaseResponse<UserRelationsResponse>> = _findUserRelations
 
     private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationsResponse>>()
     val createUserRelations: LiveData<BaseResponse<CreateRelationsResponse>> = _createUserRelations

@@ -59,7 +59,6 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
             when(it) {
                 is BaseResponse.Success -> {
                     it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
-                    relationName = it.data?.data?.unread?.map { it.relation.toString() }?.joinToString { it }
                 }
 
                 is BaseResponse.Error -> textMessage(it.msg.toString())
@@ -72,7 +71,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
         val token = SessionManager.getToken(requireContext())
         val invitationToken = SessionManager.getInvitation(requireContext())
-        familyTreeViewModel.updateRelation("Bearer $token", invitationToken.toString(), relationName.toString())
+        familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), movie.relation.toString())
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
