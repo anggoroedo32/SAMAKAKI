@@ -22,10 +22,12 @@ import com.awp.samakaki.viewmodel.IsiProfilViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null

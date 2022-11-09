@@ -94,7 +94,6 @@ interface ApiService {
     @PUT("editprofile/{id}")
     suspend fun  editProfile(
         @Header("Authorization") token: String,
-        @Part("id") id: String,
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("phone") phone: RequestBody,

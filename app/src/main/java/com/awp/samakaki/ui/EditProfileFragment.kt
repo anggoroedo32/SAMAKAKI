@@ -221,9 +221,18 @@ class EditProfileFragment : Fragment() {
 
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
-        profileViewModel.editProfile("Bearer $token", id.toString(), name, email, dob, phone, address, status, marriageStatus, avatar)
+        profileViewModel.editProfile("Bearer $token", name, email, dob, phone, address, status, marriageStatus, avatar)
         profileViewModel.editProfile.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    it.data
+                    textMessage("Profile anda sudah di perbarui")
+                }
 
+                is BaseResponse.Error -> {
+                    textMessage(it.msg.toString())
+                }
+            }
         }
 
 

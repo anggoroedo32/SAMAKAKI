@@ -45,7 +45,6 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     )
 
     suspend fun editProfile(token: String,
-                            id: String,
                             dob: RequestBody,
                             name: RequestBody,
                             email: RequestBody,
@@ -56,7 +55,6 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
                             file: MultipartBody.Part
     ): Response<EditProfileResponse> = apiService.editProfile(
         token,
-        id,
         name,
         dob,
         email,

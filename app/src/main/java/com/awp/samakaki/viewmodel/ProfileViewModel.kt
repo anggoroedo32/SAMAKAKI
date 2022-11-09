@@ -55,7 +55,6 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
 
     fun editProfile(
         token: String,
-        id: String,
         name: RequestBody,
         email: RequestBody,
         phone: RequestBody,
@@ -70,7 +69,6 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
             try {
                 val response = repository.editProfile(
                     token = token,
-                    id = id,
                     name = name,
                     email = email,
                     phone = phone,
@@ -94,6 +92,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
                 _findUser.postValue(BaseResponse.Error(msg = "Sebentar, sedang ada masalah"))
+                Log.d("edit_profile", "failure_edited: ${BaseResponse.Error(e.message)}")
             }
         }
     }
