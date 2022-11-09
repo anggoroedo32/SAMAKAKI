@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DataFamilyTree">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -44,35 +43,53 @@
             android:layout_height="wrap_content"
             android:scrollbars="vertical|horizontal"
             app:hasClickableChildren="true"
-            app:transformation="centerCrop"
+            app:transformation="centerInside"
+            app:alignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_50">
+                android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_family_tree_data_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/node" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rv_family_tree_data_top"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:itemCount="8"-->
+<!--                    tools:listitem="@layout/node"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"/>-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_family_tree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:itemCount="4"
                     tools:listitem="@layout/node"
-                    android:layout_marginTop="-92dp"
-                    android:layout_marginLeft="@dimen/dimen_15"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.otaliastudios.zoom.ZoomLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_people"
+            app:backgroundTint="@color/secondary_600"
+            app:tint="@android:color/white"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -106,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_80"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_isi_profil_keluarga"
             android:orientation="vertical"
             android:paddingVertical="@dimen/dimen_32"
@@ -118,28 +135,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/data_keluarga_kamu"
-                android:textSize="16sp"
                 android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/primary_600"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_16"
-                android:text="@string/nama_keluarga"
-                android:textColor="@color/neutral_500"/>
-
-            <EditText
-                android:id="@+id/et_family_name"
-                style="@style/TextfieldsStyle"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:maxLines="1"
-                android:hint="@string/nama_keluarga" />
+                android:text="@string/data_keluarga_kamu"
+                android:textColor="@color/primary_600"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,11 +151,11 @@
                 android:id="@+id/et_nama"
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
-                android:hint="@string/nama"
-                android:maxLines="1"
                 android:layout_height="@dimen/dimen_40"
+                android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_10"
-                android:layout_marginHorizontal="@dimen/dimen_35"/>
+                android:maxLines="1"
+                android:paddingEnd="6dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -172,8 +171,9 @@
                 android:layout_height="@dimen/dimen_40"
                 android:layout_marginHorizontal="@dimen/dimen_35"
                 android:layout_marginTop="@dimen/dimen_10"
+                android:paddingEnd="6dp"
                 android:inputType="number"
-                android:hint="@string/nomor_telephone" />
+                 />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -182,16 +182,34 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:text="@string/hubungan" />
 
-            <Spinner
-                android:id="@+id/et_hubungan"
-                style="@style/TextfieldsStyle"
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/et_hubungan"-->
+<!--                style="@style/TextfieldsStyle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dimen_40"-->
+<!--                android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                android:layout_marginTop="@dimen/dimen_10"-->
+<!--                android:cursorVisible="false"-->
+<!--                android:focusable="false"-->
+<!--                android:hint="@string/hubungan"-->
+<!--                android:paddingEnd="6dp" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:layout_marginHorizontal="@dimen/dimen_35"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:hint="@string/hubungan" />
+                android:layout_height="@dimen/dimen_46"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/dimen_8" >
+                <AutoCompleteTextView
+                    android:id="@+id/et_hubungan"
+                    android:focusable="false"
+                    style="@style/TextfieldsStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingEnd="6dp"
+                    android:textColor="@color/neutral_400"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <Button
@@ -201,7 +219,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/dimen_35"
-            android:layout_marginTop="@dimen/dimen_40"
+            android:layout_marginTop="@dimen/dimen_50"
             android:backgroundTint="@color/primary_500"
             android:text="@string/undang"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,15 +228,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/prgbar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

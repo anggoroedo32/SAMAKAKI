@@ -20,6 +20,7 @@ import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
@@ -47,19 +48,20 @@ class SelamatDatangActivity : AppCompatActivity() {
     private lateinit var ivUploadImg: ImageView
     private val calendar = Calendar.getInstance()
     private var dateFormater: String? = null
-    private val profileViewModel by viewModels<ProfileViewModel>()
     private var imageFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelamatDatangBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loadingState()
+
         dateFormater = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
         val btnIsiProfil = binding.btnIsiProfil
 
         btnIsiProfil.setOnClickListener{
             insertProfile()
-            Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
+
         }
 
         //Input Configuration
@@ -68,27 +70,6 @@ class SelamatDatangActivity : AppCompatActivity() {
 
         //Date Picker
         getDate()
-
-        val token = SessionManager.getToken(this)
-        val id = SessionManager.getIdUser(this)
-
-        profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
-        profileViewModel.findUser.observe(this) {
-            when(it) {
-                is BaseResponse.Loading -> showLoading()
-                is BaseResponse.Success -> {
-                    stopLoading()
-                    it.data
-                    Log.d("isi_data_biodata", "isinya : " + it.data?.data.toString())
-                    if (it.data?.data?.biodata.isNullOrEmpty()) {
-
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
-                is BaseResponse.Error -> textMessage(it.msg.toString())
-            }
-        }
 
 
     }
@@ -145,12 +126,15 @@ class SelamatDatangActivity : AppCompatActivity() {
 
             else -> {
                 var intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 //Convert
                 insertViewModel()
             }
         }
     }
+
+
     private fun insertViewModel(){
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
@@ -177,12 +161,10 @@ class SelamatDatangActivity : AppCompatActivity() {
 
         viewModelIsiProfile.createBiodataResponse.observe(this) {
             when(it) {
-                is BaseResponse.Loading -> {
-                    showLoading()
-                }
                 is BaseResponse.Success -> {
                     stopLoading()
                     it.data
+                    Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
@@ -217,6 +199,13 @@ class SelamatDatangActivity : AppCompatActivity() {
 
     fun showLoading() {
         binding.prgbar.visibility = View.VISIBLE
+    }
+
+    private fun loadingState(){
+        viewModelIsiProfile.loading.observe(this){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 
     private fun textMessage(s: String) {

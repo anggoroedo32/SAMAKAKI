@@ -50,7 +50,9 @@
     <string name="anggota_keluarga">Anggota Keluarga</string>
     <string name="nomor_telephone">Nomor Telepon</string>
     <string name="hubungan">Status Hubungan</string>
+    <string name="title_relation">Status Hubungan sebagai</string>
     <string name="konfirmasi">Konfirmasi</string>
+    <string name="dummy_relation">Bapak</string>
     <string name="welcome">Welcome</string>
     <string name="silahkan_melakukan_login">Silahkan melakukan Login</string>
     <string name="email_kamu">Email kamu</string>
@@ -75,11 +77,11 @@
     <string name="save">Save</string>
     <string name="dotdotdot">...</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="photo_profile">Photo Profile</string>
+    <string name="photo_profile">Foto Profil</string>
     <string name="edit">Edit</string>
     <string name="bio">Bio</string>
     <string name="nama">Nama</string>
-    <string name="nama_kamu">Nama kamu</string>
+    <string name="nama_kamu">Nama</string>
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="no_telepon_kamu">No Telepon kamu</string>
     <string name="lokasi_kamu">Lokasi kamu</string>
@@ -112,6 +114,7 @@
     <string name="share_link_on">Bagikan link</string>
     <string name="copy">Copy</string>
     <string name="err_empty_status">Masukkan status hubungan anda</string>
+    <string name="err_empty_dob">Isi tanggal kelahiran kamu</string>
 
     <string-array name="status">
         <item>single</item>
@@ -122,5 +125,22 @@
         <item>Private</item>
         <item>Protected</item>
         <item>Public</item>
+    </string-array>
+
+    <string-array name="relationship">
+        <item>Adek Pertama</item>
+        <item>Adek Kedua</item>
+        <item>Adek Ketiga</item>
+        <item>Bapak</item>
+        <item>Ibu</item>
+        <item>Anak Pertama</item>
+        <item>Anak Kedua</item>
+        <item>Adek Ketiga</item>
+        <item>Kakek Dari Bapak</item>
+        <item>Nenek Dari Bapak</item>
+        <item>Kakek Dari Ibu</item>
+        <item>Nenek Dari Ibu</item>
+
+
     </string-array>
 </resources>

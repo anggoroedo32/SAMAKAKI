@@ -1,5 +1,6 @@
 package com.awp.samakaki.repository
 
+import android.util.Log
 import com.awp.samakaki.data.ApiService
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
@@ -22,6 +23,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
+    suspend fun getAllPostsByFamily(token: String): Response<NewPostsResponse> = apiService.getAllPostsByFamily(token)
     suspend fun getAllPostsByUser(token: String): Response<NewPostsResponse> = apiService.getAllPostsByUser(token)
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
     suspend fun createPosts(token: String,
@@ -40,12 +42,39 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
         address,
         marriage_status,
         status,
-        file)
+        file
+    )
+
+    suspend fun editProfile(token: String,
+                            dob: RequestBody,
+                            name: RequestBody,
+                            email: RequestBody,
+                            phone: RequestBody,
+                            address: RequestBody,
+                            marriage_status: RequestBody,
+                            status: RequestBody,
+                            file: MultipartBody.Part
+    ): Response<EditProfileResponse> = apiService.editProfile(
+        token,
+        name,
+        dob,
+        email,
+        phone,
+        address,
+        marriage_status,
+        status,
+        file
+    )
+
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
-    suspend fun findUserRelations(token: String): Response<GetUserRelationResponse> = apiService.findUserRelations(token)
+    suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
+    suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)
+    suspend fun updateRelation(token: String, invitationToken: String, updateRelationRequest: UpdateRelationRequest): Response<UpdateRelationsResponse> = apiService.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
     suspend fun createUserRelations(token: String, createRelationsRequest: CreateRelationsRequest): Response<CreateRelationsResponse> = apiService.createUserRelations(token, createRelationsRequest)
     suspend fun createFamilyTree(token: String, createFamilyTreeRequest: CreateFamilyTreeRequest): Response<CreateFamilyTreeResponse> = apiService.createFamilyTree(token, createFamilyTreeRequest)
-
+    suspend fun registerWithToken(registerWithTokenRequest: RegisterWithTokenRequest): Response<RegisterWithInvitationResponse> = apiService.registerWithToken(registerWithTokenRequest)
     suspend fun forgotToken(forgotTokenRequest: ForgotTokenRequest): Response<ForgotTokenResponse> = apiService.forgotToken(forgotTokenRequest)
     suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse> = apiService.resetPassword(resetPasswordRequest)
+
+
 }

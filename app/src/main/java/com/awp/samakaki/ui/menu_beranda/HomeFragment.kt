@@ -136,11 +136,7 @@ class HomeFragment : Fragment() {
 
         viewModel.createPostResponse.observe(viewLifecycleOwner){
             when(it){
-                is BaseResponse.Loading -> {
-                    showLoading()
-                }
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
@@ -194,11 +190,7 @@ class HomeFragment : Fragment() {
     private fun observeData(){
         viewModel.listAllPosts.observe(viewLifecycleOwner) {
             when(it){
-                is BaseResponse.Loading -> {
-                    showLoading()
-                }
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data?.data?.let { it1 -> rvPosts(it1) }
                 }
                 is BaseResponse.Error -> {
@@ -217,7 +209,7 @@ class HomeFragment : Fragment() {
 
     private fun getPosts(){
         var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.getAllPosts("bearer $tokenGet")
+        viewModel.getAllPostsByFamily("bearer $tokenGet")
         observeData()
     }
 
@@ -235,14 +227,6 @@ class HomeFragment : Fragment() {
     fun createCustomTempFile(context: Context): File {
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("ExampleTime", ".jpg", storageDir)
-    }
-
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
     }
 
     private fun textMessage(s: String) {

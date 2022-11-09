@@ -43,10 +43,4 @@ class PostsAdapter(private var list: List<DataItem>) : RecyclerView.Adapter<Post
     override fun getItemCount(): Int = list.size
 
 
-//    fun setListPostsData(listDataPost: List<PostItem>)
-//    {
-//        this.list = listDataPost
-//        notifyDataSetChanged()
-//    }
-
 }

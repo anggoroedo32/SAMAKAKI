@@ -11,7 +11,7 @@ data class NewPostsResponse(
 	val status: String? = null
 )
 
-data class User(
+data class UserData(
 
 	@field:SerializedName("name")
 	val name: String? = null,
@@ -29,7 +29,7 @@ data class DataItem(
 	val descriptions: String? = null,
 
 	@field:SerializedName("user")
-	val user: User? = null,
+	val user: UserData? = null,
 
 	@field:SerializedName("content")
 	val content: String? = null,
