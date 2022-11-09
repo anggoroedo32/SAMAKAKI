@@ -69,11 +69,19 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //Dropdown Status
         val statusDropdown = resources.getStringArray(R.array.status)
-        val statusDropdownAdapter =
-            context?.let { ArrayAdapter(it,R.layout.dropdown_item,statusDropdown) }
+        val statusDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,statusDropdown)
         val autoCompleteStatus = binding.etStatus
         autoCompleteStatus.setAdapter(statusDropdownAdapter)
+
+        //Dropdown Privacy
+        val privacyDropdown = resources.getStringArray(R.array.privacy)
+        val privacyDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,privacyDropdown)
+        val autoCompletePrivacy = binding.etStatusakun
+        autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
+
 
         val btnBack = binding.btnBack
 
@@ -85,9 +93,9 @@ class EditProfileFragment : Fragment() {
         val email = binding.ETEmail
         val dob = binding.ETTanggal
         val phone = binding.ETNoTlp
-        val address = binding.et
+        val address = binding.ETLokasi
         val mariageStatus = binding.etStatus
-        val status = binding.ETStatusAkun
+        val status = binding.etStatusakun
         val avatar = binding.imgEditProfile
 
 
@@ -102,6 +110,9 @@ class EditProfileFragment : Fragment() {
                     name.setText(it.data?.data?.biodata?.name)
                     dob.setText(it.data?.data?.biodata?.dob)
                     phone.setText(it.data?.data?.biodata?.phone)
+                    email.setText(it.data?.data?.biodata?.email)
+                    address.setText(it.data?.data?.biodata?.address)
+                    status.setText(it.data?.data?.biodata?.status)
                     mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 
                     Glide.with(this)
@@ -190,8 +201,11 @@ class EditProfileFragment : Fragment() {
 
     private fun insertEditProfileData() {
         val name = binding.ETName.text.toString().toRequestBody("text/plain".toMediaType())
+        val email = binding.ETEmail.text.toString().toRequestBody("text/plain".toMediaType())
+        val address = binding.ETLokasi.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.ETTanggal.text.toString().toRequestBody("text/plain".toMediaType())
         val phone = binding.ETNoTlp.text.toString().toRequestBody("text/plain".toMediaType())
+        val status = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
         val marriageStatus = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
         val avatar = requestImage?.let {
@@ -207,7 +221,7 @@ class EditProfileFragment : Fragment() {
 
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
-        profileViewModel.editProfile("Bearer $token", id, name, dob, phone, marriageStatus, avatar)
+        profileViewModel.editProfile("Bearer $token", id.toString(), name, email, dob, phone, address, status, marriageStatus, avatar)
         profileViewModel.editProfile.observe(viewLifecycleOwner) {
 
         }
