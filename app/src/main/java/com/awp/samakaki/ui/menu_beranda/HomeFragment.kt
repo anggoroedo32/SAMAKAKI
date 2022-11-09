@@ -126,12 +126,16 @@ class HomeFragment : Fragment() {
         }
 
         var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.createPosts(
-            "bearer $tokenGet",
-            caption,
-            isStatus,
-            content!!
-        )
+        if (content != null) {
+            viewModel.createPosts(
+                "bearer $tokenGet",
+                caption,
+                isStatus,
+                content
+            )
+        }else {
+            Toast.makeText(requireContext(), "Gambar belum dimasukkan", Toast.LENGTH_SHORT).show()
+        }
 
         viewModel.createPostResponse.observe(viewLifecycleOwner){
             when(it){
