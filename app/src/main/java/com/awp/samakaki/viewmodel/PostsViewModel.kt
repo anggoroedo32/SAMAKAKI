@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.NewPostsResponse
 import com.awp.samakaki.response.PostsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -20,8 +21,8 @@ import kotlin.math.log
 @HiltViewModel
 class PostsViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel(){
 
-    private val _listAllPosts = MutableLiveData<BaseResponse<PostsResponse>>()
-    val listAllPosts: LiveData<BaseResponse<PostsResponse>> = _listAllPosts
+    private val _listAllPosts = MutableLiveData<BaseResponse<NewPostsResponse>>()
+    val listAllPosts: LiveData<BaseResponse<NewPostsResponse>> = _listAllPosts
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading

@@ -43,33 +43,38 @@
             android:layout_height="wrap_content"
             android:scrollbars="vertical|horizontal"
             app:hasClickableChildren="true"
-            app:transformation="centerCrop"
+            app:transformation="centerInside"
+            app:alignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_50">
+                android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_family_tree_data_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/node" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rv_family_tree_data_top"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:itemCount="8"-->
+<!--                    tools:listitem="@layout/node"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"/>-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_family_tree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:itemCount="4"
                     tools:listitem="@layout/node"
-                    android:layout_marginTop="-92dp"
-                    android:layout_marginLeft="@dimen/dimen_15"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.otaliastudios.zoom.ZoomLayout>
 

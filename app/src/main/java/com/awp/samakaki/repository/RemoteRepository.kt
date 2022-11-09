@@ -23,7 +23,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
-    suspend fun getAllPostsByUser(token: String): Response<PostsResponse> = apiService.getAllPostsByUser(token)
+    suspend fun getAllPostsByUser(token: String): Response<NewPostsResponse> = apiService.getAllPostsByUser(token)
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
     suspend fun createPosts(token: String,
                             descriptions: RequestBody,
@@ -66,7 +66,7 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     )
 
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
-    suspend fun findUserRelations(token: String): Response<GetUserRelationResponse> = apiService.findUserRelations(token)
+    suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
     suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)
     suspend fun updateRelation(token: String, invitationToken: String, updateRelationRequest: UpdateRelationRequest): Response<UpdateRelationsResponse> = apiService.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
     suspend fun createUserRelations(token: String, createRelationsRequest: CreateRelationsRequest): Response<CreateRelationsResponse> = apiService.createUserRelations(token, createRelationsRequest)

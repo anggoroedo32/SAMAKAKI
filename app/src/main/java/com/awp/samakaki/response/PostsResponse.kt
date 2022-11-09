@@ -10,7 +10,10 @@ data class PostsResponse(
 	val data: DataPosts? = null,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String? = null,
+
+	@field:SerializedName("posts")
+	val posts: List<PostsItem>
 )
 
 @Parcelize
