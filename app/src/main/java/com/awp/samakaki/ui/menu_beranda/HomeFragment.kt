@@ -1,12 +1,9 @@
 package com.awp.samakaki.ui.menu_beranda
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,7 +18,6 @@ import com.awp.samakaki.response.PostItem
 import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import ru.nikartm.support.BadgePosition
 import ru.nikartm.support.ImageBadgeView
 
 
