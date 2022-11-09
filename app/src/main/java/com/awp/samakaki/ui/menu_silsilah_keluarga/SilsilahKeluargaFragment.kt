@@ -18,9 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
 import com.awp.samakaki.helper.SessionManager
-import com.awp.samakaki.response.BaseResponse
-import com.awp.samakaki.response.CurrentUser
-import com.awp.samakaki.response.RelationItem
+import com.awp.samakaki.response.*
 import com.awp.samakaki.utils.Graph
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.awp.samakaki.viewmodel.NotificationsViewModel
@@ -114,7 +112,7 @@ abstract class SilsilahKeluargaFragment : Fragment() {
                         isiProfil.visibility = View.VISIBLE
                     } else {
                         familyTree.visibility = View.VISIBLE
-                        setupGraphView(graph)
+                        setupGraphView(graph, it.data.data.relation)
                     }
                 }
 
@@ -261,7 +259,7 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
 
-    private fun setupGraphView(graph: Graph) {
+    private fun setupGraphView(graph: Graph, list: List<RelationItem>) {
         adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
                 val view = LayoutInflater.from(parent.context)
@@ -270,14 +268,15 @@ abstract class SilsilahKeluargaFragment : Fragment() {
             }
 
             override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
-//                Glide.with(holder.itemView.context)
-//                    .load(list.avatar)
-//                    .centerInside()
-//                    .into(holder.imgProfile)
-//                holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
-                val relationUser = Objects.requireNonNull(getNodeData(position)).toString()
-                val list: List<String> = listOf(*relationUser.split(",").toTypedArray())
-                holder.textView.text = list.toString()
+                val list = list[position]
+                Log.d("isi_avatar", "avatar : ${list.avatar }}")
+                Glide.with(holder.itemView.context)
+                    .load(list.avatar)
+                    .centerInside()
+                    .into(holder.imgProfile)
+                holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
+//                val relationUser = Objects.requireNonNull(getNodeData(position)).toString()
+//                holder.textView.text = relationUser
             }
         }.apply {
             this.submitGraph(graph)

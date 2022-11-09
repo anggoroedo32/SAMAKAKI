@@ -56,33 +56,17 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
     override fun createGraph(): com.awp.samakaki.utils.Graph {
         val graph = com.awp.samakaki.utils.Graph()
 //        val node1 = com.awp.samakaki.utils.Node("parent")
-        val node2 = com.awp.samakaki.utils.Node(nodeText)
-        val node3 = com.awp.samakaki.utils.Node(nodeText)
-        val node4 = com.awp.samakaki.utils.Node(nodeText)
-        val node5 = com.awp.samakaki.utils.Node(nodeText)
-        val node6 = com.awp.samakaki.utils.Node(nodeText)
-        val node8 = com.awp.samakaki.utils.Node(nodeText)
-        val node7 = com.awp.samakaki.utils.Node(nodeText)
-        val node9 = com.awp.samakaki.utils.Node(nodeText)
-        val node10 = com.awp.samakaki.utils.Node(nodeText)
-        val node11 = com.awp.samakaki.utils.Node(nodeText)
-        val node12 = com.awp.samakaki.utils.Node(nodeText)
 
         val token = context?.let { SessionManager.getToken(it) }
         familyTreeViewModel.findUserRelations("Bearer $token")
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
-                    val relationData = it.data?.data?.relation
                     val node1 = com.awp.samakaki.utils.Node(it.data?.data?.currentUser?.name!!)
-                    val dataRelation = it.data?.data?.relation!!.map { it.userRelated }.joinToString(",")
-
+                    val dataRelation = it.data.data.relation.map { it.userRelated }
                     val node13 = com.awp.samakaki.utils.Node(dataRelation)
                     graph.addEdge(node1, node13)
 
-                    Log.d("silsilah_keluarga", "isi relation data $relationData")
-                    Log.d("silsilah_keluarga", "isi dataRelation $dataRelation")
-                    Log.d("silsilah_keluarga", "isi node13 $node13")
                 }
 
                 is BaseResponse.Error -> textMessage(it.msg.toString())
