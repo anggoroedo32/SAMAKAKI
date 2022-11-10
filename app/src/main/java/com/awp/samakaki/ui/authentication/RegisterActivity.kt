@@ -87,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity(Intent(this, LoginActivity::class.java))
                                         textMessage("Akun Anda Sudah Dibuat")
                                     }
-                                    is BaseResponse.Error -> textMessage(it.msg.toString())
+                                    is BaseResponse.Error -> textMessage("Email sudah terpakai")
                                 }
                             }
                         }
@@ -101,7 +101,7 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity(Intent(this, LoginActivity::class.java))
                                         textMessage("Akun Anda Sudah Dibuat")
                                     }
-                                    is BaseResponse.Error -> textMessage(it.msg.toString())
+                                    is BaseResponse.Error -> textMessage("Email sudah terpakai")
                                 }
                             }
                         }

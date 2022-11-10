@@ -1,4 +1,4 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu_profile
 
 import android.os.Bundle
 import android.util.Log
@@ -8,20 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
-import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
 import com.awp.samakaki.databinding.FragmentProfileBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
-import com.awp.samakaki.viewmodel.IsiProfilViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide

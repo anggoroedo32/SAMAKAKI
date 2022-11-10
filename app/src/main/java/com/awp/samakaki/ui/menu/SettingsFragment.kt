@@ -1,15 +1,13 @@
-package com.awp.samakaki.ui.menu_beranda
+package com.awp.samakaki.ui.menu
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentSettingsBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.ui.authentication.LoginActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class SettingsFragment : Fragment() {

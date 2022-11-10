@@ -52,13 +52,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.login(loginRequest = loginRequest)
                 if (response.code() == 200) {
                     _loginResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
-//                    Log.d("login", "success_login: ${response.body()}")
+                    _loading.value = false
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageLoginResponse>() {}.type
                     var errorResponse: MessageLoginResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _loginResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
-//                    Log.d("login", "failure_login: ${errorResponse.message.toString()}")
+                    _loading.value = false
                 }
 
             } catch (e: HttpException) {
@@ -86,11 +86,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.register(registerRequest = registerRequest)
                 if (response.code() == 200) {
                     _registerResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
+                    _loading.value = false
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageResponse>() {}.type
                     var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _registerResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
+                    _loading.value = false
                 }
 
             } catch (e: HttpException) {
@@ -119,13 +121,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.registerWithToken(registerWithTokenRequest = registerWithTokenRequest)
                 if (response.code() == 200) {
                     _registerWithTokenResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
-                    Log.d("register_with_token", "success_register: ${response.body()}")
+                    _loading.value = false
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageResponse>() {}.type
                     var errorResponse: MessageResponse = gson.fromJson(response.errorBody()?.string(), type)
                     _registerWithTokenResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
-                    Log.d("register_with_token", "failure_register: ${BaseResponse.Error(errorResponse.message.toString())}")
+                    _loading.value = false
                 }
 
             } catch (e: HttpException) {
@@ -148,14 +150,13 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.forgotToken(forgotTokenRequest)
                 if (response.code() == 200) {
                     _forgotTokenResponse.value = BaseResponse.Success(response.body())
-                    Log.d("forgot token", "success_forgot_token: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _forgotTokenResponse.value = BaseResponse.Error(response.message().toString())
-                    Log.d("forgot token", "failure_forgot_token: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             } catch (e: Exception){
                 _forgotTokenResponse.value = BaseResponse.Error(e.message)
-                Log.d("forgot token", "err_forgot_token: ${e.message}")
             }
         }
     }
@@ -173,14 +174,14 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
                 val response = repository.resetPassword(resetPasswordRequest)
                 if (response.code() == 200) {
                     _resetPasswordResponse.value = BaseResponse.Success(response.body())
-                    Log.d("reset password", "success_reset_password: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _resetPasswordResponse.value = BaseResponse.Error(response.message().toString())
-                    Log.d("reset password", "failure_reset_password: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             } catch (e: Exception){
                 _resetPasswordResponse.value = BaseResponse.Error(e.message)
-                Log.d("reset password", "err_reset_password: ${e.message}")
+                _loading.value = false
             }
         }
     }

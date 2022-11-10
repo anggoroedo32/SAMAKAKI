@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/edit_profile_fragment"
-    tools:context=".ui.EditProfileFragment">
+    tools:context=".ui.menu_profile.EditProfileFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

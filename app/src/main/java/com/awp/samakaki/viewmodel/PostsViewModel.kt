@@ -74,10 +74,10 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                         content = content)
                 if(response.code() == 200) {
                     _createPostResponse.value = BaseResponse.Success(response.body())
-                    Log.d("create_posts", "success_creating: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _createPostResponse.value = BaseResponse.Error("Erorr Create Posts")
-                    Log.d("create_posts", "failure_creatuing: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             }
         }

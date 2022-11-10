@@ -36,10 +36,10 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                 val response = repository.findUser(token, id)
                 if (response.code() == 200){
                     _findUser.postValue(BaseResponse.Success(response.body()))
-                    Log.d("edit_profile", "success_get_data: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _findUser.postValue(BaseResponse.Error(msg = "Silahkan mengisi biodata anda"))
-                    Log.d("edit_profile", "failure_get_data: ${response.message()}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
@@ -83,10 +83,10 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                 Log.e("TAG", "editProfile: $dob", )
                 if (response.code() == 200) {
                     _editProfile.postValue(BaseResponse.Success(response.body()))
-                    Log.e("edit_profile", "success_edited: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _editProfile.postValue(BaseResponse.Error("Erorr Create Biodata"))
-                    Log.e("edit_profile", "failure_edited: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")

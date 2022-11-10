@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.awp.samakaki.ui.ProfileFragment"
+        android:name="com.awp.samakaki.ui.menu_profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -42,12 +42,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.awp.samakaki.ui.menu_beranda.SettingsFragment"
+        android:name="com.awp.samakaki.ui.menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.awp.samakaki.ui.NotificationsFragment"
+        android:name="com.awp.samakaki.ui.menu.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
 

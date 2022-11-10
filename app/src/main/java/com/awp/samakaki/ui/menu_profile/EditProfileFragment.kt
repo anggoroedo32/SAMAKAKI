@@ -1,9 +1,8 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu_profile
 
 import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -15,7 +14,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +23,6 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
-import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -159,10 +156,10 @@ class EditProfileFragment : Fragment() {
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()){
-            EditProfileFragment.imageUriEd = it!!
+            imageUriEd = it!!
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
-            imageFile = uriToFile(EditProfileFragment.imageUriEd!!, requireContext())
+            imageFile = uriToFile(imageUriEd!!, requireContext())
         }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {

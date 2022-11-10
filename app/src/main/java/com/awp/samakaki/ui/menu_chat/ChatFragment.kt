@@ -1,4 +1,4 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu_chat
 
 import android.os.Bundle
 import android.view.LayoutInflater

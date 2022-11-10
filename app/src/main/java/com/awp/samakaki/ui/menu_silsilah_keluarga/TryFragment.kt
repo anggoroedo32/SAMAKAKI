@@ -12,16 +12,22 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.awp.samakaki.R
 import android.widget.LinearLayout.LayoutParams
+import com.awp.samakaki.databinding.FragmentEditprofileBinding
+import com.awp.samakaki.databinding.FragmentTryBinding
 
 class TryFragment : Fragment() {
 
+    private var _binding: FragmentTryBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_try, container, false)
+        _binding = FragmentTryBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

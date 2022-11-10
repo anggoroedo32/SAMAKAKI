@@ -42,10 +42,10 @@ class IsiProfilViewModel @Inject constructor(private val repository: RemoteRepos
 
                 if(response.code() == 200) {
                     _createBiodataResponse.value = BaseResponse.Success(response.body())
-                    Log.d("data_biodata", "success_creating: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _createBiodataResponse.value = BaseResponse.Error("Erorr Create Biodata")
-                    Log.d("data_biodata", "failure_creatuing: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             }
         }
