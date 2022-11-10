@@ -49,7 +49,7 @@ class ChatListFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
 //                R.id.notification -> findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
-                R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
+//                R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
             }
             true
         }
@@ -92,9 +92,9 @@ class ChatListFragment : Fragment() {
 //            ?.setMaxBadgeValue(99)
 //            ?.setLimitBadgeValue(true)
 
-        imageBadgeView?.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
-        }
+//        imageBadgeView?.setOnClickListener {
+//            findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
+//        }
     }
 
     override fun onDestroyView() {

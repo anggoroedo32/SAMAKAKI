@@ -78,9 +78,11 @@ class ProfileFragment : Fragment() {
 
                     name.setText(it.data?.data?.biodata?.name)
                     dob.setText(it.data?.data?.biodata?.dob)
-                    address.setText(it.data?.data?.biodata?.address)
+                    var addressCapitalize = it.data?.data?.biodata?.address
+                    address.setText(addressCapitalize?.capitalize())
                     phone.setText(it.data?.data?.biodata?.phone)
-                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
+                    val marriageStatusCapitalize = it.data?.data?.biodata?.marriageStatus
+                    mariageStatus.setText(marriageStatusCapitalize?.capitalize())
 
                     Glide.with(this)
                         .load(it.data?.data?.biodata?.avatar)

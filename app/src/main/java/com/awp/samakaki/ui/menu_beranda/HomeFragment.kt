@@ -28,6 +28,7 @@ import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.DataPosts
 import com.awp.samakaki.response.PostsItem
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,6 +36,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import ru.nikartm.support.ImageBadgeView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -49,6 +51,8 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<PostsViewModel>()
     private var imageFile: File? = null
     private var _status: String = "public"
+    private var imageBadgeView: ImageBadgeView? = null
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
 
 
     var familyName = arrayOf<String?>(
@@ -76,9 +80,10 @@ class HomeFragment : Fragment() {
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
+//                R.id.notification -> findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
             }
             true
@@ -172,18 +177,27 @@ class HomeFragment : Fragment() {
         return myFile
     }
 
-    private fun refresh(context: Context){
-        context?.let {
-            val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
-            fragmentManager?.let {
-                val currentFragment = fragmentManager.findFragmentById(R.id.homeFragment)
-                currentFragment?.let {
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.detach(it)
-                    fragmentTransaction.attach(it)
-                    fragmentTransaction.commit()
+    private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
                 }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
             }
+        }
+
+//        imageBadgeView?.setBadgeValue(notificationsCount)
+//            ?.setMaxBadgeValue(99)
+//            ?.setLimitBadgeValue(true)
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
         }
     }
 

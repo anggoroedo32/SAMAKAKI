@@ -50,20 +50,6 @@
             app:layout_constraintTop_toBottomOf="@id/TV_profilename"
             tools:ignore="SpUsage" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_etc"
-            android:backgroundTint="@color/primary_600"
-            style="@style/ButtonStyle3"
-            android:text="@string/dotdotdot"
-            android:textSize="@dimen/dimen_10"
-            android:layout_width="@dimen/dimen_53"
-            android:layout_height="@dimen/dimen_44"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_30"
-            app:layout_constraintTop_toBottomOf="@id/TV_profilename"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:cornerRadius="@dimen/dimen_10"
-            tools:ignore="SpUsage"/>
 
         <ImageView
             android:id="@+id/ic_house"
@@ -83,6 +69,8 @@
             app:layout_constraintTop_toBottomOf="@id/img_profile"
             android:layout_marginTop="@dimen/dimen_25"
             android:layout_marginStart="@dimen/dimen_5"
+            android:singleLine="false"
+            android:maxEms="7"
             tools:text="Surabaya"
             android:textColor="@color/primary_600"/>
 

@@ -6,6 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ui.menu_silsilah_keluarga.TryFragment">
 
+    <View
+        android:id="@+id/viewLine1"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy4"
+        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy4"
+        app:layout_constraintStart_toStartOf="@+id/wrap_dummy4" />
+
+    <View
+        android:id="@+id/viewLine2"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/wrap_dummy1"
+        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy1"
+        app:layout_constraintStart_toStartOf="@+id/wrap_dummy1" />
+
+    <View
+        android:id="@+id/viewLine3"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="@id/viewLine1"
+        app:layout_constraintEnd_toEndOf="@+id/viewLine2"
+        app:layout_constraintStart_toEndOf="@+id/viewLine1" />
+
+    <View
+        android:id="@+id/viewLine4"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy3"
+        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy3"
+        app:layout_constraintStart_toStartOf="@+id/wrap_dummy3" />
+
+    <View
+        android:id="@+id/viewLine5"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/viewLine4"
+        app:layout_constraintStart_toEndOf="@+id/viewLine1"
+        app:layout_constraintTop_toTopOf="@+id/viewLine4" />
+
+
     <LinearLayout
         android:id="@+id/wrap_dummy1"
         android:layout_width="wrap_content"
@@ -84,33 +130,6 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/viewLine"
-        android:layout_width="5dp"
-        android:layout_height="20dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy4"
-        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy4"
-        app:layout_constraintStart_toStartOf="@+id/wrap_dummy4" />
-
-    <View
-        android:id="@+id/viewLine1"
-        android:layout_width="5dp"
-        android:layout_height="20dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/wrap_dummy1"
-        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy1"
-        app:layout_constraintStart_toStartOf="@+id/wrap_dummy1" />
-
-    <View
-        android:id="@+id/viewLine3"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:background="@color/black"
-
-        app:layout_constraintTop_toTopOf="@id/viewLine"
-        app:layout_constraintEnd_toEndOf="@+id/viewLine1"
-        app:layout_constraintStart_toEndOf="@+id/viewLine" />
 
     <LinearLayout
         android:id="@+id/wrap_dummy4"
