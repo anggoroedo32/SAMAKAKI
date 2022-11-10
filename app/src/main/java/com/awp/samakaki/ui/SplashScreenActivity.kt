@@ -54,13 +54,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
         }
 
-//        val btnGetStarted = binding.btnGetstarted
-//        btnGetStarted.setOnClickListener {
-//            val intent = Intent(this, RegisterActivity::class.java)
-//            intent.putExtra("invit", invitToken)
-//            startActivity(intent)
-//        }
-
         Handler(Looper.getMainLooper()).postDelayed({
 
 
@@ -89,7 +82,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
 
             } else if (token.isNullOrEmpty()) {
-//                SessionManager.saveInvitationToken(this, invitToken.toString())
+
                 val intent = Intent(this, RegisterActivity::class.java)
                 intent.putExtra("invit", invitToken)
                 startActivity(intent)
@@ -100,9 +93,4 @@ class SplashScreenActivity : AppCompatActivity() {
         }, 3000)
 
     }
-
-    private fun textMessage(s: String) {
-        Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
-    }
-
 }
