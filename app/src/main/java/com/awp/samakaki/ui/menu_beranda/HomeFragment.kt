@@ -152,17 +152,20 @@ class HomeFragment : Fragment() {
         }
 
         var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.createPosts(
-            "bearer $tokenGet",
-            caption,
-            isStatus,
-            content!!
-        )
+        if (content != null) {
+            viewModel.createPosts(
+                "bearer $tokenGet",
+                caption,
+                isStatus,
+                content
+            )
+        }else {
+            Toast.makeText(requireContext(), "Gambar belum dimasukkan", Toast.LENGTH_SHORT).show()
+        }
 
         viewModel.createPostResponse.observe(viewLifecycleOwner){
             when(it){
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
@@ -218,7 +221,6 @@ class HomeFragment : Fragment() {
         viewModel.listAllPosts.observe(viewLifecycleOwner) {
             when(it){
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data?.data?.let { it1 -> rvPosts(it1) }
                 }
                 is BaseResponse.Error -> {
@@ -257,13 +259,6 @@ class HomeFragment : Fragment() {
         return File.createTempFile("ExampleTime", ".jpg", storageDir)
     }
 
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
-    }
 
     private fun textMessage(s: String) {
         Toast.makeText(requireContext(),s, Toast.LENGTH_SHORT).show()

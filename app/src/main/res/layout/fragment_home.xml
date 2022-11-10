@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.menu_beranda.HomeFragment">
+
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/homeFragment"
@@ -234,18 +235,8 @@
         app:layout_constraintTop_toBottomOf="@+id/wrapper_ic_privacy"
         tools:listitem="@layout/layout_post_content" />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/prgbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

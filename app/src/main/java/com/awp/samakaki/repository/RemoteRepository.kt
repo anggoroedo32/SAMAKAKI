@@ -41,7 +41,32 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
         address,
         marriage_status,
         status,
-        file)
+        file
+    )
+
+    suspend fun editProfile(token: String,
+                            id: Int,
+                            dob: RequestBody,
+                            name: RequestBody,
+                            email: RequestBody,
+                            phone: RequestBody,
+                            address: RequestBody,
+                            marriage_status: RequestBody,
+                            status: RequestBody,
+                            file: MultipartBody.Part?
+    ): Response<EditProfileResponse> = apiService.editProfile(
+        token,
+        id,
+        name,
+        email,
+        phone,
+        dob,
+        address,
+        marriage_status,
+        status,
+        file
+    )
+
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
     suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
     suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)
@@ -51,4 +76,6 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun registerWithToken(registerWithTokenRequest: RegisterWithTokenRequest): Response<RegisterWithInvitationResponse> = apiService.registerWithToken(registerWithTokenRequest)
     suspend fun forgotToken(forgotTokenRequest: ForgotTokenRequest): Response<ForgotTokenResponse> = apiService.forgotToken(forgotTokenRequest)
     suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse> = apiService.resetPassword(resetPasswordRequest)
+
+
 }
