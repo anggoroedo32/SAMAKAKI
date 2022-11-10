@@ -75,6 +75,7 @@ class ProfileFragment : Fragment() {
             when(it) {
                 is BaseResponse.Success -> {
                     it.data
+
                     name.setText(it.data?.data?.biodata?.name)
                     dob.setText(it.data?.data?.biodata?.dob)
                     address.setText(it.data?.data?.biodata?.address)

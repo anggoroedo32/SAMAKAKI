@@ -67,11 +67,15 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
                     val resource = it.data.data.relation.map { it.relationName }.toSet().joinToString()
 
 
-                    val exp = listOf(resource).find { it.startsWith("nenek_dari_ibu") }
+                    val exp = resource.contains("nenek_dari_ibu")
+//                        listOf(resource).find { it.contains("nenek_dari_ibu") }
                     Log.d("TAG", "createGraphresource: $dataRelation ")
                     Log.d("TAG", "createGraphdataRelation: $resource ")
                     Log.d("TAG", "createGraph: $exp ")
                     val node13 = com.awp.samakaki.utils.Node(dataRelation)
+                    when {
+                        resource.contains("bapak") -> Log.e("TAG", "createGraph: punya bapak"  )
+                    }
 
 
 
@@ -91,7 +95,7 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
 //    override fun createGraphDataTop(): com.awp.samakaki.utils.Graph {
 //        val graphDataTop = com.awp.samakaki.utils.Graph()
 //        val node1 = com.awp.samakaki.utils.Node("parent")
-//        val node2 = com.awp.samakaki.utils.Node(nodeText)
+//        val node2 = com.awp.samakaki.utils.Node("child")
 //        val node3 = com.awp.samakaki.utils.Node(nodeText)
 //        val node4 = com.awp.samakaki.utils.Node(nodeText)
 //        val node5 = com.awp.samakaki.utils.Node(nodeText)

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.menu_silsilah_keluarga.TryFragment">
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_dummy1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/wrap_dummy3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wrap_dummy4"
+        app:layout_constraintTop_toBottomOf="@+id/wrap_dummy1">
+
+        <ImageView
+            android:id="@+id/img_dummy2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wrap_dummy2"
+        app:layout_constraintTop_toBottomOf="@+id/wrap_dummy1">
+
+        <ImageView
+            android:id="@+id/img_dummy3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy4"
+        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy4"
+        app:layout_constraintStart_toStartOf="@+id/wrap_dummy4" />
+
+    <View
+        android:id="@+id/viewLine1"
+        android:layout_width="5dp"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/wrap_dummy1"
+        app:layout_constraintEnd_toEndOf="@+id/wrap_dummy1"
+        app:layout_constraintStart_toStartOf="@+id/wrap_dummy1" />
+
+    <View
+        android:id="@+id/viewLine3"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/black"
+
+        app:layout_constraintTop_toTopOf="@id/viewLine"
+        app:layout_constraintEnd_toEndOf="@+id/viewLine1"
+        app:layout_constraintStart_toEndOf="@+id/viewLine" />
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/wrap_dummy2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrap_dummy1">
+
+        <ImageView
+            android:id="@+id/img_dummy4"
+            android:layout_width="43dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/wrap_dummy1"
+        app:layout_constraintEnd_toStartOf="@+id/wrap_dummy1"
+        app:layout_constraintTop_toTopOf="@+id/wrap_dummy1">
+
+        <ImageView
+            android:id="@+id/img_dummy5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy1"
+        app:layout_constraintEnd_toStartOf="@+id/wrap_dummy7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/img_dummy6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wrap_dummy7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/wrap_dummy1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wrap_dummy6">
+
+        <ImageView
+            android:id="@+id/img_dummy7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/dummy_avatar" />
+
+        <TextView
+            android:id="@+id/name_dummy7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy 1" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
