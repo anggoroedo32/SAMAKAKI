@@ -1,146 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/profile_fragment">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_profile"
-        android:layout_width="113dp"
-        android:layout_height="112dp"
-        android:layout_margin="@dimen/dimen_20"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/TV_profilename"
-        tools:src="@drawable/dummy_avatar"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/TV_profilename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/semibold_16prim500"
-        android:layout_marginStart="@dimen/dimen_10"
-        app:layout_constraintStart_toEndOf="@id/img_profile"
-        app:layout_constraintTop_toTopOf="@id/img_profile"
-        tools:text="Yunanda Anggraini"
-        android:textColor="@color/neutral_700"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="113dp"
+            android:layout_height="112dp"
+            android:layout_margin="@dimen/dimen_20"
+            app:layout_constraintEnd_toStartOf="@id/TV_profilename"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/dummy_avatar" />
+        <TextView
+            android:id="@+id/TV_profilename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/semibold_16prim500"
+            android:layout_marginStart="@dimen/dimen_20"
+            app:layout_constraintStart_toEndOf="@id/img_profile"
+            app:layout_constraintTop_toTopOf="@id/img_profile"
+            tools:text="Yunanda Anggraini"
+            android:textColor="@color/neutral_700"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_ed_profile"
-        android:backgroundTint="@color/primary_600"
-        style="@style/ButtonStyle2"
-        android:layout_width="126dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:text="@string/edit_profile"
-        android:textSize="@dimen/dimen_10"
-        app:icon="@drawable/icon_edit"
-        app:iconTint="@color/white"
-        app:iconSize="@dimen/dimen_14"
-        android:layout_marginEnd="@dimen/dimen_30"
-        app:layout_constraintEnd_toStartOf="@+id/btn_etc"
-        app:layout_constraintTop_toBottomOf="@id/TV_profilename"
-        app:cornerRadius="@dimen/dimen_10"
-        tools:ignore="SpUsage" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ed_profile"
+            style="@style/ButtonStyle2"
+            android:layout_width="126dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/primary_600"
+            android:text="@string/edit_profile"
+            android:textSize="@dimen/dimen_10"
+            app:cornerRadius="@dimen/dimen_10"
+            app:icon="@drawable/icon_edit"
+            app:iconSize="@dimen/dimen_14"
+            app:iconTint="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/img_profile"
+            app:layout_constraintTop_toBottomOf="@id/TV_profilename"
+            tools:ignore="SpUsage" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_etc"
-        android:backgroundTint="@color/primary_600"
-        style="@style/ButtonStyle3"
-        android:text="@string/dotdotdot"
-        android:textSize="@dimen/dimen_10"
-        android:layout_width="@dimen/dimen_53"
-        android:layout_height="@dimen/dimen_44"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:layout_marginEnd="@dimen/dimen_30"
-        app:layout_constraintTop_toBottomOf="@id/TV_profilename"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cornerRadius="@dimen/dimen_10"
-        tools:ignore="SpUsage" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_etc"
+            android:backgroundTint="@color/primary_600"
+            style="@style/ButtonStyle3"
+            android:text="@string/dotdotdot"
+            android:textSize="@dimen/dimen_10"
+            android:layout_width="@dimen/dimen_53"
+            android:layout_height="@dimen/dimen_44"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginEnd="@dimen/dimen_30"
+            app:layout_constraintTop_toBottomOf="@id/TV_profilename"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cornerRadius="@dimen/dimen_10"
+            tools:ignore="SpUsage"/>
 
-    <ImageView
-        android:id="@+id/ic_house"
-        android:layout_width="@dimen/dimen_20"
-        android:layout_height="@dimen/dimen_20"
-        android:src="@drawable/ic_house_outline_green"
-        android:layout_marginTop="@dimen/dimen_30"
-        app:layout_constraintStart_toStartOf="@id/img_profile"
-        app:layout_constraintTop_toBottomOf="@id/img_profile"/>
+        <ImageView
+            android:id="@+id/ic_house"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:src="@drawable/ic_house_outline_green"
+            android:layout_marginTop="@dimen/dimen_30"
+            app:layout_constraintStart_toStartOf="@id/img_profile"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"/>
 
-    <ImageView
-        android:id="@+id/ic_users"
-        android:layout_width="@dimen/dimen_20"
-        android:layout_height="@dimen/dimen_20"
-        android:src="@drawable/ic_users_green"
-        android:layout_marginTop="@dimen/dimen_27"
-        app:layout_constraintStart_toStartOf="@id/ic_house"
-        app:layout_constraintTop_toBottomOf="@id/ic_house"/>
+        <TextView
+            android:id="@+id/tv_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/regular_14prim600"
+            app:layout_constraintStart_toEndOf="@id/ic_house"
+            app:layout_constraintTop_toBottomOf="@id/img_profile"
+            android:layout_marginTop="@dimen/dimen_25"
+            android:layout_marginStart="@dimen/dimen_5"
+            tools:text="Surabaya"
+            android:textColor="@color/primary_600"/>
 
-    <ImageView
-        android:id="@+id/ic_calendar"
-        android:layout_width="@dimen/dimen_20"
-        android:layout_height="@dimen/dimen_20"
-        android:src="@drawable/ic_calendarblank_green"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
-        app:layout_constraintBottom_toBottomOf="@id/ic_house"/>
+        <ImageView
+            android:id="@+id/ic_calendar"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:src="@drawable/ic_calendarblank_green"
+            app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+            app:layout_constraintBottom_toBottomOf="@id/ic_house" />
 
-    <ImageView
-        android:id="@+id/ic_telephone"
-        android:layout_width="@dimen/dimen_20"
-        android:layout_height="@dimen/dimen_20"
-        android:src="@drawable/ic_telephone_green"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical"
-        app:layout_constraintBottom_toBottomOf="@id/ic_users"/>
+        <TextView
+            android:id="@+id/tv_tgllahir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/regular_14prim600"
+            app:layout_constraintStart_toEndOf="@id/ic_calendar"
+            app:layout_constraintTop_toTopOf="@id/tv_alamat"
+            android:layout_marginStart="@dimen/dimen_5"
+            tools:text="21 Januari 1999"
+            android:textColor="@color/primary_600" />
 
-    <TextView
-        android:id="@+id/tv_alamat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/regular_14prim600"
-        app:layout_constraintStart_toEndOf="@id/ic_house"
-        app:layout_constraintTop_toBottomOf="@id/img_profile"
-        android:layout_marginTop="@dimen/dimen_25"
-        android:layout_marginStart="@dimen/dimen_5"
-        tools:text="Surabaya"
-        android:textColor="@color/primary_600"/>
-    <TextView
-        android:id="@+id/tv_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/regular_14prim600"
-        app:layout_constraintStart_toEndOf="@id/ic_users"
-        app:layout_constraintTop_toBottomOf="@id/tv_alamat"
-        android:layout_marginTop="@dimen/dimen_15"
-        android:layout_marginStart="@dimen/dimen_5"
-        tools:text="Sudah Nikah"
-        android:textColor="@color/primary_600"/>
-    <TextView
-        android:id="@+id/tv_tgllahir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/regular_14prim600"
-        app:layout_constraintStart_toEndOf="@id/ic_calendar"
-        app:layout_constraintTop_toTopOf="@id/tv_alamat"
-        android:layout_marginStart="@dimen/dimen_5"
-        tools:text="21 Januari 1999"
-        android:textColor="@color/primary_600"/>
+        <ImageView
+            android:id="@+id/ic_users"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:src="@drawable/ic_users_green"
+            android:layout_marginTop="@dimen/dimen_27"
+            app:layout_constraintStart_toStartOf="@id/ic_house"
+            app:layout_constraintTop_toBottomOf="@id/ic_house"/>
 
-    <TextView
-        android:id="@+id/tv_nohp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/regular_14prim600"
-        app:layout_constraintStart_toEndOf="@id/ic_telephone"
-        app:layout_constraintTop_toTopOf="@id/tv_status"
-        android:layout_marginStart="@dimen/dimen_5"
-        tools:text="08212321546"
-        android:textColor="@color/primary_600"/>
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/regular_14prim600"
+            app:layout_constraintStart_toEndOf="@id/ic_users"
+            app:layout_constraintTop_toBottomOf="@id/tv_alamat"
+            android:layout_marginTop="@dimen/dimen_15"
+            android:layout_marginStart="@dimen/dimen_5"
+            tools:text="Sudah Nikah"
+            android:textColor="@color/primary_600"/>
+
+        <ImageView
+            android:id="@+id/ic_telephone"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:src="@drawable/ic_telephone_green"
+            app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+            app:layout_constraintBottom_toBottomOf="@id/ic_users" />
+
+        <TextView
+            android:id="@+id/tv_nohp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/regular_14prim600"
+            app:layout_constraintStart_toEndOf="@id/ic_telephone"
+            app:layout_constraintTop_toTopOf="@id/tv_status"
+            android:layout_marginStart="@dimen/dimen_5"
+            tools:text="08212321546"
+            android:textColor="@color/primary_600"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_64"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RV_profile"
+        android:id="@+id/rv_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10"
@@ -149,15 +165,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic_users"
         tools:listitem="@layout/layout_post_content"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_64"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/prgbar"
@@ -170,4 +177,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -28,7 +28,6 @@ import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.DataPosts
 import com.awp.samakaki.response.PostsItem
-import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
@@ -36,7 +35,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import ru.nikartm.support.ImageBadgeView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -49,9 +47,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var ivUploadImg: ImageView
     private val viewModel by viewModels<PostsViewModel>()
-    private val notificationsViewModel by viewModels<NotificationsViewModel>()
-    private var imageBadgeView: ImageBadgeView? = null
-    private lateinit var postsAdapter: PostsAdapter
     private var imageFile: File? = null
     private var _status: String = "public"
 
@@ -81,10 +76,9 @@ class HomeFragment : Fragment() {
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
-        initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-//                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
+                R.id.notification -> Toast.makeText(context, "Clicked Notifications", Toast.LENGTH_SHORT).show()
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
             }
             true
@@ -118,50 +112,27 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initNotificationCounter() {
-        val token = SessionManager.getToken(requireContext())
-        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
-
-        notificationsViewModel.getNotifications("Bearer $token")
-        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
-            when(it) {
-                is BaseResponse.Success -> {
-                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
-                }
-
-                is BaseResponse.Error -> textMessage(it.msg.toString())
-            }
-        }
-
-
-        imageBadgeView?.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
-        }
-    }
-
     private fun insertViewModelPosts(status: String){
         val caption = binding.edPost.text.toString().toRequestBody("text/plain".toMediaType())
         var isStatus = status.toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
-        var content = requestImage?.let {
-            MultipartBody.Part.createFormData(
-                "content",
-                imageFile?.name,
-                it
-            )
+        var content = requestImage.let {
+            it?.let { it1 ->
+                MultipartBody.Part.createFormData(
+                    "content",
+                    imageFile?.name,
+                    it1
+                )
+            }
         }
 
         var tokenGet = SessionManager.getToken(requireContext())
-        if (content != null) {
-            viewModel.createPosts(
-                "bearer $tokenGet",
-                caption,
-                isStatus,
-                content
-            )
-        }else {
-            Toast.makeText(requireContext(), "Gambar belum dimasukkan", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.createPosts(
+            "bearer $tokenGet",
+            caption,
+            isStatus,
+            content
+        )
 
         viewModel.createPostResponse.observe(viewLifecycleOwner){
             when(it){
@@ -180,10 +151,10 @@ class HomeFragment : Fragment() {
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()){
-            imageUri = it!!
+            imageUri = it
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
-            imageFile = uriToFile(imageUri!!, requireContext())
+            imageFile = imageUri?.let { it1 -> uriToFile(it1, requireContext()) }
         }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
@@ -214,7 +185,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun observeData(){
@@ -239,7 +209,7 @@ class HomeFragment : Fragment() {
 
     private fun getPosts(){
         var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.getAllPosts("bearer $tokenGet")
+        viewModel.getAllPostsByFamily("bearer $tokenGet")
         observeData()
     }
 
@@ -258,7 +228,6 @@ class HomeFragment : Fragment() {
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("ExampleTime", ".jpg", storageDir)
     }
-
 
     private fun textMessage(s: String) {
         Toast.makeText(requireContext(),s, Toast.LENGTH_SHORT).show()

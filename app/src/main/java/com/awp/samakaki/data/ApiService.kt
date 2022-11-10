@@ -48,7 +48,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part("descriptions") descriptions: RequestBody,
         @Part("status") status: RequestBody,
-        @Part content: MultipartBody.Part
+        @Part content: MultipartBody.Part?
         ): Response<PostsResponse>
 
     @Multipart
@@ -124,8 +124,12 @@ interface ApiService {
 
 
     @GET("posts")
-    suspend fun getAllPostsByUser(
+    suspend fun getAllPostsByFamily(
         @Header("Authorization") token: String
     ): Response<NewPostsResponse>
 
+    @GET("user/posts")
+    suspend fun getAllPostsByUser(
+        @Header("Authorization") token: String
+    ): Response<NewPostsResponse>
 }

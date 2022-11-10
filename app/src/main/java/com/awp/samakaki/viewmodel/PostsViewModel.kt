@@ -30,7 +30,23 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _createPostResponse = MutableLiveData<BaseResponse<PostsResponse>>()
     val createPostResponse: LiveData<BaseResponse<PostsResponse>> = _createPostResponse
 
-    fun getAllPosts(token: String){
+    fun getAllPostsByFamily(token: String){
+        viewModelScope.launch {
+            _loading.value = true
+            viewModelScope.launch {
+                val response = repository.getAllPostsByFamily(token = token)
+                if(response.code() == 200) {
+                    _listAllPosts.value = BaseResponse.Success(response.body())
+                    Log.d("get_posts", "success_creating: ${response.body()}")
+                } else {
+                    _listAllPosts.value = BaseResponse.Error("Erorr Get Posts")
+                    Log.d("get_posts", "failure_creatuing: ${BaseResponse.Error(response.message())}")
+                }
+            }
+        }
+    }
+
+    fun getAllPostsByUser(token: String){
         viewModelScope.launch {
             _loading.value = true
             viewModelScope.launch {
@@ -47,7 +63,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     }
 
     fun createPosts(
-        token: String, descriptions: RequestBody, status: RequestBody, content: MultipartBody.Part){
+        token: String, descriptions: RequestBody, status: RequestBody, content: MultipartBody.Part?){
         viewModelScope.launch {
             _loading.value = true
             viewModelScope.launch {

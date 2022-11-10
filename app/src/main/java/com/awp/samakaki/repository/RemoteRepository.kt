@@ -23,12 +23,13 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
+    suspend fun getAllPostsByFamily(token: String): Response<NewPostsResponse> = apiService.getAllPostsByFamily(token)
     suspend fun getAllPostsByUser(token: String): Response<NewPostsResponse> = apiService.getAllPostsByUser(token)
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
     suspend fun createPosts(token: String,
                             descriptions: RequestBody,
                             status: RequestBody,
-                            content: MultipartBody.Part): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
+                            content: MultipartBody.Part?): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
     suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> = apiService.login(loginRequest)
     suspend fun createBiodata(token: String,
                               dob: RequestBody,
