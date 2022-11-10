@@ -18,10 +18,15 @@ import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
+import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.DataItem
+import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
