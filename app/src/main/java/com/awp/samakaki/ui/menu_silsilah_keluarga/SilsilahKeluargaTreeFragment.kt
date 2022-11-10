@@ -63,9 +63,20 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
             when(it) {
                 is BaseResponse.Success -> {
                     val node1 = com.awp.samakaki.utils.Node(it.data?.data?.currentUser?.name!!)
-                    val dataRelation = it.data.data.relation.map { it.userRelated }
+                    val dataRelation = it.data.data.relation.map { it.userRelated }.toSet().joinToString()
+                    val resource = it.data.data.relation.map { it.relationName }.toSet().joinToString()
+
+
+                    val exp = listOf(resource).find { it.startsWith("nenek_dari_ibu") }
+                    Log.d("TAG", "createGraphresource: $dataRelation ")
+                    Log.d("TAG", "createGraphdataRelation: $resource ")
+                    Log.d("TAG", "createGraph: $exp ")
                     val node13 = com.awp.samakaki.utils.Node(dataRelation)
+
+
+
                     graph.addEdge(node1, node13)
+
 
                 }
 
@@ -73,15 +84,6 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
             }
         }
 
-//        graph.addEdge(node1, node2)
-//        graph.addEdge(node1, node3)
-//        graph.addEdge(node1, node4)
-//        graph.addEdge(node2, node5)
-//        graph.addEdge(node2, node6)
-//        graph.addEdge(node6, node7)
-//        graph.addEdge(node6, node8)
-//        graph.addEdge(node4, node10)
-//        graph.addEdge(node4, node11)
 
         return graph
     }
