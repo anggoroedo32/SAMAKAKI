@@ -37,10 +37,10 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                 val response = repository.getAllPostsByFamily(token = token)
                 if(response.code() == 200) {
                     _listAllPosts.value = BaseResponse.Success(response.body())
-                    Log.d("get_posts", "success_creating: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _listAllPosts.value = BaseResponse.Error("Erorr Get Posts")
-                    Log.d("get_posts", "failure_creatuing: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             }
         }
@@ -53,10 +53,10 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                 val response = repository.getAllPostsByUser(token = token)
                 if(response.code() == 200) {
                     _listAllPosts.value = BaseResponse.Success(response.body())
-                    Log.d("get_posts", "success_creating: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _listAllPosts.value = BaseResponse.Error("Erorr Get Posts")
-                    Log.d("get_posts", "failure_creatuing: ${BaseResponse.Error(response.message())}")
+                    _loading.value = false
                 }
             }
         }

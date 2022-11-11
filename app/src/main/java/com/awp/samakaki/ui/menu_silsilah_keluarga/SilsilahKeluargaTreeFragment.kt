@@ -62,19 +62,21 @@ class SilsilahKeluargaTreeFragment : SilsilahKeluargaFragment() {
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
-                    val node1 = com.awp.samakaki.utils.Node(it.data?.data?.currentUser?.name!!)
-                    val dataRelation = it.data.data.relation.map { it.userRelated }.toSet().joinToString()
-                    val resource = it.data.data.relation.map { it.relationName }.toSet().joinToString()
+                    val node1 = com.awp.samakaki.utils.Node(it.data?.data?.currentUser!!)
+                    val dataRelation = it.data.data.relation?.map { it?.userRelated }?.toSet()?.joinToString()
+                    val resource = it.data.data.relation?.map { it?.relationName }?.toSet()?.joinToString()
 
 
-                    val exp = resource.contains("nenek_dari_ibu")
+                    val exp = resource?.contains("nenek_dari_ibu")
 //                        listOf(resource).find { it.contains("nenek_dari_ibu") }
                     Log.d("TAG", "createGraphresource: $dataRelation ")
                     Log.d("TAG", "createGraphdataRelation: $resource ")
                     Log.d("TAG", "createGraph: $exp ")
-                    val node13 = com.awp.samakaki.utils.Node(dataRelation)
-                    when {
-                        resource.contains("bapak") -> Log.e("TAG", "createGraph: punya bapak"  )
+                    val node13 = com.awp.samakaki.utils.Node(dataRelation!!)
+                    if (resource != null) {
+                        when {
+                            resource.contains("bapak") -> Log.e("TAG", "createGraph: punya bapak"  )
+                        }
                     }
 
 
