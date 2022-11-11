@@ -8,15 +8,12 @@ import android.os.Environment
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,8 +23,6 @@ import com.awp.samakaki.databinding.FragmentHomeBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
-import com.awp.samakaki.response.DataPosts
-import com.awp.samakaki.response.PostsItem
 import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -91,6 +86,7 @@ class HomeFragment : Fragment() {
 
         //GetPosts
         getPosts()
+        loadingState()
 
         val addMedia = binding.addMedia
         addMedia.setOnClickListener {
@@ -250,5 +246,17 @@ class HomeFragment : Fragment() {
     companion object{
         private val PICK_IMAGE = 100
         private var imageUri: Uri? = null
+    }
+
+    private fun loadingState(){
+        viewModel.loading.observe(viewLifecycleOwner){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 }

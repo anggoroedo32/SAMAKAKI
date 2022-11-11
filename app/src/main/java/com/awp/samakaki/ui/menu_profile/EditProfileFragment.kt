@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -82,6 +83,7 @@ class EditProfileFragment : Fragment() {
         autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
 
         getDate()
+        loadingState()
 
         val btnBack = binding.btnBack
 
@@ -263,6 +265,18 @@ class EditProfileFragment : Fragment() {
                     day
                 ).show()
             }
+        }
+    }
+
+    private fun loadingState(){
+        profileViewModel.loading.observe(viewLifecycleOwner){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
+
+        profileViewModel.loading.observe(viewLifecycleOwner) {
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
         }
     }
 
