@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -91,6 +92,8 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        loadingState()
+
         val btnEdProfile = binding.btnEdProfile
         btnEdProfile.setOnClickListener {
             val fragmentManager = parentFragmentManager
@@ -142,5 +145,17 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun loadingState(){
+        viewModel.loading.observe(viewLifecycleOwner){
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.prgbar.isVisible = !it
+            binding.prgbar.isVisible = it
+        }
     }
 }
