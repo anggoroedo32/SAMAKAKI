@@ -1,4 +1,4 @@
-package com.awp.samakaki
+package com.awp.samakaki.ui.menu_chat
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.awp.samakaki.R
 
 class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
@@ -14,17 +15,19 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(
     var chat = arrayOf("Ingpo madang", "Ingpo madang", "Ingpo madang", "Ingpo madang",
         "Ingpo madang", "Ingpo madang", "Ingpo madang", "Ingpo madang", "Ingpo madang")
     var hour = arrayOf("12.10", "12.10", "12.10", "12.10", "12.10", "12.10", "12.10", "12.10", "12.10")
-    var pp = arrayOf(R.drawable.bg_profile, R.drawable.bg_profile, R.drawable.bg_profile,
+    var pp = arrayOf(
+        R.drawable.bg_profile, R.drawable.bg_profile, R.drawable.bg_profile,
         R.drawable.bg_profile, R.drawable.bg_profile, R.drawable.bg_profile, R.drawable.bg_profile,
-        R.drawable.bg_profile, R.drawable.bg_profile)
+        R.drawable.bg_profile, R.drawable.bg_profile
+    )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context).inflate(R.layout.cardview_chat_list, parent, false)
 
         return ViewHolder(inflater)
     }
 
-    override fun onBindViewHolder(holder: RecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvUsername.text = username[position]
         holder.tvChat.text = chat[position]
         holder.tvHour.text = hour[position]

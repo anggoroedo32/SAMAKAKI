@@ -19,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
-    private val _findUserRelations = MutableLiveData<BaseResponse<GetUserRelationResponse>>()
-    val findUserRelations: LiveData<BaseResponse<GetUserRelationResponse>> = _findUserRelations
+    private val _findUserRelations = MutableLiveData<BaseResponse<UserRelationsResponse>>()
+    val findUserRelations: LiveData<BaseResponse<UserRelationsResponse>> = _findUserRelations
 
     private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationsResponse>>()
     val createUserRelations: LiveData<BaseResponse<CreateRelationsResponse>> = _createUserRelations
@@ -35,15 +35,16 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     val loading: LiveData<Boolean> = _loading
 
     fun findUserRelations(token: String){
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.findUserRelations(token)
                 if (response.code() == 200){
                     _findUserRelations.value = BaseResponse.Success(response.body())
-                    Log.d("find_relations", "success_find_user_relation: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _findUserRelations.value = BaseResponse.Error(msg = "Silahkan buat keluarga anda")
-                    Log.d("find_relations", "error_find_user_relation: ${response.message()}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
@@ -56,6 +57,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     }
 
     fun createUserRelations(token: String, familyName: String, dataRelationship: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val createRelationsRequest = CreateRelationsRequest(
@@ -66,19 +68,17 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 val response = repository.createUserRelations(token, createRelationsRequest)
                 if (response.code() == 200) {
                     _createUserRelations.postValue(BaseResponse.Success(response.body()))
-                    Log.d("user_relations", "success_create_user_relation: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _createUserRelations.postValue(BaseResponse.Error(msg = response.message()))
-                    Log.d("user_relations", "failure_create_user_relation: ${response.message()}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
-                Log.d("user_relations", "failure_user_relation: ${e.message}")
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
                 _findUserRelations.postValue(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah"))
-                Log.d("user_relations", "failure_user_relation: ${e.message}")
             }
         }
     }
@@ -95,19 +95,17 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 val response = repository.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
                 if (response.code() == 200) {
                     _updateRelations.postValue(BaseResponse.Success(response.body()))
-                    Log.d("update_relations", "success_update_user_relation: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _updateRelations.postValue(BaseResponse.Error(response.message()))
-                    Log.d("update_relations", "failure_update_user_relation: ${response.message()}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
-                Log.d("user_relations", "failure_user_relation: ${e.message}")
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
                 _findUserRelations.postValue(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah"))
-                Log.d("user_relations", "failure_user_relation: ${e.message}")
             }
         }
     }

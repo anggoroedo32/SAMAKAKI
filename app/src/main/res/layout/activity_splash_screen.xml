@@ -26,7 +26,6 @@
         android:src="@drawable/splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vector1"/>
@@ -48,6 +47,7 @@
         style="@style/bold_30prim600"
         android:textColor="@color/warning_500"
         android:text="@string/samakaki_splash"
+        android:layout_marginTop="-16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

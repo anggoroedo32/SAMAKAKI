@@ -1,6 +1,5 @@
-package com.awp.samakaki
+package com.awp.samakaki.ui.menu_chat
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
+import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentChatListBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
@@ -49,7 +47,7 @@ class ChatListFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
 //                R.id.notification -> findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
-                R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
+//                R.id.settings -> findNavController().navigate(R.id.action_navigation_chat_to_settingsFragment)
             }
             true
         }
@@ -92,9 +90,9 @@ class ChatListFragment : Fragment() {
 //            ?.setMaxBadgeValue(99)
 //            ?.setLimitBadgeValue(true)
 
-        imageBadgeView?.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
-        }
+//        imageBadgeView?.setOnClickListener {
+//            findNavController().navigate(R.id.action_navigation_chat_to_notificationsFragment)
+//        }
     }
 
     override fun onDestroyView() {

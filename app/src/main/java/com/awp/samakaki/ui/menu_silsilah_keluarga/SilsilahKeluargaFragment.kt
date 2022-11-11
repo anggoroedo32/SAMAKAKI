@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,9 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
 import com.awp.samakaki.helper.SessionManager
-import com.awp.samakaki.request.CreateFamilyTreeRequest
-import com.awp.samakaki.request.CreateRelationsRequest
-import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.*
+import com.awp.samakaki.utils.Graph
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.bumptech.glide.Glide
@@ -37,20 +35,21 @@ abstract class SilsilahKeluargaFragment : Fragment() {
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
     protected lateinit var recyclerView: RecyclerView
-    protected lateinit var recyclerViewDataTop: RecyclerView
+//    protected lateinit var recyclerViewDataTop: RecyclerView
     protected lateinit var adapter: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>
-    protected lateinit var adapterDataTop: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>
+//    protected lateinit var adapterDataTop: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>
     private var currentNode: com.awp.samakaki.utils.Node? = null
     private var nodeCount = 1
     private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
     private val notificationsViewModel by viewModels<NotificationsViewModel>()
+    private var listRelation = listOf<RelationItem>()
 
     abstract fun createGraph(): com.awp.samakaki.utils.Graph
-    abstract fun createGraphDataTop(): com.awp.samakaki.utils.Graph
+//    abstract fun createGraphDataTop(): com.awp.samakaki.utils.Graph
     abstract fun setLayoutManager()
-    abstract fun setLayoutManagerDataTop()
+//    abstract fun setLayoutManagerDataTop()
     abstract fun setEdgeDecoration()
-    abstract fun setEdgeDecorationDataTop()
+//    abstract fun setEdgeDecorationDataTop()
 
     private var imageBadgeView: ImageBadgeView? = null
     var notificationsCount: Int = 0
@@ -88,16 +87,40 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val graph = createGraph()
-        val graphDataTop = createGraphDataTop()
+//        val graphDataTop = createGraphDataTop()
         recyclerView = binding.rvFamilyTree
-        recyclerViewDataTop = binding.rvFamilyTreeDataTop
+//        recyclerViewDataTop = binding.rvFamilyTreeDataTop
         setLayoutManager()
-        setLayoutManagerDataTop()
+//        setLayoutManagerDataTop()
         setEdgeDecoration()
-        setEdgeDecorationDataTop()
-        setupGraphView(graph)
-        setupGraphViewDataTop(graphDataTop)
+//        setEdgeDecorationDataTop()
+//        setupGraphView(graph, listRelation)
+//        setupGraphViewDataTop(graphDataTop)
         loadingState()
+
+        val familyTree = binding.wrapFamilyTree
+        val isiProfil = binding.wrapIsiProfil
+        val token = context?.let { SessionManager.getToken(it) }
+
+        familyTreeViewModel.findUserRelations("Bearer $token")
+        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    val relationData = it.data?.data?.relation
+                    Log.d("relation_data", "hasilnya $relationData")
+                    if (relationData.isNullOrEmpty()) {
+                        isiProfil.visibility = View.VISIBLE
+                    } else {
+                        familyTree.visibility = View.VISIBLE
+                        setupGraphView(graph)
+                    }
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+
 
         //Dropdown Relationship
         val relationshipDropdown = resources.getStringArray(R.array.relationship)
@@ -114,26 +137,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_family_to_settingsFragment)
             }
             true
-        }
-
-        val familyTree = binding.wrapFamilyTree
-        val isiProfil = binding.wrapIsiProfil
-        val token = context?.let { SessionManager.getToken(it) }
-        familyTreeViewModel.findUserRelations("Bearer $token")
-        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-            when(it) {
-                is BaseResponse.Success -> {
-                    val relationData = it.data?.data?.relation
-                    Log.d("relation_data", "hasilnya $relationData")
-                    if (relationData.isNullOrEmpty()) {
-                        isiProfil.visibility = View.VISIBLE
-                    } else {
-                        familyTree.visibility = View.VISIBLE
-                    }
-                }
-
-                is BaseResponse.Error -> textMessage(it.msg.toString())
-            }
         }
 
         val fab = binding.fab
@@ -256,7 +259,7 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
 
-    private fun setupGraphView(graph: com.awp.samakaki.utils.Graph) {
+    private fun setupGraphView(graph: Graph) {
         adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
                 val view = LayoutInflater.from(parent.context)
@@ -265,11 +268,13 @@ abstract class SilsilahKeluargaFragment : Fragment() {
             }
 
             override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
-                Glide.with(holder.itemView.context)
-                    .load(R.drawable.dummy_avatar)
-                    .centerInside()
-                    .into(holder.imgProfile)
+//                Glide.with(holder.itemView.context)
+//                    .load(list.avatar)
+//                    .centerInside()
+//                    .into(holder.imgProfile)
                 holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
+//                val relationUser = Objects.requireNonNull(getNodeData(position)).toString()
+//                holder.textView.text = relationUser
             }
         }.apply {
             this.submitGraph(graph)
@@ -277,53 +282,47 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
-    private fun setupGraphViewDataTop(graph: com.awp.samakaki.utils.Graph) {
-        adapterDataTop = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>() {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolderDataTop {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.node, parent, false)
-                return NodeViewHolderDataTop(view)
-            }
-
-            override fun onBindViewHolder(holder: NodeViewHolderDataTop, position: Int) {
-                Glide.with(holder.itemView.context)
-                    .load(R.drawable.dummy_avatar)
-                    .centerInside()
-                    .into(holder.imgProfile)
-                holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
-            }
-        }.apply {
-            this.submitGraph(graph)
-            recyclerViewDataTop.adapter = this
-        }
-    }
+//    private fun setupGraphViewDataTop(graph: com.awp.samakaki.utils.Graph, list: CurrentUser) {
+//        adapterDataTop = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>() {
+//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolderDataTop {
+//                val view = LayoutInflater.from(parent.context)
+//                    .inflate(R.layout.node, parent, false)
+//                return NodeViewHolderDataTop(view)
+//            }
+//
+//            override fun onBindViewHolder(holder: NodeViewHolderDataTop, position: Int) {
+//                Glide.with(holder.itemView.context)
+//                    .load(R.drawable.dummy_avatar)
+//                    .centerInside()
+//                    .into(holder.imgProfile)
+//                holder.textView.text = list.name
+//            }
+//        }.apply {
+//            this.submitGraph(graph)
+//            recyclerViewDataTop.adapter = this
+//        }
+//    }
 
 
     protected inner class NodeViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textView: TextView = itemView.findViewById(R.id.name)
         var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
 
-        init {
-            itemView.setOnClickListener {
-                currentNode = adapter.getNode(bindingAdapterPosition)
-                Snackbar.make(itemView, "Clicked on " + adapter.getNodeData(bindingAdapterPosition)?.toString(),
-                    Snackbar.LENGTH_SHORT).show()
-            }
-        }
+//        init {
+//            itemView.setOnClickListener {
+//                currentNode = adapter.getNode(bindingAdapterPosition)
+//                Snackbar.make(itemView, "Clicked on " + adapterDataTop.getNodeData(bindingAdapterPosition)?.toString(),
+//                    Snackbar.LENGTH_SHORT).show()
+//            }
+//        }
+
     }
 
-    protected inner class NodeViewHolderDataTop internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textView: TextView = itemView.findViewById(R.id.name)
-        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
-
-        init {
-            itemView.setOnClickListener {
-                currentNode = adapter.getNode(bindingAdapterPosition)
-                Snackbar.make(itemView, "Clicked on " + adapterDataTop.getNodeData(bindingAdapterPosition)?.toString(),
-                    Snackbar.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    protected inner class NodeViewHolderDataTop internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        var textView: TextView = itemView.findViewById(R.id.name)
+//        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
+//
+//    }
 
     protected val nodeText: String
         get() = "Node " + nodeCount++
@@ -341,7 +340,7 @@ abstract class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
-    private fun textMessage(s: String) {
+    protected fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
 }

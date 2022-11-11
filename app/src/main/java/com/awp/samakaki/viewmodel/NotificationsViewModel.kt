@@ -20,17 +20,21 @@ class NotificationsViewModel @Inject constructor(private val repository: RemoteR
     private val _getNotifications = MutableLiveData<BaseResponse<NotificationsResponse>>()
     val getNotifications: LiveData<BaseResponse<NotificationsResponse>> = _getNotifications
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     fun getNotifications(token: String) {
+        _loading.value = true
         viewModelScope.launch {
             try {
                 Log.d("isi_token_repo", token).toString()
                 val response = repository.getNotificationByUser(token)
                 if (response.code() == 200) {
                     _getNotifications.postValue(BaseResponse.Success(response.body()))
-                    Log.d("get_notif", "success_get_notif: ${response.body()}")
+                    _loading.value = false
                 } else {
                     _getNotifications.postValue(BaseResponse.Error(response.message()))
-                    Log.d("get_notif", "failure_get_notif: ${response.message()}")
+                    _loading.value = false
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")

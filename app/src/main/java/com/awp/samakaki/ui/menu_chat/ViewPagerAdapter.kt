@@ -1,8 +1,6 @@
-package com.awp.samakaki
+package com.awp.samakaki.ui.menu_chat
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class ViewPagerAdapter(fragment: Fragment)

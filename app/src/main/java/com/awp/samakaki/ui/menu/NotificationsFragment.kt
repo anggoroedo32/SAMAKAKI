@@ -1,18 +1,14 @@
-package com.awp.samakaki.ui
+package com.awp.samakaki.ui.menu
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.awp.samakaki.R
 import com.awp.samakaki.adapter.NotificationsAdapter
 import com.awp.samakaki.adapter.ibAcceptClickListener
 import com.awp.samakaki.databinding.FragmentNotificationsBinding
@@ -59,7 +55,6 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
             when(it) {
                 is BaseResponse.Success -> {
                     it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
-                    relationName = it.data?.data?.unread?.map { it.relation.toString() }?.joinToString { it }
                 }
 
                 is BaseResponse.Error -> textMessage(it.msg.toString())
@@ -72,7 +67,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
         val token = SessionManager.getToken(requireContext())
         val invitationToken = SessionManager.getInvitation(requireContext())
-        familyTreeViewModel.updateRelation("Bearer $token", invitationToken.toString(), relationName.toString())
+        familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), movie.relation.toString())
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {

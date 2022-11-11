@@ -59,20 +59,20 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_copy"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_52"
-        app:shapeAppearanceOverlay="@style/DialogCopyButton"
+        android:layout_height="@dimen/dimen_51"
         android:backgroundTint="@color/white"
-        android:minWidth="@dimen/dimen_0"
-        android:text="@string/copy"
-        android:textColor="@color/neutral_400"
         android:fontFamily="@font/poppins_regular"
         android:includeFontPadding="false"
+        android:minWidth="@dimen/dimen_0"
+        android:text="@string/copy"
         android:textAllCaps="false"
+        android:textColor="@color/neutral_400"
         app:icon="@drawable/ic_copy"
         app:iconTint="@color/neutral_400"
         app:layout_constraintBottom_toBottomOf="@+id/ed_link"
         app:layout_constraintStart_toEndOf="@+id/ed_link"
-        app:layout_constraintTop_toTopOf="@+id/ed_link" />
+        app:layout_constraintTop_toTopOf="@+id/ed_link"
+        app:shapeAppearanceOverlay="@style/DialogCopyButton" />
 
     <TextView
         android:id="@+id/title_share_on"

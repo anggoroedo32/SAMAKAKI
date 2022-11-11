@@ -26,9 +26,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("posts")
-    suspend fun getAllPosts(): Response<PostsResponse>
-
     @Headers("Content-Type: application/json")
     @POST("users")
     suspend fun register(
@@ -45,14 +42,13 @@ interface ApiService {
         @Body forgotTokenRequest: ForgotTokenRequest
     ): Response<ForgotTokenResponse>
 
-    @Headers("Content-Type: application/json")
     @Multipart
     @POST("posts")
     suspend fun createPosts(
         @Header("Authorization") token: String,
         @Part("descriptions") descriptions: RequestBody,
         @Part("status") status: RequestBody,
-        @Part content: MultipartBody.Part
+        @Part content: MultipartBody.Part?
         ): Response<PostsResponse>
 
     @Multipart
@@ -69,7 +65,7 @@ interface ApiService {
     @GET("user_relations")
     suspend fun findUserRelations(
         @Header("Authorization") token: String
-    ): Response<GetUserRelationResponse>
+    ): Response<UserRelationsResponse>
 
     @GET("notifications")
     suspend fun getNotificationByUser(
@@ -94,10 +90,19 @@ interface ApiService {
         @Path("id") id: String
     ): Response<FindUserResponse>
 
-    @PUT("editprofile/{id}")
+    @Multipart
+    @PUT("biodata_users/{id}")
     suspend fun  editProfile(
         @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Path ("id") id: Int,
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("dob") dob: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("marriage_status") marriageStatus: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part file: MultipartBody.Part?
     ): Response<EditProfileResponse>
 
     @POST("invitation/register")
@@ -117,4 +122,14 @@ interface ApiService {
         @Body createFamilyTreeRequest: CreateFamilyTreeRequest
     ): Response<CreateFamilyTreeResponse>
 
+
+    @GET("posts")
+    suspend fun getAllPostsByFamily(
+        @Header("Authorization") token: String
+    ): Response<NewPostsResponse>
+
+    @GET("user/posts")
+    suspend fun getAllPostsByUser(
+        @Header("Authorization") token: String
+    ): Response<NewPostsResponse>
 }

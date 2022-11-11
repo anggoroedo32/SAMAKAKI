@@ -23,12 +23,13 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
-    suspend fun getAllPosts(): Response<PostsResponse> = apiService.getAllPosts()
+    suspend fun getAllPostsByFamily(token: String): Response<NewPostsResponse> = apiService.getAllPostsByFamily(token)
+    suspend fun getAllPostsByUser(token: String): Response<NewPostsResponse> = apiService.getAllPostsByUser(token)
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
     suspend fun createPosts(token: String,
                             descriptions: RequestBody,
                             status: RequestBody,
-                            content: MultipartBody.Part): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
+                            content: MultipartBody.Part?): Response<PostsResponse> = apiService.createPosts(token, descriptions, status, content)
     suspend fun login(loginRequest: LoginRequest): Response<LoginResponse> = apiService.login(loginRequest)
     suspend fun createBiodata(token: String,
                               dob: RequestBody,
@@ -41,9 +42,34 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
         address,
         marriage_status,
         status,
-        file)
+        file
+    )
+
+    suspend fun editProfile(token: String,
+                            id: Int,
+                            dob: RequestBody,
+                            name: RequestBody,
+                            email: RequestBody,
+                            phone: RequestBody,
+                            address: RequestBody,
+                            marriage_status: RequestBody,
+                            status: RequestBody,
+                            file: MultipartBody.Part?
+    ): Response<EditProfileResponse> = apiService.editProfile(
+        token,
+        id,
+        name,
+        email,
+        phone,
+        dob,
+        address,
+        marriage_status,
+        status,
+        file
+    )
+
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
-    suspend fun findUserRelations(token: String): Response<GetUserRelationResponse> = apiService.findUserRelations(token)
+    suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
     suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)
     suspend fun updateRelation(token: String, invitationToken: String, updateRelationRequest: UpdateRelationRequest): Response<UpdateRelationsResponse> = apiService.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
     suspend fun createUserRelations(token: String, createRelationsRequest: CreateRelationsRequest): Response<CreateRelationsResponse> = apiService.createUserRelations(token, createRelationsRequest)
@@ -51,4 +77,6 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun registerWithToken(registerWithTokenRequest: RegisterWithTokenRequest): Response<RegisterWithInvitationResponse> = apiService.registerWithToken(registerWithTokenRequest)
     suspend fun forgotToken(forgotTokenRequest: ForgotTokenRequest): Response<ForgotTokenResponse> = apiService.forgotToken(forgotTokenRequest)
     suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse> = apiService.resetPassword(resetPasswordRequest)
+
+
 }

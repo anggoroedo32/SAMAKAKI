@@ -5,80 +5,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_editprofile"
     android:id="@+id/edit_profile_fragment"
-    tools:context=".ui.EditProfileFragment">
+    tools:context=".ui.menu_profile.EditProfileFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginStart="@dimen/dimen_13"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_editprofile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/semibold_18prim500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:text="@string/edit_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
-                android:background="@color/white"
-                android:minHeight="?attr/actionBarSize" >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_back_ios"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit_profile"
-                    style="@style/semibold_18"
-                    android:textColor="@color/primary_600"/>
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
         <TextView
             android:id="@+id/tv_photo_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
+            android:layout_marginStart="@dimen/dimen_19"
             android:text="@string/photo_profile"
             style="@style/medium_16"
+            android:textColor="@color/primary_600"
             android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
-            app:layout_constraintTop_toBottomOf="@id/app_bar"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_back"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_edit_profile"
-            android:layout_width="200dp"
-            android:layout_height="180dp"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
             android:layout_margin="@dimen/dimen_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_photo_profile"
             tools:src="@drawable/dummy_avatar"/>
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_ed_photo"
-        android:background="@drawable/rounded_btn15"
+        android:backgroundTint="@color/primary_600"
         style="@style/ButtonStyle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_edit"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:paddingHorizontal="@dimen/dimen_10"
+        android:paddingEnd="@dimen/dimen_20"
+        app:icon="@drawable/icon_edit"
         app:iconTint="@color/white"
-        app:iconSize="@dimen/dimen_16"
+        app:iconSize="@dimen/dimen_14"
         android:text="@string/edit_photo"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_edit_profile"/>
+        app:layout_constraintTop_toBottomOf="@id/img_edit_profile"
+        app:cornerRadius="@dimen/dimen_10"
+        tools:ignore="RtlSymmetry" />
 
 
     <TextView
@@ -87,7 +84,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10"
         android:text="@string/bio"
-        style="@style/medium_16"
+        android:textColor="@color/primary_600"
+        style="@style/medium_16semibold"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/btn_ed_photo"/>
@@ -96,9 +94,9 @@
         android:id="@+id/tv_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_6"
+        android:layout_margin="@dimen/dimen_8"
         android:text="@string/nama"
-        style="@style/medium_12"
+        style="@style/medium_14"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/tv_bio"/>
@@ -116,22 +114,46 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_Tanggal"
+            android:id="@+id/tv_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_6"
-            android:text="@string/tanggal_lahir"
-            style="@style/medium_12"
+            android:layout_margin="@dimen/dimen_8"
+            android:text="@string/email"
+            style="@style/medium_14"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical"
             app:layout_constraintTop_toBottomOf="@id/ET_Name"/>
+
+        <EditText
+            android:id="@+id/ET_Email"
+            style="@style/TextfieldsStyle2"
+            android:hint="@string/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email_et"
+            android:drawablePadding="@dimen/dimen_8"
+            app:layout_constraintTop_toBottomOf="@id/tv_Email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_Tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_9"
+            android:text="@string/tanggal_lahir"
+            style="@style/medium_14"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ET_Email"/>
 
         <EditText
             android:id="@+id/ET_Tanggal"
             style="@style/TextfieldsStyle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/tanggal_lahir_kamu"
+            android:hint="@string/tanggal_lahir"
+            android:focusable="false"
             android:drawableStart="@drawable/ic_calendar"
             android:drawablePadding="@dimen/dimen_8"
             app:layout_constraintTop_toBottomOf="@id/tv_Tanggal"
@@ -142,9 +164,9 @@
         android:id="@+id/tv_NoTlp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_6"
+        android:layout_margin="@dimen/dimen_9"
         android:text="@string/nomor_telepon"
-        style="@style/medium_12"
+        style="@style/medium_14"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/ET_Tanggal"/>
@@ -154,7 +176,7 @@
                 style="@style/TextfieldsStyle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/no_telepon_kamu"
+                android:hint="@string/nomor_telepon"
                 android:drawableStart="@drawable/ic_telephone_green"
                 android:drawablePadding="@dimen/dimen_8"
                 app:layout_constraintTop_toBottomOf="@id/tv_NoTlp"
@@ -165,9 +187,9 @@
             android:id="@+id/tv_Lokasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_6"
-            android:text="@string/lokasi"
-            style="@style/medium_12"
+            android:layout_margin="@dimen/dimen_9"
+            android:text="Alamat"
+            style="@style/medium_14"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical"
             app:layout_constraintTop_toBottomOf="@id/ET_NoTlp"/>
@@ -179,7 +201,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_mark"
             android:drawablePadding="@dimen/dimen_8"
-            android:hint="@string/lokasi_kamu"
+            android:hint="Alamat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_Lokasi" />
@@ -188,9 +210,9 @@
         android:id="@+id/tv_Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_6"
+        android:layout_margin="@dimen/dimen_9"
         android:text="@string/status_pernikahan"
-        style="@style/medium_12"
+        style="@style/medium_14"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@id/ET_Lokasi"/>
@@ -198,8 +220,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ET_Status"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="352dp"
-            android:layout_height="@dimen/dimen_45"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginHorizontal="@dimen/dimen_35"
             app:layout_constraintTop_toBottomOf="@id/tv_Status"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -216,27 +239,62 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tv_StatusAkun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_9"
+            android:text="@string/status_pernikahan"
+            style="@style/medium_14"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@id/ET_Status"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ET_StatusAkun"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            app:layout_constraintTop_toBottomOf="@id/tv_StatusAkun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/et_statusakun"
+                style="@style/TextfieldsStyle2"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/privasi"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_save"
+                android:backgroundTint="@color/primary_600"
                 style="@style/ButtonStyle4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
-            android:layout_marginVertical="@dimen/dimen_20"
+                android:layout_marginVertical="@dimen/dimen_20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ET_Status"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/ET_StatusAkun"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:cornerRadius="@dimen/dimen_10"/>
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_64"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.03"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_64"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.06"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
