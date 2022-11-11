@@ -216,7 +216,7 @@ class HomeFragment : Fragment() {
     private fun rvPosts(list: List<DataItem>) {
         val recyclerViewPosts: RecyclerView = binding.rvPost
         recyclerViewPosts.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
             adapter = PostsAdapter(list)
         }
     }

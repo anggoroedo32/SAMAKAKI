@@ -131,5 +131,5 @@ interface ApiService {
     @GET("user/posts")
     suspend fun getAllPostsByUser(
         @Header("Authorization") token: String
-    ): Response<NewPostsResponse>
+    ): Response<PostUserResponse>
 }

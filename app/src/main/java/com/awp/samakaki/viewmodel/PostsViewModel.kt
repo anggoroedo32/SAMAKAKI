@@ -9,6 +9,7 @@ import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.PostRequest
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.NewPostsResponse
+import com.awp.samakaki.response.PostUserResponse
 import com.awp.samakaki.response.PostsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,6 +24,9 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
 
     private val _listAllPosts = MutableLiveData<BaseResponse<NewPostsResponse>>()
     val listAllPosts: LiveData<BaseResponse<NewPostsResponse>> = _listAllPosts
+
+    private val _listAllPostsByUser = MutableLiveData<BaseResponse<PostUserResponse>>()
+    val listAllPostsByUser: LiveData<BaseResponse<PostUserResponse>> = _listAllPostsByUser
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -52,10 +56,10 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             viewModelScope.launch {
                 val response = repository.getAllPostsByUser(token = token)
                 if(response.code() == 200) {
-                    _listAllPosts.value = BaseResponse.Success(response.body())
+                    _listAllPostsByUser.value = BaseResponse.Success(response.body())
                     Log.d("get_posts", "success_creating: ${response.body()}")
                 } else {
-                    _listAllPosts.value = BaseResponse.Error("Erorr Get Posts")
+                    _listAllPostsByUser.value = BaseResponse.Error("Erorr Get Posts")
                     Log.d("get_posts", "failure_creatuing: ${BaseResponse.Error(response.message())}")
                 }
             }
