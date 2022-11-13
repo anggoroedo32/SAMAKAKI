@@ -30,6 +30,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _createPostResponse = MutableLiveData<BaseResponse<PostsResponse>>()
     val createPostResponse: LiveData<BaseResponse<PostsResponse>> = _createPostResponse
 
+
     fun getAllPostsByFamily(token: String){
         viewModelScope.launch {
             _loading.value = true
