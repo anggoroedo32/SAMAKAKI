@@ -62,9 +62,9 @@ class TryFragment : Fragment() {
 
                     val getBapak = findRelation?.filter { it?.relationName == "bapak" }
                     val getIbu = findRelation?.filter { it?.relationName == "ibu" }
-                    val getAdekPertama = findRelation?.filter { it?.relationName == "adek_pertama" }
-                    val getAdekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
-                    val getAdekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
+                    val adekPertama = findRelation?.filter { it?.relationName == "adek_pertama" }
+                    val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
+                    val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
                     val kakakPertama = findRelation?.filter { it?.relationName == "kakak_pertama" }
                     val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
                     val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
@@ -100,8 +100,6 @@ class TryFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "anak_pertama" }
                         val username = ss?.userRelated
                         name.setText(username)
-
-
                     }
 
                     if (anakKeuda?.isNotEmpty() == true) {
@@ -116,6 +114,22 @@ class TryFragment : Fragment() {
                         val avatar = binding.imgDummy3
                         val name = binding.nameDummy3
                         val ss = findRelation?.find { it?.relationName == "anak_ketiga" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (husband?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy8
+                        val name = binding.nameDummy8
+                        val ss = findRelation?.find { it?.relationName == "husband" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (wife?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy8
+                        val name = binding.nameDummy8
+                        val ss = findRelation?.find { it?.relationName == "husband" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
