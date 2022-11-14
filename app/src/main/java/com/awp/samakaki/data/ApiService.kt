@@ -114,7 +114,7 @@ interface ApiService {
     suspend fun createUserRelations(
         @Header("Authorization") token: String,
         @Body createRelationsRequest: CreateRelationsRequest
-    ): Response<CreateRelationsResponse>
+    ): Response<CreateRelationResponse>
 
     @POST("family_trees")
     suspend fun createFamilyTree(

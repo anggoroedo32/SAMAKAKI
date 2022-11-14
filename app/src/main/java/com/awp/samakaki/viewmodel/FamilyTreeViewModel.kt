@@ -22,8 +22,8 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     private val _findUserRelations = MutableLiveData<BaseResponse<UserRelationsResponse>>()
     val findUserRelations: LiveData<BaseResponse<UserRelationsResponse>> = _findUserRelations
 
-    private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationsResponse>>()
-    val createUserRelations: LiveData<BaseResponse<CreateRelationsResponse>> = _createUserRelations
+    private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationResponse>>()
+    val createUserRelations: LiveData<BaseResponse<CreateRelationResponse>> = _createUserRelations
 
     private val _updateRelations = MutableLiveData<BaseResponse<UpdateRelationsResponse>>()
     val updateRelations: LiveData<BaseResponse<UpdateRelationsResponse>> = _updateRelations
