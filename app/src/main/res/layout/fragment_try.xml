@@ -6,27 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.menu_silsilah_keluarga.TryFragment">
 
-<!--    <com.otaliastudios.zoom.ZoomLayout-->
-<!--        android:id="@+id/zoomLayoutDataTop"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scrollbars="vertical|horizontal"-->
-<!--        app:hasClickableChildren="true"-->
-<!--        app:transformation="centerInside"-->
-<!--        app:alignment="center"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <com.otaliastudios.zoom.ZoomLayout
+        android:id="@+id/zoomLayoutDataTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical|horizontal"
+        app:hasClickableChildren="true"
+        app:transformation="centerInside"
+        app:alignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/wrap_inside_zoom"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/wrap_inside_zoom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
     <View
         android:id="@+id/view_line_vertical_1"
@@ -730,9 +730,10 @@
         android:id="@+id/wrap_dummy16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:orientation="vertical"
         android:visibility="visible"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/wrap_dummy6">
 
@@ -778,6 +779,6 @@
     </LinearLayout>
 
 
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--    </com.otaliastudios.zoom.ZoomLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.otaliastudios.zoom.ZoomLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

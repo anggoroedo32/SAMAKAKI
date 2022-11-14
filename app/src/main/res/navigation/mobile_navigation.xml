@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/tryFragment">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_family"
-        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaTreeFragment"
+        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaFragment"
         android:label="@string/title_family"
         tools:layout="@layout/fragment_family" >
         <action

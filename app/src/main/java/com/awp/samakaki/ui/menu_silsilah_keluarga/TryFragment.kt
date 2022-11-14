@@ -15,7 +15,6 @@ import com.awp.samakaki.R
 import android.widget.LinearLayout.LayoutParams
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.awp.samakaki.databinding.FragmentEditprofileBinding
 import com.awp.samakaki.databinding.FragmentTryBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse

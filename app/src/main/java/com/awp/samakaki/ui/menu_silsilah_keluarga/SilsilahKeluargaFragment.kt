@@ -30,40 +30,16 @@ import java.util.*
 
 
 @AndroidEntryPoint
-abstract class SilsilahKeluargaFragment : Fragment() {
+class SilsilahKeluargaFragment : Fragment() {
 
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
-    protected lateinit var recyclerView: RecyclerView
-//    protected lateinit var recyclerViewDataTop: RecyclerView
-    protected lateinit var adapter: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>
-//    protected lateinit var adapterDataTop: com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>
-    private var currentNode: com.awp.samakaki.utils.Node? = null
-    private var nodeCount = 1
     private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
     private val notificationsViewModel by viewModels<NotificationsViewModel>()
     private var listRelation = listOf<RelationItem>()
 
-    abstract fun createGraph(): com.awp.samakaki.utils.Graph
-//    abstract fun createGraphDataTop(): com.awp.samakaki.utils.Graph
-    abstract fun setLayoutManager()
-//    abstract fun setLayoutManagerDataTop()
-    abstract fun setEdgeDecoration()
-//    abstract fun setEdgeDecorationDataTop()
 
     private var imageBadgeView: ImageBadgeView? = null
-    var notificationsCount: Int = 0
-    var hubungan = arrayOf<String?>(
-        "father",
-        "mother",
-        "siblings",
-        "child",
-        "grandfather",
-        "grandmother",
-        "grandchild",
-        "husband",
-        "wife"
-    )
 
     var dataRelationship: String? = null
 
@@ -85,17 +61,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val graph = createGraph()
-//        val graphDataTop = createGraphDataTop()
-        recyclerView = binding.rvFamilyTree
-//        recyclerViewDataTop = binding.rvFamilyTreeDataTop
-        setLayoutManager()
-//        setLayoutManagerDataTop()
-        setEdgeDecoration()
-//        setEdgeDecorationDataTop()
-//        setupGraphView(graph, listRelation)
-//        setupGraphViewDataTop(graphDataTop)
         loadingState()
 
         val familyTree = binding.wrapFamilyTree
@@ -112,7 +77,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
                         isiProfil.visibility = View.VISIBLE
                     } else {
                         familyTree.visibility = View.VISIBLE
-                        setupGraphView(graph)
                     }
                 }
 
@@ -197,6 +161,110 @@ abstract class SilsilahKeluargaFragment : Fragment() {
             }
         }
 
+        silsilahKeluarga()
+
+    }
+
+    private fun silsilahKeluarga() {
+
+        val token = context?.let { SessionManager.getToken(it) }
+        familyTreeViewModel.findUserRelations("Bearer $token")
+        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+
+                    val imgCurrentUser = binding.imgDummy1
+                    val nameCurrentUser = binding.nameDummy1
+                    val fetchCurrentUsser = it.data?.data?.currentUser
+                    nameCurrentUser.text = fetchCurrentUsser
+
+                    val dataUser = it.data?.data?.relation?.map { it?.userRelated }
+                    val relationName = it.data?.data?.relation?.map { it?.relationName }
+                    val findRelation = it.data?.data?.relation
+
+                    val getBapak = findRelation?.filter { it?.relationName == "bapak" }
+                    val getIbu = findRelation?.filter { it?.relationName == "ibu" }
+                    val adekPertama = findRelation?.filter { it?.relationName == "adek_pertama" }
+                    val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
+                    val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
+                    val kakakPertama = findRelation?.filter { it?.relationName == "kakak_pertama" }
+                    val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
+                    val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
+                    val anakPertama = findRelation?.filter { it?.relationName == "anak_pertama" }
+                    val anakKeuda = findRelation?.filter { it?.relationName == "anak_kedua" }
+                    val anakKetiga = findRelation?.filter { it?.relationName == "anak_ketiga" }
+                    val kakekDariBapak = findRelation?.filter { it?.relationName == "kakek_dari_bapak" }
+                    val nenekDariBapak = findRelation?.filter { it?.relationName == "nenek_dari_bapak" }
+                    val kakekDariIbu = findRelation?.filter { it?.relationName == "kakek_dari_ibu" }
+                    val nenekDariIbu = findRelation?.filter { it?.relationName == "nenek_dari_ibu" }
+                    val husband = findRelation?.filter { it?.relationName == "husband" }
+                    val wife = findRelation?.filter { it?.relationName == "wife" }
+
+                    if (getIbu?.isNotEmpty() == true) {
+                        val img = binding.imgDummy6
+                        val name = binding.nameDummy6
+                        val ss = findRelation?.find { it?.relationName == "ibu" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (getBapak?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy7
+                        val name = binding.nameDummy7
+                        val ss = findRelation?.find { it?.relationName == "bapak" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (anakPertama?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy4
+                        val name = binding.nameDummy4
+                        val ss = findRelation?.find { it?.relationName == "anak_pertama" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (anakKeuda?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy2
+                        val name = binding.nameDummy2
+                        val ss = findRelation?.find { it?.relationName == "anak_kedua" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (anakKetiga?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy3
+                        val name = binding.nameDummy3
+                        val ss = findRelation?.find { it?.relationName == "anak_ketiga" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (husband?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy8
+                        val name = binding.nameDummy8
+                        val ss = findRelation?.find { it?.relationName == "husband" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (wife?.isNotEmpty() == true) {
+                        val avatar = binding.imgDummy8
+                        val name = binding.nameDummy8
+                        val ss = findRelation?.find { it?.relationName == "husband" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+
+
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+
     }
 
     private fun initNotificationCounter() {
@@ -213,10 +281,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
                 is BaseResponse.Error -> textMessage(it.msg.toString())
             }
         }
-
-//        imageBadgeView?.setBadgeValue(notificationsCount)
-//            ?.setMaxBadgeValue(99)
-//            ?.setLimitBadgeValue(true)
 
         imageBadgeView?.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_family_to_notificationsFragment)
@@ -258,74 +322,6 @@ abstract class SilsilahKeluargaFragment : Fragment() {
 
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
-
-    private fun setupGraphView(graph: Graph) {
-        adapter = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolder>() {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.node, parent, false)
-                return NodeViewHolder(view)
-            }
-
-            override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
-//                Glide.with(holder.itemView.context)
-//                    .load(list.avatar)
-//                    .centerInside()
-//                    .into(holder.imgProfile)
-                holder.textView.text = Objects.requireNonNull(getNodeData(position)).toString()
-//                val relationUser = Objects.requireNonNull(getNodeData(position)).toString()
-//                holder.textView.text = relationUser
-            }
-        }.apply {
-            this.submitGraph(graph)
-            recyclerView.adapter = this
-        }
-    }
-
-//    private fun setupGraphViewDataTop(graph: com.awp.samakaki.utils.Graph, list: CurrentUser) {
-//        adapterDataTop = object : com.awp.samakaki.utils.AbstractGraphAdapter<NodeViewHolderDataTop>() {
-//            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolderDataTop {
-//                val view = LayoutInflater.from(parent.context)
-//                    .inflate(R.layout.node, parent, false)
-//                return NodeViewHolderDataTop(view)
-//            }
-//
-//            override fun onBindViewHolder(holder: NodeViewHolderDataTop, position: Int) {
-//                Glide.with(holder.itemView.context)
-//                    .load(R.drawable.dummy_avatar)
-//                    .centerInside()
-//                    .into(holder.imgProfile)
-//                holder.textView.text = list.name
-//            }
-//        }.apply {
-//            this.submitGraph(graph)
-//            recyclerViewDataTop.adapter = this
-//        }
-//    }
-
-
-    protected inner class NodeViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textView: TextView = itemView.findViewById(R.id.name)
-        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
-
-//        init {
-//            itemView.setOnClickListener {
-//                currentNode = adapter.getNode(bindingAdapterPosition)
-//                Snackbar.make(itemView, "Clicked on " + adapterDataTop.getNodeData(bindingAdapterPosition)?.toString(),
-//                    Snackbar.LENGTH_SHORT).show()
-//            }
-//        }
-
-    }
-
-//    protected inner class NodeViewHolderDataTop internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        var textView: TextView = itemView.findViewById(R.id.name)
-//        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
-//
-//    }
-
-    protected val nodeText: String
-        get() = "Node " + nodeCount++
 
     override fun onDestroyView() {
         super.onDestroyView()
