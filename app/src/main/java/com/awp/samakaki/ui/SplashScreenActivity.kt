@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySplashScreenBinding
 import com.awp.samakaki.helper.SessionManager
@@ -35,6 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
