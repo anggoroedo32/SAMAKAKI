@@ -56,7 +56,6 @@ class SelamatDatangActivity : AppCompatActivity() {
         setContentView(binding.root)
         loadingState()
 
-        dateFormater = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
         val btnIsiProfil = binding.btnIsiProfil
 
         btnIsiProfil.setOnClickListener{
@@ -67,11 +66,9 @@ class SelamatDatangActivity : AppCompatActivity() {
         //Input Configuration
         inputConf()
 
-
         //Date Picker
+        dateFormater = SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().time)
         getDate()
-
-
     }
 
 
@@ -220,14 +217,12 @@ class SelamatDatangActivity : AppCompatActivity() {
             val dateTime = Calendar.getInstance()
             DatePickerDialog(
                 this,
-                { view, year, monthOfYear, dayOfMonth ->
+                { view, year, month, day ->
                     dateTime.set(year,month,day)
-                    dateFormater = SimpleDateFormat("yyyy-MM-dd").format(dateTime.time)
+                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
                     binding.etBirthday.setText(dateFormater)
                 },
-                year,
-                month,
-                day
+                year,month,day
             ).show()
         }
     }

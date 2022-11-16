@@ -35,6 +35,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,7 +71,9 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getDate()
+        binding.ETTanggal.setOnClickListener {
+            getDate()
+        }
         loadingState()
 
         val btnBack = binding.btnBack
@@ -98,7 +101,7 @@ class EditProfileFragment : Fragment() {
                 is BaseResponse.Success -> {
                     it.data
                     name.setText(it.data?.data?.biodata?.name)
-                    dob.setText(it.data?.data?.biodata?.dob)
+                    formatDate(it.data?.data?.biodata?.dob.toString())
                     phone.setText(it.data?.data?.biodata?.phone)
                     email.setText(it.data?.data?.biodata?.email)
                     address.setText(it.data?.data?.biodata?.address)
@@ -259,25 +262,29 @@ class EditProfileFragment : Fragment() {
         private var imageUriEd: Uri? = null
     }
 
+    private fun formatDate(inputDate: String) {
+        var inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
+        var date: Date = inputFormat.parse(inputDate)
+        var outputDate: String = dateFormater.format(date)
+        binding.ETTanggal.setText(outputDate)
+    }
+
     private fun getDate(){
-        binding.ETTanggal.setOnClickListener {
-            var day = calendar.get(Calendar.DAY_OF_MONTH)
-            var month = calendar.get(Calendar.MONTH)
-            var year = calendar.get(Calendar.YEAR)
-            val dateTime = Calendar.getInstance()
-            context?.let { it1 ->
-                DatePickerDialog(
-                    it1,
-                    { view, year, monthOfYear, dayOfMonth ->
-                        dateTime.set(year,month,day)
-                        dateFormater = SimpleDateFormat("yyyy-MM-dd").format(dateTime.time)
-                        binding.ETTanggal.setText(dateFormater)
-                    },
-                    year,
-                    month,
-                    day
-                ).show()
-            }
+        var day = calendar.get(Calendar.DAY_OF_MONTH)
+        var month = calendar.get(Calendar.MONTH)
+        var year = calendar.get(Calendar.YEAR)
+        val dateTime = Calendar.getInstance()
+        context?.let { it1 ->
+            DatePickerDialog(
+                it1,
+                { view, year, month, day ->
+                    dateTime.set(year,month,day)
+                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
+                    binding.ETTanggal.setText(dateFormater)
+                },
+                year,month,day
+            ).show()
         }
     }
 

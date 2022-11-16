@@ -24,7 +24,7 @@ import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getAllPostsByFamily(token: String): Response<NewPostsResponse> = apiService.getAllPostsByFamily(token)
-    suspend fun getAllPostsByUser(token: String): Response<NewPostsResponse> = apiService.getAllPostsByUser(token)
+    suspend fun getAllPostsByUser(token: String): Response<PostUserResponse> = apiService.getAllPostsByUser(token)
     suspend fun register(registerRequest: RegisterRequest): Response<RegisterResponse> = apiService.register(registerRequest)
     suspend fun createPosts(token: String,
                             descriptions: RequestBody,

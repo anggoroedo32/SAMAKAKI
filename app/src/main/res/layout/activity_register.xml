@@ -39,6 +39,8 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:layout_marginHorizontal="35dp"
             style="@style/TextfieldsStyle"
             android:drawableStart="@drawable/ic_name_et"
@@ -67,7 +69,9 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"/>
+            android:layout_marginHorizontal="35dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
 
         <TextView
             android:id="@+id/tv_phone"
@@ -90,7 +94,9 @@
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"/>
+            android:layout_marginHorizontal="35dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
 
         <TextView
             android:id="@+id/tv_password"
@@ -113,7 +119,9 @@
             android:drawableStart="@drawable/ic_password_et"
             app:layout_constraintTop_toBottomOf="@+id/tv_password"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
 
         <TextView
             android:id="@+id/tv_confirm_password"
@@ -136,7 +144,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
 
         <TextView
             android:id="@+id/et_token_invitation"

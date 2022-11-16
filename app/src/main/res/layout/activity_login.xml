@@ -62,7 +62,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email_et"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"/>
 
             <TextView
                 style="@style/regular_14black"
@@ -78,7 +80,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_password_et"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"/>
 
             <TextView
                 android:id="@+id/tv_forgot_password"
