@@ -51,6 +51,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val name = binding.TVProfilename
         val address = binding.tvAlamat
         val phone = binding.tvNohp

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386057829506",
+    "project_id": "samakaki-4b58d",
+    "storage_bucket": "samakaki-4b58d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386057829506:android:89694866e1c57d5240c89b",
+        "android_client_info": {
+          "package_name": "com.awp.samakaki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386057829506-m87vinie20sofo2q8knoe9jkmff1gaqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaW1Z6W5bZ7GCWNaKy6ZobWH73xb01qD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386057829506-m87vinie20sofo2q8knoe9jkmff1gaqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

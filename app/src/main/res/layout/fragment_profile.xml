@@ -50,7 +50,6 @@
             app:layout_constraintTop_toBottomOf="@id/TV_profilename"
             tools:ignore="SpUsage" />
 
-
         <ImageView
             android:id="@+id/ic_house"
             android:layout_width="@dimen/dimen_20"

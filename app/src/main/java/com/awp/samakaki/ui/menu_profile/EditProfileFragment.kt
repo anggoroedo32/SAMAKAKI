@@ -127,13 +127,6 @@ class EditProfileFragment : Fragment() {
                     val spinnerPosition: Int = privacyDropdownAdapter.getPosition(selection)
                     autoCompletePrivacy.setSelection(spinnerPosition)
 
-//                    Glide.with(this)
-//                        .load(it.data?.data?.biodata?.avatar)
-//                        .centerInside()
-//                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
-//                        .into(avatar)
-
-
                     Picasso.get()
                         .load(it.data?.data?.biodata?.avatar)
                         .fit()
