@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.telephony.PhoneNumberUtils
@@ -212,7 +213,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy17
                         val ss = findRelation?.find { it?.relationName == "kakek_dari_bapak" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (nenekDariBapak?.isNotEmpty() == true) {
@@ -220,7 +226,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy15
                         val ss = findRelation?.find { it?.relationName == "nenek_dari_bapak" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if(kakekDariIbu?.isNotEmpty() == true) {
@@ -228,7 +239,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy16
                         val ss = findRelation?.find { it?.relationName == "kakek_dari_ibu" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if(nenekDariIbu?.isNotEmpty() == true) {
@@ -236,7 +252,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy14
                         val ss = findRelation?.find { it?.relationName == "nenek_dari_ibu" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (kakakPertama?.isNotEmpty() == true) {
@@ -244,7 +265,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy9
                         val ss = findRelation?.find { it?.relationName == "kakak_pertama" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (kakakKedua?.isNotEmpty() == true) {
@@ -252,7 +278,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy10
                         val ss = findRelation?.find { it?.relationName == "kakak_kedua" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (kakakKetiga?.isNotEmpty() == true) {
@@ -260,7 +291,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy11
                         val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (adekPertama?.isNotEmpty() == true) {
@@ -268,7 +304,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy7
                         val ss = findRelation?.find { it?.relationName == "adek_pertama" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#A3A3A3"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (adekKeuda?.isNotEmpty() == true) {
@@ -284,7 +325,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy13
                         val ss = findRelation?.find { it?.relationName == "adek_ketiga" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (getIbu?.isNotEmpty() == true) {
@@ -292,7 +338,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy6
                         val ss = findRelation?.find { it?.relationName == "ibu" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (getBapak?.isNotEmpty() == true) {
@@ -300,7 +351,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy18
                         val ss = findRelation?.find { it?.relationName == "bapak" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (anakPertama?.isNotEmpty() == true) {
@@ -308,7 +364,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy4
                         val ss = findRelation?.find { it?.relationName == "anak_pertama" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (anakKedua?.isNotEmpty() == true) {
@@ -316,7 +377,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy2
                         val ss = findRelation?.find { it?.relationName == "anak_kedua" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (anakKetiga?.isNotEmpty() == true) {
@@ -324,7 +390,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy3
                         val ss = findRelation?.find { it?.relationName == "anak_ketiga" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (husband?.isNotEmpty() == true) {
@@ -332,7 +403,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy8
                         val ss = findRelation?.find { it?.relationName == "husband" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                     if (wife?.isNotEmpty() == true) {
@@ -340,7 +416,12 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy8
                         val ss = findRelation?.find { it?.relationName == "husband" }
                         val username = ss?.userRelated
-                        name.setText(username)
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                        }
                     }
 
                 }
