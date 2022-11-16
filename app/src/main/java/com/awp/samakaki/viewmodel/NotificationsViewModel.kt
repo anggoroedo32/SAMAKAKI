@@ -33,7 +33,7 @@ class NotificationsViewModel @Inject constructor(private val repository: RemoteR
                     _getNotifications.postValue(BaseResponse.Success(response.body()))
                     _loading.value = false
                 } else {
-                    _getNotifications.postValue(BaseResponse.Error(response.message()))
+                    _getNotifications.postValue(BaseResponse.Error("Notifications "+ response.message()))
                     _loading.value = false
                 }
             } catch (e: HttpException) {

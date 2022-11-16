@@ -22,6 +22,7 @@ import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.text.SimpleDateFormat
@@ -81,10 +82,17 @@ class ProfileFragment : Fragment() {
                     val marriageStatusCapitalize = it.data?.data?.biodata?.marriageStatus
                     mariageStatus.setText(marriageStatusCapitalize?.capitalize())
 
-                    Glide.with(this)
+//                    Glide.with(this)
+//                        .load(it.data?.data?.biodata?.avatar)
+//                        .centerInside()
+//                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+//                        .into(avatar)
+
+                    Picasso.get()
                         .load(it.data?.data?.biodata?.avatar)
+                        .fit()
                         .centerInside()
-                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+                        .error(R.drawable.dummy_avatar)
                         .into(avatar)
 
                 }

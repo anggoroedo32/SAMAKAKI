@@ -108,15 +108,18 @@ class LoginActivity : AppCompatActivity() {
             when(it) {
                 is BaseResponse.Success -> {
                     it.data
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
+
+                    if (it.data?.data?.biodata == null) {
+                        val intent = Intent(this, SelamatDatangActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                    } else {
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                    }
                 }
-                is BaseResponse.Error -> {
-                    val intent = Intent(this, SelamatDatangActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                }
+                is BaseResponse.Error -> textMessage(it.msg.toString())
             }
         }
 

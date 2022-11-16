@@ -254,6 +254,14 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
     </style>
 
+    <style name="FieldDropdown">
+        <item name="android:background">@drawable/rounded_textfield</item>
+        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/neutral_400</item>
+        <item name="android:paddingStart">@dimen/dimen_14</item>
+    </style>
+
     <style name="DialogCopyButton">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">0dp</item>
@@ -307,7 +315,7 @@
     //spinner
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     //searchview

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_20"
+    android:paddingTop="@dimen/dimen_20"
+    android:paddingBottom="@dimen/dimen_20"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:id="@+id/title_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_link"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:text="@string/link"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        app:layout_constraintStart_toStartOf="@+id/ed_link"
+        app:layout_constraintTop_toBottomOf="@+id/title_dialog" />
+
+    <EditText
+        android:id="@+id/ed_link"
+        style="@style/DialogEditText"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
+        tools:text="https://handyopinion.com/alertdialog-with-custom-xml-layout-in-kotlin-android/"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:inputType="text"
+        android:layout_marginTop="@dimen/dimen_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_link" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_51"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
+        android:minWidth="@dimen/dimen_0"
+        android:text="@string/copy"
+        android:textAllCaps="false"
+        android:textColor="@color/neutral_400"
+        app:icon="@drawable/ic_copy"
+        app:iconTint="@color/neutral_400"
+        app:layout_constraintBottom_toBottomOf="@+id/ed_link"
+        app:layout_constraintStart_toEndOf="@+id/ed_link"
+        app:layout_constraintTop_toTopOf="@+id/ed_link"
+        app:shapeAppearanceOverlay="@style/DialogCopyButton" />
+
+    <TextView
+        android:id="@+id/title_share_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_link_on"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="@dimen/dimen_18"
+        app:layout_constraintTop_toBottomOf="@id/ed_link"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/share_link_whatsapp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_whatsapp"
+        android:layout_marginTop="@dimen/dimen_12"
+        app:layout_constraintTop_toBottomOf="@id/title_share_on"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

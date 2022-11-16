@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,6 +24,7 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -69,19 +70,6 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        //Dropdown Status
-        val statusDropdown = resources.getStringArray(R.array.status)
-        val statusDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,statusDropdown)
-        val autoCompleteStatus = binding.etStatus
-        autoCompleteStatus.setAdapter(statusDropdownAdapter)
-
-        //Dropdown Privacy
-        val privacyDropdown = resources.getStringArray(R.array.privacy)
-        val privacyDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,privacyDropdown)
-        val autoCompletePrivacy = binding.etStatusakun
-        autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
-
         getDate()
         loadingState()
 
@@ -117,10 +105,37 @@ class EditProfileFragment : Fragment() {
 //                    status.setText(it.data?.data?.biodata?.status)
 //                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 
-                    Glide.with(this)
+                    //Dropdown Status
+                    val statusDropdown = resources.getStringArray(R.array.status)
+                    val statusDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,statusDropdown)
+                    val autoCompleteStatus = binding.etStatus
+                    autoCompleteStatus.setAdapter(statusDropdownAdapter)
+                    val selectionMarriageStatus = it.data?.data?.biodata?.marriageStatus
+                    val spinnerPositionMarriageStatus: Int = statusDropdownAdapter.getPosition(selectionMarriageStatus)
+                    autoCompleteStatus.setSelection(spinnerPositionMarriageStatus)
+
+
+                    //Dropdown Privacy
+                    val privacyDropdown = resources.getStringArray(R.array.privacy)
+                    val privacyDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,privacyDropdown)
+                    val autoCompletePrivacy = binding.etStatusakun
+                    autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
+                    val selection = it.data?.data?.biodata?.status
+                    val spinnerPosition: Int = privacyDropdownAdapter.getPosition(selection)
+                    autoCompletePrivacy.setSelection(spinnerPosition)
+
+//                    Glide.with(this)
+//                        .load(it.data?.data?.biodata?.avatar)
+//                        .centerInside()
+//                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+//                        .into(avatar)
+
+
+                    Picasso.get()
                         .load(it.data?.data?.biodata?.avatar)
+                        .fit()
                         .centerInside()
-                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+                        .error(R.drawable.dummy_avatar)
                         .into(avatar)
 
                 }
@@ -188,13 +203,11 @@ class EditProfileFragment : Fragment() {
         val name = binding.ETName.text.toString()
         val dob = binding.ETTanggal.text.toString()
         val phone = binding.ETNoTlp.text.toString()
-        val marriageStatus = binding.etStatus.text.toString()
 
         when {
             name.isEmpty() -> binding.ETName.error = getString(R.string.err_empty_name)
             dob.isEmpty() -> binding.ETTanggal.error = getString(R.string.err_empty_dob)
             phone.isEmpty() -> binding.ETNoTlp.error = getString(R.string.err_empty_phone)
-            marriageStatus.isEmpty() -> binding.etStatus.error = getString(R.string.err_empty_status)
             else -> {
                 insertEditProfileData()
             }
@@ -207,8 +220,8 @@ class EditProfileFragment : Fragment() {
         val address = binding.ETLokasi.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.ETTanggal.text.toString().toRequestBody("text/plain".toMediaType())
         val phone = binding.ETNoTlp.text.toString().toRequestBody("text/plain".toMediaType())
-        val status = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
-        val marriageStatus = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
+        val status = binding.etStatusakun.selectedItem.toString().toRequestBody("text/plain".toMediaType())
+        val marriageStatus = binding.etStatus.selectedItem.toString().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
         val avatar = requestImage?.let {
             MultipartBody.Part.createFormData(
@@ -218,7 +231,7 @@ class EditProfileFragment : Fragment() {
             )
         }
 
-        // TODO: ngenteni rampung sing ngedit layout sik, layout e durung lengkap dan belum sesuai data dari BE
+
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
         profileViewModel.editProfile("Bearer $token", id, name, email, phone, address , dob, marriageStatus, status, avatar)

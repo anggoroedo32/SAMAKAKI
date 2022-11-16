@@ -10,6 +10,7 @@ import com.awp.samakaki.databinding.LayoutPostContentBinding
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.PostsItem
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
 class PostsAdapter(private var list: List<DataItem>) : RecyclerView.Adapter<PostsAdapter.PostsViewHolder>() {
 
@@ -26,17 +27,31 @@ class PostsAdapter(private var list: List<DataItem>) : RecyclerView.Adapter<Post
         holder.binding.userName.text = list.user?.name.toString()
         holder.binding.imgPost.visibility
         if (list.content != null){
-            Glide.with(holder.itemView.context)
+//            Glide.with(holder.itemView.context)
+//                .load("${list.content}")
+//                .placeholder(R.drawable.dummy_post_img)
+//                .into(holder.binding.imgPost)
+
+            Picasso.get()
                 .load("${list.content}")
-                .placeholder(R.drawable.dummy_post_img)
+                .error(R.drawable.dummy_post_img)
                 .into(holder.binding.imgPost)
+            
         } else {
             holder.binding.imgPost.isGone = true
         }
-        Glide.with(holder.itemView.context)
+//        Glide.with(holder.itemView.context)
+//            .load("${list.user?.avatar}")
+//            .placeholder(R.drawable.dummy_avatar)
+//            .into(holder.binding.userProfile)
+
+        Picasso.get()
             .load("${list.user?.avatar}")
-            .placeholder(R.drawable.dummy_avatar)
+            .fit()
+            .centerInside()
+            .error(R.drawable.dummy_avatar)
             .into(holder.binding.userProfile)
+
     }
 
 

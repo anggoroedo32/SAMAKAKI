@@ -1,14 +1,16 @@
 package com.awp.samakaki.ui.menu
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.awp.samakaki.R
 import com.awp.samakaki.adapter.NotificationsAdapter
 import com.awp.samakaki.adapter.ibAcceptClickListener
 import com.awp.samakaki.databinding.FragmentNotificationsBinding
@@ -63,11 +65,15 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
     }
 
+
     override fun onCard(movie: UnreadItem) {
 
         val token = SessionManager.getToken(requireContext())
         val invitationToken = SessionManager.getInvitation(requireContext())
-        familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), movie.relation.toString())
+        val getData = view?.findViewById<Spinner>(R.id.relation)
+        val dataSpinner = getData?.selectedItem.toString()
+        Log.e("TAG", "onCard: $dataSpinner", )
+        familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), dataSpinner)
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
@@ -81,7 +87,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
     private fun rvUndangan(list: List<UnreadItem>) {
 
-        notificationsAdapter = NotificationsAdapter(list)
+        notificationsAdapter = NotificationsAdapter(list, requireContext())
         notificationsAdapter.listener = this
         binding.rvUndangan.layoutManager = LinearLayoutManager(activity)
         binding.rvUndangan.adapter = notificationsAdapter

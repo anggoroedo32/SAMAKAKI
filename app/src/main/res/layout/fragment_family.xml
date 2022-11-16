@@ -145,18 +145,6 @@
                 android:layout_marginTop="@dimen/dimen_16"
                 android:text="@string/hubungan" />
 
-<!--            <AutoCompleteTextView-->
-<!--                android:id="@+id/et_hubungan"-->
-<!--                style="@style/TextfieldsStyle"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/dimen_40"-->
-<!--                android:layout_marginHorizontal="@dimen/dimen_35"-->
-<!--                android:layout_marginTop="@dimen/dimen_10"-->
-<!--                android:cursorVisible="false"-->
-<!--                android:focusable="false"-->
-<!--                android:hint="@string/hubungan"-->
-<!--                android:paddingEnd="6dp" />-->
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
