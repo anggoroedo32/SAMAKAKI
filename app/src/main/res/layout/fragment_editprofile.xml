@@ -234,7 +234,6 @@
                 android:drawablePadding="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/status_nikah"
                 android:focusable="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -244,7 +243,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_9"
-            android:text="@string/status_pernikahan"
+            android:text="@string/privasi"
             style="@style/medium_14"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical"
@@ -252,9 +251,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ET_StatusAkun"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="@dimen/dimen_48"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_marginHorizontal="@dimen/dimen_35"
             app:layout_constraintTop_toBottomOf="@id/tv_StatusAkun"
             app:layout_constraintStart_toStartOf="parent"
@@ -264,10 +263,10 @@
                 android:id="@+id/et_statusakun"
                 style="@style/TextfieldsStyle2"
                 android:drawableStart="@drawable/ic_password"
+                android:text="@string/privasi"
                 android:drawablePadding="@dimen/dimen_8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/privasi"
                 android:focusable="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>

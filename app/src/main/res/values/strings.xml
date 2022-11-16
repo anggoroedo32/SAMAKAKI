@@ -121,10 +121,11 @@
         <item>married</item>
         <item>divorced</item>
     </string-array>
+
     <string-array name="privacy">
-        <item>Private</item>
-        <item>Protected</item>
-        <item>Public</item>
+        <item>private</item>
+        <item>protected</item>
+        <item>public</item>
     </string-array>
 
     <string-array name="relationship">

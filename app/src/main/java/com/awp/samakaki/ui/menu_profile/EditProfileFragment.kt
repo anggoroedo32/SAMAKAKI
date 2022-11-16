@@ -70,24 +70,14 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //Dropdown Status
-        val statusDropdown = resources.getStringArray(R.array.status)
-        val statusDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,statusDropdown)
-        val autoCompleteStatus = binding.etStatus
-        autoCompleteStatus.setAdapter(statusDropdownAdapter)
 
-        //Dropdown Privacy
-        val privacyDropdown = resources.getStringArray(R.array.privacy)
-        val privacyDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,privacyDropdown)
-        val autoCompletePrivacy = binding.etStatusakun
-        autoCompletePrivacy.setAdapter(privacyDropdownAdapter)
 
         getDate()
         loadingState()
 
         val btnBack = binding.btnBack
 
-        btnBack.setOnClickListener{
+        btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -106,7 +96,7 @@ class EditProfileFragment : Fragment() {
         Log.d("id_dari_edit_profile", id.toString())
         profileViewModel.findUser(token = "Bearer $token!!", id = id.toString())
         profileViewModel.findUser.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
                     it.data
                     name.setText(it.data?.data?.biodata?.name)
@@ -114,6 +104,24 @@ class EditProfileFragment : Fragment() {
                     phone.setText(it.data?.data?.biodata?.phone)
                     email.setText(it.data?.data?.biodata?.email)
                     address.setText(it.data?.data?.biodata?.address)
+
+                    //Dropdown Status
+                    val statusDropdown = resources.getStringArray(R.array.status)
+                    val statusDropdownAdapter =
+                        ArrayAdapter(requireContext(), R.layout.dropdown_item, statusDropdown)
+                    mariageStatus.setAdapter(statusDropdownAdapter)
+                    val spinnerPosition: Int = statusDropdownAdapter.getPosition(it.data?.data?.biodata?.marriageStatus)
+                    mariageStatus.setSelection(spinnerPosition)
+
+                    //Dropdown Privacy
+                    val privacyDropdown = resources.getStringArray(R.array.privacy)
+                    val privacyDropdownAdapter =
+                        ArrayAdapter(requireContext(), R.layout.dropdown_item, privacyDropdown)
+                    status.setAdapter(privacyDropdownAdapter)
+                    status.setSelection(privacyDropdownAdapter.getPosition(it.data?.data?.biodata?.status))
+
+//                    status.hint = it.data?.data?.biodata?.status
+//                    mariageStatus.hint = it.data?.data?.biodata?.marriageStatus
 //                    status.setText(it.data?.data?.biodata?.status)
 //                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 
@@ -130,7 +138,7 @@ class EditProfileFragment : Fragment() {
 
         ivUploadImg = binding.imgEditProfile
         val btnUploadImg = binding.btnEdPhoto
-        btnUploadImg.setOnClickListener{
+        btnUploadImg.setOnClickListener {
             pickImageLauncher.launch("image/*")
         }
 
@@ -140,24 +148,27 @@ class EditProfileFragment : Fragment() {
             edValidation()
         }
 
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                val fragmentManager = parentFragmentManager
-                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(
-                    R.id.nav_host_fragment_activity_main,
-                    ProfileFragment()
-                )
-                    .setReorderingAllowed(true)
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val fragmentManager = parentFragmentManager
+                    val fragmentTransaction: FragmentTransaction =
+                        fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(
+                        R.id.nav_host_fragment_activity_main,
+                        ProfileFragment()
+                    )
+                        .setReorderingAllowed(true)
+                    fragmentTransaction.addToBackStack(null)
+                    fragmentTransaction.commit()
+                }
 
-        })
+            })
     }
 
     private val pickImageLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()){
+        registerForActivityResult(ActivityResultContracts.GetContent()) {
             imageUriEd = it!!
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
@@ -194,7 +205,8 @@ class EditProfileFragment : Fragment() {
             name.isEmpty() -> binding.ETName.error = getString(R.string.err_empty_name)
             dob.isEmpty() -> binding.ETTanggal.error = getString(R.string.err_empty_dob)
             phone.isEmpty() -> binding.ETNoTlp.error = getString(R.string.err_empty_phone)
-            marriageStatus.isEmpty() -> binding.etStatus.error = getString(R.string.err_empty_status)
+            marriageStatus.isEmpty() -> binding.etStatus.error =
+                getString(R.string.err_empty_status)
             else -> {
                 insertEditProfileData()
             }
@@ -208,7 +220,8 @@ class EditProfileFragment : Fragment() {
         val dob = binding.ETTanggal.text.toString().toRequestBody("text/plain".toMediaType())
         val phone = binding.ETNoTlp.text.toString().toRequestBody("text/plain".toMediaType())
         val status = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
-        val marriageStatus = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
+        val marriageStatus =
+            binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
         val avatar = requestImage?.let {
             MultipartBody.Part.createFormData(
@@ -221,9 +234,20 @@ class EditProfileFragment : Fragment() {
         // TODO: ngenteni rampung sing ngedit layout sik, layout e durung lengkap dan belum sesuai data dari BE
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
-        profileViewModel.editProfile("Bearer $token", id, name, email, phone, address , dob, marriageStatus, status, avatar)
+        profileViewModel.editProfile(
+            "Bearer $token",
+            id,
+            name,
+            email,
+            phone,
+            address,
+            dob,
+            marriageStatus,
+            status,
+            avatar
+        )
         profileViewModel.editProfile.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
                     it.data
                     findNavController().popBackStack()
@@ -238,15 +262,15 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun textMessage(s: String) {
-        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
     }
 
-    companion object{
+    companion object {
         private val PICK_IMAGE = 100
         private var imageUriEd: Uri? = null
     }
 
-    private fun getDate(){
+    private fun getDate() {
         binding.ETTanggal.setOnClickListener {
             var day = calendar.get(Calendar.DAY_OF_MONTH)
             var month = calendar.get(Calendar.MONTH)
@@ -256,7 +280,7 @@ class EditProfileFragment : Fragment() {
                 DatePickerDialog(
                     it1,
                     { view, year, monthOfYear, dayOfMonth ->
-                        dateTime.set(year,month,day)
+                        dateTime.set(year, month, day)
                         dateFormater = SimpleDateFormat("yyyy-MM-dd").format(dateTime.time)
                         binding.ETTanggal.setText(dateFormater)
                     },
@@ -268,8 +292,8 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun loadingState(){
-        profileViewModel.loading.observe(viewLifecycleOwner){
+    private fun loadingState() {
+        profileViewModel.loading.observe(viewLifecycleOwner) {
             binding.prgbar.isVisible = !it
             binding.prgbar.isVisible = it
         }
