@@ -253,7 +253,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/wrap_dummy18"
                 app:layout_constraintEnd_toEndOf="@+id/wrap_dummy18"
                 app:layout_constraintStart_toStartOf="@+id/wrap_dummy18"
-                app:layout_constraintTop_toBottomOf="@+id/view_line_horizontal_14" />
+                app:layout_constraintTop_toTopOf="@+id/view_line_horizontal_14" />
 
             <View
                 android:id="@+id/view_line_vertical_20"
@@ -288,7 +288,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="User" />
 
             </LinearLayout>
 
@@ -317,7 +320,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Anak Kedua" />
 
             </LinearLayout>
 
@@ -345,7 +351,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Anak Ketiga" />
 
             </LinearLayout>
 
@@ -374,7 +383,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Anak Pertama" />
 
             </LinearLayout>
 
@@ -402,7 +414,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Bapak" />
 
             </LinearLayout>
 
@@ -429,7 +444,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Adek Pertama" />
 
             </LinearLayout>
 
@@ -453,8 +471,11 @@
                     android:id="@+id/name_dummy8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxEms="10"
-                    android:text="Dummy 1" />
+                    android:maxEms="4"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Suami/Istri" />
 
             </LinearLayout>
 
@@ -481,7 +502,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Kakak Ketiga" />
 
             </LinearLayout>
 
@@ -508,7 +532,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Kakak Kedua" />
 
             </LinearLayout>
 
@@ -535,7 +562,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Kakak Pertama" />
 
             </LinearLayout>
 
@@ -562,7 +592,11 @@
                     android:id="@+id/name_dummy12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dummy 1" />
+                    android:maxEms="4"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Adek Kedua" />
 
             </LinearLayout>
 
@@ -588,7 +622,11 @@
                     android:id="@+id/name_dummy13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dummy 1" />
+                    android:maxEms="4"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Adek Ketiga" />
 
             </LinearLayout>
 
@@ -616,7 +654,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Nenek dari Ibu" />
 
             </LinearLayout>
 
@@ -644,7 +685,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Nenek dari Bapak" />
 
             </LinearLayout>
 
@@ -672,7 +716,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Kakek dari Ibu" />
 
             </LinearLayout>
 
@@ -700,7 +747,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Kakek dari Bapak" />
 
             </LinearLayout>
 
@@ -729,7 +779,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxEms="4"
-                    android:text="Dummy 1" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="Ibu" />
 
             </LinearLayout>
 

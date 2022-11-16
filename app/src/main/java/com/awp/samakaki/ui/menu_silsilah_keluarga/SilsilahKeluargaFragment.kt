@@ -3,30 +3,32 @@ package com.awp.samakaki.ui.menu_silsilah_keluarga
 import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.ComponentName
 import android.content.Context.CLIPBOARD_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
 import com.awp.samakaki.helper.SessionManager
-import com.awp.samakaki.response.*
-import com.awp.samakaki.utils.Graph
+import com.awp.samakaki.response.BaseResponse
+import com.awp.samakaki.response.RelationItem
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.awp.samakaki.viewmodel.NotificationsViewModel
-import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ru.nikartm.support.ImageBadgeView
-import java.util.*
 
 
 @AndroidEntryPoint
@@ -378,6 +380,7 @@ class SilsilahKeluargaFragment : Fragment() {
         val btnClose = dialog.findViewById<ImageView>(R.id.close_btn)
         val edLink = dialog.findViewById<EditText>(R.id.ed_link)
         val btnCopy = dialog.findViewById<Button>(R.id.btn_copy)
+        val btnShareLinkWhatsapp = dialog.findViewById<ImageView>(R.id.share_link_whatsapp)
 
         Log.d("link_edLinkValue", edLink.text.toString())
 
@@ -388,12 +391,33 @@ class SilsilahKeluargaFragment : Fragment() {
             copyTextToClipboard(edLink.text.toString())
         }
 
+        btnShareLinkWhatsapp.setOnClickListener {
+            sendMessage("Hai, saya ingin mengundang anda untuk masuk ke family tree saya. Silahkan ikuti tautan berikut ini\nwww.samakaki.com/$link")
+//            openWhatsApp()
+        }
+
         btnClose.setOnClickListener {
             dialog.dismiss()
         }
+
         dialog.setCancelable(false)
         dialog.show()
+        val window: Window? = dialog.getWindow()
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
+    }
+
+    fun sendMessage(message: String) {
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.setPackage("com.whatsapp")
+        intent.putExtra(Intent.EXTRA_TEXT, message)
+//        if (intent.resolveActivity(requireActivity().packageManager) == null) {
+//            textMessage("Silahkan install whatsapp terlebih dahulu")
+//            return
+//        }
+        startActivity(intent)
     }
 
     private fun copyTextToClipboard(link: String) {
@@ -406,6 +430,37 @@ class SilsilahKeluargaFragment : Fragment() {
 
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
+
+//    private fun openWhatsApp() {
+//        val smsNumber = binding.etNoTelp.text.trim().toString()
+//        val isWhatsappInstalled = whatsappInstalledOrNot("com.whatsapp")
+//        if (isWhatsappInstalled) {
+//            val sendIntent = Intent("android.intent.action.MAIN")
+//            sendIntent.component = ComponentName("com.whatsapp", "com.whatsapp.Conversation")
+//            sendIntent.putExtra(
+//                "jid",
+//                PhoneNumberUtils.stripSeparators(smsNumber) + "@s.whatsapp.net"
+//            ) //phone number without "+" prefix
+//            startActivity(sendIntent)
+//        } else {
+//            val uri: Uri = Uri.parse("market://details?id=com.whatsapp")
+//            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+//            textMessage("Silahkan menginstall WhatsApp terlebih dahulu")
+//            startActivity(goToMarket)
+//        }
+//    }
+//
+//    private fun whatsappInstalledOrNot(uri: String): Boolean {
+//        val pm: PackageManager = requireActivity().packageManager
+//        var app_installed = false
+//        app_installed = try {
+//            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
+//            true
+//        } catch (e: PackageManager.NameNotFoundException) {
+//            false
+//        }
+//        return app_installed
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
