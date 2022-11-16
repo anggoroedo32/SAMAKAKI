@@ -218,6 +218,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -231,6 +232,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -244,6 +246,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -257,6 +260,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -270,6 +274,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -283,6 +288,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -296,6 +302,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -309,6 +316,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#A3A3A3"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -330,6 +338,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -343,6 +352,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -356,6 +366,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -369,6 +380,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -382,6 +394,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -395,6 +408,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -408,6 +422,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
@@ -421,6 +436,7 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
                         }
                     }
 
