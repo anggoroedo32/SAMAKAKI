@@ -57,6 +57,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         }
 
+        val btnBack = binding.icBack
+        btnBack.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun loadingState(){

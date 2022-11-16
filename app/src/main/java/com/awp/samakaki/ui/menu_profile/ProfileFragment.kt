@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
@@ -15,15 +14,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
+import com.awp.samakaki.adapter.UserPostsAdapter
 import com.awp.samakaki.databinding.FragmentProfileBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
+import com.awp.samakaki.response.ItemPosts
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,13 +35,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<PostsViewModel>()
-    private lateinit var ivUploadImg: ImageView
-    private val calendar = Calendar.getInstance()
-    private var dateFormater: String? = null
-    private var imageFile: File? = null
-
     private val profileViewModel by viewModels<ProfileViewModel>()
-    private lateinit var postsAdapter: PostsAdapter
 
 
     override fun onCreateView(
@@ -49,7 +45,6 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        dateFormater = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
         return root
     }
 
@@ -57,7 +52,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val name = binding.TVProfilename
-        val dob = binding.tvTgllahir
         val address = binding.tvAlamat
         val phone = binding.tvNohp
         val mariageStatus = binding.tvStatus
@@ -74,17 +68,24 @@ class ProfileFragment : Fragment() {
                     it.data
 
                     name.setText(it.data?.data?.biodata?.name)
-                    dob.setText(it.data?.data?.biodata?.dob)
+                    formatDate(it.data?.data?.biodata?.dob.toString())
                     var addressCapitalize = it.data?.data?.biodata?.address
                     address.setText(addressCapitalize?.capitalize())
                     phone.setText(it.data?.data?.biodata?.phone)
                     val marriageStatusCapitalize = it.data?.data?.biodata?.marriageStatus
                     mariageStatus.setText(marriageStatusCapitalize?.capitalize())
 
-                    Glide.with(this)
+//                    Glide.with(this)
+//                        .load(it.data?.data?.biodata?.avatar)
+//                        .centerInside()
+//                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+//                        .into(avatar)
+
+                    Picasso.get()
                         .load(it.data?.data?.biodata?.avatar)
+                        .fit()
                         .centerInside()
-                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
+                        .error(R.drawable.dummy_avatar)
                         .into(avatar)
 
                 }
@@ -111,11 +112,19 @@ class ProfileFragment : Fragment() {
         getPosts()
     }
 
+    private fun formatDate(inputDate: String) {
+        var inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
+        var date: Date = inputFormat.parse(inputDate)
+        var outputDate: String = dateFormater.format(date)
+        binding.tvTgllahir.setText(outputDate)
+    }
+
     private fun observeData(){
-        viewModel.listAllPosts.observe(viewLifecycleOwner) {
+        viewModel.listAllPostsByUser.observe(viewLifecycleOwner) {
             when(it){
                 is BaseResponse.Success -> {
-                    it.data?.data?.let { it1 -> rvPosts(it1) }
+                    it.data?.data?.posts.let { it1 -> rvPosts(it1 as List<ItemPosts>) }
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
@@ -123,17 +132,17 @@ class ProfileFragment : Fragment() {
             }
         }
     }
-    private fun rvPosts(list: List<DataItem>) {
+    private fun rvPosts(list: List<ItemPosts>) {
         val recyclerViewPosts: RecyclerView = binding.rvProfile
         recyclerViewPosts.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = PostsAdapter(list)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+            adapter = UserPostsAdapter(list)
         }
     }
 
     private fun getPosts(){
         var tokenGet = SessionManager.getToken(requireContext())
-        viewModel.getAllPostsByFamily("bearer $tokenGet")
+        viewModel.getAllPostsByUser("bearer $tokenGet")
         observeData()
     }
 

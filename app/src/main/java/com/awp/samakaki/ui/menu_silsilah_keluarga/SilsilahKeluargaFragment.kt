@@ -69,7 +69,7 @@ class SilsilahKeluargaFragment : Fragment() {
 
         familyTreeViewModel.findUserRelations("Bearer $token")
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
                     val relationData = it.data?.data?.relation
                     Log.d("relation_data", "hasilnya $relationData")
@@ -85,10 +85,10 @@ class SilsilahKeluargaFragment : Fragment() {
         }
 
 
-
         //Dropdown Relationship
         val relationshipDropdown = resources.getStringArray(R.array.relationship)
-        val relationshipDropdownAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,relationshipDropdown)
+        val relationshipDropdownAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, relationshipDropdown)
         val autoCompleteRelationship = binding.etHubungan
         autoCompleteRelationship.setAdapter(relationshipDropdownAdapter)
 
@@ -96,7 +96,7 @@ class SilsilahKeluargaFragment : Fragment() {
         toolbar.inflateMenu(R.menu.menu_home)
         initNotificationCounter()
         toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
 //                R.id.notification -> findNavController().navigate(R.id.action_navigation_family_to_notificationsFragment)
                 R.id.settings -> findNavController().navigate(R.id.action_navigation_family_to_settingsFragment)
             }
@@ -107,6 +107,7 @@ class SilsilahKeluargaFragment : Fragment() {
         fab.setOnClickListener {
             familyTree.visibility = View.GONE
             isiProfil.visibility = View.VISIBLE
+            familyTree.visibility = View.GONE
         }
 
 
@@ -116,7 +117,7 @@ class SilsilahKeluargaFragment : Fragment() {
             val phone = binding.etNoTelp.text.trim().toString()
             val relationship = binding.etHubungan.text.toString()
 
-            when{
+            when {
                 relationship == "Adek Pertama" -> dataRelationship = "adek_pertama"
                 relationship == "Adek Kedua" -> dataRelationship = "adek_kedua"
                 relationship == "Adek Ketiga" -> dataRelationship = "adek_ketiga"
@@ -140,17 +141,21 @@ class SilsilahKeluargaFragment : Fragment() {
                     binding.etNoTelp.error = getString(R.string.err_empty_phone)
                 }
                 else -> {
-                    familyTreeViewModel.createUserRelations("Bearer $token", name, dataRelationship.toString())
-                    Log.d("isinya_data_relation" , dataRelationship.toString())
+                    familyTreeViewModel.createUserRelations(
+                        "Bearer $token",
+                        name,
+                        dataRelationship.toString()
+                    )
+                    Log.d("isinya_data_relation", dataRelationship.toString())
                     familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
-                        when(it) {
+                        when (it) {
                             is BaseResponse.Success -> {
                                 it.data
                                 isiProfil.visibility = View.GONE
                                 familyTree.visibility = View.VISIBLE
-                                val invitationToken = it.data?.data?.invitaionToken
-                                showDialog(link = it.data?.data?.invitaionToken)
-                                Log.d("isinya_token" , it.data?.data?.invitaionToken.toString())
+                                val invitationToken = it.data?.data?.invitationToken
+                                showDialog(link = it.data?.data?.invitationToken)
+                                Log.d("isinya_token", it.data?.data?.invitationToken.toString())
                             }
 
                             is BaseResponse.Error -> (it.msg.toString())
@@ -170,11 +175,11 @@ class SilsilahKeluargaFragment : Fragment() {
         val token = context?.let { SessionManager.getToken(it) }
         familyTreeViewModel.findUserRelations("Bearer $token")
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
 
-                    val imgCurrentUser = binding.imgDummy1
-                    val nameCurrentUser = binding.nameDummy1
+                    val imgCurrentUser = binding.layoutFamily.imgDummy1
+                    val nameCurrentUser = binding.layoutFamily.nameDummy1
                     val fetchCurrentUsser = it.data?.data?.currentUser
                     nameCurrentUser.text = fetchCurrentUsser
 
@@ -191,7 +196,7 @@ class SilsilahKeluargaFragment : Fragment() {
                     val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
                     val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
                     val anakPertama = findRelation?.filter { it?.relationName == "anak_pertama" }
-                    val anakKeuda = findRelation?.filter { it?.relationName == "anak_kedua" }
+                    val anakKedua = findRelation?.filter { it?.relationName == "anak_kedua" }
                     val anakKetiga = findRelation?.filter { it?.relationName == "anak_ketiga" }
                     val kakekDariBapak = findRelation?.filter { it?.relationName == "kakek_dari_bapak" }
                     val nenekDariBapak = findRelation?.filter { it?.relationName == "nenek_dari_bapak" }
@@ -200,63 +205,141 @@ class SilsilahKeluargaFragment : Fragment() {
                     val husband = findRelation?.filter { it?.relationName == "husband" }
                     val wife = findRelation?.filter { it?.relationName == "wife" }
 
+                    if (kakekDariBapak?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy17
+                        val name = binding.layoutFamily.nameDummy17
+                        val ss = findRelation?.find { it?.relationName == "kakek_dari_bapak" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (nenekDariBapak?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy15
+                        val name = binding.layoutFamily.nameDummy15
+                        val ss = findRelation?.find { it?.relationName == "nenek_dari_bapak" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if(kakekDariIbu?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy16
+                        val name = binding.layoutFamily.nameDummy16
+                        val ss = findRelation?.find { it?.relationName == "kakek_dari_ibu" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if(nenekDariIbu?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy14
+                        val name = binding.layoutFamily.nameDummy14
+                        val ss = findRelation?.find { it?.relationName == "nenek_dari_ibu" }
+                        val username = ss?.userRelated
+                        name.setText(username)
+                    }
+
+                    if (kakakPertama?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy9
+                        val name = binding.layoutFamily.nameDummy9
+                        val ss = findRelation?.find { it?.relationName == "kakak_pertama" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (kakakKedua?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy10
+                        val name = binding.layoutFamily.nameDummy10
+                        val ss = findRelation?.find { it?.relationName == "kakak_kedua" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (kakakKetiga?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy11
+                        val name = binding.layoutFamily.nameDummy11
+                        val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (adekPertama?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy7
+                        val name = binding.layoutFamily.nameDummy7
+                        val ss = findRelation?.find { it?.relationName == "adek_pertama" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (adekKeuda?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy12
+                        val name = binding.layoutFamily.nameDummy12
+                        val ss = findRelation?.find { it?.relationName == "adek_kedua" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
+                    if (adekKetiga?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy13
+                        val name = binding.layoutFamily.nameDummy13
+                        val ss = findRelation?.find { it?.relationName == "adek_ketiga" }
+                        val username = ss?.userRelated
+                        name.text = username
+                    }
+
                     if (getIbu?.isNotEmpty() == true) {
-                        val img = binding.imgDummy6
-                        val name = binding.nameDummy6
+                        val img = binding.layoutFamily.imgDummy6
+                        val name = binding.layoutFamily.nameDummy6
                         val ss = findRelation?.find { it?.relationName == "ibu" }
                         val username = ss?.userRelated
                         name.text = username
                     }
 
                     if (getBapak?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy7
-                        val name = binding.nameDummy7
+                        val avatar = binding.layoutFamily.imgDummy18
+                        val name = binding.layoutFamily.nameDummy18
                         val ss = findRelation?.find { it?.relationName == "bapak" }
                         val username = ss?.userRelated
                         name.text = username
                     }
 
                     if (anakPertama?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy4
-                        val name = binding.nameDummy4
+                        val avatar = binding.layoutFamily.imgDummy4
+                        val name = binding.layoutFamily.nameDummy4
                         val ss = findRelation?.find { it?.relationName == "anak_pertama" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
 
-                    if (anakKeuda?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy2
-                        val name = binding.nameDummy2
+                    if (anakKedua?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy2
+                        val name = binding.layoutFamily.nameDummy2
                         val ss = findRelation?.find { it?.relationName == "anak_kedua" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
 
                     if (anakKetiga?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy3
-                        val name = binding.nameDummy3
+                        val avatar = binding.layoutFamily.imgDummy3
+                        val name = binding.layoutFamily.nameDummy3
                         val ss = findRelation?.find { it?.relationName == "anak_ketiga" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
 
                     if (husband?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy8
-                        val name = binding.nameDummy8
+                        val avatar = binding.layoutFamily.imgDummy8
+                        val name = binding.layoutFamily.nameDummy8
                         val ss = findRelation?.find { it?.relationName == "husband" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
 
                     if (wife?.isNotEmpty() == true) {
-                        val avatar = binding.imgDummy8
-                        val name = binding.nameDummy8
+                        val avatar = binding.layoutFamily.imgDummy8
+                        val name = binding.layoutFamily.nameDummy8
                         val ss = findRelation?.find { it?.relationName == "husband" }
                         val username = ss?.userRelated
                         name.setText(username)
                     }
-
-
 
                 }
 
@@ -273,7 +356,7 @@ class SilsilahKeluargaFragment : Fragment() {
 
         notificationsViewModel.getNotifications("Bearer $token")
         notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is BaseResponse.Success -> {
                     imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
                 }
@@ -315,7 +398,8 @@ class SilsilahKeluargaFragment : Fragment() {
 
     private fun copyTextToClipboard(link: String) {
         Log.d("link_copy", link)
-        val clipboardManager: ClipboardManager = activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboardManager: ClipboardManager =
+            activity?.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clipData = ClipData.newPlainText("text", link.toString())
         clipboardManager.setPrimaryClip(clipData)
 
@@ -328,15 +412,15 @@ class SilsilahKeluargaFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadingState(){
-        familyTreeViewModel.loading.observe(viewLifecycleOwner){
-            val progressBar =  binding.prgbar
+    private fun loadingState() {
+        familyTreeViewModel.loading.observe(viewLifecycleOwner) {
+            val progressBar = binding.prgbar
             progressBar.isVisible = !it
             progressBar.isVisible = it
         }
     }
 
     protected fun textMessage(s: String) {
-        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
     }
 }

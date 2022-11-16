@@ -68,6 +68,11 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         }
 
+        val btnBack = binding.icBack
+        btnBack.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun loadingState(){

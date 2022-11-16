@@ -2,7 +2,7 @@ package com.awp.samakaki.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CreateRelationsResponse(
+data class CreateRelationResponse(
 
 	@field:SerializedName("data")
 	val data: Data? = null,
@@ -16,6 +16,9 @@ data class Data(
 	@field:SerializedName("code")
 	val code: String? = null,
 
+	@field:SerializedName("invitation_token")
+	val invitationToken: String? = null,
+
 	@field:SerializedName("user_relation")
 	val userRelation: UserRelation? = null,
 
@@ -24,9 +27,6 @@ data class Data(
 
 	@field:SerializedName("id")
 	val id: Int? = null,
-
-	@field:SerializedName("invitaion_token")
-	val invitaionToken: String? = null,
 
 	@field:SerializedName("relation_name")
 	val relationName: String? = null

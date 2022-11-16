@@ -141,7 +141,21 @@
         <item>Nenek Dari Bapak</item>
         <item>Kakek Dari Ibu</item>
         <item>Nenek Dari Ibu</item>
-
-
     </string-array>
+
+    <string-array name="relation">
+        <item>adek_pertama</item>
+        <item>adek_kedua</item>
+        <item>adek_ketiga</item>
+        <item>bapak</item>
+        <item>ibu</item>
+        <item>anak_pertama</item>
+        <item>anak_kedua</item>
+        <item>adek_ketiga</item>
+        <item>kakek_dari_bapak</item>
+        <item>nenek_dari_bapak</item>
+        <item>kakek_dari_ibu</item>
+        <item>nenek_dari_ibu</item>
+    </string-array>
+
 </resources>
