@@ -93,10 +93,12 @@ class SelamatDatangActivity : AppCompatActivity() {
     }
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()){
-            imageUri = it!!
+            if (it != null) {
+                imageUri = it
+            }
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
-            imageFile = uriToFile(imageUri!!, this)
+            imageFile = imageUri?.let { it1 -> uriToFile(it1, this) }
         }
 
     private fun insertProfile() {

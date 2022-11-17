@@ -68,10 +68,17 @@ class SplashScreenActivity : AppCompatActivity() {
                 profileViewModel.findUser.observe(this) {
                     when(it) {
                         is BaseResponse.Success -> {
-                            it.data
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            startActivity(intent)
+                            val biodata = it.data?.data?.biodata
+                            if (biodata == null){
+                                val intent = Intent(this, SelamatDatangActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                startActivity(intent)
+                                Log.e("TAG", "onCreate: $biodata", )
+                            } else {
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                startActivity(intent)
+                            }
                         }
                         is BaseResponse.Error -> {
                             val intent = Intent(this, SelamatDatangActivity::class.java)
