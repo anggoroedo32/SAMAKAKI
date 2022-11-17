@@ -1,6 +1,5 @@
 package com.awp.samakaki.ui
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
@@ -8,26 +7,20 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.IsiProfilViewModel
-import com.awp.samakaki.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -37,7 +30,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.log
 
 
 @AndroidEntryPoint
@@ -88,17 +80,21 @@ class SelamatDatangActivity : AppCompatActivity() {
         ivUploadImg = binding.ivUploadImage
         val tvUploadImg = binding.tvUploadImage
         tvUploadImg.setOnClickListener{
-            pickImageLauncher.launch("image/*")
+            pickImageLauncher.launch(arrayOf("image/*"))
         }
     }
     private val pickImageLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()){
+        registerForActivityResult(ActivityResultContracts.OpenDocument()){
+            if (it != null) {
+                contentResolver.takePersistableUriPermission(it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
             if (it != null) {
                 imageUri = it
+                ivUploadImg.visibility = View.VISIBLE
             }
             ivUploadImg.setImageURI(it)
-            ivUploadImg.visibility = View.VISIBLE
-            imageFile = imageUri?.let { it1 -> uriToFile(it1, this) }
+//            imageFile = imageUri?.let { it1 -> uriToFile(it1, this) }
+            imageFile = uriToFile(imageUri, this)
         }
 
     private fun insertProfile() {
@@ -172,11 +168,12 @@ class SelamatDatangActivity : AppCompatActivity() {
         }
     }
 
-    fun uriToFile(selectedImg: Uri, context: Context): File {
+    fun uriToFile(selectedImg: Uri?, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createCustomTempFile(context)
 
-        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+//        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+        val inputStream = selectedImg?.let { contentResolver.openInputStream(it) } as InputStream
         val outputStream: OutputStream = FileOutputStream(myFile)
         val buf = ByteArray(1024)
         var len: Int
