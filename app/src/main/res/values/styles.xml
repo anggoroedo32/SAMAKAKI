@@ -5,6 +5,13 @@
     //typefont_ukcolor
     //exam bold_30black
     //yg belum dikasih warna berarti belum dipakai di uiux
+    <style name="bold_32prim600">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>
+        <item name="android:textSize">@dimen/dimen_32</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primary_600</item>
+    </style>
     <style name="regular_30">
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_4</item>

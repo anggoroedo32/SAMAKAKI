@@ -23,48 +23,27 @@
 
     <ImageView
         android:id="@+id/img_splash"
-        android:src="@drawable/splash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="322dp"
+        android:layout_height="293dp"
+        android:layout_marginBottom="@dimen/dimen_30"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:src="@drawable/logo_samakaki_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vector1"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/tv2"
-        style="@style/semibold_16prim500"
-        android:textColor="@color/warning_500"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_splash"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/img_splash"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv1"
-        style="@style/bold_30prim600"
-        android:textColor="@color/warning_500"
+        style="@style/bold_32prim600"
         android:text="@string/samakaki_splash"
-        android:layout_marginTop="-16dp"
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv2"/>
+        app:layout_constraintTop_toBottomOf="@id/img_splash"/>
 
-    <TextView
-        android:id="@+id/tv_token"
-        style="@style/semibold_16prim500"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        tools:text="@string/welcome_splash"
-        android:visibility="gone"
-        android:textColor="@color/warning_500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
