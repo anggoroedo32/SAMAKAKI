@@ -52,7 +52,6 @@ class SelamatDatangActivity : AppCompatActivity() {
 
         btnIsiProfil.setOnClickListener{
             insertProfile()
-
         }
 
         //Input Configuration
@@ -93,8 +92,8 @@ class SelamatDatangActivity : AppCompatActivity() {
                 ivUploadImg.visibility = View.VISIBLE
             }
             ivUploadImg.setImageURI(it)
-//            imageFile = imageUri?.let { it1 -> uriToFile(it1, this) }
-            imageFile = uriToFile(imageUri, this)
+            imageFile = imageUri?.let { it1 -> uriToFile(it1, this) }
+//            imageFile = uriToFile(imageUri, this)
         }
 
     private fun insertProfile() {
@@ -168,12 +167,12 @@ class SelamatDatangActivity : AppCompatActivity() {
         }
     }
 
-    fun uriToFile(selectedImg: Uri?, context: Context): File {
+    fun uriToFile(selectedImg: Uri, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createCustomTempFile(context)
 
-//        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
-        val inputStream = selectedImg?.let { contentResolver.openInputStream(it) } as InputStream
+        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+//        val inputStream = selectedImg?.let { contentResolver.openInputStream(it) } as InputStream
         val outputStream: OutputStream = FileOutputStream(myFile)
         val buf = ByteArray(1024)
         var len: Int

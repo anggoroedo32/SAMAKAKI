@@ -41,7 +41,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val invitationToken = intent.getStringExtra("invit")
-        SessionManager.saveInvitation(this, intent.getStringExtra("invit").toString())
+//        SessionManager.saveInvitation(this, intent.getStringExtra("invit").toString())
         Log.d("isi_tokennnnn", "token $invitationToken")
 
         tokenInvitation = binding.etTokenInvitation

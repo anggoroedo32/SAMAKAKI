@@ -52,6 +52,9 @@ class SplashScreenActivity : AppCompatActivity() {
             messageTV.text = param
             invitToken = param
 
+            val tokenInvitation = invitToken
+            SessionManager.saveInvitation(this, tokenInvitation.toString())
+
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -73,7 +76,6 @@ class SplashScreenActivity : AppCompatActivity() {
                                 val intent = Intent(this, SelamatDatangActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 startActivity(intent)
-                                Log.e("TAG", "onCreate: $biodata", )
                             } else {
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)

@@ -122,6 +122,11 @@ interface ApiService {
         @Body createFamilyTreeRequest: CreateFamilyTreeRequest
     ): Response<CreateFamilyTreeResponse>
 
+    @POST("invite/users")
+    suspend fun inviteFamily(
+        @Header("Authorization") token: String,
+        @Body inviteFamilyRequest: InviteFamilyRequest
+    ): Response<InviteFamilyResponse>
 
     @GET("posts")
     suspend fun getAllPostsByFamily(

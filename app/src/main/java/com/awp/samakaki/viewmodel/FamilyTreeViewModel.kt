@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
+import com.awp.samakaki.request.InviteFamilyRequest
 import com.awp.samakaki.request.UpdateRelationRequest
 import com.awp.samakaki.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
@@ -30,6 +32,9 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
 
     private val _createFamilyTree = MutableLiveData<BaseResponse<CreateFamilyTreeResponse>>()
     val createFamilyTree: LiveData<BaseResponse<CreateFamilyTreeResponse>> = _createFamilyTree
+
+    private val _inviteFamily = MutableLiveData<BaseResponse<InviteFamilyResponse>>()
+    val inviteFamily: LiveData<BaseResponse<InviteFamilyResponse>> = _inviteFamily
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -99,6 +104,33 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 } else {
                     _updateRelations.postValue(BaseResponse.Error(response.message()))
                     _loading.value = false
+                }
+            } catch (e: HttpException) {
+                BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+            } catch (e: IOException) {
+                BaseResponse.Error("Cek kembali koneksi internet anda")
+            } catch (e: Exception) {
+                _findUserRelations.postValue(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah"))
+            }
+        }
+    }
+
+    fun inviteFamily(token: String, invitationToken: String) {
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+                val inviteFamilyRequest = InviteFamilyRequest(
+                    tokenInvitation = invitationToken
+                )
+                val response = repository.inviteFamily(token = token, inviteFamilyRequest)
+                if (response.code() == 200) {
+                    _inviteFamily.postValue(BaseResponse.Success(response.body()))
+                    _loading.value = false
+                    Log.d("TAG", "inviteFamily: ${response.body()}")
+                } else {
+                    _inviteFamily.postValue(BaseResponse.Error(response.message()))
+                    _loading.value = false
+                    Log.d("TAG", "inviteFamilyError: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
