@@ -20,6 +20,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentFamilyBinding
+import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.RelationItem
@@ -62,6 +63,7 @@ class SilsilahKeluargaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingState()
+        checkConnectivity()
 
         val familyTree = binding.wrapFamilyTree
         val isiProfil = binding.wrapIsiProfil
@@ -666,6 +668,16 @@ class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(requireContext())
+        connectivity.observe(viewLifecycleOwner) {
+                isConnected ->
+            if(!isConnected){
+                textMessageLong("Tidak ada koneksi internet")
+            }
+        }
+    }
+
     private fun showDialog(link: String?) {
 
         val dialog = Dialog(requireContext())
@@ -772,4 +784,9 @@ class SilsilahKeluargaFragment : Fragment() {
     protected fun textMessage(s: String) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
     }
+
+    private fun textMessageLong(s: String) {
+        Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
+    }
+
 }

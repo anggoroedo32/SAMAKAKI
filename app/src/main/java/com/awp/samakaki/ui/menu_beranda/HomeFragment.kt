@@ -14,12 +14,14 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.databinding.FragmentHomeBinding
+import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
@@ -72,6 +74,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkConnectivity()
 
         val toolbar = binding.toolbarHomepage
         toolbar.inflateMenu(R.menu.menu_home)
@@ -111,6 +114,16 @@ class HomeFragment : Fragment() {
         binding.addMedia.setOnClickListener{
             pickImageLauncher.launch("image/*")
         }
+    }
+
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(requireContext())
+        connectivity.observe(viewLifecycleOwner, Observer {
+                isConnected ->
+            if(!isConnected){
+                textMessageLong("Tidak ada koneksi internet")
+            }
+        })
     }
 
     private fun insertViewModelPosts(status: String){
@@ -188,10 +201,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        imageBadgeView?.setBadgeValue(notificationsCount)
-//            ?.setMaxBadgeValue(99)
-//            ?.setLimitBadgeValue(true)
-
         imageBadgeView?.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
         }
@@ -241,6 +250,10 @@ class HomeFragment : Fragment() {
 
     private fun textMessage(s: String) {
         Toast.makeText(requireContext(),s, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun textMessageLong(s: String) {
+        Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
     }
 
     companion object{

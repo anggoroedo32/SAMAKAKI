@@ -16,6 +16,7 @@ import com.awp.samakaki.R
 import com.awp.samakaki.adapter.PostsAdapter
 import com.awp.samakaki.adapter.UserPostsAdapter
 import com.awp.samakaki.databinding.FragmentProfileBinding
+import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
@@ -50,6 +51,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkConnectivity()
 
 
         val name = binding.TVProfilename
@@ -113,6 +115,16 @@ class ProfileFragment : Fragment() {
         getPosts()
     }
 
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(requireContext())
+        connectivity.observe(viewLifecycleOwner) {
+                isConnected ->
+            if(!isConnected){
+                textMessageLong("Tidak ada koneksi internet")
+            }
+        }
+    }
+
     private fun formatDate(inputDate: String) {
         var inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
@@ -149,6 +161,10 @@ class ProfileFragment : Fragment() {
 
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun textMessageLong(s: String) {
+        Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
     }
 
 

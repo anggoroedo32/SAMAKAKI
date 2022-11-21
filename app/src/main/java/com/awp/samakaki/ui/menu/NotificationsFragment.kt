@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awp.samakaki.R
 import com.awp.samakaki.adapter.NotificationsAdapter
 import com.awp.samakaki.adapter.ibAcceptClickListener
 import com.awp.samakaki.databinding.FragmentNotificationsBinding
+import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.UnreadItem
@@ -44,6 +46,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkConnectivity()
 
         val btnBack = binding.btnBack
         btnBack.setOnClickListener {
@@ -85,6 +88,16 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
         }
     }
 
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(requireContext())
+        connectivity.observe(viewLifecycleOwner, Observer {
+                isConnected ->
+            if(!isConnected){
+                textMessageLong("Tidak ada koneksi internet")
+            }
+        })
+    }
+
     private fun rvUndangan(list: List<UnreadItem>) {
 
         notificationsAdapter = NotificationsAdapter(list, requireContext())
@@ -96,6 +109,10 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun textMessageLong(s: String) {
+        Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
     }
 
 }

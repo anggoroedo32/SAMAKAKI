@@ -1,6 +1,5 @@
 package com.awp.samakaki.di
 
-import com.awp.samakaki.BuildConfig
 import com.awp.samakaki.data.ApiService
 import dagger.Module
 import dagger.Provides

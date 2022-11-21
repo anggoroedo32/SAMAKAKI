@@ -12,8 +12,12 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySplashScreenBinding
+import com.awp.samakaki.helper.AppStatus
+import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.ui.authentication.LoginActivity
@@ -35,6 +39,7 @@ class SplashScreenActivity : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        checkConnectivity()
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -57,6 +62,21 @@ class SplashScreenActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(this)
+        connectivity.observe(this, Observer {
+                isConnected ->
+            if(isConnected){
+                doCheck()
+            }else{
+                Toast.makeText(this, "Tidak ada koneksi internet" ,Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun doCheck() {
         Handler(Looper.getMainLooper()).postDelayed({
 
 
@@ -99,6 +119,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
 
         }, 2000)
-
     }
+
 }

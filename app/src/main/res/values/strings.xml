@@ -16,6 +16,7 @@
     <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
     <string name="search_user"><font size="14">Search username...</font></string>
     <string name="title_search">Search</string>
+    <string name="regard_as">Kamu menganggap dia sebagai</string>
 
     //splashscreen
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
@@ -148,6 +149,8 @@
         <item>adek_ketiga</item>
         <item>bapak</item>
         <item>ibu</item>
+        <item>husband</item>
+        <item>wife</item>
         <item>anak_pertama</item>
         <item>anak_kedua</item>
         <item>adek_ketiga</item>
