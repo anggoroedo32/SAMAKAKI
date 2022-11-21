@@ -60,14 +60,13 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
 
 
-            val getToken = SessionManager.getToken(this)
             val getId = SessionManager.getIdUser(this)
             val token = SessionManager.getToken(this)
 
 
             if (!token.isNullOrEmpty()) {
 
-                profileViewModel.findUser(token = "Bearer $getToken!!", id = getId.toString())
+                profileViewModel.findUser(token = "Bearer $token", id = getId.toString())
                 profileViewModel.findUser.observe(this) {
                     when(it) {
                         is BaseResponse.Success -> {

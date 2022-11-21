@@ -290,7 +290,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="User" />
 
@@ -323,7 +325,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Anak Kedua" />
 
@@ -352,10 +356,12 @@
                     android:id="@+id/name_dummy3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
                     android:textColor="#706B6B"
                     android:text="Anak Ketiga" />
 
@@ -388,7 +394,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Anak Pertama" />
 
@@ -420,7 +428,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Bapak" />
 
@@ -453,7 +463,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Adek Pertama" />
 
@@ -483,7 +495,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Suami/Istri" />
 
@@ -516,7 +530,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Kakak Ketiga" />
 
@@ -549,7 +565,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Kakak Kedua" />
 
@@ -582,7 +600,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Kakak Pertama" />
 
@@ -616,7 +636,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Adek Kedua" />
 
@@ -649,7 +671,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Adek Ketiga" />
 
@@ -678,10 +702,12 @@
                     android:id="@+id/name_dummy14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxEms="4"
+                    android:maxEms="3"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Nenek" />
 
@@ -713,7 +739,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Nenek" />
 
@@ -745,7 +773,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Kakek" />
 
@@ -777,7 +807,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Kakek" />
 
@@ -810,7 +842,9 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:textSize="10sp"
                     android:textColor="#706B6B"
                     android:text="Ibu" />
 

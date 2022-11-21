@@ -3,19 +3,16 @@ package com.awp.samakaki.ui.menu_silsilah_keluarga
 import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.ComponentName
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.telephony.PhoneNumberUtils
+import android.transition.Slide
+import android.transition.Transition
+import android.transition.TransitionManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -181,6 +178,11 @@ class SilsilahKeluargaFragment : Fragment() {
             when (it) {
                 is BaseResponse.Success -> {
 
+                    val onClickedFab = binding.fabOnClick
+                    val userInfo = binding.tvUser
+                    val relationInfo = binding.tvRelation
+
+
                     val imgCurrentUser = binding.layoutFamily.imgDummy1
                     val nameCurrentUser = binding.layoutFamily.nameDummy1
                     val fetchCurrentUsser = it.data?.data?.currentUser
@@ -220,6 +222,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy17
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "kakek_dari_bapak") {
+                                relationInfo.setText("Kakek Dari Bapak")
+                            }
+                        }
                     }
 
                     if (nenekDariBapak?.isNotEmpty() == true) {
@@ -233,6 +246,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy15
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "nenek_dari_bapak") {
+                                relationInfo.setText("Nenek Dari Bapak")
+                            }
                         }
                     }
 
@@ -248,6 +272,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy16
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "kakek_dari_ibu") {
+                                relationInfo.setText("Kakek Dari Ibu")
+                            }
+                        }
                     }
 
                     if(nenekDariIbu?.isNotEmpty() == true) {
@@ -261,6 +296,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy14
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "nenek_dari_ibu") {
+                                relationInfo.setText("Nenek Dari Ibu")
+                            }
                         }
                     }
 
@@ -276,6 +322,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy9
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "kakak_pertama") {
+                                relationInfo.setText("Kakak Pertama")
+                            }
+                        }
                     }
 
                     if (kakakKedua?.isNotEmpty() == true) {
@@ -289,6 +346,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy10
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "kakak_kedua") {
+                                relationInfo.setText("Kakak Kedua")
+                            }
                         }
                     }
 
@@ -304,6 +372,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy11
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "kakak_ketiga") {
+                                relationInfo.setText("Kakak Ketiga")
+                            }
+                        }
                     }
 
                     if (adekPertama?.isNotEmpty() == true) {
@@ -318,6 +397,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy7
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "adek_pertama") {
+                                relationInfo.setText("Adek Pertama")
+                            }
+                        }
                     }
 
                     if (adekKeuda?.isNotEmpty() == true) {
@@ -325,7 +415,25 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy12
                         val ss = findRelation?.find { it?.relationName == "adek_kedua" }
                         val username = ss?.userRelated
-                        name.text = username
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy12
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "adek_kedua") {
+                                relationInfo.setText("Adek Kedua")
+                            }
+                        }
+
                     }
 
                     if (adekKetiga?.isNotEmpty() == true) {
@@ -333,12 +441,24 @@ class SilsilahKeluargaFragment : Fragment() {
                         val name = binding.layoutFamily.nameDummy13
                         val ss = findRelation?.find { it?.relationName == "adek_ketiga" }
                         val username = ss?.userRelated
+
                         if (username == null){
                             name.text = "User"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy13
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "adek_ketiga") {
+                                relationInfo.setText("Adek Ketiga")
+                            }
                         }
                     }
 
@@ -354,6 +474,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy6
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "ibu") {
+                                relationInfo.setText("Ibu")
+                            }
+                        }
                     }
 
                     if (getBapak?.isNotEmpty() == true) {
@@ -367,6 +498,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy18
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "bapak") {
+                                relationInfo.setText("Bapak")
+                            }
                         }
                     }
 
@@ -382,6 +524,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy4
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "anak_pertama") {
+                                relationInfo.setText("Anak Pertama")
+                            }
+                        }
                     }
 
                     if (anakKedua?.isNotEmpty() == true) {
@@ -395,6 +548,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy2
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "anak_kedua") {
+                                relationInfo.setText("Anak Kedua")
+                            }
                         }
                     }
 
@@ -410,6 +574,17 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy3
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "anak_ketiga") {
+                                relationInfo.setText("Anak Ketiga")
+                            }
+                        }
                     }
 
                     if (husband?.isNotEmpty() == true) {
@@ -424,12 +599,23 @@ class SilsilahKeluargaFragment : Fragment() {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
+
+                        val person = binding.layoutFamily.wrapDummy8
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "husband") {
+                                relationInfo.setText("Suami")
+                            }
+                        }
                     }
 
                     if (wife?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy8
                         val name = binding.layoutFamily.nameDummy8
-                        val ss = findRelation?.find { it?.relationName == "husband" }
+                        val ss = findRelation?.find { it?.relationName == "wife" }
                         val username = ss?.userRelated
                         if (username == null){
                             name.text = "User"
@@ -437,6 +623,17 @@ class SilsilahKeluargaFragment : Fragment() {
                         } else {
                             name.text = username
                             name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy8
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "wife") {
+                                relationInfo.setText("Istri")
+                            }
                         }
                     }
 
