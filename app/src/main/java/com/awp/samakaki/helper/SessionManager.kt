@@ -1,8 +1,10 @@
 package com.awp.samakaki.helper
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.awp.samakaki.R
+
 
 object SessionManager {
 
@@ -74,6 +76,13 @@ object SessionManager {
         val prefs: SharedPreferences =
             context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         return prefs.getInt(this.USER_ID, 0)
+    }
+
+    fun removeInvitationToken(context: Context) {
+        val preferences = context.getSharedPreferences(context.getString(R.string.app_name), Activity.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.remove(INVITATION_TOKEN)
+        editor.apply()
     }
 
     fun clearData(context: Context){

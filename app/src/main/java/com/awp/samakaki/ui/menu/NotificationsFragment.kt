@@ -75,13 +75,18 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
         val invitationToken = SessionManager.getInvitation(requireContext())
         val getData = view?.findViewById<Spinner>(R.id.relation)
         val dataSpinner = getData?.selectedItem.toString()
+        val wrapRegard = view?.findViewById<LinearLayout>(R.id.wrap_regard_as)
         Log.e("TAG", "onCard: $dataSpinner", )
         familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), dataSpinner)
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
                     it.data
-                    textMessage("Anda telah menerima permintaan undangan")
+                    if (wrapRegard?.visibility == View.GONE) {
+                        textMessage("Menutup notifikasi")
+                    } else {
+                        textMessage("Anda telah menerima permintaan undangan")
+                    }
                 }
                 is BaseResponse.Error -> textMessage(it.msg.toString())
             }

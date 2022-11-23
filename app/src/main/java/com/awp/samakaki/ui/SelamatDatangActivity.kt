@@ -11,10 +11,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
@@ -64,6 +66,7 @@ class SelamatDatangActivity : AppCompatActivity() {
 
 
     private fun inputConf(){
+
         //Dropdown Status
         val statusDropdown = resources.getStringArray(R.array.status)
         val statusDropdownAdapter = ArrayAdapter(this,R.layout.dropdown_item,statusDropdown)
@@ -99,8 +102,10 @@ class SelamatDatangActivity : AppCompatActivity() {
     private fun insertProfile() {
         val address = binding.etAddress.text.toString()
         val dob = binding.etBirthday.text.toString()
-        var marriageStatus = binding.etStatus.text.toString()
-        var status = binding.etPrivacy.text.toString().lowercase()
+        var marriageStatus = binding.etStatus
+        var status = binding.etPrivacy
+
+        val img = binding.ivUploadImage
 
         when {
             address.isEmpty() -> {
@@ -110,11 +115,18 @@ class SelamatDatangActivity : AppCompatActivity() {
                 binding.etBirthday.error = "Isi tanggal lahirmu"
             }
             marriageStatus.isEmpty() -> {
-                binding.etStatus.error = "Pilih status pernikahanmu"
+                (marriageStatus.selectedView as TextView).error = "Pilih status pernikahanmu"
             }
 
             status.isEmpty() -> {
-                binding.etPrivacy.error = "Pilih privasi akunmu"
+                (status.selectedView as TextView).error = "Pilih privasi akunmu"
+            }
+//            status.isEmpty() -> {
+//                binding.etPrivacy.error = "Pilih privasi akunmu"
+//            }
+
+            img.visibility == View.GONE -> {
+                textMessage("Masukkan image")
             }
 
 
@@ -132,8 +144,8 @@ class SelamatDatangActivity : AppCompatActivity() {
     private fun insertViewModel(){
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
-        var marriageStatus = binding.etStatus.text.toString().toRequestBody("text/plain".toMediaType())
-        var status = binding.etPrivacy.text.toString().lowercase().toRequestBody("text/plain".toMediaType())
+        var marriageStatus = binding.etStatus.toString().toRequestBody("text/plain".toMediaType())
+        var status = binding.etPrivacy.toString().lowercase().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
         val avatar = requestImage?.let {
             MultipartBody.Part.createFormData(
@@ -143,7 +155,7 @@ class SelamatDatangActivity : AppCompatActivity() {
             )
         }
         var tokenGet = SessionManager.getToken(this)
-        Log.e("TAG", "insertViewModel: $address , $dob , ", )
+        Log.e("TAG", "insertViewModel: $address , $dob , ")
         viewModelIsiProfile.createBiodata(
             "bearer $tokenGet",
             address,

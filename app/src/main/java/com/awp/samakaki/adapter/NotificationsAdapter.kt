@@ -3,6 +3,7 @@ package com.awp.samakaki.adapter
 import android.R
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -35,6 +36,9 @@ class NotificationsAdapter (private var list: List<UnreadItem>, val context: Con
         val spinnerPosition: Int = relationAdapter.getPosition(selection)
         holder.binding.relation.setSelection(spinnerPosition)
 
+        if (list.descriptions!!.contains("sudah diterima oleh")) {
+            holder.binding.wrapRegardAs.visibility = View.GONE
+        }
 
         holder.binding.username.text = list.invitingName
         holder.binding.notifMessage.text = list.descriptions

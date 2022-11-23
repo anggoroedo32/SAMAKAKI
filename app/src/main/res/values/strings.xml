@@ -132,8 +132,13 @@
         <item>Adek Pertama</item>
         <item>Adek Kedua</item>
         <item>Adek Ketiga</item>
+        <item>Kakak Pertama</item>
+        <item>Kakak Kedua</item>
+        <item>Kakak Ketiga</item>
         <item>Bapak</item>
         <item>Ibu</item>
+        <item>Suami</item>
+        <item>Istri</item>
         <item>Anak Pertama</item>
         <item>Anak Kedua</item>
         <item>Adek Ketiga</item>
@@ -147,13 +152,16 @@
         <item>adek_pertama</item>
         <item>adek_kedua</item>
         <item>adek_ketiga</item>
+        <item>kakak_pertama</item>
+        <item>kakak_kedua</item>
+        <item>kakak_ketiga</item>
         <item>bapak</item>
         <item>ibu</item>
         <item>husband</item>
         <item>wife</item>
         <item>anak_pertama</item>
         <item>anak_kedua</item>
-        <item>adek_ketiga</item>
+        <item>anak_ketiga</item>
         <item>kakek_dari_bapak</item>
         <item>nenek_dari_bapak</item>
         <item>kakek_dari_ibu</item>

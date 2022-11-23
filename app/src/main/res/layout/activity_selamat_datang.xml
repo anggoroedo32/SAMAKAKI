@@ -27,7 +27,8 @@
             android:id="@+id/et_address"
             style="@style/TextfieldsStyle"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_48"
+            android:paddingEnd="6dp"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_32"
             android:inputType="textMultiLine"
@@ -37,44 +38,70 @@
             android:id="@+id/et_birthday"
             style="@style/TextfieldsStyle"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_48"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_22"
+            android:paddingEnd="6dp"
             android:focusable="false"
             android:cursorVisible="false"
             android:inputType="date"
             android:hint="@string/tanggal_lahir" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <LinearLayout
+            android:id="@+id/wrap_status"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_46"
-            android:layout_marginTop="@dimen/dimen_18">
-            <AutoCompleteTextView
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="@dimen/dimen_18"
+            android:background="@drawable/bg_spinner"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Status">
+
+            <Spinner
                 android:id="@+id/et_status"
-                style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/status_nikah"
-                android:textColor="@color/neutral_400"
-                android:focusable="false"/>
+                android:layout_height="match_parent" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <LinearLayout
+            android:id="@+id/wrap_privacy"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_46"
-            android:layout_marginTop="@dimen/dimen_18">
-            <AutoCompleteTextView
-                android:focusable="false"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="@dimen/dimen_18"
+            android:background="@drawable/bg_spinner"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Status">
+
+            <Spinner
                 android:id="@+id/et_privacy"
-                style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/privasi"
-                android:textColor="@color/neutral_400"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/dimen_46"-->
+<!--            android:layout_marginTop="@dimen/dimen_18">-->
+<!--            <AutoCompleteTextView-->
+<!--                android:focusable="false"-->
+<!--                android:id="@+id/et_privacy"-->
+<!--                style="@style/TextfieldsStyle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:paddingEnd="6dp"-->
+<!--                android:text="@string/privasi"-->
+<!--                android:textColor="@color/neutral_400"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
