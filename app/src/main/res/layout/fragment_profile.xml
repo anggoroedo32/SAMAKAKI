@@ -27,9 +27,11 @@
             android:layout_height="wrap_content"
             style="@style/semibold_16prim500"
             android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginEnd="20dp"
             app:layout_constraintStart_toEndOf="@id/img_profile"
             app:layout_constraintTop_toTopOf="@id/img_profile"
             tools:text="Yunanda Anggraini"
+            android:singleLine="false"
             android:textColor="@color/neutral_700"/>
 
         <com.google.android.material.button.MaterialButton

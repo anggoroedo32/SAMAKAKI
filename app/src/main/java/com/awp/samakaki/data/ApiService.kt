@@ -105,6 +105,14 @@ interface ApiService {
         @Part file: MultipartBody.Part?
     ): Response<EditProfileResponse>
 
+    @Multipart
+    @PUT("biodata_users/{id}")
+    suspend fun editPrivacy(
+        @Header("Authorization") token: String,
+        @Path ("id") id: Int,
+        @Part("status") status: RequestBody
+    ): Response<EditProfileResponse>
+
     @POST("invitation/register")
     suspend fun registerWithToken(
         @Body registerWithTokenRequest: RegisterWithTokenRequest
