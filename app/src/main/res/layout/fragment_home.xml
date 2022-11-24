@@ -128,7 +128,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:text="@string/foto_or_video"
-                android:textColor="@color/neutral_500"
+                android:textColor="@color/primary_500"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -180,7 +180,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:text="Postingan kamu privasi?"
-            android:textColor="@color/neutral_500"
+            android:textColor="@color/secondary_800"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -190,7 +190,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            android:checked="false" />
+            android:checked="false"
+            android:theme="@style/Switch" />
     </RelativeLayout>
 
 

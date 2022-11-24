@@ -5,12 +5,16 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
+    android:id="@+id/wrap_all_post"
+    android:visibility="visible"
     android:layout_marginBottom="16dp">
 
     <LinearLayout
+        android:id="@+id/wrap_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -43,6 +43,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                 val response = repository.getAllPostsByFamily(token = token)
                 if(response.code() == 200) {
                     _listAllPosts.value = BaseResponse.Success(response.body())
+                    Log.d("TAG", "getAllPostsByFamily: ${response.body()}")
                     _loading.value = false
                 } else {
                     _listAllPosts.value = BaseResponse.Error("Erorr Get Posts")

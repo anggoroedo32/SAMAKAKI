@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.awp.samakaki.R
+import com.otaliastudios.opengl.core.use
 
 
 object SessionManager {
@@ -11,6 +12,7 @@ object SessionManager {
     const val USER_TOKEN = "user_token"
     const val USER_ID = "user_id"
     const val INVITATION_TOKEN = "invitation_token"
+    const val USERNAME = "username"
 
     fun saveAuthToken(context: Context, token: String) {
         saveString(context, USER_TOKEN, token)

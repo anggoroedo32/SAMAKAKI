@@ -30,6 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="16dp"
+                android:padding="0dp"
+                android:textColor="@color/neutral_700"
                 android:text="@string/welcome" />
 
             <TextView
@@ -37,6 +39,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
+                android:padding="0dp"
+                android:textColor="@color/neutral_500"
                 android:text="@string/silahkan_melakukan_login" />
 
             <ImageView
@@ -54,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/neutral_500"
                 android:text="@string/email" />
 
             <EditText
@@ -72,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/neutral_500"
                 android:text="@string/password" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -109,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/login"
+                app:backgroundTint="@color/primary_600"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -122,13 +129,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="@string/belum_punya_akun" />
 
                 <TextView
                     android:id="@+id/txtView_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:textColor="@color/primary_600"
                     android:text="@string/register"
                     android:textStyle="bold" />
             </LinearLayout>

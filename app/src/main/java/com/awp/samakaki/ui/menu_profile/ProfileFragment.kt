@@ -148,7 +148,7 @@ class ProfileFragment : Fragment() {
     private fun rvPosts(list: List<ItemPosts>) {
         val recyclerViewPosts: RecyclerView = binding.rvProfile
         recyclerViewPosts.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = UserPostsAdapter(list)
         }
     }

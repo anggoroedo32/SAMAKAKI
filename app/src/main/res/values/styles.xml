@@ -210,7 +210,6 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_5</item>
         <item name="android:layout_height">@dimen/dimen_48</item>
         <item name="android:textColor">@color/white</item>
-        <item name="background">@drawable/rounded_btn</item>
         <item name="android:paddingHorizontal" tools:targetApi="o">@dimen/dimen_34</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">@dimen/dimen_14</item>
@@ -329,6 +328,12 @@
         <item name="android:textSize">14sp</item>
         <item name="android:editTextColor">@color/neutral_500</item>
         <item name="android:textColorHint">@color/neutral_500</item>
+    </style>
+
+    // toggle switch
+    <style name="Switch">
+        <item name="colorControlActivated">@color/secondary_800</item>
+        <item name="android:colorForeground">#42221f1f</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

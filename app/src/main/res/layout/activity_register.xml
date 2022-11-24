@@ -17,13 +17,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="28dp"
             android:layout_marginStart="35dp"
+            android:textColor="@color/neutral_700"
             style="@style/medium_18black"/>
         <ImageView
             android:id="@+id/iv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_register"
             android:src="@drawable/image_register"/>
         <TextView
@@ -33,6 +35,8 @@
             android:layout_marginStart="35dp"
             android:text="Nama"
             style="@style/regular_14black"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:textColor="@color/neutral_500"
             app:layout_constraintTop_toBottomOf="@id/iv_register"
             app:layout_constraintStart_toStartOf="parent"/>
         <EditText
@@ -57,6 +61,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
             android:text="@string/email"
+            android:textColor="@color/neutral_500"
             style="@style/regular_14black"/>
 
         <EditText
@@ -82,6 +87,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
             android:text="@string/nomor_telephone"
+            android:textColor="@color/neutral_500"
             style="@style/regular_14black"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,6 +119,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
             android:text="@string/password"
+            android:textColor="@color/neutral_500"
             style="@style/regular_14black"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -146,6 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginStart="35dp"
+            android:textColor="@color/neutral_500"
             android:text="Konfirmasi Password"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -212,6 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sudah_punya_akun"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="143dp"
                 tools:layout_editor_absoluteY="573dp"/>
             <TextView
@@ -220,7 +229,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login"
                 android:textStyle="bold"
-                android:layout_marginStart="6dp"/>
+                android:textColor="@color/primary_600"
+                android:layout_marginStart="@dimen/dimen_16" />
         </LinearLayout>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator

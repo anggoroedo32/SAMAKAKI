@@ -56,7 +56,7 @@
             android:id="@+id/ic_house"
             android:layout_width="@dimen/dimen_20"
             android:layout_height="@dimen/dimen_20"
-            android:src="@drawable/ic_house_outline_green"
+            android:src="@drawable/ic_house"
             android:layout_marginTop="@dimen/dimen_30"
             app:layout_constraintStart_toStartOf="@id/img_profile"
             app:layout_constraintTop_toBottomOf="@id/img_profile"/>
@@ -79,7 +79,7 @@
             android:id="@+id/ic_calendar"
             android:layout_width="@dimen/dimen_20"
             android:layout_height="@dimen/dimen_20"
-            android:src="@drawable/ic_calendarblank_green"
+            android:src="@drawable/ic_calender"
             app:layout_constraintStart_toEndOf="@id/guideline_vertical"
             app:layout_constraintBottom_toBottomOf="@id/ic_house" />
 
@@ -119,7 +119,7 @@
             android:id="@+id/ic_telephone"
             android:layout_width="@dimen/dimen_20"
             android:layout_height="@dimen/dimen_20"
-            android:src="@drawable/ic_telephone_green"
+            android:src="@drawable/ic_phone"
             app:layout_constraintStart_toEndOf="@id/guideline_vertical"
             app:layout_constraintBottom_toBottomOf="@id/ic_users" />
 

@@ -25,7 +25,7 @@
             android:id="@+id/wrap_regard_as"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginHorizontal="@dimen/dimen_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username">
@@ -42,7 +42,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_10"
                 android:background="@drawable/bg_spinner"
                 android:orientation="horizontal" >
 

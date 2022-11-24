@@ -25,7 +25,7 @@
         android:id="@+id/img_splash"
         android:layout_width="322dp"
         android:layout_height="293dp"
-        android:src="@drawable/logo_samakaki_1"
+        android:src="@drawable/logo_samakaki"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
