@@ -122,6 +122,7 @@
         <item>married</item>
         <item>divorced</item>
     </string-array>
+
     <string-array name="privacy">
         <item>private</item>
         <item>protected</item>

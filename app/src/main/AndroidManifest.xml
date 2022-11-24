@@ -48,7 +48,6 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -59,7 +58,6 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-
                 <data android:host="www.samakaki.com" />
             </intent-filter>
 
