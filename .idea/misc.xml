@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_fab_on_click.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_isi_profil_keluarga.xml" value="0.3405" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_spinner.xml" value="0.2445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bottom_sheet_card_media.xml" value="0.318" />
@@ -10,6 +11,9 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/circle_image.xml" value="0.2445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/circle_img.xml" value="0.2445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/dialog_ed.xml" value="0.2445" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_add_people.xml" value="0.2445" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_arrow_ed.xml" value="0.2445" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.2445" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_settings.xml" value="0.2455" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_switch_camera.xml" value="0.3415" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/rounded_btn.xml" value="0.185" />
@@ -27,20 +31,21 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_register.xml" value="0.20897552130553038" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_selamat_datang.xml" value="0.25" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/bottom_sheet_media.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/cardview_chat_list.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/cardview_invitation_notification.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/custom_action_item_layout.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog_relation.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dropdown_item.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_add_profile.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_chat_list.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_edit_profile.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_editprofile.xml" value="0.26745240253853125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_email_verification.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family_tree.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_forgot_password_email_confirmation.xml" value="0.17074275362318841" />
@@ -54,7 +59,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_settings.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_try.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/item_pop_up_add_member.xml" value="0.18" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/layout_family_tree.xml" value="0.5" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/layout_family_tree.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/layout_post_content.xml" value="0.33" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/node.xml" value="0.32592592592592595" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/spinner_item.xml" value="0.3009833262077811" />
@@ -74,7 +79,7 @@
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_register.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_reset_password.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_selamat_datang.xml" value="0.2264151024877837" />
-        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.2766798418972332" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.2264151024877837" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/cardview_chat_list.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog.xml" value="0.13521695257315844" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dropdown_item.xml" value="0.2791666666666667" />
@@ -113,7 +118,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1267924573931589" />
+        <option name="scale" value="0.18113208199022698" />
       </ProjectState>
     </option>
   </component>
