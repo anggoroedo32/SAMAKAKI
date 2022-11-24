@@ -68,6 +68,8 @@ class RemoteRepository @Inject constructor(private val apiService: ApiService) {
         file
     )
 
+    suspend fun editPrivacy(token: String, id: Int, status: RequestBody): Response<EditProfileResponse> = apiService.editPrivacy(token, id, status)
+
     suspend fun findUser(token: String, id: String): Response<FindUserResponse> = apiService.findUser(token, id)
     suspend fun findUserRelations(token: String): Response<UserRelationsResponse> = apiService.findUserRelations(token)
     suspend fun getNotificationByUser(token: String): Response<NotificationsResponse> = apiService.getNotificationByUser(token)

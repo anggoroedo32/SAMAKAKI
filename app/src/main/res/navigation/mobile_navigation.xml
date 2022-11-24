@@ -44,7 +44,11 @@
         android:id="@+id/settingsFragment"
         android:name="com.awp.samakaki.ui.menu.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_settingPrivacyFragment"
+            app:destination="@id/settingPrivacyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.awp.samakaki.ui.menu.NotificationsFragment"
@@ -56,5 +60,9 @@
         android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.TryFragment"
         android:label="fragment_try"
         tools:layout="@layout/fragment_try" />
+    <fragment
+        android:id="@+id/settingPrivacyFragment"
+        android:name="com.awp.samakaki.ui.menu.SettingPrivacyFragment"
+        android:label="SettingPrivacyFragment" />
 
 </navigation>

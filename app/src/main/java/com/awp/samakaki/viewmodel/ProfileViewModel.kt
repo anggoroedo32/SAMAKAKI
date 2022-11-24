@@ -26,6 +26,9 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
     private val _editProfile = MutableLiveData<BaseResponse<EditProfileResponse>>()
     val editProfile: LiveData<BaseResponse<EditProfileResponse>> = _editProfile
 
+    private val _editPrivacy = MutableLiveData<BaseResponse<EditProfileResponse>>()
+    val editPrivacy: LiveData<BaseResponse<EditProfileResponse>> = _editPrivacy
+
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
@@ -85,7 +88,7 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                     _editProfile.postValue(BaseResponse.Success(response.body()))
                     _loading.value = false
                 } else {
-                    _editProfile.postValue(BaseResponse.Error("Erorr Create Biodata"))
+                    _editProfile.postValue(BaseResponse.Error("Error Edit Profile"))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -100,6 +103,32 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
         }
     }
 
-
+    fun editPrivacy(
+        token: String,
+        id: Int?,
+        status: RequestBody
+    ){
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.editPrivacy(
+                    token = token,
+                    id = id!!,
+                    status = status
+                )
+                if (response.code() == 200) {
+                    _editPrivacy.postValue(BaseResponse.Success(response.body()))
+                    _loading.value = false
+                } else {
+                    _editPrivacy.postValue(BaseResponse.Error("Erorr Edit Privacy"))
+                    _loading.value = false
+                }
+            } catch (e: HttpException) {
+                BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
+            } catch (e: IOException) {
+                BaseResponse.Error("Cek kembali koneksi internet anda")
+            }
+        }
+    }
 
 }

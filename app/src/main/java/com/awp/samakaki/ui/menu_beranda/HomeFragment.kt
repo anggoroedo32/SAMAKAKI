@@ -99,7 +99,7 @@ class HomeFragment : Fragment() {
 
         val buttonPost:Button = binding.btnPost
         buttonPost.setOnClickListener(){
-            _status?.let { it1 -> insertViewModelPosts(it1) }
+            _status.let { it1 -> insertViewModelPosts(it1) }
         }
 
         val switchButton: SwitchCompat = binding.switchButton
