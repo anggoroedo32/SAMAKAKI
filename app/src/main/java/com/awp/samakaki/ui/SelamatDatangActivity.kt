@@ -144,8 +144,8 @@ class SelamatDatangActivity : AppCompatActivity() {
     private fun insertViewModel(){
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
         val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
-        var marriageStatus = binding.etStatus.toString().toRequestBody("text/plain".toMediaType())
-        var status = binding.etPrivacy.toString().lowercase().toRequestBody("text/plain".toMediaType())
+        var marriageStatus = binding.etStatus.selectedItem.toString().toRequestBody("text/plain".toMediaType())
+        var status = binding.etPrivacy.selectedItem.toString().lowercase().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
         val avatar = requestImage?.let {
             MultipartBody.Part.createFormData(
