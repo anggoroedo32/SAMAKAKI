@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.awp.samakaki.helper.SingleLiveEvent
 import com.awp.samakaki.repository.RemoteRepository
 import com.awp.samakaki.request.CreateFamilyTreeRequest
 import com.awp.samakaki.request.CreateRelationsRequest
@@ -24,8 +25,8 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     private val _findUserRelations = MutableLiveData<BaseResponse<UserRelationsResponse>>()
     val findUserRelations: LiveData<BaseResponse<UserRelationsResponse>> = _findUserRelations
 
-    private val _createUserRelations = MutableLiveData<BaseResponse<CreateRelationResponse>>()
-    val createUserRelations: LiveData<BaseResponse<CreateRelationResponse>> = _createUserRelations
+    private val _createUserRelations = MutableLiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>>()
+    val createUserRelations: LiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>> = _createUserRelations
 
     private val _updateRelations = MutableLiveData<BaseResponse<UpdateRelationsResponse>>()
     val updateRelations: LiveData<BaseResponse<UpdateRelationsResponse>> = _updateRelations
@@ -72,10 +73,10 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
 
                 val response = repository.createUserRelations(token, createRelationsRequest)
                 if (response.code() == 200) {
-                    _createUserRelations.postValue(BaseResponse.Success(response.body()))
+                    _createUserRelations.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _createUserRelations.postValue(BaseResponse.Error(msg = response.message()))
+                    _createUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = response.message())))
                     _loading.value = false
                 }
             } catch (e: HttpException) {

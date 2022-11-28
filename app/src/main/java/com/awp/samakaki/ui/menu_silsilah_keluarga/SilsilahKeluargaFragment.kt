@@ -31,7 +31,7 @@ import ru.nikartm.support.ImageBadgeView
 
 
 @AndroidEntryPoint
-class SilsilahKeluargaFragment : Fragment() {
+open class SilsilahKeluargaFragment : Fragment() {
 
     private var _binding: FragmentFamilyBinding? = null
     private val binding get() = _binding!!
@@ -128,8 +128,8 @@ class SilsilahKeluargaFragment : Fragment() {
                 relationship == "Kakak Ketiga" -> dataRelationship = "kakak_ketiga"
                 relationship == "Bapak" -> dataRelationship = "bapak"
                 relationship == "Ibu" -> dataRelationship = "ibu"
-                relationship == "Husband" -> dataRelationship = "husband"
-                relationship == "Wife" -> dataRelationship = "wife"
+                relationship == "Suami" -> dataRelationship = "husband"
+                relationship == "Istri" -> dataRelationship = "wife"
                 relationship == "Anak Pertama" -> dataRelationship = "anak_pertama"
                 relationship == "Anak Kedua" -> dataRelationship = "anak_kedua"
                 relationship == "Anak Ketiga" -> dataRelationship = "anak_ketiga"
@@ -155,18 +155,26 @@ class SilsilahKeluargaFragment : Fragment() {
                     )
                     Log.d("isinya_data_relation", dataRelationship.toString())
                     familyTreeViewModel.createUserRelations.observe(viewLifecycleOwner) {
-                        when (it) {
-                            is BaseResponse.Success -> {
-                                it.data
-                                isiProfil.visibility = View.GONE
-                                familyTree.visibility = View.VISIBLE
-                                val invitationToken = it.data?.data?.invitationToken
-                                showDialog(link = it.data?.data?.invitationToken)
-                                Log.d("isinya_token", it.data?.data?.invitationToken.toString())
-                            }
+                        it.getContentIfNotHandled()?.let {
+                            when (it) {
+                                is BaseResponse.Success -> {
+                                    it.data
+                                    isiProfil.visibility = View.GONE
+                                    familyTree.visibility = View.VISIBLE
+                                    binding.etNama.text.clear()
+                                    binding.etNoTelp.text.clear()
+                                    binding.etHubungan.text.clear()
+                                    val invitationToken = it.data?.data?.invitationToken
+                                    showDialog(link = it.data?.data?.invitationToken)
+                                    Log.d("isinya_token", it.data?.data?.invitationToken.toString())
+                                }
 
-                            is BaseResponse.Error -> (it.msg.toString())
+                                is BaseResponse.Error -> {
+                                    (it.msg.toString())
+                                }
+                            }
                         }
+
                     }
                 }
 
@@ -704,7 +712,6 @@ class SilsilahKeluargaFragment : Fragment() {
 
         btnShareLinkWhatsapp.setOnClickListener {
             sendMessage("Hai, saya ingin mengundang anda untuk masuk ke family tree saya. Silahkan ikuti tautan berikut ini\nwww.samakaki.com/$link")
-//            openWhatsApp()
         }
 
         btnClose.setOnClickListener {
@@ -713,7 +720,7 @@ class SilsilahKeluargaFragment : Fragment() {
 
         dialog.setCancelable(false)
         dialog.show()
-        val window: Window? = dialog.getWindow()
+        val window: Window? = dialog.window
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
     }
@@ -724,10 +731,6 @@ class SilsilahKeluargaFragment : Fragment() {
         intent.type = "text/plain"
         intent.setPackage("com.whatsapp")
         intent.putExtra(Intent.EXTRA_TEXT, message)
-//        if (intent.resolveActivity(requireActivity().packageManager) == null) {
-//            textMessage("Silahkan install whatsapp terlebih dahulu")
-//            return
-//        }
         startActivity(intent)
     }
 
@@ -742,37 +745,6 @@ class SilsilahKeluargaFragment : Fragment() {
         Toast.makeText(context, "Link telah di salin ke clipboard", Toast.LENGTH_LONG).show()
     }
 
-//    private fun openWhatsApp() {
-//        val smsNumber = binding.etNoTelp.text.trim().toString()
-//        val isWhatsappInstalled = whatsappInstalledOrNot("com.whatsapp")
-//        if (isWhatsappInstalled) {
-//            val sendIntent = Intent("android.intent.action.MAIN")
-//            sendIntent.component = ComponentName("com.whatsapp", "com.whatsapp.Conversation")
-//            sendIntent.putExtra(
-//                "jid",
-//                PhoneNumberUtils.stripSeparators(smsNumber) + "@s.whatsapp.net"
-//            ) //phone number without "+" prefix
-//            startActivity(sendIntent)
-//        } else {
-//            val uri: Uri = Uri.parse("market://details?id=com.whatsapp")
-//            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-//            textMessage("Silahkan menginstall WhatsApp terlebih dahulu")
-//            startActivity(goToMarket)
-//        }
-//    }
-//
-//    private fun whatsappInstalledOrNot(uri: String): Boolean {
-//        val pm: PackageManager = requireActivity().packageManager
-//        var app_installed = false
-//        app_installed = try {
-//            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
-//            true
-//        } catch (e: PackageManager.NameNotFoundException) {
-//            false
-//        }
-//        return app_installed
-//    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -786,11 +758,11 @@ class SilsilahKeluargaFragment : Fragment() {
         }
     }
 
-    protected fun textMessage(s: String) {
+    fun textMessage(s: String) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
     }
 
-    private fun textMessageLong(s: String) {
+    fun textMessageLong(s: String) {
         Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
     }
 
