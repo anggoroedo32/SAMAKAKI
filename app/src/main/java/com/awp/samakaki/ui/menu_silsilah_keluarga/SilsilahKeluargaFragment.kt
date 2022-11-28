@@ -159,6 +159,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                             when (it) {
                                 is BaseResponse.Success -> {
                                     it.data
+                                    SessionManager.removeInvitationToken(requireContext())
                                     isiProfil.visibility = View.GONE
                                     familyTree.visibility = View.VISIBLE
                                     binding.etNama.text.clear()
@@ -209,6 +210,7 @@ open class SilsilahKeluargaFragment : Fragment() {
 
                     val getBapak = findRelation?.filter { it?.relationName == "bapak" }
                     val getIbu = findRelation?.filter { it?.relationName == "ibu" }
+                    val getIbuByCode = findRelation?.filter { it?.code == "A1Kn10,1" }
                     val adekPertama = findRelation?.filter { it?.relationName == "adek_pertama" }
                     val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
                     val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
@@ -222,8 +224,8 @@ open class SilsilahKeluargaFragment : Fragment() {
                     val nenekDariBapak = findRelation?.filter { it?.relationName == "nenek_dari_bapak" }
                     val kakekDariIbu = findRelation?.filter { it?.relationName == "kakek_dari_ibu" }
                     val nenekDariIbu = findRelation?.filter { it?.relationName == "nenek_dari_ibu" }
-                    val husband = findRelation?.filter { it?.relationName == "husband" }
-                    val wife = findRelation?.filter { it?.relationName == "wife" }
+                    val husband = findRelation?.filter { it?.code == "0,1" }
+                    val wife = findRelation?.filter { it?.relationName == "0,1" }
 
                     if (kakekDariBapak?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy17
@@ -326,8 +328,8 @@ open class SilsilahKeluargaFragment : Fragment() {
                     }
 
                     if (kakakPertama?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy9
-                        val name = binding.layoutFamily.nameDummy9
+                        val img = binding.layoutFamily.imgDummy11
+                        val name = binding.layoutFamily.nameDummy11
                         val ss = findRelation?.find { it?.relationName == "kakak_pertama" }
                         val username = ss?.userRelated
                         if (username == null){
@@ -338,7 +340,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
 
-                        val person = binding.layoutFamily.wrapDummy9
+                        val person = binding.layoutFamily.wrapDummy11
                         person.setOnClickListener {
                             val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
                             onClickedFab.visibility = View.VISIBLE
@@ -376,8 +378,8 @@ open class SilsilahKeluargaFragment : Fragment() {
                     }
 
                     if (kakakKetiga?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy11
-                        val name = binding.layoutFamily.nameDummy11
+                        val img = binding.layoutFamily.imgDummy9
+                        val name = binding.layoutFamily.nameDummy9
                         val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
                         val username = ss?.userRelated
                         if (username == null){
@@ -388,7 +390,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                             name.setTextColor(Color.parseColor("#706B6B"))
                         }
 
-                        val person = binding.layoutFamily.wrapDummy11
+                        val person = binding.layoutFamily.wrapDummy9
                         person.setOnClickListener {
                             val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
                             onClickedFab.visibility = View.VISIBLE
@@ -473,6 +475,31 @@ open class SilsilahKeluargaFragment : Fragment() {
                             userInfo.setText(ss?.userRelated)
                             if (ss?.relationName == "adek_ketiga") {
                                 relationInfo.setText("Adek Ketiga")
+                            }
+                        }
+                    }
+
+                    if (getIbuByCode?.isNotEmpty() == true) {
+                        val img = binding.layoutFamily.imgDummy6
+                        val name = binding.layoutFamily.nameDummy6
+                        val ss = findRelation?.find { it?.code == "A1Kn10,1" }
+                        val username = ss?.userRelated
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy6
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "ibu") {
+                                relationInfo.setText("Ibu")
                             }
                         }
                     }
@@ -605,7 +632,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (husband?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy8
                         val name = binding.layoutFamily.nameDummy8
-                        val ss = findRelation?.find { it?.relationName == "husband" }
+                        val ss = findRelation?.find { it?.code == "0,1" }
                         val username = ss?.userRelated
                         if (username == null){
                             name.text = "User"
@@ -630,7 +657,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (wife?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy8
                         val name = binding.layoutFamily.nameDummy8
-                        val ss = findRelation?.find { it?.relationName == "wife" }
+                        val ss = findRelation?.find { it?.code == "0,1" }
                         val username = ss?.userRelated
                         if (username == null){
                             name.text = "User"

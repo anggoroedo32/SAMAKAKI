@@ -432,7 +432,7 @@
                     android:includeFontPadding="false"
                     android:textSize="10sp"
                     android:textColor="#706B6B"
-                    android:text="Bapak" />
+                    android:text="Ibu" />
 
             </LinearLayout>
 
@@ -499,7 +499,7 @@
                     android:includeFontPadding="false"
                     android:textSize="10sp"
                     android:textColor="#706B6B"
-                    android:text="Suami/Istri" />
+                    android:text="Pasangan" />
 
             </LinearLayout>
 
@@ -846,7 +846,7 @@
                     android:includeFontPadding="false"
                     android:textSize="10sp"
                     android:textColor="#706B6B"
-                    android:text="Ibu" />
+                    android:text="Bapak" />
 
             </LinearLayout>
 
