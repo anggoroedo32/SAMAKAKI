@@ -293,7 +293,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_800"
                     android:text="User" />
 
             </LinearLayout>
@@ -328,7 +328,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Anak Kedua" />
 
             </LinearLayout>
@@ -362,7 +362,7 @@
                     android:maxEms="4"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Anak Ketiga" />
 
             </LinearLayout>
@@ -397,7 +397,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Anak Pertama" />
 
             </LinearLayout>
@@ -431,7 +431,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Ibu" />
 
             </LinearLayout>
@@ -466,7 +466,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Adek Pertama" />
 
             </LinearLayout>
@@ -498,7 +498,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Pasangan" />
 
             </LinearLayout>
@@ -533,7 +533,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Kakak Ketiga" />
 
             </LinearLayout>
@@ -568,7 +568,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Kakak Kedua" />
 
             </LinearLayout>
@@ -603,7 +603,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Kakak Pertama" />
 
             </LinearLayout>
@@ -639,7 +639,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Adek Kedua" />
 
             </LinearLayout>
@@ -674,7 +674,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Adek Ketiga" />
 
             </LinearLayout>
@@ -708,8 +708,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
-                    android:text="Nenek" />
+                    android:textColor="@color/neutral_400"
+                    android:text="Kakek" />
 
             </LinearLayout>
 
@@ -742,8 +742,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
-                    android:text="Nenek" />
+                    android:textColor="@color/neutral_400"
+                    android:text="Kakek" />
 
             </LinearLayout>
 
@@ -776,8 +776,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
-                    android:text="Kakek" />
+                    android:textColor="@color/neutral_400"
+                    android:text="Nenek" />
 
             </LinearLayout>
 
@@ -810,8 +810,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
-                    android:text="Kakek" />
+                    android:textColor="@color/neutral_400"
+                    android:text="Nenek" />
 
             </LinearLayout>
 
@@ -845,7 +845,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:includeFontPadding="false"
                     android:textSize="10sp"
-                    android:textColor="#706B6B"
+                    android:textColor="@color/neutral_400"
                     android:text="Bapak" />
 
             </LinearLayout>

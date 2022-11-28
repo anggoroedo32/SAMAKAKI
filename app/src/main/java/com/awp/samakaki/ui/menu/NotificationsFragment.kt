@@ -72,7 +72,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
     override fun onCard(movie: UnreadItem) {
 
         val token = SessionManager.getToken(requireContext())
-        val invitationToken = SessionManager.getInvitation(requireContext())
+
         val getData = view?.findViewById<Spinner>(R.id.relation)
         val dataSpinner = getData?.selectedItem.toString()
         val wrapRegard = view?.findViewById<LinearLayout>(R.id.wrap_regard_as)

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("isi_token_login", "token $tokenLogin")
 
 
-        if (isiTokenInvit != null) {
+        if (!isiTokenInvit.isNullOrBlank()) {
 
             familyTreeViewModel.inviteFamily("Bearer $tokenLogin", isiTokenInvit.toString())
             familyTreeViewModel.inviteFamily.observe(this) {
@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
-
         }
 
     }
