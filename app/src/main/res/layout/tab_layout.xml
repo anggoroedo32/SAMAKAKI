@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/text1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/dimen_8"
+    android:paddingHorizontal="@dimen/dimen_25"
+    android:background="@drawable/tab_bg_selector"
+    android:textColor="@drawable/tab_text_selector"
+    android:gravity="center"
+    style="@style/regular_12"
+    tools:text="Tab" />

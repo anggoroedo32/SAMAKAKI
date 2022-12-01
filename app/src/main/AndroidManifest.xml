@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.awp.samakaki">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS "/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,14 +22,51 @@
         android:theme="@style/Theme.SAMAKAKI"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.menu_beranda.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.KodeVerifikasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.authentication.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SelamatDatangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter android:autoVerify="true" tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="www.samakaki.com" />
+            </intent-filter>
+
+
         </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:label="@string/app_name" />\
     </application>
 
 </manifest>
