@@ -1,6 +1,5 @@
 package com.awp.samakaki.ui
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivityMainBinding
 import com.awp.samakaki.helper.SessionManager
-import com.awp.samakaki.helper.SessionManager.INVITATION_TOKEN
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -44,18 +42,20 @@ class MainActivity : AppCompatActivity() {
             ) {
                 navView.visibility = View.VISIBLE
             } else {
-                navView.visibility = View.VISIBLE
+                navView.visibility = View.GONE
             }
         }
 
         val isiTokenInvit = SessionManager.getInvitation(this)
-        Log.d("isi_token_invitation", isiTokenInvit.toString())
+        if (isiTokenInvit != null) {
+            Log.d("isi_token_invitation", isiTokenInvit)
+        }
 
         val tokenLogin = SessionManager.getToken(this)
         Log.d("isi_token_login", "token $tokenLogin")
 
 
-        if (isiTokenInvit != "null") {
+        if (isiTokenInvit != null) {
             Log.d("TAG", "onCreate: $isiTokenInvit")
             familyTreeViewModel.inviteFamily("Bearer $tokenLogin", isiTokenInvit.toString())
             familyTreeViewModel.inviteFamily.observe(this) {
@@ -74,6 +74,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 
 }

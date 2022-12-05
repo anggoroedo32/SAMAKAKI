@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awp.samakaki.R
@@ -80,12 +81,6 @@ class ProfileFragment : Fragment() {
                     val marriageStatusCapitalize = it.data?.data?.biodata?.marriageStatus
                     mariageStatus.setText(marriageStatusCapitalize?.capitalize())
 
-//                    Glide.with(this)
-//                        .load(it.data?.data?.biodata?.avatar)
-//                        .centerInside()
-//                        .placeholder(R.drawable.dummy_avatar).error(R.drawable.dummy_avatar)
-//                        .into(avatar)
-
                     Picasso.get()
                         .load(it.data?.data?.biodata?.avatar)
                         .fit()
@@ -102,15 +97,16 @@ class ProfileFragment : Fragment() {
 
         val btnEdProfile = binding.btnEdProfile
         btnEdProfile.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(
-                R.id.nav_host_fragment_activity_main,
-                EditProfileFragment()
-            )
-                .setReorderingAllowed(true)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            findNavController().navigate(R.id.action_navigation_profile_to_edit_profile_fragment)
+//            val fragmentManager = parentFragmentManager
+//            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+//            fragmentTransaction.replace(
+//                R.id.nav_host_fragment_activity_main,
+//                EditProfileFragment()
+//            )
+//                .setReorderingAllowed(true)
+//            fragmentTransaction.addToBackStack(null)
+//            fragmentTransaction.commit()
         }
 
         //Get Post Profile

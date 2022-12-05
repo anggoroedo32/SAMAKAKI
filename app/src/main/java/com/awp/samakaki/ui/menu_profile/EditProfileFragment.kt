@@ -17,6 +17,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
@@ -24,7 +26,6 @@ import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.viewmodel.ProfileViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
@@ -73,7 +74,6 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checkConnectivity()
 
-
         binding.ETTanggal.setOnClickListener {
             getDate()
         }
@@ -81,7 +81,7 @@ class EditProfileFragment : Fragment() {
 
         val btnBack = binding.btnBack
         btnBack.setOnClickListener{
-            findNavController().popBackStack()
+            if (!findNavController().popBackStack()) findNavController().navigate(R.id.navigation_home)
         }
 
         val name = binding.ETName
@@ -153,21 +153,23 @@ class EditProfileFragment : Fragment() {
             edValidation()
         }
 
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                val fragmentManager = parentFragmentManager
-                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(
-                    R.id.nav_host_fragment_activity_main,
-                    ProfileFragment()
-                )
-                    .setReorderingAllowed(true)
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
-
-        })
+//        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+//            override fun handleOnBackPressed() {
+//                val fragmentManager = parentFragmentManager
+//                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+//                fragmentTransaction.replace(
+//                    R.id.nav_host_fragment_activity_main,
+//                    ProfileFragment()
+//                )
+//                    .setReorderingAllowed(true)
+//                fragmentTransaction.addToBackStack(null)
+//                fragmentTransaction.commit()
+//            }
+//
+//        })
     }
+
+
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()){

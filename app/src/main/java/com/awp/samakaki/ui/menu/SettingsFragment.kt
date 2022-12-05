@@ -3,6 +3,7 @@ package com.awp.samakaki.ui.menu
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
@@ -34,8 +35,19 @@ class SettingsFragment : Fragment() {
         val btnLogout = binding.btnLogout
 
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            if (!findNavController().popBackStack()) {
+                findNavController().navigate(R.id.navigation_home)
+            }
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (!findNavController().popBackStack()) {
+                    findNavController().navigate(R.id.navigation_home)
+                }
+            }
+
+        })
 
 
         btnLogout.setOnClickListener {

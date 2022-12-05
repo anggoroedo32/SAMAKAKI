@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,6 +22,7 @@ import com.awp.samakaki.helper.ConnectivityStatus
 import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.UnreadItem
+import com.awp.samakaki.ui.menu_profile.ProfileFragment
 import com.awp.samakaki.viewmodel.FamilyTreeViewModel
 import com.awp.samakaki.viewmodel.NotificationsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,8 +54,19 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
 
         val btnBack = binding.btnBack
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            if (!findNavController().popBackStack()) {
+                findNavController().navigate(R.id.navigation_home)
+            }
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (!findNavController().popBackStack()) {
+                    findNavController().navigate(R.id.navigation_home)
+                }
+            }
+
+        })
 
 
         val token = SessionManager.getToken(requireContext())
@@ -102,6 +117,7 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
             }
         })
     }
+
 
     private fun rvUndangan(list: List<UnreadItem>) {
 
