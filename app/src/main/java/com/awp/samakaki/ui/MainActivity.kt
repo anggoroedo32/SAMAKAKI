@@ -3,6 +3,7 @@ package com.awp.samakaki.ui
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -32,8 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            if (destination.id == R.id.action_navigation_home_to_notificationsFragment) {
+                navView.visibility = View.GONE
+            }
+        }
 
         val isiTokenInvit = SessionManager.getInvitation(this)
         Log.d("isi_token_invitation", isiTokenInvit.toString())
@@ -41,22 +48,25 @@ class MainActivity : AppCompatActivity() {
         val tokenLogin = SessionManager.getToken(this)
         Log.d("isi_token_login", "token $tokenLogin")
 
+//        if (isiTokenInvit.isNullOrBlank()) {
+//            Log.d("isi_tokenn", "condition : ${isiTokenInvit.isNullOrBlank()}, value: $isiTokenInvit")
+//        } else {
+//            Log.d("TAG", "onCreate: false")
+//        }
+
 
         if (!isiTokenInvit.isNullOrBlank()) {
-
+            Log.d("TAG", "onCreate: $isiTokenInvit")
             familyTreeViewModel.inviteFamily("Bearer $tokenLogin", isiTokenInvit.toString())
             familyTreeViewModel.inviteFamily.observe(this) {
                 when(it) {
                     is BaseResponse.Success -> {
                         SessionManager.removeInvitationToken(this)
                         Toast.makeText(this, "Anda mendapat notifikasi baru", Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "onCreateSuccess: " + it.data?.data)
-                        Log.d("isi_token_after_delete", isiTokenInvit.toString())
                     }
 
                     is BaseResponse.Error -> {
-                        Toast.makeText(this, it.msg.toString(), Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "onCreate: " + it.msg.toString())
+                        Toast.makeText(this, "masih ngehit", Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -64,5 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 
 }

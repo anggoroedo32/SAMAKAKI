@@ -21,9 +21,11 @@ import com.awp.samakaki.helper.SessionManager
 import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.ItemPosts
+import com.awp.samakaki.ui.MainActivity
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DateFormat
@@ -184,4 +186,5 @@ class ProfileFragment : Fragment() {
             binding.prgbar.isVisible = it
         }
     }
+
 }
