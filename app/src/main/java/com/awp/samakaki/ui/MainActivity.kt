@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-        if (!isiTokenInvit.isNullOrBlank()) {
+        if (isiTokenInvit != "null") {
             Log.d("TAG", "onCreate: $isiTokenInvit")
             familyTreeViewModel.inviteFamily("Bearer $tokenLogin", isiTokenInvit.toString())
             familyTreeViewModel.inviteFamily.observe(this) {
