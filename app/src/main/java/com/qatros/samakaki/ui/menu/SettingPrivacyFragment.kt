@@ -94,6 +94,10 @@ class SettingPrivacyFragment : Fragment() {
         binding.btnSave.setOnClickListener{
             _radioButton.let { it1 -> insertEditPrivacy(it1) }
         }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun insertEditPrivacy(status: String){
