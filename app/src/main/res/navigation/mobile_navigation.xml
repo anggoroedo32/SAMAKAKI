@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_home_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -25,10 +29,14 @@
         tools:layout="@layout/fragment_family" >
         <action
             android:id="@+id/action_navigation_family_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation_family"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_navigation_family_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_family"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

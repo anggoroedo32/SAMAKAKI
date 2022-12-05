@@ -37,8 +37,14 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener{ _, destination, _ ->
-            if (destination.id == R.id.action_navigation_home_to_notificationsFragment) {
-                navView.visibility = View.GONE
+            if (
+                destination.id == R.id.navigation_profile ||
+                destination.id == R.id.navigation_home ||
+                destination.id == R.id.navigation_family
+            ) {
+                navView.visibility = View.VISIBLE
+            } else {
+                navView.visibility = View.VISIBLE
             }
         }
 
@@ -47,12 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         val tokenLogin = SessionManager.getToken(this)
         Log.d("isi_token_login", "token $tokenLogin")
-
-//        if (isiTokenInvit.isNullOrBlank()) {
-//            Log.d("isi_tokenn", "condition : ${isiTokenInvit.isNullOrBlank()}, value: $isiTokenInvit")
-//        } else {
-//            Log.d("TAG", "onCreate: false")
-//        }
 
 
         if (isiTokenInvit != "null") {

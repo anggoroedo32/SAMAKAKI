@@ -80,7 +80,6 @@ class EditProfileFragment : Fragment() {
         loadingState()
 
         val btnBack = binding.btnBack
-
         btnBack.setOnClickListener{
             findNavController().popBackStack()
         }
