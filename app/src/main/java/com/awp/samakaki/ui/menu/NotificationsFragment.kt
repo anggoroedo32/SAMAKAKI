@@ -65,7 +65,6 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
                     findNavController().navigate(R.id.navigation_home)
                 }
             }
-
         })
 
 

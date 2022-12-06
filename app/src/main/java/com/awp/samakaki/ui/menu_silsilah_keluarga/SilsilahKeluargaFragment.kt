@@ -207,7 +207,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                     val dataUser = it.data?.data?.relation?.map { it?.userRelated }
                     val relationName = it.data?.data?.relation?.map { it?.relationName }
                     val findRelation = it.data?.data?.relation
-                    Log.d("TAG", "silsilahKeluarga: $findRelation")
+                    Log.d("asd", "silsilahKeluarga: $findRelation")
 
                     val getBapak = findRelation?.filter { it?.relationName == "bapak" }
                     val getBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1" }
@@ -219,7 +219,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     val kakakPertama = findRelation?.filter { it?.relationName == "kakak_pertama" }
                     val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
                     val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
+
                     val anakPertama = findRelation?.filter { it?.relationName == "anak_pertama" }
+                    val anakpertamaByCode = findRelation?.filter {it?.code == "0,1B1Kr1"}
+
                     val anakKedua = findRelation?.filter { it?.relationName == "anak_kedua" }
                     val anakKetiga = findRelation?.filter { it?.relationName == "anak_ketiga" }
 
@@ -660,7 +663,30 @@ open class SilsilahKeluargaFragment : Fragment() {
                         }
                     }
 
-                    if (anakPertama?.isNotEmpty() == true) {
+                    if (anakpertamaByCode?.isNotEmpty() == true) {
+                        val avatar = binding.layoutFamily.imgDummy4
+                        val name = binding.layoutFamily.nameDummy4
+                        val ss = findRelation?.find { it?.code == "0,1B1Kr1" }
+                        val username = ss?.userRelated
+                        if (username == null){
+                            name.text = "User"
+                            name.setTextColor(Color.parseColor("#737373"))
+                        } else {
+                            name.text = username
+                            name.setTextColor(Color.parseColor("#706B6B"))
+                        }
+
+                        val person = binding.layoutFamily.wrapDummy4
+                        person.setOnClickListener {
+                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                            onClickedFab.visibility = View.VISIBLE
+                            onClickedFab.startAnimation(animationSlideUp)
+                            userInfo.setText(ss?.userRelated)
+                            if (ss?.relationName == "anak_pertama") {
+                                relationInfo.setText("Anak Pertama")
+                            }
+                        }
+                    } else if (anakPertama?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy4
                         val name = binding.layoutFamily.nameDummy4
                         val ss = findRelation?.find { it?.relationName == "anak_pertama" }

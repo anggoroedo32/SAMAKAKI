@@ -72,11 +72,6 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
-        android:id="@+id/tryFragment"
-        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.TryFragment"
-        android:label="fragment_try"
-        tools:layout="@layout/fragment_try" />
-    <fragment
         android:id="@+id/settingPrivacyFragment"
         android:name="com.awp.samakaki.ui.menu.SettingPrivacyFragment"
         android:label="SettingPrivacyFragment" />

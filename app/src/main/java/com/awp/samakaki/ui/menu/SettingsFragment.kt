@@ -46,7 +46,6 @@ class SettingsFragment : Fragment() {
                     findNavController().navigate(R.id.navigation_home)
                 }
             }
-
         })
 
 

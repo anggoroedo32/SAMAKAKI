@@ -41,6 +41,11 @@ class SettingPrivacyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val btnBack = binding.btnBack
+        btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         _radioGroup = binding.radioGroup
         _radioGroup!!.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{ radioGroup, id ->
             when(id){

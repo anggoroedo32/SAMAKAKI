@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val isiTokenInvit = SessionManager.getInvitation(this)
-        if (isiTokenInvit != null) {
+        if (isiTokenInvit != null && isiTokenInvit.length > 4) {
             Log.d("isi_token_invitation", isiTokenInvit)
         }
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("isi_token_login", "token $tokenLogin")
 
 
-        if (isiTokenInvit != null) {
+        if (isiTokenInvit != null && isiTokenInvit.length > 4) {
             Log.d("TAG", "onCreate: $isiTokenInvit")
             familyTreeViewModel.inviteFamily("Bearer $tokenLogin", isiTokenInvit.toString())
             familyTreeViewModel.inviteFamily.observe(this) {
