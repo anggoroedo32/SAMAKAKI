@@ -17,7 +17,7 @@
     <string name="search_user"><font size="14">Search username...</font></string>
     <string name="title_search">Search</string>
     <string name="regard_as">Kamu menganggap dia sebagai</string>
-
+    <string name="empty_notification">Belum ada notifikasi</string>
     //splashscreen
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>

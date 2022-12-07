@@ -73,7 +73,14 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
         notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
             when(it) {
                 is BaseResponse.Success -> {
-                    it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
+                    if (it.data?.data?.unread?.isEmpty() == true) {
+                        binding.rvUndangan.visibility = View.GONE
+                        binding.wrapEmptyNotification.visibility = View.VISIBLE
+                    } else {
+                        binding.rvUndangan.visibility = View.VISIBLE
+                        binding.wrapEmptyNotification.visibility = View.GONE
+                        it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
+                    }
                 }
 
                 is BaseResponse.Error -> textMessage(it.msg.toString())

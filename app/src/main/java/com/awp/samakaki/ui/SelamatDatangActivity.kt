@@ -7,6 +7,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -18,6 +20,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.ActivitySelamatDatangBinding
 import com.awp.samakaki.helper.SessionManager
@@ -51,6 +55,15 @@ class SelamatDatangActivity : AppCompatActivity() {
         loadingState()
 
         val btnIsiProfil = binding.btnIsiProfil
+
+        binding.etBirthday.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(cs: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+                binding.etBirthday.error = null
+            }
+
+            override fun beforeTextChanged(arg0: CharSequence, arg1: Int, arg2: Int, arg3: Int) {}
+            override fun afterTextChanged(arg0: Editable) {}
+        })
 
         btnIsiProfil.setOnClickListener{
             insertProfile()
@@ -114,6 +127,7 @@ class SelamatDatangActivity : AppCompatActivity() {
             dob.isEmpty() -> {
                 binding.etBirthday.error = "Isi tanggal lahirmu"
             }
+
             marriageStatus.isEmpty() -> {
                 (marriageStatus.selectedView as TextView).error = "Pilih status pernikahanmu"
             }
@@ -126,7 +140,7 @@ class SelamatDatangActivity : AppCompatActivity() {
 //            }
 
             img.visibility == View.GONE -> {
-                textMessage("Masukkan image")
+                textMessage("Masukkan avatar anda")
             }
 
 
@@ -227,6 +241,7 @@ class SelamatDatangActivity : AppCompatActivity() {
             val dateTime = Calendar.getInstance()
             DatePickerDialog(
                 this,
+                R.style.DatePickerTheme,
                 { view, year, month, day ->
                     dateTime.set(year,month,day)
                     dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)

@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -170,6 +171,11 @@ class HomeFragment : Fragment() {
             imageUri = it
             ivUploadImg.setImageURI(it)
             ivUploadImg.visibility = View.VISIBLE
+            if (ivUploadImg.visibility == View.VISIBLE) {
+                binding.edPost.setPadding(22)
+            } else {
+                binding.edPost.setPadding(32)
+            }
             imageFile = imageUri?.let { it1 -> uriToFile(it1, requireContext()) }
         }
 

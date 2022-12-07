@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerInside"
-            android:visibility = "gone"
+            android:visibility="visible"
             tools:src="@drawable/ic_launcher_background"
             android:layout_marginBottom="@dimen/dimen_12"/>
         <EditText

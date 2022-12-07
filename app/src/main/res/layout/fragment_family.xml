@@ -130,7 +130,7 @@
         android:id="@+id/wrap_isi_profil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingEnd="6dp"
-                    android:textColor="@color/neutral_400"/>
+                    android:text="Bapak"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

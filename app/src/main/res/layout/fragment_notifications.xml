@@ -29,26 +29,50 @@
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
-    <TextView
-        android:id="@+id/tv_undangan"
-        style="@style/semibold_18"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:text="Undangan"
-        android:textColor="@color/neutral_700"
-        android:layout_marginHorizontal="@dimen/dimen_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_undangan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/cardview_invitation_notification"
-        app:layout_constraintTop_toBottomOf="@+id/tv_undangan"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:layout_marginTop="12dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="@dimen/dimen_20" />
+
+    <LinearLayout
+        android:id="@+id/wrap_empty_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_empty_notification" />
+
+        <TextView
+            style="@style/semibold_18prim500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:text="@string/empty_notification"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/secondary_600"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+
+    </LinearLayout>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/prgbar"

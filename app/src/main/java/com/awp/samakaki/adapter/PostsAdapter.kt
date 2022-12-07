@@ -39,6 +39,10 @@ class PostsAdapter(private var list: List<DataItem>) : RecyclerView.Adapter<Post
             holder.binding.imgPost.isGone = true
         }
 
+        if (list.descriptions.isNullOrBlank()) {
+            holder.binding.tvDesc.visibility = View.GONE
+        }
+
         Picasso.get()
             .load("${list.user?.avatar}")
             .fit()

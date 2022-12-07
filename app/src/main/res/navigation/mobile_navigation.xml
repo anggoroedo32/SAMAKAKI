@@ -46,10 +46,17 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_navigation_profile_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_navigation_profile_to_edit_profile_fragment"
             app:destination="@id/edit_profile_fragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment"
             app:popUpTo="@id/navigation_profile"
             app:popUpToInclusive="true"/>
     </fragment>

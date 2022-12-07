@@ -40,7 +40,11 @@
 
         <EditText
             android:id="@+id/et_birthday"
-            style="@style/TextfieldsStyle"
+            android:background="@drawable/rounded_textfield"
+            android:textColor="@color/neutral_500"
+            android:paddingStart="14dp"
+            android:textColorHint="@color/neutral_400"
+            android:textSize="14sp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
             android:layout_marginHorizontal="@dimen/dimen_35"
@@ -49,7 +53,6 @@
             android:drawableStart="@drawable/ic_calender_soft"
             android:drawablePadding="@dimen/dimen_8"
             android:focusable="false"
-            android:cursorVisible="false"
             android:inputType="date"
             android:hint="@string/tanggal_lahir" />
 

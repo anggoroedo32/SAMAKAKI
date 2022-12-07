@@ -95,7 +95,8 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                     _createPostResponse.value = BaseResponse.Success(response.body())
                     _loading.value = false
                 } else {
-                    _createPostResponse.value = BaseResponse.Error("Erorr Create Posts")
+                    _createPostResponse.value = BaseResponse.Error(response.message())
+                    Log.d("TAG", "createPosts: ${response.code()}")
                     _loading.value = false
                 }
             } catch (e: HttpException) {

@@ -23,12 +23,14 @@ import com.awp.samakaki.response.BaseResponse
 import com.awp.samakaki.response.DataItem
 import com.awp.samakaki.response.ItemPosts
 import com.awp.samakaki.ui.MainActivity
+import com.awp.samakaki.viewmodel.NotificationsViewModel
 import com.awp.samakaki.viewmodel.PostsViewModel
 import com.awp.samakaki.viewmodel.ProfileViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import ru.nikartm.support.ImageBadgeView
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,6 +42,8 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<PostsViewModel>()
     private val profileViewModel by viewModels<ProfileViewModel>()
+    private var imageBadgeView: ImageBadgeView? = null
+    private val notificationsViewModel by viewModels<NotificationsViewModel>()
 
 
     override fun onCreateView(
@@ -55,6 +59,17 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkConnectivity()
+
+        val toolbar = binding.toolbarHomepage
+        toolbar.inflateMenu(R.menu.menu_home)
+        initNotificationCounter()
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+//                R.id.notification -> findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
+                R.id.settings -> findNavController().navigate(R.id.action_navigation_profile_to_settingsFragment)
+            }
+            true
+        }
 
 
         val name = binding.TVProfilename
@@ -111,6 +126,26 @@ class ProfileFragment : Fragment() {
 
         //Get Post Profile
         getPosts()
+    }
+
+    private fun initNotificationCounter() {
+        val token = SessionManager.getToken(requireContext())
+        imageBadgeView = view?.findViewById(R.id.notification_menu_icon)
+
+        notificationsViewModel.getNotifications("Bearer $token")
+        notificationsViewModel.getNotifications.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    imageBadgeView?.badgeValue = it.data?.data?.unread?.size!!
+                }
+
+                is BaseResponse.Error -> textMessage(it.msg.toString())
+            }
+        }
+
+        imageBadgeView?.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_notificationsFragment)
+        }
     }
 
     private fun checkConnectivity() {
