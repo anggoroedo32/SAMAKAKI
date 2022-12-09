@@ -98,6 +98,7 @@ class SelamatDatangActivity : AppCompatActivity() {
             pickImageLauncher.launch(arrayOf("image/*"))
         }
     }
+
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()){
             if (it != null) {
@@ -145,19 +146,20 @@ class SelamatDatangActivity : AppCompatActivity() {
 
 
             else -> {
+                //Convert
+                insertViewModel(dob)
+
                 var intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
-                //Convert
-                insertViewModel()
             }
         }
     }
 
 
-    private fun insertViewModel(){
+    private fun insertViewModel(dob: String){
         val address = binding.etAddress.text.toString().toRequestBody("text/plain".toMediaType())
-        val dob = binding.etBirthday.text.toString().toRequestBody("text/plain".toMediaType())
+        val dob = dob.toRequestBody("text/plain".toMediaType())
         var marriageStatus = binding.etStatus.selectedItem.toString().toRequestBody("text/plain".toMediaType())
         var status = binding.etPrivacy.selectedItem.toString().lowercase().toRequestBody("text/plain".toMediaType())
         var requestImage = imageFile?.asRequestBody("image/jpg".toMediaTypeOrNull())
@@ -182,7 +184,6 @@ class SelamatDatangActivity : AppCompatActivity() {
         viewModelIsiProfile.createBiodataResponse.observe(this) {
             when(it) {
                 is BaseResponse.Success -> {
-                    stopLoading()
                     it.data
                     Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
                 }
@@ -212,14 +213,6 @@ class SelamatDatangActivity : AppCompatActivity() {
     fun createCustomTempFile(context: Context): File {
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("ExampleTime", ".jpg", storageDir)
-    }
-
-    fun stopLoading() {
-        binding.prgbar.visibility = View.GONE
-    }
-
-    fun showLoading() {
-        binding.prgbar.visibility = View.VISIBLE
     }
 
     private fun loadingState(){

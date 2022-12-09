@@ -223,8 +223,8 @@
 
         <LinearLayout
             android:id="@+id/ET_Status"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_44"
+            android:layout_width="344dp"
+            android:layout_height="@dimen/dimen_48"
             android:layout_marginHorizontal="32dp"
             android:background="@drawable/bg_spinner"
             android:orientation="horizontal"
@@ -261,11 +261,10 @@
 
         <LinearLayout
             android:id="@+id/wrap_status_akun"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_44"
+            android:layout_width="344dp"
+            android:layout_height="@dimen/dimen_48"
             android:layout_marginHorizontal="32dp"
             android:background="@drawable/bg_spinner"
-            android:padding="0dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

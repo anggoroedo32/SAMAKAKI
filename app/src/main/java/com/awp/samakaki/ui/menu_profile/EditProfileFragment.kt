@@ -3,6 +3,7 @@ package com.awp.samakaki.ui.menu_profile
 import android.app.DatePickerDialog
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -11,14 +12,10 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.awp.samakaki.R
 import com.awp.samakaki.databinding.FragmentEditprofileBinding
@@ -107,8 +104,6 @@ class EditProfileFragment : Fragment() {
                     phone.setText(it.data?.data?.biodata?.phone)
                     email.setText(it.data?.data?.biodata?.email)
                     address.setText(it.data?.data?.biodata?.address)
-//                    status.setText(it.data?.data?.biodata?.status)
-//                    mariageStatus.setText(it.data?.data?.biodata?.marriageStatus)
 
                     //Dropdown Status
                     val statusDropdown = resources.getStringArray(R.array.status)
@@ -144,7 +139,7 @@ class EditProfileFragment : Fragment() {
         ivUploadImg = binding.imgEditProfile
         val btnUploadImg = binding.btnEdPhoto
         btnUploadImg.setOnClickListener{
-            pickImageLauncher.launch("image/*")
+            pickImageLauncher.launch(arrayOf("image/*"))
         }
 
 
@@ -153,31 +148,29 @@ class EditProfileFragment : Fragment() {
             edValidation()
         }
 
-//        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
-//            override fun handleOnBackPressed() {
-//                val fragmentManager = parentFragmentManager
-//                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-//                fragmentTransaction.replace(
-//                    R.id.nav_host_fragment_activity_main,
-//                    ProfileFragment()
-//                )
-//                    .setReorderingAllowed(true)
-//                fragmentTransaction.addToBackStack(null)
-//                fragmentTransaction.commit()
-//            }
-//
-//        })
     }
 
 
-
     private val pickImageLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()){
-            imageUriEd = it!!
+        registerForActivityResult(ActivityResultContracts.OpenDocument()){
+            if (it != null) {
+                val resolver = requireActivity().contentResolver
+                resolver.takePersistableUriPermission(it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                imageUriEd = it
+                ivUploadImg.visibility = View.VISIBLE
+            }
             ivUploadImg.setImageURI(it)
-            ivUploadImg.visibility = View.VISIBLE
-            imageFile = uriToFile(imageUriEd!!, requireContext())
+            imageFile = imageUriEd?.let { it1 -> uriToFile(it1, requireContext()) }
+//            imageFile = uriToFile(imageUri, this)
         }
+
+//    private val pickImageLauncher =
+//        registerForActivityResult(ActivityResultContracts.GetContent()){
+//            imageUriEd = it!!
+//            ivUploadImg.setImageURI(it)
+//            ivUploadImg.visibility = View.VISIBLE
+//            imageFile = uriToFile(imageUriEd!!, requireContext())
+//        }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver
@@ -203,22 +196,23 @@ class EditProfileFragment : Fragment() {
         val name = binding.ETName.text.toString()
         val dob = binding.ETTanggal.text.toString()
         val phone = binding.ETNoTlp.text.toString()
+        Log.d("TAG", "edValidation: $dob")
 
         when {
             name.isEmpty() -> binding.ETName.error = getString(R.string.err_empty_name)
             dob.isEmpty() -> binding.ETTanggal.error = getString(R.string.err_empty_dob)
             phone.isEmpty() -> binding.ETNoTlp.error = getString(R.string.err_empty_phone)
             else -> {
-                insertEditProfileData()
+                insertEditProfileData(dob)
             }
         }
     }
 
-    private fun insertEditProfileData() {
+    private fun insertEditProfileData(dob: String) {
         val name = binding.ETName.text.toString().toRequestBody("text/plain".toMediaType())
         val email = binding.ETEmail.text.toString().toRequestBody("text/plain".toMediaType())
         val address = binding.ETLokasi.text.toString().toRequestBody("text/plain".toMediaType())
-        val dob = binding.ETTanggal.text.toString().toRequestBody("text/plain".toMediaType())
+        val dob = dob.toRequestBody("text/plain".toMediaType())
         val phone = binding.ETNoTlp.text.toString().toRequestBody("text/plain".toMediaType())
         val status = binding.etStatusakun.selectedItem.toString().toRequestBody("text/plain".toMediaType())
         val marriageStatus = binding.etStatus.selectedItem.toString().toRequestBody("text/plain".toMediaType())
@@ -279,6 +273,8 @@ class EditProfileFragment : Fragment() {
         var date: Date = inputFormat.parse(inputDate)
         var outputDate: String = dateFormater.format(date)
         binding.ETTanggal.setText(outputDate)
+        Log.d("TAG", "formatDateOutput: $outputDate")
+        Log.d("TAG", "formatDateInput: $inputDate")
     }
 
     private fun getDate(){
@@ -293,6 +289,7 @@ class EditProfileFragment : Fragment() {
                     dateTime.set(year,month,day)
                     dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
                     binding.ETTanggal.setText(dateFormater)
+                    Log.d("TAG", "getDate: $dateFormater")
                 },
                 year,month,day
             ).show()

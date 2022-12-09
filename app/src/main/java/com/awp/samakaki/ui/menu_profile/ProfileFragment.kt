@@ -113,15 +113,6 @@ class ProfileFragment : Fragment() {
         val btnEdProfile = binding.btnEdProfile
         btnEdProfile.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_edit_profile_fragment)
-//            val fragmentManager = parentFragmentManager
-//            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-//            fragmentTransaction.replace(
-//                R.id.nav_host_fragment_activity_main,
-//                EditProfileFragment()
-//            )
-//                .setReorderingAllowed(true)
-//            fragmentTransaction.addToBackStack(null)
-//            fragmentTransaction.commit()
         }
 
         //Get Post Profile
@@ -163,7 +154,9 @@ class ProfileFragment : Fragment() {
         var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
         var date: Date = inputFormat.parse(inputDate)
         var outputDate: String = dateFormater.format(date)
-        binding.tvTgllahir.setText(outputDate)
+        Log.d("TAG", "formatDate: $outputDate")
+        Log.d("TAG", "formatDateInput: $inputDate")
+        binding.tvTgllahir.text = outputDate
     }
 
     private fun observeData(){
