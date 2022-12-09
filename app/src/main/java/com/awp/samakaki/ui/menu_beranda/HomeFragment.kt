@@ -102,7 +102,13 @@ class HomeFragment : Fragment() {
 
         val buttonPost:Button = binding.btnPost
         buttonPost.setOnClickListener(){
-            _status.let { it1 -> insertViewModelPosts(it1) }
+            val caption = binding.edPost.text.toString()
+            if (caption.isNotEmpty()) {
+                _status.let { it1 -> insertViewModelPosts(it1) }
+            } else {
+                textMessage("Masukkan caption")
+            }
+
         }
 
         val switchButton: SwitchCompat = binding.switchButton
