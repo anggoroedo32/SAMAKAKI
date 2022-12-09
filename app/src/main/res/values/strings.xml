@@ -91,6 +91,12 @@
     <string name="status_kamu">Status kamu</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
     <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
+    <string name="tambah_acara">Tambah Acara</string>
+    <string name="nama_acara">Nama acara</string>
+    <string name="tambahkan_tanggal">Tambahkan Tanggal</string>
+    <string name="waktu_acara">Waktu acara</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="tambah">Tambah</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="failed_camera">Failed To Bring Up The Camera</string>
