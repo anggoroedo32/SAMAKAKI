@@ -89,7 +89,11 @@ class ProfileFragment : Fragment() {
                     it.data
 
                     name.setText(it.data?.data?.biodata?.name)
-                    formatDate(it.data?.data?.biodata?.dob.toString())
+                    if (it.data?.data?.biodata?.dob?.isNotEmpty() == true) {
+                        formatDate(it.data?.data?.biodata?.dob.toString())
+                    } else if (it.data?.data?.biodata?.dob?.isNullOrBlank() == true) {
+                        binding.tvTgllahir.text = it.data?.data?.biodata?.dob?.toString()
+                    }
                     var addressCapitalize = it.data?.data?.biodata?.address
                     address.setText(addressCapitalize?.capitalize())
                     phone.setText(it.data?.data?.biodata?.phone)
@@ -151,11 +155,9 @@ class ProfileFragment : Fragment() {
 
     private fun formatDate(inputDate: String) {
         var inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
+        var dateFormater: DateFormat = SimpleDateFormat("dd-MM-yyyy")
         var date: Date = inputFormat.parse(inputDate)
         var outputDate: String = dateFormater.format(date)
-        Log.d("TAG", "formatDate: $outputDate")
-        Log.d("TAG", "formatDateInput: $inputDate")
         binding.tvTgllahir.text = outputDate
     }
 
@@ -174,7 +176,7 @@ class ProfileFragment : Fragment() {
     private fun rvPosts(list: List<ItemPosts>) {
         val recyclerViewPosts: RecyclerView = binding.rvProfile
         recyclerViewPosts.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
             adapter = UserPostsAdapter(list)
         }
     }

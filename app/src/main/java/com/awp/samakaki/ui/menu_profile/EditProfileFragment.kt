@@ -100,7 +100,11 @@ class EditProfileFragment : Fragment() {
                 is BaseResponse.Success -> {
                     it.data
                     name.setText(it.data?.data?.biodata?.name)
-                    formatDate(it.data?.data?.biodata?.dob.toString())
+                    if (it.data?.data?.biodata?.dob?.isNotEmpty() == true) {
+                        formatDate(it.data?.data?.biodata?.dob.toString())
+                    } else if (it.data?.data?.biodata?.dob?.isNullOrBlank() == true) {
+                        binding.ETTanggal.setText(it.data?.data?.biodata?.dob?.toString())
+                    }
                     phone.setText(it.data?.data?.biodata?.phone)
                     email.setText(it.data?.data?.biodata?.email)
                     address.setText(it.data?.data?.biodata?.address)
@@ -164,13 +168,6 @@ class EditProfileFragment : Fragment() {
 //            imageFile = uriToFile(imageUri, this)
         }
 
-//    private val pickImageLauncher =
-//        registerForActivityResult(ActivityResultContracts.GetContent()){
-//            imageUriEd = it!!
-//            ivUploadImg.setImageURI(it)
-//            ivUploadImg.visibility = View.VISIBLE
-//            imageFile = uriToFile(imageUriEd!!, requireContext())
-//        }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver
@@ -269,31 +266,47 @@ class EditProfileFragment : Fragment() {
 
     private fun formatDate(inputDate: String) {
         var inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        var dateFormater: DateFormat = SimpleDateFormat("dd MMMM yyyy")
+        var dateFormater: DateFormat = SimpleDateFormat("dd-MM-yyyy")
         var date: Date = inputFormat.parse(inputDate)
         var outputDate: String = dateFormater.format(date)
         binding.ETTanggal.setText(outputDate)
-        Log.d("TAG", "formatDateOutput: $outputDate")
-        Log.d("TAG", "formatDateInput: $inputDate")
     }
 
     private fun getDate(){
-        var day = calendar.get(Calendar.DAY_OF_MONTH)
-        var month = calendar.get(Calendar.MONTH)
-        var year = calendar.get(Calendar.YEAR)
-        val dateTime = Calendar.getInstance()
-        context?.let { it1 ->
-            DatePickerDialog(
-                it1,
-                { view, year, month, day ->
-                    dateTime.set(year,month,day)
-                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
-                    binding.ETTanggal.setText(dateFormater)
-                    Log.d("TAG", "getDate: $dateFormater")
-                },
-                year,month,day
-            ).show()
-        }
+//        var day = calendar.get(Calendar.DAY_OF_MONTH)
+//        var month = calendar.get(Calendar.MONTH)
+//        var year = calendar.get(Calendar.YEAR)
+//        val dateTime = Calendar.getInstance()
+//        context?.let { it1 ->
+//            DatePickerDialog(
+//                it1,
+//                { view, year, month, day ->
+//                    dateTime.set(year,month,day)
+//                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
+//                    binding.ETTanggal.setText(dateFormater)
+//                    Log.d("TAG", "getDate: $dateFormater")
+//                },
+//                year,month,day
+//            ).show()
+//        }
+
+        var c = Calendar.getInstance()
+        var cDay = c.get(Calendar.DAY_OF_MONTH)
+        var cMonth = c.get(Calendar.MONTH)
+        var cYear = c.get(Calendar.YEAR)
+
+        val calenderDialog = DatePickerDialog(requireContext(),
+            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+                cDay = dayOfMonth
+                cMonth = month
+                cYear = year
+                val bornDate = binding.ETTanggal
+                bornDate.setText("$cDay-${cMonth+1}-$cYear")
+
+            }, cYear, cMonth, cDay)
+        calenderDialog.show()
+
     }
 
     private fun loadingState(){

@@ -3,6 +3,7 @@ package com.awp.samakaki.ui.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -52,14 +53,15 @@ class ResetPasswordActivity : AppCompatActivity() {
                         token = token
                     )
                     authenticationViewModel.resetPasswordResponse.observe(this) {
-                        when (it) {
-                            is BaseResponse.Success -> {
-                                textMessage("Password berhasil diubah")
-                                val intent = Intent(this, LoginActivity::class.java)
-                                startActivity(intent)
-                            }
-                            is BaseResponse.Error -> {
-                                textMessage(it.msg.toString())
+                        it.getContentIfNotHandled().let {
+                            when(it) {
+                                is BaseResponse.Success -> {
+                                    textMessage("Password berhasil diubah")
+                                    val intent = Intent(this, LoginActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                is BaseResponse.Error -> textMessage(it.msg.toString())
+                                else -> {}
                             }
                         }
                     }

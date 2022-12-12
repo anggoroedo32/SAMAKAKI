@@ -224,9 +224,27 @@
                     style="@style/TextfieldsStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingEnd="6dp"
-                    android:text="Bapak"/>
+                    android:paddingEnd="6dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dimen_40"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:background="@drawable/rounded_textfield"-->
+<!--                android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                android:layout_marginTop="@dimen/dimen_10">-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/et_hubungan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                    android:background="@drawable/rounded_textfield" />-->
+
+<!--            </LinearLayout>-->
+
 
         </LinearLayout>
 

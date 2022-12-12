@@ -73,7 +73,7 @@ class SelamatDatangActivity : AppCompatActivity() {
         inputConf()
 
         //Date Picker
-        dateFormater = SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().time)
+        dateFormater = SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().time)
         getDate()
     }
 
@@ -141,7 +141,7 @@ class SelamatDatangActivity : AppCompatActivity() {
 //            }
 
             img.visibility == View.GONE -> {
-                textMessage("Masukkan avatar anda")
+                textMessage("Masukkan foto anda")
             }
 
 
@@ -228,20 +228,38 @@ class SelamatDatangActivity : AppCompatActivity() {
 
     private fun getDate(){
         binding.etBirthday.setOnClickListener {
-            var day = calendar.get(Calendar.DAY_OF_MONTH)
-            var month = calendar.get(Calendar.MONTH)
-            var year = calendar.get(Calendar.YEAR)
-            val dateTime = Calendar.getInstance()
-            DatePickerDialog(
-                this,
-                R.style.DatePickerTheme,
-                { view, year, month, day ->
-                    dateTime.set(year,month,day)
-                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
-                    binding.etBirthday.setText(dateFormater)
-                },
-                year,month,day
-            ).show()
+//            var day = calendar.get(Calendar.DAY_OF_MONTH)
+//            var month = calendar.get(Calendar.MONTH)
+//            var year = calendar.get(Calendar.YEAR)
+//            val dateTime = Calendar.getInstance()
+//            DatePickerDialog(
+//                this,
+//                R.style.DatePickerTheme,
+//                { view, year, month, day ->
+//                    dateTime.set(year,month,day)
+//                    dateFormater = SimpleDateFormat("dd MMMM yyyy").format(dateTime.time)
+//                    binding.etBirthday.setText(dateFormater)
+//                },
+//                year,month,day
+//            ).show()
+
+            var c = Calendar.getInstance()
+            var cDay = c.get(Calendar.DAY_OF_MONTH)
+            var cMonth = c.get(Calendar.MONTH)
+            var cYear = c.get(Calendar.YEAR)
+
+            val calenderDialog = DatePickerDialog(this,
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+                    cDay = dayOfMonth
+                    cMonth = month
+                    cYear = year
+                    val bornDate = binding.etBirthday
+                    bornDate.setText("$cDay-${cMonth+1}-$cYear")
+
+                }, cYear, cMonth, cDay)
+            calenderDialog.show()
+
         }
     }
 

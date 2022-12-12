@@ -3,6 +3,7 @@ package com.awp.samakaki.ui.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -41,14 +42,18 @@ class ForgotPasswordActivity : AppCompatActivity() {
                     else -> {
                         authenticationViewModel.forgotToken(email = email)
                         authenticationViewModel.forgotTokenResponse.observe(this) {
-                            when (it) {
-                                is BaseResponse.Success -> {
-                                    textMessage("Token sudah dikirimkan ke email anda")
-                                    val intent = Intent(this, ResetPasswordActivity::class.java)
-                                    startActivity(intent)
-                                }
-                                is BaseResponse.Error -> {
-                                    textMessage(it.msg.toString())
+                            it.getContentIfNotHandled().let {
+                                when(it) {
+                                    is BaseResponse.Success -> {
+                                        textMessage("Token sudah dikirimkan ke email anda")
+                                        val intent = Intent(this, ResetPasswordActivity::class.java)
+                                        startActivity(intent)
+                                    }
+                                    is BaseResponse.Error -> {
+                                        textMessage(it.msg.toString())
+                                        Log.d("TAG", "onCreate: ${it.msg.toString()}")
+                                    }
+                                    else -> {}
                                 }
                             }
                         }

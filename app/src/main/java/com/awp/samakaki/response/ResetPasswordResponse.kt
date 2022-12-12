@@ -9,3 +9,9 @@ data class ResetPasswordResponse(
     @SerializedName("status")
     val status: String
 )
+
+data class MessageResetPasswordResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null
+)

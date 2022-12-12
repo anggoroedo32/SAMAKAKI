@@ -9,3 +9,9 @@ data class ForgotTokenResponse(
     @SerializedName("status")
     val status: String
 )
+
+data class MessageForgotPasswordResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null
+)

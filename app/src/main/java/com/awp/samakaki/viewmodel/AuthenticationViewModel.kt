@@ -27,11 +27,11 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
     private val _loginResponse = MutableLiveData<SingleLiveEvent<BaseResponse<LoginResponse>>>()
     val loginResponse: LiveData<SingleLiveEvent<BaseResponse<LoginResponse>>> = _loginResponse
 
-    private val _forgotTokenResponse = MutableLiveData<BaseResponse<ForgotTokenResponse>>()
-    val forgotTokenResponse: LiveData<BaseResponse<ForgotTokenResponse>> = _forgotTokenResponse
+    private val _forgotTokenResponse = MutableLiveData<SingleLiveEvent<BaseResponse<ForgotTokenResponse>>>()
+    val forgotTokenResponse: LiveData<SingleLiveEvent<BaseResponse<ForgotTokenResponse>>> = _forgotTokenResponse
 
-    private val _resetPasswordResponse = MutableLiveData<BaseResponse<ResetPasswordResponse>>()
-    val resetPasswordResponse: LiveData<BaseResponse<ResetPasswordResponse>> = _resetPasswordResponse
+    private val _resetPasswordResponse = MutableLiveData<SingleLiveEvent<BaseResponse<ResetPasswordResponse>>>()
+    val resetPasswordResponse: LiveData<SingleLiveEvent<BaseResponse<ResetPasswordResponse>>> = _resetPasswordResponse
 
     private val _registerWithTokenResponse = MutableLiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>>()
     val registerWithTokenResponse: LiveData<SingleLiveEvent<BaseResponse<RegisterWithInvitationResponse>>> = _registerWithTokenResponse
@@ -98,7 +98,7 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
             } catch (e: HttpException) {
               BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")
             } catch (e: IOException) {
-              BaseResponse.Error("Cek kembali koneksi internet anda")
+              BaseResponse.Error("Cek kembali koneksi internet aynda")
             } catch (e: Exception) {
                 _registerResponse.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Data bermasalah")))
             }
@@ -149,14 +149,18 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
 
                 val response = repository.forgotToken(forgotTokenRequest)
                 if (response.code() == 200) {
-                    _forgotTokenResponse.value = BaseResponse.Success(response.body())
+                    _forgotTokenResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _forgotTokenResponse.value = BaseResponse.Error(response.message().toString())
+                    val gson = Gson()
+                    val type = object : TypeToken<MessageForgotPasswordResponse>() {}.type
+                    var errorResponse: MessageForgotPasswordResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _forgotTokenResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
+                    Log.d("TAG", "forgotToken: ${errorResponse.message.toString()}")
                     _loading.value = false
                 }
             } catch (e: Exception){
-                _forgotTokenResponse.value = BaseResponse.Error(e.message)
+                _forgotTokenResponse.postValue(SingleLiveEvent(BaseResponse.Error(e.message)))
             }
         }
     }
@@ -173,14 +177,17 @@ class AuthenticationViewModel @Inject constructor(private val repository: Remote
 
                 val response = repository.resetPassword(resetPasswordRequest)
                 if (response.code() == 200) {
-                    _resetPasswordResponse.value = BaseResponse.Success(response.body())
+                    _resetPasswordResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _resetPasswordResponse.value = BaseResponse.Error(response.message().toString())
+                    val gson = Gson()
+                    val type = object : TypeToken<MessageResetPasswordResponse>() {}.type
+                    var errorResponse: MessageResetPasswordResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _resetPasswordResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
                     _loading.value = false
                 }
             } catch (e: Exception){
-                _resetPasswordResponse.value = BaseResponse.Error(e.message)
+                _resetPasswordResponse.postValue(SingleLiveEvent(BaseResponse.Error(e.message)))
                 _loading.value = false
             }
         }

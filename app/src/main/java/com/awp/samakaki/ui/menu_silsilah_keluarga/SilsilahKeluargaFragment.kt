@@ -92,6 +92,7 @@ open class SilsilahKeluargaFragment : Fragment() {
         val relationshipDropdownAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, relationshipDropdown)
         val autoCompleteRelationship = binding.etHubungan
+        autoCompleteRelationship.setText("Ibu")
         autoCompleteRelationship.setAdapter(relationshipDropdownAdapter)
 
         val toolbar = binding.toolbarHomepage
@@ -209,22 +210,24 @@ open class SilsilahKeluargaFragment : Fragment() {
                     val findRelation = it.data?.data?.relation
                     Log.d("asd", "silsilahKeluarga: $findRelation")
 
-                    val getBapak = findRelation?.filter { it?.relationName == "bapak" }
+                    val getBapak = findRelation?.filter { it?.code == "A1Kn1" }
                     val getBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1" }
-                    val getIbu = findRelation?.filter { it?.relationName == "ibu" }
+
+                    val getIbu = findRelation?.filter { it?.code == "A1Kr1" }
                     val getIbuByCode = findRelation?.filter { it?.code == "A1Kn10,1" }
-                    val adekPertama = findRelation?.filter { it?.relationName == "adek_pertama" }
+
+                    val adekPertama = findRelation?.filter { it?.code == "Kn1" }
                     val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
                     val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
-                    val kakakPertama = findRelation?.filter { it?.relationName == "kakak_pertama" }
+                    val kakakPertama = findRelation?.filter { it?.code == "Kr1" }
                     val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
                     val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
 
                     val anakPertama = findRelation?.filter { it?.code == "B1Kr1" }
                     val anakpertamaByCode = findRelation?.filter {it?.code == "0,1B1Kr1"}
 
-                    val anakKedua = findRelation?.filter { it?.relationName == "anak_kedua" }
-                    val anakKetiga = findRelation?.filter { it?.relationName == "anak_ketiga" }
+                    val anakKedua = findRelation?.filter { it?.code == "B1Kr2" }
+                    val anakKetiga = findRelation?.filter { it?.code == "B1Kr3" }
 
                     val kakekDariBapak = findRelation?.filter { it?.relationName == "kakek_dari_bapak" }
 
@@ -238,7 +241,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                     val getNenekDariIbuByCode = findRelation?.filter { it?.code == "A1Kr1A1Kr1" }
 
                     val husband = findRelation?.filter { it?.code == "0,1" }
-                    val wife = findRelation?.filter { it?.relationName == "0,1" }
+                    val wife = findRelation?.filter { it?.code == "0,1" }
 
                     if (kakekDariBapak?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy14
@@ -246,7 +249,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "kakek_dari_bapak" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakek Dari Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -272,7 +275,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "A1Kr10,1A1Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Nenek Dari Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -295,7 +298,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "nenek_dari_bapak" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Nenek Dari Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -320,7 +323,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "A1Kr1A1Kr10,1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakek Dari Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -344,7 +347,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "kakek_dari_ibu" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakek Dari Ibu"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -369,7 +372,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "A1Kr1A1Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Nenek Dari Ibu"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -394,7 +397,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "nenek_dari_ibu" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Nenek Dari Ibu"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -416,10 +419,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (kakakPertama?.isNotEmpty() == true) {
                         val img = binding.layoutFamily.imgDummy11
                         val name = binding.layoutFamily.nameDummy11
-                        val ss = findRelation?.find { it?.relationName == "kakak_pertama" }
+                        val ss = findRelation?.find { it?.code == "Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakak Pertama"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -444,7 +447,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "kakak_kedua" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakak Kedua"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -469,7 +472,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Kakak Ketiga"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -491,10 +494,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (adekPertama?.isNotEmpty() == true) {
                         val img = binding.layoutFamily.imgDummy7
                         val name = binding.layoutFamily.nameDummy7
-                        val ss = findRelation?.find { it?.relationName == "adek_pertama" }
+                        val ss = findRelation?.find { it?.code == "Kn1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Adek Pertama"
                             name.setTextColor(Color.parseColor("#A3A3A3"))
                         } else {
                             name.text = username
@@ -519,7 +522,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.relationName == "adek_kedua" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Adek Kedua"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -546,7 +549,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val username = ss?.userRelated
 
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Adek Ketiga"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -571,7 +574,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "A1Kn10,1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Ibu"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -591,10 +594,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     } else if (getIbu?.isNotEmpty() == true) {
                         val img = binding.layoutFamily.imgDummy6
                         val name = binding.layoutFamily.nameDummy6
-                        val ss = findRelation?.find { it?.relationName == "ibu" }
+                        val ss = findRelation?.find { it?.code == "A1Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Ibu"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -619,7 +622,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "A1Kr10,1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -641,10 +644,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (getBapak?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy18
                         val name = binding.layoutFamily.nameDummy18
-                        val ss = findRelation?.find { it?.relationName == "bapak" }
+                        val ss = findRelation?.find { it?.code == "A1Kn1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Bapak"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -669,7 +672,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "0,1B1Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Anak Pertama"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -692,7 +695,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "B1Kr1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Anak Pertama"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -714,10 +717,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (anakKedua?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy2
                         val name = binding.layoutFamily.nameDummy2
-                        val ss = findRelation?.find { it?.relationName == "anak_kedua" }
+                        val ss = findRelation?.find { it?.code == "B1Kr2" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Anak Kedua"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -739,10 +742,10 @@ open class SilsilahKeluargaFragment : Fragment() {
                     if (anakKetiga?.isNotEmpty() == true) {
                         val avatar = binding.layoutFamily.imgDummy3
                         val name = binding.layoutFamily.nameDummy3
-                        val ss = findRelation?.find { it?.relationName == "anak_ketiga" }
+                        val ss = findRelation?.find { it?.code == "B1Kr3" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Anak Ketiga"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -767,7 +770,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "0,1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Suami"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
@@ -792,7 +795,7 @@ open class SilsilahKeluargaFragment : Fragment() {
                         val ss = findRelation?.find { it?.code == "0,1" }
                         val username = ss?.userRelated
                         if (username == null){
-                            name.text = "User"
+                            name.text = "Istri"
                             name.setTextColor(Color.parseColor("#737373"))
                         } else {
                             name.text = username
