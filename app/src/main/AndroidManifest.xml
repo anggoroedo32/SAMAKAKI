@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.awp.samakaki">
+    package="com.qatros.samakaki">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
-        android:name=".App"
+        android:name="com.qatros.samakaki.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -22,28 +22,28 @@
         android:theme="@style/Theme.SAMAKAKI"
         tools:targetApi="31">
         <activity
-            android:name=".ui.menu_beranda.CameraActivity"
+            android:name="com.qatros.samakaki.ui.menu_beranda.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.RegisterActivity"
+            android:name="com.qatros.samakaki.ui.authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.KodeVerifikasiActivity"
+            android:name="com.qatros.samakaki.ui.authentication.KodeVerifikasiActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.ForgotPasswordActivity"
+            android:name="com.qatros.samakaki.ui.authentication.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.LoginActivity"
+            android:name="com.qatros.samakaki.ui.authentication.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.authentication.ResetPasswordActivity"
+            android:name="com.qatros.samakaki.ui.authentication.ResetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SelamatDatangActivity"
+            android:name="com.qatros.samakaki.ui.SelamatDatangActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name="com.qatros.samakaki.ui.SplashScreenActivity"
             android:exported="true">
 
             <intent-filter>
@@ -64,7 +64,7 @@
 
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.qatros.samakaki.ui.MainActivity"
             android:exported="false"
             android:label="@string/app_name" />
     </application>

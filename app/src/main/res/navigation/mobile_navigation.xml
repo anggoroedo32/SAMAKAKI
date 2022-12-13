@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.awp.samakaki.ui.menu_beranda.HomeFragment"
+        android:name="com.qatros.samakaki.ui.menu_beranda.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_family"
-        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaFragment"
+        android:name="com.qatros.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaFragment"
         android:label="@string/title_family"
         tools:layout="@layout/fragment_family" >
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.awp.samakaki.ui.menu_profile.ProfileFragment"
+        android:name="com.qatros.samakaki.ui.menu_profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.awp.samakaki.ui.menu.SettingsFragment"
+        android:name="com.qatros.samakaki.ui.menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -74,18 +74,18 @@
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.awp.samakaki.ui.menu.NotificationsFragment"
+        android:name="com.qatros.samakaki.ui.menu.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/settingPrivacyFragment"
-        android:name="com.awp.samakaki.ui.menu.SettingPrivacyFragment"
+        android:name="com.qatros.samakaki.ui.menu.SettingPrivacyFragment"
         android:label="SettingPrivacyFragment" />
 
     <fragment
         android:id="@+id/edit_profile_fragment"
-        android:name="com.awp.samakaki.ui.menu_profile.EditProfileFragment"
+        android:name="com.qatros.samakaki.ui.menu_profile.EditProfileFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/fragment_editprofile" />
 
