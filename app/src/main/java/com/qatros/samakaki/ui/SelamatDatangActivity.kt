@@ -147,10 +147,6 @@ class SelamatDatangActivity : AppCompatActivity() {
             else -> {
                 //Convert
                 insertViewModel(dob)
-
-                var intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
             }
         }
     }
@@ -185,6 +181,9 @@ class SelamatDatangActivity : AppCompatActivity() {
                 is BaseResponse.Success -> {
                     it.data
                     Toast.makeText(this, "Profil anda sudah dibuat", Toast.LENGTH_SHORT).show()
+                    var intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())

@@ -100,6 +100,7 @@ class HomeFragment : Fragment() {
 
         val buttonPost:Button = binding.btnPost
         buttonPost.setOnClickListener(){
+            buttonPost.isEnabled = false
             val caption = binding.edPost.text.toString()
             if (caption.isNotEmpty()) {
                 _status.let { it1 -> insertViewModelPosts(it1) }
@@ -159,6 +160,8 @@ class HomeFragment : Fragment() {
             when(it){
                 is BaseResponse.Success -> {
                     it.data
+                    val buttonPost:Button = binding.btnPost
+                    buttonPost.isEnabled = true
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
                     findNavController().navigate(destination)
