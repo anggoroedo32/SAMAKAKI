@@ -347,10 +347,12 @@
     </style>
 
     <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/primary_400</item>
-        <item name="android:textColorPrimary">@color/primary_400</item>
+        <item name="colorAccent">@color/primary_500</item>
+        <item name="android:textColorPrimary">@color/primary_600</item>
     </style>
 
-
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerDialogTheme">@color/primary_500</item>
+    </style>
 
 </resources>

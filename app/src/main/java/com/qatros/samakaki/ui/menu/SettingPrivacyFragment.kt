@@ -92,7 +92,9 @@ class SettingPrivacyFragment : Fragment() {
 
 
         binding.btnSave.setOnClickListener{
-            _radioButton.let { it1 -> insertEditPrivacy(it1) }
+            Log.d("TAG", "onViewCreatedBtn: $_radioButton")
+//            _radioButton.let { it1 -> insertEditPrivacy(it1) }
+            insertEditPrivacy(_radioButton)
         }
 
         binding.btnBack.setOnClickListener {
@@ -114,6 +116,7 @@ class SettingPrivacyFragment : Fragment() {
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
                     findNavController().navigate(destination)
+                    Toast.makeText(requireContext(), "Berhasil Ganti Privasi", Toast.LENGTH_SHORT).show()
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())

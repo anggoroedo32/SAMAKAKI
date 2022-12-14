@@ -72,16 +72,19 @@
             android:id="@+id/radio_button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Private"/>
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Public"/>
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Protected"/>
     </RadioGroup>
 
