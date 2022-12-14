@@ -83,6 +83,12 @@ interface ApiService {
         @Path("id") id: String
     ): Response<FindUserResponse>
 
+    @DELETE("posts/{id}")
+    suspend fun deletePost(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<DeletePostResponse>
+
     @Multipart
     @PUT("biodata_users/{id}")
     suspend fun  editProfile(

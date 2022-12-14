@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.LayoutPostContentBinding
+import com.qatros.samakaki.response.DataItem
 import com.qatros.samakaki.response.ItemPosts
-import com.bumptech.glide.Glide
 
-class UserPostsAdapter(private var list: List<ItemPosts>) : RecyclerView.Adapter<UserPostsAdapter.UserPostsViewHolder>() {
+class UserPostsAdapter(private var list: List<ItemPosts>, private var optionsMenuClickListener: PostsAdapter.OptionsMenuClickListener) : RecyclerView.Adapter<UserPostsAdapter.UserPostsViewHolder>() {
 
     inner class UserPostsViewHolder (val binding: LayoutPostContentBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -22,6 +23,9 @@ class UserPostsAdapter(private var list: List<ItemPosts>) : RecyclerView.Adapter
         val list = list[position]
         holder.binding.tvDesc.text = list.descriptions.toString()
         holder.binding.userName.text = list.user?.name.toString()
+        holder.binding.textViewOptions.setOnClickListener {
+            optionsMenuClickListener.onOptionsMenuClicked(position, list.id)
+        }
         holder.binding.imgPost.visibility
         if (list.content != null){
             Glide.with(holder.itemView.context)

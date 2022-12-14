@@ -1,5 +1,6 @@
 package com.qatros.samakaki.ui.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +15,15 @@ import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.FragmentSettingPrivacyBinding
 import com.qatros.samakaki.helper.SessionManager
 import com.qatros.samakaki.response.BaseResponse
+import com.qatros.samakaki.ui.MainActivity
+import com.qatros.samakaki.ui.SelamatDatangActivity
+import com.qatros.samakaki.ui.authentication.LoginActivity
 import com.qatros.samakaki.viewmodel.ProfileViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 
-
+@AndroidEntryPoint
 class SettingPrivacyFragment : Fragment() {
     private var _binding: FragmentSettingPrivacyBinding? = null
     private val binding get()  = _binding!!
@@ -43,6 +48,29 @@ class SettingPrivacyFragment : Fragment() {
         val btnBack = binding.btnBack
         btnBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        val token = SessionManager.getToken(requireContext())
+        val idUser = SessionManager.getIdUser(requireContext())
+        profileViewModel.findUser(token = "Bearer $token", id = idUser.toString())
+        profileViewModel.findUser.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseResponse.Success -> {
+                    val dataItem = it.data?.data?.biodata?.status
+                    var position = 0
+                    if (dataItem == "private"){
+                        position = R.id.radio_button1
+                    } else if (dataItem == "public") {
+                        position = R.id.radio_button2
+                    } else if (dataItem == "protected") {
+                        position = R.id.radio_button3
+                    }
+                    binding.radioGroup.check(position)
+                }
+                is BaseResponse.Error -> {
+                    textMessage(it.msg.toString())
+                }
+            }
         }
 
         _radioGroup = binding.radioGroup
@@ -78,6 +106,7 @@ class SettingPrivacyFragment : Fragment() {
             when(it){
                 is BaseResponse.Success -> {
                     it.data
+                    textMessage("Status anda sudah diperbarui")
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
                     findNavController().navigate(destination)

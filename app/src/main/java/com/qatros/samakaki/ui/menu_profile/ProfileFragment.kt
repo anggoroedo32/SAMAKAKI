@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.qatros.samakaki.R
+import com.qatros.samakaki.adapter.PostsAdapter
 import com.qatros.samakaki.adapter.UserPostsAdapter
 import com.qatros.samakaki.databinding.FragmentProfileBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
@@ -38,6 +41,7 @@ class ProfileFragment : Fragment() {
     private val profileViewModel by viewModels<ProfileViewModel>()
     private var imageBadgeView: ImageBadgeView? = null
     private val notificationsViewModel by viewModels<NotificationsViewModel>()
+    private lateinit var rvAdapter: UserPostsAdapter
 
 
     override fun onCreateView(
@@ -159,7 +163,14 @@ class ProfileFragment : Fragment() {
         viewModel.listAllPostsByUser.observe(viewLifecycleOwner) {
             when(it){
                 is BaseResponse.Success -> {
-                    it.data?.data?.posts.let { it1 -> rvPosts(it1 as List<ItemPosts>) }
+                    if (it.data?.data?.posts?.isEmpty() == true) {
+                        binding.rvProfile.visibility = View.GONE
+                        binding.wrapEmptyPost.visibility = View.VISIBLE
+                    } else {
+                        binding.rvProfile.visibility = View.VISIBLE
+                        binding.wrapEmptyPost.visibility = View.GONE
+                        rvPosts(it.data?.data?.posts as List<ItemPosts>)
+                    }
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
@@ -168,11 +179,64 @@ class ProfileFragment : Fragment() {
         }
     }
     private fun rvPosts(list: List<ItemPosts>) {
-        val recyclerViewPosts: RecyclerView = binding.rvProfile
-        recyclerViewPosts.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
-            adapter = UserPostsAdapter(list)
-        }
+//        val recyclerViewPosts: RecyclerView = binding.rvProfile
+//        recyclerViewPosts.apply {
+//            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+//            rvAdapter = UserPostsAdapter(list, object : PostsAdapter.OptionsMenuClickListener{
+//                override fun onOptionsMenuClicked(position: Int, id: Int?) {
+//                    performOptionsMenuClick(position, id)
+//                }
+//
+//            })
+//            binding.rvProfile.adapter = rvAdapter
+//            rvAdapter.notifyDataSetChanged()
+//        }
+
+        rvAdapter = UserPostsAdapter(list, object : PostsAdapter.OptionsMenuClickListener{
+            override fun onOptionsMenuClicked(position: Int, id: Int?) {
+                performOptionsMenuClick(position, id)
+            }
+
+        })
+        binding.rvProfile.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+        binding.rvProfile.adapter = rvAdapter
+        rvAdapter.notifyDataSetChanged()
+    }
+
+    private fun performOptionsMenuClick(position: Int, id: Int?) {
+        val popupMenu = PopupMenu(requireContext() , binding.rvProfile[position].findViewById(R.id.textViewOptions))
+        // add the menu
+        popupMenu.inflate(R.menu.rv_menu)
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                when(item?.itemId){
+                    R.id.delete -> {
+                        val token = SessionManager.getToken(requireContext())
+                        viewModel.deletePost("Bearer $token", id!!)
+                        viewModel.deletePostResponse.observe(viewLifecycleOwner) {
+                            when(it) {
+                                is BaseResponse.Success -> {
+//                                    rvAdapter.notifyDataSetChanged()
+                                    val destination = findNavController().currentDestination?.id
+                                    findNavController().popBackStack(destination!!,true)
+                                    findNavController().navigate(destination)
+                                    textMessage(it.data?.status.toString())
+                                }
+
+                                is BaseResponse.Error -> {
+                                    textMessage(it.msg.toString())
+                                }
+                            }
+                        }
+                        return true
+                    }
+
+                }
+                return false
+            }
+
+        })
+        popupMenu.show()
     }
 
     private fun getPosts(){

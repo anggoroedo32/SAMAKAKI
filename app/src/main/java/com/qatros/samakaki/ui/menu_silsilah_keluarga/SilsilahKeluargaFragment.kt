@@ -89,7 +89,7 @@ open class SilsilahKeluargaFragment : Fragment() {
         val relationshipDropdownAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, relationshipDropdown)
         val autoCompleteRelationship = binding.etHubungan
-        autoCompleteRelationship.setText("Ibu")
+//        autoCompleteRelationship.setText("Ibu")
         autoCompleteRelationship.setAdapter(relationshipDropdownAdapter)
 
         val toolbar = binding.toolbarHomepage
@@ -144,6 +144,9 @@ open class SilsilahKeluargaFragment : Fragment() {
                 }
                 phone.isEmpty() -> {
                     binding.etNoTelp.error = getString(R.string.err_empty_phone)
+                }
+                relationship.isEmpty() -> {
+                    binding.etHubungan.error = getString(R.string.err_empty_relation)
                 }
                 else -> {
                     familyTreeViewModel.createUserRelations(

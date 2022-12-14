@@ -5,12 +5,15 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
@@ -51,7 +54,7 @@ class HomeFragment : Fragment() {
     private var _status: String = "public"
     private var imageBadgeView: ImageBadgeView? = null
     private val notificationsViewModel by viewModels<NotificationsViewModel>()
-
+    private lateinit var rvAdapter: PostsAdapter
 
     var familyName = arrayOf<String?>(
         "Suharto Family",
@@ -100,10 +103,10 @@ class HomeFragment : Fragment() {
 
         val buttonPost:Button = binding.btnPost
         buttonPost.setOnClickListener(){
-            buttonPost.isEnabled = false
             val caption = binding.edPost.text.toString()
             if (caption.isNotEmpty()) {
                 _status.let { it1 -> insertViewModelPosts(it1) }
+                buttonPost.isEnabled = false
             } else {
                 textMessage("Masukkan caption")
             }
@@ -167,6 +170,8 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(destination)
                 }
                 is BaseResponse.Error -> {
+                    val buttonPost:Button = binding.btnPost
+                    buttonPost.isEnabled = true
                     textMessage(it.msg.toString())
                 }
             }
@@ -237,8 +242,48 @@ class HomeFragment : Fragment() {
         val recyclerViewPosts: RecyclerView = binding.rvPost
         recyclerViewPosts.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
-            adapter = PostsAdapter(list)
+            adapter = PostsAdapter(list, object : PostsAdapter.OptionsMenuClickListener{
+                override fun onOptionsMenuClicked(position: Int, id: Int?) {
+                    performOptionsMenuClick(position, id)
+                }
+
+            })
         }
+    }
+
+    private fun performOptionsMenuClick(position: Int, id: Int?) {
+        val popupMenu = PopupMenu(requireContext() , binding.rvPost[position].findViewById(R.id.textViewOptions))
+        // add the menu
+        popupMenu.inflate(R.menu.rv_menu)
+        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                when(item?.itemId){
+                    R.id.delete -> {
+                        val token = SessionManager.getToken(requireContext())
+                        viewModel.deletePost("Bearer $token", id!!)
+                        viewModel.deletePostResponse.observe(viewLifecycleOwner) {
+                            when(it) {
+                                is BaseResponse.Success -> {
+                                    textMessage(it.data?.status.toString())
+                                    val destination = findNavController().currentDestination?.id
+                                    findNavController().popBackStack(destination!!,true)
+                                    findNavController().navigate(destination)
+                                }
+
+                                is BaseResponse.Error -> {
+                                    textMessage(it.msg.toString())
+                                }
+                            }
+                        }
+                        return true
+                    }
+
+                }
+                return false
+            }
+
+        })
+        popupMenu.show()
     }
 
     private fun getPosts(){
