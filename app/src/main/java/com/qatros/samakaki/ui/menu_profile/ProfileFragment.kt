@@ -214,17 +214,20 @@ class ProfileFragment : Fragment() {
                         val token = SessionManager.getToken(requireContext())
                         viewModel.deletePost("Bearer $token", id!!)
                         viewModel.deletePostResponse.observe(viewLifecycleOwner) {
-                            when(it) {
-                                is BaseResponse.Success -> {
+                            it.getContentIfNotHandled().let {
+                                when(it) {
+                                    is BaseResponse.Success -> {
 //                                    rvAdapter.notifyDataSetChanged()
-                                    val destination = findNavController().currentDestination?.id
-                                    findNavController().popBackStack(destination!!,true)
-                                    findNavController().navigate(destination)
-                                    textMessage(it.data?.status.toString())
-                                }
+                                        val destination = findNavController().currentDestination?.id
+                                        findNavController().popBackStack(destination!!,true)
+                                        findNavController().navigate(destination)
+                                        textMessage(it.data?.status.toString())
+                                    }
 
-                                is BaseResponse.Error -> {
-                                    textMessage(it.msg.toString())
+                                    is BaseResponse.Error -> {
+                                        textMessage(it.msg.toString())
+                                    }
+                                    else -> {}
                                 }
                             }
                         }

@@ -6,14 +6,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.ActivityMainBinding
 import com.qatros.samakaki.helper.SessionManager
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.viewmodel.FamilyTreeViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val familyTreeViewModel by viewModels<FamilyTreeViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +75,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun textMessage(s: String) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
 
 }

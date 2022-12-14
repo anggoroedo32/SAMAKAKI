@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.qatros.samakaki.helper.SingleLiveEvent
 import com.qatros.samakaki.repository.RemoteRepository
 import com.qatros.samakaki.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,8 +33,8 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _createPostResponse = MutableLiveData<BaseResponse<PostsResponse>>()
     val createPostResponse: LiveData<BaseResponse<PostsResponse>> = _createPostResponse
 
-    private val _deletePostResponse = MutableLiveData<BaseResponse<DeletePostResponse>>()
-    val deletePostResponse: LiveData<BaseResponse<DeletePostResponse>> = _deletePostResponse
+    private val _deletePostResponse = MutableLiveData<SingleLiveEvent<BaseResponse<DeletePostResponse>>>()
+    val deletePostResponse: LiveData<SingleLiveEvent<BaseResponse<DeletePostResponse>>> = _deletePostResponse
 
     fun getAllPostsByFamily(token: String){
         _loading.value = true
@@ -114,13 +115,13 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             try {
                 val response = repository.deletePost(token = token, id = id)
                 if (response.code() == 200) {
-                    _deletePostResponse.postValue(BaseResponse.Success(response.body()))
+                    _deletePostResponse.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<MessageResetPasswordResponse>() {}.type
                     var errorResponse: MessageResetPasswordResponse = gson.fromJson(response.errorBody()?.string(), type)
-                    _deletePostResponse.postValue(BaseResponse.Error(errorResponse.message.toString()))
+                    _deletePostResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -128,7 +129,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
-                _deletePostResponse.postValue(BaseResponse.Error(msg = "Coba kembali nanti, sedang ada masalah"))
+                _deletePostResponse.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Coba kembali nanti, sedang ada masalah")))
             }
         }
     }

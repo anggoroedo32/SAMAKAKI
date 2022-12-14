@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.FragmentSettingPrivacyBinding
+import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.ui.MainActivity
@@ -44,6 +45,7 @@ class SettingPrivacyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkConnectivity()
 
         val btnBack = binding.btnBack
         btnBack.setOnClickListener {
@@ -102,6 +104,16 @@ class SettingPrivacyFragment : Fragment() {
         }
     }
 
+    private fun checkConnectivity() {
+        val connectivity = ConnectivityStatus(requireContext())
+        connectivity.observe(viewLifecycleOwner) {
+                isConnected ->
+            if(!isConnected){
+                textMessageLong("Tidak ada koneksi internet")
+            }
+        }
+    }
+
     private fun insertEditPrivacy(status: String){
         val token = SessionManager.getToken(requireContext())
         val id = SessionManager.getIdUser(requireContext())
@@ -116,7 +128,7 @@ class SettingPrivacyFragment : Fragment() {
                     val destination = findNavController().currentDestination?.id
                     findNavController().popBackStack(destination!!,true)
                     findNavController().navigate(destination)
-                    Toast.makeText(requireContext(), "Berhasil Ganti Privasi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Berhasil ganti privasi", Toast.LENGTH_SHORT).show()
                 }
                 is BaseResponse.Error -> {
                     textMessage(it.msg.toString())
@@ -128,7 +140,9 @@ class SettingPrivacyFragment : Fragment() {
     private fun textMessage(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
     }
-    companion object{
 
+    private fun textMessageLong(s: String) {
+        Toast.makeText(requireContext(),s, Toast.LENGTH_LONG).show()
     }
+
 }

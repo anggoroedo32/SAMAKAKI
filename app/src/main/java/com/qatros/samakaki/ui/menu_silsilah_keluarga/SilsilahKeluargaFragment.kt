@@ -1,11 +1,13 @@
 package com.qatros.samakaki.ui.menu_silsilah_keluarga
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -66,22 +68,24 @@ open class SilsilahKeluargaFragment : Fragment() {
         val isiProfil = binding.wrapIsiProfil
         val token = context?.let { SessionManager.getToken(it) }
 
-        familyTreeViewModel.findUserRelations("Bearer $token")
-        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Success -> {
-                    val relationData = it.data?.data?.relation
-                    Log.d("relation_data", "hasilnya $relationData")
-                    if (relationData.isNullOrEmpty()) {
-                        isiProfil.visibility = View.VISIBLE
-                    } else {
-                        familyTree.visibility = View.VISIBLE
-                    }
-                }
-
-                is BaseResponse.Error -> textMessage(it.msg.toString())
-            }
-        }
+//        familyTreeViewModel.findUserRelations("Bearer $token")
+//        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
+//            when (it) {
+//                is BaseResponse.Success -> {
+//                    val relationData = it.data?.data?.relation
+//                    Log.d("relation_data", "hasilnya $relationData")
+//                    if (relationData.isNullOrEmpty()) {
+//                        familyTree.visibility = View.GONE
+//                        isiProfil.visibility = View.VISIBLE
+//                    } else {
+//                        isiProfil.visibility = View.GONE
+//                        familyTree.visibility = View.VISIBLE
+//                    }
+//                }
+//
+//                is BaseResponse.Error -> textMessage(it.msg.toString())
+//            }
+//        }
 
 
         //Dropdown Relationship
@@ -192,632 +196,649 @@ open class SilsilahKeluargaFragment : Fragment() {
         val token = context?.let { SessionManager.getToken(it) }
         familyTreeViewModel.findUserRelations("Bearer $token")
         familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Success -> {
+            it.getContentIfNotHandled().let {
+                when (it) {
+                    is BaseResponse.Success -> {
 
-                    val onClickedFab = binding.fabOnClick
-                    val userInfo = binding.tvUser
-                    val relationInfo = binding.tvRelation
+                        val familyTree = binding.wrapFamilyTree
+                        val isiProfil = binding.wrapIsiProfil
 
-
-                    val imgCurrentUser = binding.layoutFamily.imgDummy1
-                    val nameCurrentUser = binding.layoutFamily.nameDummy1
-                    val fetchCurrentUsser = it.data?.data?.currentUser
-                    nameCurrentUser.text = fetchCurrentUsser
-
-                    val dataUser = it.data?.data?.relation?.map { it?.userRelated }
-                    val relationName = it.data?.data?.relation?.map { it?.relationName }
-                    val findRelation = it.data?.data?.relation
-                    Log.d("asd", "silsilahKeluarga: $findRelation")
-
-                    val getBapak = findRelation?.filter { it?.code == "A1Kn1" }
-                    val getBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1" }
-
-                    val getIbu = findRelation?.filter { it?.code == "A1Kr1" }
-                    val getIbuByCode = findRelation?.filter { it?.code == "A1Kn10,1" }
-
-                    val adekPertama = findRelation?.filter { it?.code == "Kn1" }
-                    val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
-                    val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
-                    val kakakPertama = findRelation?.filter { it?.code == "Kr1" }
-                    val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
-                    val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
-
-                    val anakPertama = findRelation?.filter { it?.code == "B1Kr1" }
-                    val anakpertamaByCode = findRelation?.filter {it?.code == "0,1B1Kr1"}
-
-                    val anakKedua = findRelation?.filter { it?.code == "B1Kr2" }
-                    val anakKetiga = findRelation?.filter { it?.code == "B1Kr3" }
-
-                    val kakekDariBapak = findRelation?.filter { it?.relationName == "kakek_dari_bapak" }
-
-                    val nenekDariBapak = findRelation?.filter { it?.relationName == "nenek_dari_bapak" }
-                    val getNenekDariBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1A1Kr1" }
-
-                    val kakekDariIbu = findRelation?.filter { it?.relationName == "kakek_dari_ibu" }
-                    val getKakekDariIbuByCode = findRelation?.filter { it?.code == "A1Kr1A1Kr10,1" }
-
-                    val nenekDariIbu = findRelation?.filter { it?.relationName == "nenek_dari_ibu" }
-                    val getNenekDariIbuByCode = findRelation?.filter { it?.code == "A1Kr1A1Kr1" }
-
-                    val husband = findRelation?.filter { it?.code == "0,1" }
-                    val wife = findRelation?.filter { it?.code == "0,1" }
-
-                    if (kakekDariBapak?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy14
-                        val name = binding.layoutFamily.nameDummy14
-                        val ss = findRelation?.find { it?.relationName == "kakek_dari_bapak" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakek Dari Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
+                        val relationData = it.data?.data?.relation
+                        Log.d("relation_data", "hasilnya $relationData")
+                        if (relationData.isNullOrEmpty()) {
+                            familyTree.visibility = View.GONE
+                            isiProfil.visibility = View.VISIBLE
                         } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
+                            isiProfil.visibility = View.GONE
+                            familyTree.visibility = View.VISIBLE
                         }
 
-                        val person = binding.layoutFamily.wrapDummy14
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakek_dari_bapak") {
-                                relationInfo.setText("Kakek Dari Bapak")
+                        val onClickedFab = binding.fabOnClick
+                        val userInfo = binding.tvUser
+                        val relationInfo = binding.tvRelation
+
+
+                        val imgCurrentUser = binding.layoutFamily.imgDummy1
+                        val nameCurrentUser = binding.layoutFamily.nameDummy1
+                        val fetchCurrentUsser = it.data?.data?.currentUser
+                        nameCurrentUser.text = fetchCurrentUsser
+
+                        val dataUser = it.data?.data?.relation?.map { it?.userRelated }
+                        val relationName = it.data?.data?.relation?.map { it?.relationName }
+                        val findRelation = it.data?.data?.relation
+                        Log.d("asd", "silsilahKeluarga: $findRelation")
+
+                        val getBapak = findRelation?.filter { it?.code == "A1Kn1" }
+                        val getBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1" }
+
+                        val getIbu = findRelation?.filter { it?.code == "A1Kr1" }
+                        val getIbuByCode = findRelation?.filter { it?.code == "A1Kn10,1" }
+
+                        val adekPertama = findRelation?.filter { it?.code == "Kn1" }
+                        val adekKeuda = findRelation?.filter { it?.relationName == "adek_kedua" }
+                        val adekKetiga = findRelation?.filter { it?.relationName == "adek_ketiga" }
+                        val kakakPertama = findRelation?.filter { it?.code == "Kr1" }
+                        val kakakKedua = findRelation?.filter { it?.relationName == "kakak_kedua" }
+                        val kakakKetiga = findRelation?.filter { it?.relationName == "kakak_ketiga" }
+
+                        val anakPertama = findRelation?.filter { it?.code == "B1Kr1" }
+                        val anakpertamaByCode = findRelation?.filter {it?.code == "0,1B1Kr1"}
+
+                        val anakKedua = findRelation?.filter { it?.code == "B1Kr2" }
+                        val anakKetiga = findRelation?.filter { it?.code == "B1Kr3" }
+
+                        val kakekDariBapak = findRelation?.filter { it?.relationName == "kakek_dari_bapak" }
+
+                        val nenekDariBapak = findRelation?.filter { it?.relationName == "nenek_dari_bapak" }
+                        val getNenekDariBapakByCode = findRelation?.filter { it?.code == "A1Kr10,1A1Kr1" }
+
+                        val kakekDariIbu = findRelation?.filter { it?.relationName == "kakek_dari_ibu" }
+                        val getKakekDariIbuByCode = findRelation?.filter { it?.code == "A1Kr1A1Kr10,1" }
+
+                        val nenekDariIbu = findRelation?.filter { it?.relationName == "nenek_dari_ibu" }
+                        val getNenekDariIbuByCode = findRelation?.filter { it?.code == "A1Kr1A1Kr1" }
+
+                        val husband = findRelation?.filter { it?.code == "0,1" }
+                        val wife = findRelation?.filter { it?.code == "0,1" }
+
+                        if (kakekDariBapak?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy14
+                            val name = binding.layoutFamily.nameDummy14
+                            val ss = findRelation?.find { it?.relationName == "kakek_dari_bapak" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakek Dari Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy14
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakek_dari_bapak") {
+                                    relationInfo.setText("Kakek Dari Bapak")
+                                }
+                            }
+
+                        }
+
+                        if (getNenekDariBapakByCode?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy16
+                            val name = binding.layoutFamily.nameDummy16
+                            val ss = findRelation?.find { it?.code == "A1Kr10,1A1Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Nenek Dari Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy16
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "nenek_dari_bapak") {
+                                    relationInfo.setText("Nenek Dari Bapak")
+                                }
+                            }
+                        } else if (nenekDariBapak?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy16
+                            val name = binding.layoutFamily.nameDummy16
+                            val ss = findRelation?.find { it?.relationName == "nenek_dari_bapak" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Nenek Dari Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy16
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "nenek_dari_bapak") {
+                                    relationInfo.setText("Nenek Dari Bapak")
+                                }
+                            }
+                        }
+
+                        if (getKakekDariIbuByCode?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy15
+                            val name = binding.layoutFamily.nameDummy15
+                            val ss = findRelation?.find { it?.code == "A1Kr1A1Kr10,1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakek Dari Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy15
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakek_dari_bapak") {
+                                    relationInfo.setText("Kakek Dari Bapak")
+                                }
+                            }
+
+                        } else if(kakekDariIbu?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy15
+                            val name = binding.layoutFamily.nameDummy15
+                            val ss = findRelation?.find { it?.relationName == "kakek_dari_ibu" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakek Dari Ibu"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy15
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakek_dari_ibu") {
+                                    relationInfo.setText("Kakek Dari Ibu")
+                                }
+                            }
+                        }
+
+                        if (getNenekDariIbuByCode?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy17
+                            val name = binding.layoutFamily.nameDummy17
+                            val ss = findRelation?.find { it?.code == "A1Kr1A1Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Nenek Dari Ibu"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy17
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "nenek_dari_ibu") {
+                                    relationInfo.setText("Nenek Dari Ibu")
+                                }
+                            }
+                        }
+
+                        if(nenekDariIbu?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy17
+                            val name = binding.layoutFamily.nameDummy17
+                            val ss = findRelation?.find { it?.relationName == "nenek_dari_ibu" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Nenek Dari Ibu"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy17
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "nenek_dari_ibu") {
+                                    relationInfo.setText("Nenek Dari Ibu")
+                                }
+                            }
+                        }
+
+                        if (kakakPertama?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy11
+                            val name = binding.layoutFamily.nameDummy11
+                            val ss = findRelation?.find { it?.code == "Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakak Pertama"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy11
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakak_pertama") {
+                                    relationInfo.setText("Kakak Pertama")
+                                }
+                            }
+                        }
+
+                        if (kakakKedua?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy10
+                            val name = binding.layoutFamily.nameDummy10
+                            val ss = findRelation?.find { it?.relationName == "kakak_kedua" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakak Kedua"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy10
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakak_kedua") {
+                                    relationInfo.setText("Kakak Kedua")
+                                }
+                            }
+                        }
+
+                        if (kakakKetiga?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy9
+                            val name = binding.layoutFamily.nameDummy9
+                            val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Kakak Ketiga"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy9
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "kakak_ketiga") {
+                                    relationInfo.setText("Kakak Ketiga")
+                                }
+                            }
+                        }
+
+                        if (adekPertama?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy7
+                            val name = binding.layoutFamily.nameDummy7
+                            val ss = findRelation?.find { it?.code == "Kn1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Adek Pertama"
+                                name.setTextColor(Color.parseColor("#A3A3A3"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy7
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "adek_pertama") {
+                                    relationInfo.setText("Adek Pertama")
+                                }
+                            }
+                        }
+
+                        if (adekKeuda?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy12
+                            val name = binding.layoutFamily.nameDummy12
+                            val ss = findRelation?.find { it?.relationName == "adek_kedua" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Adek Kedua"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy12
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "adek_kedua") {
+                                    relationInfo.setText("Adek Kedua")
+                                }
+                            }
+
+                        }
+
+                        if (adekKetiga?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy13
+                            val name = binding.layoutFamily.nameDummy13
+                            val ss = findRelation?.find { it?.relationName == "adek_ketiga" }
+                            val username = ss?.userRelated
+
+                            if (username == null){
+                                name.text = "Adek Ketiga"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy13
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "adek_ketiga") {
+                                    relationInfo.setText("Adek Ketiga")
+                                }
+                            }
+                        }
+
+                        if (getIbuByCode?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy6
+                            val name = binding.layoutFamily.nameDummy6
+                            val ss = findRelation?.find { it?.code == "A1Kn10,1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Ibu"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy6
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "ibu") {
+                                    relationInfo.setText("Ibu")
+                                }
+                            }
+                        } else if (getIbu?.isNotEmpty() == true) {
+                            val img = binding.layoutFamily.imgDummy6
+                            val name = binding.layoutFamily.nameDummy6
+                            val ss = findRelation?.find { it?.code == "A1Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Ibu"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy6
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "ibu") {
+                                    relationInfo.setText("Ibu")
+                                }
+                            }
+                        }
+
+                        if (getBapakByCode?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy18
+                            val name = binding.layoutFamily.nameDummy18
+                            val ss = findRelation?.find { it?.code == "A1Kr10,1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy18
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "bapak") {
+                                    relationInfo.setText("Bapak")
+                                }
+                            }
+                        }
+
+                        if (getBapak?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy18
+                            val name = binding.layoutFamily.nameDummy18
+                            val ss = findRelation?.find { it?.code == "A1Kn1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Bapak"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#262626"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy18
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "bapak") {
+                                    relationInfo.setText("Bapak")
+                                }
+                            }
+                        }
+
+                        if (anakpertamaByCode?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy4
+                            val name = binding.layoutFamily.nameDummy4
+                            val ss = findRelation?.find { it?.code == "0,1B1Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Anak Pertama"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy4
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "anak_pertama") {
+                                    relationInfo.setText("Anak Pertama")
+                                }
+                            }
+                        } else if (anakPertama?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy4
+                            val name = binding.layoutFamily.nameDummy4
+                            val ss = findRelation?.find { it?.code == "B1Kr1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Anak Pertama"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy4
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "anak_pertama") {
+                                    relationInfo.setText("Anak Pertama")
+                                }
+                            }
+                        }
+
+                        if (anakKedua?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy2
+                            val name = binding.layoutFamily.nameDummy2
+                            val ss = findRelation?.find { it?.code == "B1Kr2" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Anak Kedua"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy2
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "anak_kedua") {
+                                    relationInfo.setText("Anak Kedua")
+                                }
+                            }
+                        }
+
+                        if (anakKetiga?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy3
+                            val name = binding.layoutFamily.nameDummy3
+                            val ss = findRelation?.find { it?.code == "B1Kr3" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Anak Ketiga"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy3
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "anak_ketiga") {
+                                    relationInfo.setText("Anak Ketiga")
+                                }
+                            }
+                        }
+
+                        if (husband?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy8
+                            val name = binding.layoutFamily.nameDummy8
+                            val ss = findRelation?.find { it?.code == "0,1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Suami"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy8
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "husband") {
+                                    relationInfo.setText("Suami")
+                                }
+                            }
+                        }
+
+                        if (wife?.isNotEmpty() == true) {
+                            val avatar = binding.layoutFamily.imgDummy8
+                            val name = binding.layoutFamily.nameDummy8
+                            val ss = findRelation?.find { it?.code == "0,1" }
+                            val username = ss?.userRelated
+                            if (username == null){
+                                name.text = "Istri"
+                                name.setTextColor(Color.parseColor("#737373"))
+                            } else {
+                                name.text = username
+                                name.setTextColor(Color.parseColor("#706B6B"))
+                            }
+
+                            val person = binding.layoutFamily.wrapDummy8
+                            person.setOnClickListener {
+                                val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
+                                onClickedFab.visibility = View.VISIBLE
+                                onClickedFab.startAnimation(animationSlideUp)
+                                userInfo.setText(ss?.userRelated)
+                                if (ss?.relationName == "wife") {
+                                    relationInfo.setText("Istri")
+                                }
                             }
                         }
 
                     }
 
-                    if (getNenekDariBapakByCode?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy16
-                        val name = binding.layoutFamily.nameDummy16
-                        val ss = findRelation?.find { it?.code == "A1Kr10,1A1Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Nenek Dari Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy16
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "nenek_dari_bapak") {
-                                relationInfo.setText("Nenek Dari Bapak")
-                            }
-                        }
-                    } else if (nenekDariBapak?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy16
-                        val name = binding.layoutFamily.nameDummy16
-                        val ss = findRelation?.find { it?.relationName == "nenek_dari_bapak" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Nenek Dari Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy16
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "nenek_dari_bapak") {
-                                relationInfo.setText("Nenek Dari Bapak")
-                            }
-                        }
-                    }
-
-                    if (getKakekDariIbuByCode?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy15
-                        val name = binding.layoutFamily.nameDummy15
-                        val ss = findRelation?.find { it?.code == "A1Kr1A1Kr10,1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakek Dari Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy15
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakek_dari_bapak") {
-                                relationInfo.setText("Kakek Dari Bapak")
-                            }
-                        }
-
-                    } else if(kakekDariIbu?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy15
-                        val name = binding.layoutFamily.nameDummy15
-                        val ss = findRelation?.find { it?.relationName == "kakek_dari_ibu" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakek Dari Ibu"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy15
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakek_dari_ibu") {
-                                relationInfo.setText("Kakek Dari Ibu")
-                            }
-                        }
-                    }
-
-                    if (getNenekDariIbuByCode?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy17
-                        val name = binding.layoutFamily.nameDummy17
-                        val ss = findRelation?.find { it?.code == "A1Kr1A1Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Nenek Dari Ibu"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy17
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "nenek_dari_ibu") {
-                                relationInfo.setText("Nenek Dari Ibu")
-                            }
-                        }
-                    }
-
-                    if(nenekDariIbu?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy17
-                        val name = binding.layoutFamily.nameDummy17
-                        val ss = findRelation?.find { it?.relationName == "nenek_dari_ibu" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Nenek Dari Ibu"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy17
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "nenek_dari_ibu") {
-                                relationInfo.setText("Nenek Dari Ibu")
-                            }
-                        }
-                    }
-
-                    if (kakakPertama?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy11
-                        val name = binding.layoutFamily.nameDummy11
-                        val ss = findRelation?.find { it?.code == "Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakak Pertama"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy11
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakak_pertama") {
-                                relationInfo.setText("Kakak Pertama")
-                            }
-                        }
-                    }
-
-                    if (kakakKedua?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy10
-                        val name = binding.layoutFamily.nameDummy10
-                        val ss = findRelation?.find { it?.relationName == "kakak_kedua" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakak Kedua"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy10
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakak_kedua") {
-                                relationInfo.setText("Kakak Kedua")
-                            }
-                        }
-                    }
-
-                    if (kakakKetiga?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy9
-                        val name = binding.layoutFamily.nameDummy9
-                        val ss = findRelation?.find { it?.relationName == "kakak_ketiga" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Kakak Ketiga"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy9
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "kakak_ketiga") {
-                                relationInfo.setText("Kakak Ketiga")
-                            }
-                        }
-                    }
-
-                    if (adekPertama?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy7
-                        val name = binding.layoutFamily.nameDummy7
-                        val ss = findRelation?.find { it?.code == "Kn1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Adek Pertama"
-                            name.setTextColor(Color.parseColor("#A3A3A3"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy7
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "adek_pertama") {
-                                relationInfo.setText("Adek Pertama")
-                            }
-                        }
-                    }
-
-                    if (adekKeuda?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy12
-                        val name = binding.layoutFamily.nameDummy12
-                        val ss = findRelation?.find { it?.relationName == "adek_kedua" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Adek Kedua"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy12
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "adek_kedua") {
-                                relationInfo.setText("Adek Kedua")
-                            }
-                        }
-
-                    }
-
-                    if (adekKetiga?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy13
-                        val name = binding.layoutFamily.nameDummy13
-                        val ss = findRelation?.find { it?.relationName == "adek_ketiga" }
-                        val username = ss?.userRelated
-
-                        if (username == null){
-                            name.text = "Adek Ketiga"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy13
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "adek_ketiga") {
-                                relationInfo.setText("Adek Ketiga")
-                            }
-                        }
-                    }
-
-                    if (getIbuByCode?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy6
-                        val name = binding.layoutFamily.nameDummy6
-                        val ss = findRelation?.find { it?.code == "A1Kn10,1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Ibu"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy6
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "ibu") {
-                                relationInfo.setText("Ibu")
-                            }
-                        }
-                    } else if (getIbu?.isNotEmpty() == true) {
-                        val img = binding.layoutFamily.imgDummy6
-                        val name = binding.layoutFamily.nameDummy6
-                        val ss = findRelation?.find { it?.code == "A1Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Ibu"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy6
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "ibu") {
-                                relationInfo.setText("Ibu")
-                            }
-                        }
-                    }
-
-                    if (getBapakByCode?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy18
-                        val name = binding.layoutFamily.nameDummy18
-                        val ss = findRelation?.find { it?.code == "A1Kr10,1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy18
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "bapak") {
-                                relationInfo.setText("Bapak")
-                            }
-                        }
-                    }
-
-                    if (getBapak?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy18
-                        val name = binding.layoutFamily.nameDummy18
-                        val ss = findRelation?.find { it?.code == "A1Kn1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Bapak"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#262626"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy18
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "bapak") {
-                                relationInfo.setText("Bapak")
-                            }
-                        }
-                    }
-
-                    if (anakpertamaByCode?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy4
-                        val name = binding.layoutFamily.nameDummy4
-                        val ss = findRelation?.find { it?.code == "0,1B1Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Anak Pertama"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy4
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "anak_pertama") {
-                                relationInfo.setText("Anak Pertama")
-                            }
-                        }
-                    } else if (anakPertama?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy4
-                        val name = binding.layoutFamily.nameDummy4
-                        val ss = findRelation?.find { it?.code == "B1Kr1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Anak Pertama"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy4
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "anak_pertama") {
-                                relationInfo.setText("Anak Pertama")
-                            }
-                        }
-                    }
-
-                    if (anakKedua?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy2
-                        val name = binding.layoutFamily.nameDummy2
-                        val ss = findRelation?.find { it?.code == "B1Kr2" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Anak Kedua"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy2
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "anak_kedua") {
-                                relationInfo.setText("Anak Kedua")
-                            }
-                        }
-                    }
-
-                    if (anakKetiga?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy3
-                        val name = binding.layoutFamily.nameDummy3
-                        val ss = findRelation?.find { it?.code == "B1Kr3" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Anak Ketiga"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy3
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "anak_ketiga") {
-                                relationInfo.setText("Anak Ketiga")
-                            }
-                        }
-                    }
-
-                    if (husband?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy8
-                        val name = binding.layoutFamily.nameDummy8
-                        val ss = findRelation?.find { it?.code == "0,1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Suami"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy8
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "husband") {
-                                relationInfo.setText("Suami")
-                            }
-                        }
-                    }
-
-                    if (wife?.isNotEmpty() == true) {
-                        val avatar = binding.layoutFamily.imgDummy8
-                        val name = binding.layoutFamily.nameDummy8
-                        val ss = findRelation?.find { it?.code == "0,1" }
-                        val username = ss?.userRelated
-                        if (username == null){
-                            name.text = "Istri"
-                            name.setTextColor(Color.parseColor("#737373"))
-                        } else {
-                            name.text = username
-                            name.setTextColor(Color.parseColor("#706B6B"))
-                        }
-
-                        val person = binding.layoutFamily.wrapDummy8
-                        person.setOnClickListener {
-                            val animationSlideUp = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
-                            onClickedFab.visibility = View.VISIBLE
-                            onClickedFab.startAnimation(animationSlideUp)
-                            userInfo.setText(ss?.userRelated)
-                            if (ss?.relationName == "wife") {
-                                relationInfo.setText("Istri")
-                            }
-                        }
-                    }
-
+                    is BaseResponse.Error -> textMessage(it.msg.toString())
+                    else -> {}
                 }
-
-                is BaseResponse.Error -> textMessage(it.msg.toString())
             }
+
         }
 
 
@@ -893,7 +914,19 @@ open class SilsilahKeluargaFragment : Fragment() {
         intent.type = "text/plain"
         intent.setPackage("com.whatsapp")
         intent.putExtra(Intent.EXTRA_TEXT, message)
-        startActivity(intent)
+
+        try {
+            startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+            textMessage("Silahkan install whatsapp terlebih dahulu")
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=com.whatsapp")
+                )
+            )
+        }
+
     }
 
     private fun copyTextToClipboard(link: String) {

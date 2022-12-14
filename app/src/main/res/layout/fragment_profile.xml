@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -171,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10"
-        android:padding="@dimen/dimen_12"
+        android:padding="@dimen/dimen_22"
         android:visibility="visible"
         tools:listitem="@layout/layout_post_content"/>
 
@@ -201,13 +204,18 @@
 
     </LinearLayout>
 
+</LinearLayout>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/prgbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:indeterminate="true"
-        android:visibility="gone"
-        android:layout_gravity="center"/>
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_fragment" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -256,6 +256,7 @@ class SelamatDatangActivity : AppCompatActivity() {
                     bornDate.setText("$cDay-${cMonth+1}-$cYear")
 
                 }, cYear, cMonth, cDay)
+            calenderDialog.datePicker.maxDate = System.currentTimeMillis()
             calenderDialog.show()
 
         }

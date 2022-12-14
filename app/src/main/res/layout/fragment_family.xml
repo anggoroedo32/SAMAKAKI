@@ -241,7 +241,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_50"
-            android:backgroundTint="@color/primary_500"
+            app:backgroundTint="@color/primary_600"
             android:text="@string/undang"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

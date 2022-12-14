@@ -262,18 +262,22 @@ class HomeFragment : Fragment() {
                         val token = SessionManager.getToken(requireContext())
                         viewModel.deletePost("Bearer $token", id!!)
                         viewModel.deletePostResponse.observe(viewLifecycleOwner) {
-                            when(it) {
-                                is BaseResponse.Success -> {
-                                    textMessage(it.data?.status.toString())
-                                    val destination = findNavController().currentDestination?.id
-                                    findNavController().popBackStack(destination!!,true)
-                                    findNavController().navigate(destination)
-                                }
+                            it.getContentIfNotHandled().let {
+                                when(it) {
+                                    is BaseResponse.Success -> {
+                                        textMessage(it.data?.status.toString())
+                                        val destination = findNavController().currentDestination?.id
+                                        findNavController().popBackStack(destination!!,true)
+                                        findNavController().navigate(destination)
+                                    }
 
-                                is BaseResponse.Error -> {
-                                    textMessage(it.msg.toString())
+                                    is BaseResponse.Error -> {
+                                        textMessage(it.msg.toString())
+                                    }
+                                    else -> {}
                                 }
                             }
+
                         }
                         return true
                     }

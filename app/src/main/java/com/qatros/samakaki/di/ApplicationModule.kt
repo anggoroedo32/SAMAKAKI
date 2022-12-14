@@ -27,7 +27,7 @@ class ApplicationModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl("https://samakaki.fly.dev/api/v1/") // BASE URL
+        .baseUrl("https://samakaki-be-prod.fly.dev/api/v1/") // BASE URL
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()

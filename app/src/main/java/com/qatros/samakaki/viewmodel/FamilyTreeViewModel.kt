@@ -21,8 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepository) : ViewModel() {
 
-    private val _findUserRelations = MutableLiveData<BaseResponse<UserRelationsResponse>>()
-    val findUserRelations: LiveData<BaseResponse<UserRelationsResponse>> = _findUserRelations
+    private val _findUserRelations = MutableLiveData<SingleLiveEvent<BaseResponse<UserRelationsResponse>>>()
+    val findUserRelations: LiveData<SingleLiveEvent<BaseResponse<UserRelationsResponse>>> = _findUserRelations
 
     private val _createUserRelations = MutableLiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>>()
     val createUserRelations: LiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>> = _createUserRelations
@@ -45,10 +45,10 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
             try {
                 val response = repository.findUserRelations(token)
                 if (response.code() == 200){
-                    _findUserRelations.postValue(BaseResponse.Success(response.body()))
+                    _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _findUserRelations.postValue(BaseResponse.Error(msg = "Silahkan buat keluarga anda"))
+                    _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Silahkan buat keluarga anda")))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -56,7 +56,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
-                _findUserRelations.postValue(BaseResponse.Error(msg = "Sebentar, ada sesuatu yang salah"))
+                _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Sebentar, ada sesuatu yang salah")))
             }
         }
     }

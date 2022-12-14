@@ -352,7 +352,7 @@
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:datePickerDialogTheme">@color/primary_500</item>
+        <item name="android:datePickerDialogTheme">@color/primary_600</item>
     </style>
 
 </resources>

@@ -72,10 +72,10 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
                 is BaseResponse.Success -> {
                     if (it.data?.data?.unread?.isEmpty() == true) {
                         binding.rvUndangan.visibility = View.GONE
-//                        binding.wrapEmptyNotification.visibility = View.VISIBLE
+                        binding.wrapEmptyNotification.visibility = View.VISIBLE
                     } else {
                         binding.rvUndangan.visibility = View.VISIBLE
-//                        binding.wrapEmptyNotification.visibility = View.GONE
+                        binding.wrapEmptyNotification.visibility = View.GONE
                         it.data?.let { it1 -> rvUndangan(it1.data!!.unread) }
                     }
                 }

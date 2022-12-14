@@ -49,6 +49,7 @@ class EditProfileFragment : Fragment() {
     private lateinit var ivUploadImg: ImageView
     private val calendar = Calendar.getInstance()
     private var dateFormater: String? = null
+    private var userAge: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -204,6 +205,26 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+    private fun getUserYears() : Int {
+        var year = 2003; // get from the year edittext
+        var month = 4; // get from the month edittext
+        var day = 30; // get from the date edittext
+        var c1 = Calendar.getInstance ();
+        c1.set(year, month - 1, day, 0, 0); // as MONTH in calender is 0 based.
+
+        var c2 = Calendar.getInstance();
+        var diff = c2.get (Calendar.YEAR) - c1.get(Calendar.YEAR);
+        if (c1.get(Calendar.MONTH) > c2.get(Calendar.MONTH) ||
+            (c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) && c1.get(Calendar.DATE) > c2.get(
+                Calendar.DATE
+            ))
+        ) {
+            diff--;
+        }
+
+        return diff;
+    }
+
     private fun insertEditProfileData(dob: String) {
         val name = binding.ETName.text.toString().toRequestBody("text/plain".toMediaType())
         val email = binding.ETEmail.text.toString().toRequestBody("text/plain".toMediaType())
@@ -303,7 +324,20 @@ class EditProfileFragment : Fragment() {
                 val bornDate = binding.ETTanggal
                 bornDate.setText("$cDay-${cMonth+1}-$cYear")
 
+                var dob = Calendar.getInstance()
+                dob.set(cYear, cMonth, cDay)
+
+                var age= c.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+                if (c.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+                {
+                    age--
+                }
+
+                userAge = age
+                Log.e("TAG", "getDate: your age is $age")
+
             }, cYear, cMonth, cDay)
+        calenderDialog.datePicker.maxDate = System.currentTimeMillis()
         calenderDialog.show()
 
     }
