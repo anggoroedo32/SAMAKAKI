@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_12"
-        android:text="@string/tambah_acara"
+        android:text="@string/edit_acara"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dimen_40"
         android:backgroundTint="@color/primary_600"
-        android:text="@string/tambah"
+        android:text="@string/simpan"
         app:cornerRadius="@dimen/dimen_10"
         android:layout_marginHorizontal="35dp"
         app:layout_constraintEnd_toEndOf="parent"

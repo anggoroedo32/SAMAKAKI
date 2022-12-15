@@ -19,6 +19,7 @@
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dropdown_item.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_add_event.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_edit_event.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_editprofile.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.1" />
         <entry key="..\:/Users/anggo/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family_tree.xml" value="0.1" />
@@ -33,5 +34,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2791666666666667" />
+      </ProjectState>
+    </option>
   </component>
 </project>
