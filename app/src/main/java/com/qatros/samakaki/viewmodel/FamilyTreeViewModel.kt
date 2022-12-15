@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.qatros.samakaki.helper.SingleLiveEvent
 import com.qatros.samakaki.repository.RemoteRepository
 import com.qatros.samakaki.request.CreateFamilyTreeRequest
@@ -48,7 +50,10 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                     _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Silahkan buat keluarga anda")))
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _findUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -75,7 +80,10 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                     _createUserRelations.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _createUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = response.message())))
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _createUserRelations.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -126,11 +134,9 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
                 if (response.code() == 200) {
                     _inviteFamily.postValue(BaseResponse.Success(response.body()))
                     _loading.value = false
-                    Log.d("TAG", "inviteFamily: ${response.body()}")
                 } else {
                     _inviteFamily.postValue(BaseResponse.Error(response.message()))
                     _loading.value = false
-                    Log.d("TAG", "inviteFamilyError: ${response.message()}")
                 }
             } catch (e: HttpException) {
                 BaseResponse.Error(msg = e.message() + "Sebentar, sedang ada masalah")

@@ -20,6 +20,7 @@
     <color name="primary_700">#224638</color>
     <color name="primary_800">#19352A</color>
     <color name="primary_900">#11231C</color>
+    <color name="bg_dialog">#97B7AA</color>
 
     <color name="secondary_50">#F1F5F3</color>
     <color name="secondary_100">#E3ECE6</color>

@@ -21,6 +21,8 @@
         <entry key="..\:/Project App/Android/SAMAKAKI-QATROS/app/src/main/res/layout/item_pop_up_add_member.xml" value="0.12817028985507245" />
         <entry key="..\:/Project App/Android/SAMAKAKI-QATROS/app/src/main/res/layout/layout_post_content.xml" value="0.12817028985507245" />
         <entry key="..\:/Project App/Android/SAMAKAKI-QATROS/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_dialog.xml" value="0.3505" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/bg_dialog_confirmation.xml" value="0.3505" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_family_filled.xml" value="0.184" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_family_outlined.xml" value="0.184" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/drawable/ic_family_selector.xml" value="0.184" />
@@ -29,11 +31,17 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_login.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/activity_register.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/cardview_invitation_notification.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/dialog_confirmation.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_add_event.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_editprofile.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_family.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_home.xml" value="0.29438405797101447" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_notifications.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_profile.xml" value="0.29438405797101447" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_setting_privacy.xml" value="0.20108695652173914" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/samakaki-mobile/app/src/main/res/layout/fragment_settings.xml" value="0.20108695652173914" />
       </map>
     </option>
   </component>

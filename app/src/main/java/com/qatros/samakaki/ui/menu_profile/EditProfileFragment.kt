@@ -21,6 +21,7 @@ import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.FragmentEditprofileBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
@@ -205,26 +206,6 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun getUserYears() : Int {
-        var year = 2003; // get from the year edittext
-        var month = 4; // get from the month edittext
-        var day = 30; // get from the date edittext
-        var c1 = Calendar.getInstance ();
-        c1.set(year, month - 1, day, 0, 0); // as MONTH in calender is 0 based.
-
-        var c2 = Calendar.getInstance();
-        var diff = c2.get (Calendar.YEAR) - c1.get(Calendar.YEAR);
-        if (c1.get(Calendar.MONTH) > c2.get(Calendar.MONTH) ||
-            (c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH) && c1.get(Calendar.DATE) > c2.get(
-                Calendar.DATE
-            ))
-        ) {
-            diff--;
-        }
-
-        return diff;
-    }
-
     private fun insertEditProfileData(dob: String) {
         val name = binding.ETName.text.toString().toRequestBody("text/plain".toMediaType())
         val email = binding.ETEmail.text.toString().toRequestBody("text/plain".toMediaType())
@@ -247,13 +228,20 @@ class EditProfileFragment : Fragment() {
         val id = SessionManager.getIdUser(requireContext())
         profileViewModel.editProfile("Bearer $token", id, name, email, phone, address , dob, marriageStatus, status, avatar)
         profileViewModel.editProfile.observe(viewLifecycleOwner) {
-            when(it) {
-                is BaseResponse.Success -> {
-                    it.data
-                    findNavController().popBackStack()
-                }
-                is BaseResponse.Error -> {
-                    textMessage(it.msg.toString())
+            it.getContentIfNotHandled().let {
+                when(it) {
+                    is BaseResponse.Success -> {
+                        it.data
+                        findNavController().popBackStack()
+                    }
+                    is BaseResponse.Error -> {
+                        if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                            ShowDialog.showDialogEmailConfirmation(requireContext())
+                        } else {
+                            textMessage(it.msg.toString())
+                        }
+                    }
+                    else -> {}
                 }
             }
         }

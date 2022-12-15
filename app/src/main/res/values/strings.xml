@@ -44,6 +44,8 @@
     <string name="tidak_menerima_kode">Tidak menerima kode?</string>
     <string name="kode_verifikasi_telah_di_kirim_ke_email_kamu">Kode Verifikasi telah di kirim ke email kamu</string>
     <string name="alamat">Alamat</string>
+    <string name="title_email_confirmation">Akun anda belum terverifikasi. Silahkan verifikasi email terlebih dahulu</string>
+    <string name="verif_email">Verifikasi Email</string>
     <string name="isi_profil_kamu">ISI PROFIL KAMU!!</string>
     <string name="status_nikah">Status Nikah</string>
     <string name="privasi">Privasi</string>
@@ -76,7 +78,7 @@
     <string name="selamat_datang_di_samakaki">Selamat Datang di SAMAKAKI</string>
     <string name="background">background</string>
     <string name="reset_password">Reset Password</string>
-    <string name="save">Save</string>
+    <string name="save">Simpan</string>
     <string name="dotdotdot">...</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="photo_profile">Foto Profil</string>
@@ -104,7 +106,7 @@
     <string name="err_empty_token">Masukkan token</string>
     <string name="err_password_did_not_match">Password tidak cocok</string>
     <string name="err_wrong_email_format">Format email salah</string>
-    <string name="edit_photo">Edit Photo</string>
+    <string name="edit_photo">Ubah Foto</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="password_baru">Password Baru</string>
     <string name="token">Token</string>

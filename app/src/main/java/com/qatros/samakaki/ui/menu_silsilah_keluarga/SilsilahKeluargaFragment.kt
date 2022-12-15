@@ -21,6 +21,7 @@ import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.FragmentFamilyBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.response.RelationItem
 import com.qatros.samakaki.viewmodel.FamilyTreeViewModel
@@ -176,7 +177,11 @@ open class SilsilahKeluargaFragment : Fragment() {
                                 }
 
                                 is BaseResponse.Error -> {
-                                    (it.msg.toString())
+                                    if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                                        ShowDialog.showDialogEmailConfirmation(requireContext())
+                                    } else {
+                                        textMessage(it.msg.toString())
+                                    }
                                 }
                             }
                         }
@@ -190,6 +195,8 @@ open class SilsilahKeluargaFragment : Fragment() {
         silsilahKeluarga()
 
     }
+
+
 
     private fun silsilahKeluarga() {
 
@@ -834,7 +841,17 @@ open class SilsilahKeluargaFragment : Fragment() {
 
                     }
 
-                    is BaseResponse.Error -> textMessage(it.msg.toString())
+                    is BaseResponse.Error -> {
+                        if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                            ShowDialog.showDialogEmailConfirmation(requireContext())
+                            val familyTree = binding.wrapFamilyTree
+                            val isiProfil = binding.wrapIsiProfil
+                            familyTree.visibility = View.GONE
+                            isiProfil.visibility = View.VISIBLE
+                        } else {
+                            textMessage(it.msg.toString())
+                        }
+                    }
                     else -> {}
                 }
             }

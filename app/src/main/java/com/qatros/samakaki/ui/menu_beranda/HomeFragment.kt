@@ -27,6 +27,7 @@ import com.qatros.samakaki.adapter.PostsAdapter
 import com.qatros.samakaki.databinding.FragmentHomeBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.response.DataItem
 import com.qatros.samakaki.viewmodel.NotificationsViewModel
@@ -164,7 +165,11 @@ class HomeFragment : Fragment() {
                 is BaseResponse.Error -> {
                     val buttonPost:Button = binding.btnPost
                     buttonPost.isEnabled = true
-                    textMessage(it.msg.toString())
+                    if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                        ShowDialog.showDialogEmailConfirmation(requireContext())
+                    } else {
+                        textMessage(it.msg.toString())
+                    }
                 }
             }
         }
@@ -272,7 +277,11 @@ class HomeFragment : Fragment() {
                                     }
 
                                     is BaseResponse.Error -> {
-                                        textMessage(it.msg.toString())
+                                        if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                                            ShowDialog.showDialogEmailConfirmation(requireContext())
+                                        } else {
+                                            textMessage(it.msg.toString())
+                                        }
                                     }
                                     else -> {}
                                 }

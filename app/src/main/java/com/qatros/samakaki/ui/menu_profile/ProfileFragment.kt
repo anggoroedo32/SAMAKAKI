@@ -20,6 +20,7 @@ import com.qatros.samakaki.adapter.UserPostsAdapter
 import com.qatros.samakaki.databinding.FragmentProfileBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.response.ItemPosts
 import com.qatros.samakaki.viewmodel.NotificationsViewModel
@@ -161,36 +162,31 @@ class ProfileFragment : Fragment() {
 
     private fun observeData(){
         viewModel.listAllPostsByUser.observe(viewLifecycleOwner) {
-            when(it){
-                is BaseResponse.Success -> {
-                    if (it.data?.data?.posts?.isEmpty() == true) {
-                        binding.rvProfile.visibility = View.GONE
-                        binding.wrapEmptyPost.visibility = View.VISIBLE
-                    } else {
-                        binding.rvProfile.visibility = View.VISIBLE
-                        binding.wrapEmptyPost.visibility = View.GONE
-                        rvPosts(it.data?.data?.posts as List<ItemPosts>)
+            it.getContentIfNotHandled().let {
+                when(it){
+                    is BaseResponse.Success -> {
+                        if (it.data?.data?.posts?.isEmpty() == true) {
+                            binding.rvProfile.visibility = View.GONE
+                            binding.wrapEmptyPost.visibility = View.VISIBLE
+                        } else {
+                            binding.rvProfile.visibility = View.VISIBLE
+                            binding.wrapEmptyPost.visibility = View.GONE
+                            rvPosts(it.data?.data?.posts as List<ItemPosts>)
+                        }
                     }
-                }
-                is BaseResponse.Error -> {
-                    textMessage(it.msg.toString())
+                    is BaseResponse.Error -> {
+                        if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                            ShowDialog.showDialogEmailConfirmation(requireContext())
+                        } else {
+                            textMessage(it.msg.toString())
+                        }
+                    }
+                    else -> {}
                 }
             }
         }
     }
     private fun rvPosts(list: List<ItemPosts>) {
-//        val recyclerViewPosts: RecyclerView = binding.rvProfile
-//        recyclerViewPosts.apply {
-//            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
-//            rvAdapter = UserPostsAdapter(list, object : PostsAdapter.OptionsMenuClickListener{
-//                override fun onOptionsMenuClicked(position: Int, id: Int?) {
-//                    performOptionsMenuClick(position, id)
-//                }
-//
-//            })
-//            binding.rvProfile.adapter = rvAdapter
-//            rvAdapter.notifyDataSetChanged()
-//        }
 
         rvAdapter = UserPostsAdapter(list, object : PostsAdapter.OptionsMenuClickListener{
             override fun onOptionsMenuClicked(position: Int, id: Int?) {

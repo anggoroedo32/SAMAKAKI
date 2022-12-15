@@ -18,6 +18,7 @@ import com.qatros.samakaki.adapter.ibAcceptClickListener
 import com.qatros.samakaki.databinding.FragmentNotificationsBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.response.UnreadItem
 import com.qatros.samakaki.viewmodel.FamilyTreeViewModel
@@ -106,7 +107,13 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
                         textMessage("Anda telah menerima permintaan undangan")
                     }
                 }
-                is BaseResponse.Error -> textMessage(it.msg.toString())
+                is BaseResponse.Error -> {
+                    if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                        ShowDialog.showDialogEmailConfirmation(requireContext())
+                    } else {
+                        textMessage(it.msg.toString())
+                    }
+                }
             }
         }
     }

@@ -162,6 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Keluar"
+        android:layout_marginHorizontal="35dp"
         app:backgroundTint="@color/primary_600"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
