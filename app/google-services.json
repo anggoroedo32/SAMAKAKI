@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "386057829506",
-    "project_id": "samakaki-4b58d",
-    "storage_bucket": "samakaki-4b58d.appspot.com"
+    "project_number": "246353352119",
+    "project_id": "samakaki-d7f88",
+    "storage_bucket": "samakaki-d7f88.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:386057829506:android:89694866e1c57d5240c89b",
+        "mobilesdk_app_id": "1:246353352119:android:2df2db1c0660c1a3074432",
         "android_client_info": {
-          "package_name": "com.awp.samakaki"
+          "package_name": "com.qatros.samakaki"
         }
       },
       "oauth_client": [
         {
-          "client_id": "386057829506-m87vinie20sofo2q8knoe9jkmff1gaqp.apps.googleusercontent.com",
+          "client_id": "246353352119-00l1dgdn1m99liof1ci1j578ebsmq3l5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaW1Z6W5bZ7GCWNaKy6ZobWH73xb01qD8"
+          "current_key": "AIzaSyB6Uo7YGjR6pYk1anql6wr-z4hDSvnyNzc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "386057829506-m87vinie20sofo2q8knoe9jkmff1gaqp.apps.googleusercontent.com",
+              "client_id": "246353352119-00l1dgdn1m99liof1ci1j578ebsmq3l5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

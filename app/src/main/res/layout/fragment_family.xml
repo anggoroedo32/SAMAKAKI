@@ -103,21 +103,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/wrap_user_action_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_ed" />
-
-            </LinearLayout>
-
         </RelativeLayout>
 
 
@@ -216,17 +201,37 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_46"
+                android:layout_marginHorizontal="@dimen/dimen_35"
                 android:background="@android:color/transparent"
                 android:layout_marginTop="@dimen/dimen_8" >
                 <AutoCompleteTextView
                     android:id="@+id/et_hubungan"
                     android:focusable="false"
-                    style="@style/TextfieldsStyle"
+                    style="@style/TextfieldsStyleForSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingEnd="6dp"
-                    android:textColor="@color/neutral_400"/>
+                    tools:text="asdasd"
+                    android:paddingEnd="6dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dimen_40"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:background="@drawable/rounded_textfield"-->
+<!--                android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                android:layout_marginTop="@dimen/dimen_10">-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/et_hubungan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginHorizontal="@dimen/dimen_35"-->
+<!--                    android:background="@drawable/rounded_textfield" />-->
+
+<!--            </LinearLayout>-->
+
 
         </LinearLayout>
 
@@ -238,7 +243,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_50"
-            android:backgroundTint="@color/primary_500"
+            app:backgroundTint="@color/primary_600"
             android:text="@string/undang"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

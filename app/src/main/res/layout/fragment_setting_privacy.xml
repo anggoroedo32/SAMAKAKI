@@ -72,16 +72,19 @@
             android:id="@+id/radio_button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Private"/>
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Public"/>
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:buttonTint="@color/primary_500"
             android:text="Protected"/>
     </RadioGroup>
 
@@ -100,6 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Simpan"
+        app:backgroundTint="@color/primary_600"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

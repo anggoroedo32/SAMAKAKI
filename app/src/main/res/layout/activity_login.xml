@@ -66,9 +66,11 @@
                 style="@style/TextfieldsStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
                 android:drawableStart="@drawable/ic_email_et"
                 android:inputType="textEmailAddress"
                 android:paddingBottom="10dp"
+                android:paddingEnd="@dimen/dimen_6"
                 android:paddingTop="10dp"/>
 
             <TextView
@@ -94,6 +96,7 @@
                     android:inputType="textPassword"
                     android:drawableStart="@drawable/ic_password_et"
                     android:paddingBottom="10dp"
+                    android:paddingEnd="@dimen/dimen_6"
                     android:paddingTop="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/login"
+                android:layout_marginHorizontal="35dp"
                 app:backgroundTint="@color/primary_600"
                 android:textColor="@color/white" />
 

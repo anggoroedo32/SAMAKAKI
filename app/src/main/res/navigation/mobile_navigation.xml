@@ -7,62 +7,91 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.awp.samakaki.ui.menu_beranda.HomeFragment"
+        android:name="com.qatros.samakaki.ui.menu_beranda.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_navigation_home_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
         android:id="@+id/navigation_family"
-        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaFragment"
+        android:name="com.qatros.samakaki.ui.menu_silsilah_keluarga.SilsilahKeluargaFragment"
         android:label="@string/title_family"
         tools:layout="@layout/fragment_family" >
         <action
             android:id="@+id/action_navigation_family_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation_family"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_navigation_family_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_family"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.awp.samakaki.ui.menu_profile.ProfileFragment"
+        android:name="com.qatros.samakaki.ui.menu_profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_navigation_profile_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_edit_profile_fragment"
+            app:destination="@id/edit_profile_fragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/navigation_profile"
+            app:popUpToInclusive="true"/>
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.awp.samakaki.ui.menu.SettingsFragment"
+        android:name="com.qatros.samakaki.ui.menu.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_settingPrivacyFragment"
-            app:destination="@id/settingPrivacyFragment" />
+            app:destination="@id/settingPrivacyFragment"
+            app:popUpTo="@id/settingsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.awp.samakaki.ui.menu.NotificationsFragment"
+        android:name="com.qatros.samakaki.ui.menu.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
-        android:id="@+id/tryFragment"
-        android:name="com.awp.samakaki.ui.menu_silsilah_keluarga.TryFragment"
-        android:label="fragment_try"
-        tools:layout="@layout/fragment_try" />
-    <fragment
         android:id="@+id/settingPrivacyFragment"
-        android:name="com.awp.samakaki.ui.menu.SettingPrivacyFragment"
+        android:name="com.qatros.samakaki.ui.menu.SettingPrivacyFragment"
         android:label="SettingPrivacyFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.awp.samakaki.ui.menu_profile.EditProfileFragment"
+        android:label="fragment_editprofile"
+        tools:layout="@layout/fragment_editprofile" />
+
+    <fragment
+        android:id="@+id/edit_profile_fragment"
+        android:name="com.qatros.samakaki.ui.menu_profile.EditProfileFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/fragment_editprofile" />
 
 </navigation>

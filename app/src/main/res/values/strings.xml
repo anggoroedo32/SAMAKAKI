@@ -10,14 +10,15 @@
     <string name="dummy_username">Yunanda Anggraini</string>
     <string name="dummy_family_name"><font size="16">Keluarga Situmorang</font></string>
     <string name="add_post">Ketikan sesuatu...</string>
-    <string name="foto_or_video">Foto / Video</string>
+    <string name="foto_or_video">Media</string>
     <string name="music">Musik</string>
     <string name="post">Posting</string>
     <string name="dummy_text_post">Ayokk kapan kita kumpul</string>
     <string name="search_user"><font size="14">Search username...</font></string>
     <string name="title_search">Search</string>
     <string name="regard_as">Kamu menganggap dia sebagai</string>
-
+    <string name="empty_notification">Belum ada notifikasi</string>
+    <string name="empty_post">Belum ada postingan</string>
     //splashscreen
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
@@ -103,6 +104,7 @@
     <string name="er_empty_email">Masukkan email</string>
     <string name="err_empty_name">Masukkan nama</string>
     <string name="err_empty_phone">Masukkan nomor telepon</string>
+    <string name="err_empty_relation">Pilih relasi hubungan</string>
     <string name="err_empty_password">Masukkan password</string>
     <string name="err_empty_confirmPassword">Masukkan konfirmasi</string>
     <string name="err_empty_token">Masukkan token</string>

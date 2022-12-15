@@ -259,6 +259,15 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
     </style>
 
+    <style name="TextfieldsStyleForSpinner">
+        <item name="android:background">@drawable/rounded_textfield</item>
+        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/neutral_400</item>
+        <item name="android:paddingStart">@dimen/dimen_14</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
+    </style>
+
     <style name="FieldDropdown">
         <item name="android:background">@drawable/rounded_textfield</item>
         <item name="android:textColor">@color/neutral_500</item>
@@ -346,6 +355,13 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/primary_500</item>
+        <item name="android:textColorPrimary">@color/primary_600</item>
+    </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerDialogTheme">@color/primary_600</item>
+    </style>
 
 </resources>
