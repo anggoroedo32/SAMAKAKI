@@ -259,6 +259,13 @@
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/dimen_10</item>
     </style>
 
+    <style name="TextfieldsStyleForSpinner">
+        <item name="android:background">@drawable/rounded_textfield</item>
+        <item name="android:textColor">@color/neutral_500</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/neutral_400</item>
+    </style>
+
     <style name="FieldDropdown">
         <item name="android:background">@drawable/rounded_textfield</item>
         <item name="android:textColor">@color/neutral_500</item>

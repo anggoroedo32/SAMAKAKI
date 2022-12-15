@@ -201,12 +201,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_46"
+                android:layout_marginHorizontal="@dimen/dimen_35"
                 android:background="@android:color/transparent"
                 android:layout_marginTop="@dimen/dimen_8" >
                 <AutoCompleteTextView
                     android:id="@+id/et_hubungan"
                     android:focusable="false"
-                    style="@style/TextfieldsStyle"
+                    style="@style/TextfieldsStyleForSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingEnd="6dp" />
