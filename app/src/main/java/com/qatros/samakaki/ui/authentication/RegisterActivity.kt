@@ -1,15 +1,25 @@
 package com.qatros.samakaki.ui.authentication
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.ActivityRegisterBinding
 import com.qatros.samakaki.helper.SessionManager
+import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.viewmodel.AuthenticationViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,8 +89,9 @@ class RegisterActivity : AppCompatActivity() {
                             it.getContentIfNotHandled()?.let {
                                 when(it) {
                                     is BaseResponse.Success -> {
-                                        startActivity(Intent(this, LoginActivity::class.java))
-                                        textMessage("Akun Anda Sudah Dibuat")
+//                                        startActivity(Intent(this, LoginActivity::class.java))
+//                                        textMessage("Akun Anda Sudah Dibuat")
+                                        showRegistrationSuccess()
                                     }
                                     is BaseResponse.Error -> {
                                         if (it.msg.toString().contains("invalid")){
@@ -114,6 +125,22 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun showRegistrationSuccess() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_registration_success)
+        val btnToLogin = dialog.findViewById<Button>(R.id.btn_to_login)
+        btnToLogin.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        dialog.setCancelable(true)
+        dialog.show()
+        val window: Window? = dialog.window
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun loadingState(){
