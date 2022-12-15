@@ -48,7 +48,7 @@ class ConnectivityStatus(context: Context) : LiveData<Boolean>() {
          */
         val requestBuilder = NetworkRequest.Builder().apply {
             addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) // also for sdk version 23 or above
+//            addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) // also for sdk version 23 or above
             addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
             addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
