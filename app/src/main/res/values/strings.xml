@@ -92,6 +92,7 @@
     <string name="status_kamu">Status kamu</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
     <string name="tanggal_lahir_kamu">Tanggal lahir kamu</string>
+    <string name="tanggal_acara">Tanggal acara</string>
     <string name="tambah_acara">Tambahkan Acara</string>
     <string name="edit_acara">Edit Acara</string>
     <string name="nama_acara">Nama acara</string>
