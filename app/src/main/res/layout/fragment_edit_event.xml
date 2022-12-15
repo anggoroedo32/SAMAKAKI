@@ -90,18 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_waktu_acara" />
 
-    <EditText
-        android:id="@+id/et_deskripsi"
-        style="@style/TextfieldsStyle2"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="35dp"
-        android:hint="@string/deskripsi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_lokasi" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         style="@style/ButtonStyle4"
@@ -114,7 +102,7 @@
         android:layout_marginHorizontal="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_deskripsi" />
+        app:layout_constraintTop_toBottomOf="@id/et_lokasi" />
 
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
