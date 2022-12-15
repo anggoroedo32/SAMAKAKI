@@ -28,7 +28,6 @@ class ConnectivityStatus(context: Context) : LiveData<Boolean>() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun checkInternet(){
         // we can user activeNetwork because our min sdk version is 23 if our min sdk version is less than 23
         // then we have to user connectivityManager.activeNetworkInfo (Note: Deperated)
@@ -36,8 +35,7 @@ class ConnectivityStatus(context: Context) : LiveData<Boolean>() {
         val network = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager.activeNetwork
         } else {
-            TODO("VERSION.SDK_INT < M")
-            connectivityManager.activeNetwork
+            connectivityManager.activeNetworkInfo
         }
         if(network==null){
             postValue(false)
@@ -59,7 +57,6 @@ class ConnectivityStatus(context: Context) : LiveData<Boolean>() {
         connectivityManager.registerNetworkCallback(requestBuilder,networkCallbacks)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActive() {
         super.onActive()
         checkInternet()
