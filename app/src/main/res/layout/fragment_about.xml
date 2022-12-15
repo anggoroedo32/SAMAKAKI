@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_13"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/semibold_18prim500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:text="@string/tentang"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+        <ImageView
+            android:id="@+id/bg_img"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_about"
+            android:layout_marginTop="@dimen/dimen_10"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:src="@drawable/logo_samakaki"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="60dp"
+            app:layout_constraintStart_toStartOf="@id/bg_img"
+            app:layout_constraintTop_toBottomOf="@id/bg_img"/>
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/bold_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEAM SAMA KAKI"
+            android:textColor="@color/primary_800"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/img_logo"
+            app:layout_constraintTop_toTopOf="@id/img_logo"
+            app:layout_constraintBottom_toBottomOf="@id/img_logo" />
+
+        <TextView
+            android:id="@+id/tvRAS"
+            style="@style/medium_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UI/UX Designer"
+            android:textColor="@color/primary_600"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo"/>
+
+        <View
+            android:id="@+id/drawable"
+            android:background="#AFD2C1"
+            android:layout_width="150dp"
+            android:layout_height="3dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRAS"
+            app:layout_constraintStart_toStartOf="@id/tvRAS"/>
+
+        <TextView
+            android:id="@+id/tv4"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Araafiibrahim"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable"
+            app:layout_constraintTop_toBottomOf="@id/drawable"/>
+
+        <TextView
+            android:id="@+id/tv5"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ridho Anshory Nainggolan"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable"
+            app:layout_constraintTop_toBottomOf="@id/tv4"/>
+
+        <TextView
+            android:id="@+id/tvRASBE"
+            style="@style/medium_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back End Developer"
+            android:textColor="@color/primary_600"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv5"/>
+
+        <View
+            android:id="@+id/drawable1"
+            android:background="#AFD2C1"
+            android:layout_width="150dp"
+            android:layout_height="3dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRASBE"
+            app:layout_constraintStart_toStartOf="@id/tvRASBE"/>
+
+        <TextView
+            android:id="@+id/tv6"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dimas Wahyu Asshidiq"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable1"
+            app:layout_constraintTop_toBottomOf="@id/drawable1"/>
+
+        <TextView
+            android:id="@+id/tv7"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jasmine Erina Firdaus"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable1"
+            app:layout_constraintTop_toBottomOf="@id/tv6"/>
+
+        <TextView
+            android:id="@+id/tvRASFE"
+            style="@style/medium_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Front End Developer"
+            android:textColor="@color/primary_600"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv7"/>
+
+        <View
+            android:id="@+id/drawable2"
+            android:background="#AFD2C1"
+            android:layout_width="150dp"
+            android:layout_height="3dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRASFE"
+            app:layout_constraintStart_toStartOf="@id/tvRASFE"/>
+
+        <TextView
+            android:id="@+id/tv8"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KK Arya Setiawan"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable2"
+            app:layout_constraintTop_toBottomOf="@id/drawable2"/>
+
+        <TextView
+            android:id="@+id/tv9"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Muhammad Reynaldi"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable2"
+            app:layout_constraintTop_toBottomOf="@id/tv8"/>
+
+        <TextView
+            android:id="@+id/tvRASMD"
+            style="@style/medium_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile Developer"
+            android:textColor="@color/primary_600"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv9"/>
+
+        <View
+            android:id="@+id/drawable3"
+            android:background="#AFD2C1"
+            android:layout_width="150dp"
+            android:layout_height="3dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRASMD"
+            app:layout_constraintStart_toStartOf="@id/tvRASMD"/>
+
+        <TextView
+            android:id="@+id/tv10"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arif Wahyu Prasetyo"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable3"
+            app:layout_constraintTop_toBottomOf="@id/drawable3"/>
+
+        <TextView
+            android:id="@+id/tv11"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ikhwan Inzaghi S."
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable3"
+            app:layout_constraintTop_toBottomOf="@id/tv10"/>
+
+        <TextView
+            android:id="@+id/tv12"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anggoro Edo P."
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable3"
+            app:layout_constraintTop_toBottomOf="@id/tv11"/>
+
+        <TextView
+            android:id="@+id/tv13"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Muhammad Bima Aria L."
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable3"
+            app:layout_constraintTop_toBottomOf="@id/tv12"/>
+
+        <TextView
+            android:id="@+id/tvRASQA"
+            style="@style/medium_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quality Assurance"
+            android:textColor="@color/primary_600"
+            android:paddingLeft="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv13"/>
+
+        <View
+            android:id="@+id/drawable4"
+            android:background="#AFD2C1"
+            android:layout_width="150dp"
+            android:layout_height="3dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRASQA"
+            app:layout_constraintStart_toStartOf="@id/tvRASQA"/>
+
+        <TextView
+            android:id="@+id/tv14"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yossia Dwi Mahardika"
+            android:textColor="@color/primary_400"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/drawable4"
+            app:layout_constraintTop_toBottomOf="@id/drawable4"/>
+
+        <TextView
+            android:id="@+id/tv15"
+            style="@style/regular_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="Febriana"
+            android:textColor="@color/primary_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/drawable4"
+            app:layout_constraintTop_toBottomOf="@id/tv14" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

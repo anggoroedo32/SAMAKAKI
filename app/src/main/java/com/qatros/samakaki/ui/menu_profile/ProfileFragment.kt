@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
 //                R.id.notification -> findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
-                R.id.settings -> findNavController().navigate(R.id.action_navigation_profile_to_settingsFragment)
+                R.id.settings -> findNavController().navigate(R.id.settingsFragment)
             }
             true
         }
@@ -115,7 +115,7 @@ class ProfileFragment : Fragment() {
 
         val btnEdProfile = binding.btnEdProfile
         btnEdProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_profile_to_edit_profile_fragment)
+            findNavController().navigate(R.id.editProfileFragment)
         }
 
         //Get Post Profile
@@ -138,7 +138,7 @@ class ProfileFragment : Fragment() {
         }
 
         imageBadgeView?.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_profile_to_notificationsFragment)
+            findNavController().navigate(R.id.notificationsFragment)
         }
     }
 

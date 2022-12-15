@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
         toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
 //                R.id.notification -> findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
-                R.id.settings -> findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
+                R.id.settings -> findNavController().navigate(R.id.settingsFragment)
             }
             true
         }
@@ -227,7 +227,7 @@ class HomeFragment : Fragment() {
         }
 
         imageBadgeView?.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
+            findNavController().navigate(R.id.notificationsFragment)
         }
     }
 
