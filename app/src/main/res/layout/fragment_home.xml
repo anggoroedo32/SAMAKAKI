@@ -68,15 +68,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar">
+
         <ImageView
             android:id="@+id/iv_upload_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:visibility="visible"
-            tools:src="@drawable/ic_launcher_background"
-            android:layout_marginBottom="@dimen/dimen_12"/>
+            tools:src="@drawable/dummy_post_img"
+            android:layout_marginBottom="@dimen/dimen_12"
+            android:layout_gravity="center_horizontal" />
+
         <EditText
             android:id="@+id/ed_post"
             android:layout_width="match_parent"

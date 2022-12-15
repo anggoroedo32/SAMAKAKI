@@ -38,10 +38,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import ru.nikartm.support.ImageBadgeView
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.io.OutputStream
+import java.io.*
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -55,12 +53,6 @@ class HomeFragment : Fragment() {
     private var imageBadgeView: ImageBadgeView? = null
     private val notificationsViewModel by viewModels<NotificationsViewModel>()
     private lateinit var rvAdapter: PostsAdapter
-
-    var familyName = arrayOf<String?>(
-        "Suharto Family",
-        "Keluarga Cemara",
-        "Arisan Keluarga"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -182,16 +174,19 @@ class HomeFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()){
             imageUri = it
             ivUploadImg.setImageURI(it)
-            ivUploadImg.visibility = View.VISIBLE
-            if (ivUploadImg.visibility == View.VISIBLE) {
-                binding.edPost.setPadding(22)
-            } else {
-                binding.edPost.setPadding(32)
-            }
             imageFile = imageUri?.let { it1 -> uriToFile(it1, requireContext()) }
+            imageFile?.getFileSizeDouble()
         }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
+
+        ivUploadImg.visibility = View.VISIBLE
+        if (ivUploadImg.visibility == View.VISIBLE) {
+            binding.edPost.setPadding(22)
+        } else {
+            binding.edPost.setPadding(32)
+        }
+
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createCustomTempFile(context)
 
@@ -204,6 +199,11 @@ class HomeFragment : Fragment() {
         inputStream.close()
 
         return myFile
+    }
+
+    fun File.getFileSizeDouble() {
+        Log.d("TAG", "getFileSizeDouble: " + this.length().div(1024))
+//        return this.length().toDouble().div(1024)
     }
 
     private fun initNotificationCounter() {
