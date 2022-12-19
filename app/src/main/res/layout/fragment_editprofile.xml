@@ -285,15 +285,16 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btn_save"
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/dimen_20"
+            android:layout_marginHorizontal="@dimen/dimen_35"
+            android:layout_marginTop="@dimen/dimen_30"
+            android:layout_marginBottom="@dimen/dimen_30"
+            android:text="@string/undang"
             app:backgroundTint="@color/primary_600"
-            android:text="@string/save"
-            app:cornerRadius="@dimen/dimen_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

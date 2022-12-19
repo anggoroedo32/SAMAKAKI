@@ -144,4 +144,10 @@ interface ApiService {
     suspend fun getAllPostsByUser(
         @Header("Authorization") token: String
     ): Response<PostUserResponse>
+
+    @GET("resend_email_confirmation")
+    suspend fun resendEmailConfirmation(
+        @Header("Authorization") token: String
+    ): Response<ResendEmailResponse>
+
 }

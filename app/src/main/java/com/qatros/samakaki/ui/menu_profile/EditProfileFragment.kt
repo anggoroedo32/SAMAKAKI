@@ -1,15 +1,20 @@
 package com.qatros.samakaki.ui.menu_profile
 
 import android.app.DatePickerDialog
+import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,8 +26,8 @@ import com.qatros.samakaki.R
 import com.qatros.samakaki.databinding.FragmentEditprofileBinding
 import com.qatros.samakaki.helper.ConnectivityStatus
 import com.qatros.samakaki.helper.SessionManager
-import com.qatros.samakaki.helper.ShowDialog
 import com.qatros.samakaki.response.BaseResponse
+import com.qatros.samakaki.viewmodel.AuthenticationViewModel
 import com.qatros.samakaki.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +51,7 @@ class EditProfileFragment : Fragment() {
     private var _binding: FragmentEditprofileBinding? = null
     private val binding get() = _binding!!
     private val profileViewModel by viewModels<ProfileViewModel>()
+    private val authenticationViewModel by viewModels<AuthenticationViewModel>()
     private var imageFile: File? = null
     private lateinit var ivUploadImg: ImageView
     private val calendar = Calendar.getInstance()
@@ -236,7 +242,7 @@ class EditProfileFragment : Fragment() {
                     }
                     is BaseResponse.Error -> {
                         if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
-                            ShowDialog.showDialogEmailConfirmation(requireContext())
+                            showDialogEmailConfirmation()
                         } else {
                             textMessage(it.msg.toString())
                         }
@@ -328,6 +334,68 @@ class EditProfileFragment : Fragment() {
         calenderDialog.datePicker.maxDate = System.currentTimeMillis()
         calenderDialog.show()
 
+    }
+
+    fun showDialogEmailConfirmation() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_confirmation)
+        val btnVerif = dialog.findViewById<Button>(R.id.btn_verif)
+
+        btnVerif.setOnClickListener {
+            dialog.dismiss()
+            val token = SessionManager.getToken(requireContext())
+            authenticationViewModel.resendEmailConfirmation("Bearer $token")
+            authenticationViewModel.resendResponse.observe(viewLifecycleOwner) {
+                when(it) {
+
+                    is BaseResponse.Success -> {
+
+                        showDialogResendEmail()
+                    }
+
+                    is BaseResponse.Error -> {
+                        textMessage(it.msg.toString())
+                    }
+
+                    else -> {}
+                }
+            }
+
+        }
+
+        dialog.setCancelable(true)
+        dialog.show()
+        val window: Window? = dialog.window
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun showDialogResendEmail() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_resend_email_success)
+        val btnToGmail = dialog.findViewById<Button>(R.id.btn_to_gmail)
+        btnToGmail.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_APP_EMAIL)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            try {
+                dialog.dismiss()
+                startActivity(intent)
+            } catch (ex: ActivityNotFoundException) {
+                textMessage("Silahkan install gmail terlebih dahulu")
+                dialog.dismiss()
+                val intentGplay = Intent(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.gm")))
+                startActivity(intentGplay)
+            }
+
+
+        }
+
+        dialog.setCancelable(true)
+        dialog.show()
+        val window: Window? = dialog.window
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun loadingState(){

@@ -37,9 +37,9 @@
                     android:fontFamily="@font/poppins_medium"
                     android:layout_marginHorizontal="35dp"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_save"
-                    style="@style/ButtonStyleDialogEmail"
+                <Button
+                    android:id="@+id/btn_verif"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_32"
@@ -47,6 +47,7 @@
                     app:backgroundTint="@color/primary_600"
                     android:text="@string/verif_email"
                     app:cornerRadius="@dimen/dimen_10"
+                    android:layout_marginHorizontal="35dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
