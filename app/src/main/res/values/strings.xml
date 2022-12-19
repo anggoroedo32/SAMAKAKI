@@ -48,7 +48,7 @@
     <string name="title_email_confirmation">Akun anda belum terverifikasi. Silahkan verifikasi email terlebih dahulu</string>
     <string name="title_registration_success">Berhasil mendaftarkan akun! \n Silahkan cek email anda untuk verifikasi</string>
     <string name="title_resend_email_success">Berhasil mengirimkan kembali email konfirmasi! \n Silahkan cek email anda untuk verifikasi</string>
-    <string name="verif_email">Verifikasi Email</string>
+    <string name="verif_email">Kirim Ulang Verifikasi Email</string>
     <string name="isi_profil_kamu">ISI PROFIL KAMU!!</string>
     <string name="status_nikah">Status Nikah</string>
     <string name="cek_email">Cek Email</string>
