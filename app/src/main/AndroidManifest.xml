@@ -26,9 +26,6 @@
             android:name="com.qatros.samakaki.ui.authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.qatros.samakaki.ui.authentication.KodeVerifikasiActivity"
-            android:exported="false" />
-        <activity
             android:name="com.qatros.samakaki.ui.authentication.ForgotPasswordActivity"
             android:exported="false" />
         <activity
