@@ -29,8 +29,8 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
     private val _createUserRelations = MutableLiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>>()
     val createUserRelations: LiveData<SingleLiveEvent<BaseResponse<CreateRelationResponse>>> = _createUserRelations
 
-    private val _updateRelations = MutableLiveData<BaseResponse<UpdateRelationsResponse>>()
-    val updateRelations: LiveData<BaseResponse<UpdateRelationsResponse>> = _updateRelations
+    private val _updateRelations = MutableLiveData<SingleLiveEvent<BaseResponse<UpdateRelationsResponse>>>()
+    val updateRelations: LiveData<SingleLiveEvent<BaseResponse<UpdateRelationsResponse>>> = _updateRelations
 
     private val _createFamilyTree = MutableLiveData<BaseResponse<CreateFamilyTreeResponse>>()
     val createFamilyTree: LiveData<BaseResponse<CreateFamilyTreeResponse>> = _createFamilyTree
@@ -107,10 +107,13 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
 
                 val response = repository.updateRelation(token = token, invitationToken = invitationToken, updateRelationRequest)
                 if (response.code() == 200) {
-                    _updateRelations.postValue(BaseResponse.Success(response.body()))
+                    _updateRelations.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _updateRelations.postValue(BaseResponse.Error(response.message()))
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _updateRelations.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -118,7 +121,7 @@ class FamilyTreeViewModel @Inject constructor(private val repository: RemoteRepo
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
-                _updateRelations.postValue(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah"))
+                _updateRelations.postValue(SingleLiveEvent(BaseResponse.Error(msg = e.message + "Sebentar, ada sesuatu yang salah")))
             }
         }
     }

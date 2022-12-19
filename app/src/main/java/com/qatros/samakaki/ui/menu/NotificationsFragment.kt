@@ -106,21 +106,24 @@ class NotificationsFragment : Fragment(), ibAcceptClickListener {
         Log.e("TAG", "onCard: $dataSpinner", )
         familyTreeViewModel.updateRelation("Bearer $token", movie.invitationToken.toString(), dataSpinner)
         familyTreeViewModel.updateRelations.observe(viewLifecycleOwner) {
-            when(it) {
-                is BaseResponse.Success -> {
-                    it.data
-                    if (wrapRegard?.visibility == View.GONE) {
-                        textMessage("Menutup notifikasi")
-                    } else {
-                        textMessage("Anda telah menerima permintaan undangan")
+            it.getContentIfNotHandled().let {
+                when(it) {
+                    is BaseResponse.Success -> {
+                        it.data
+                        if (wrapRegard?.visibility == View.GONE) {
+                            textMessage("Menutup notifikasi")
+                        } else {
+                            textMessage("Anda telah menerima permintaan undangan")
+                        }
                     }
-                }
-                is BaseResponse.Error -> {
-                    if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
-                        showDialogEmailConfirmation()
-                    } else {
-                        textMessage(it.msg.toString())
+                    is BaseResponse.Error -> {
+                        if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                            showDialogEmailConfirmation()
+                        } else {
+                            textMessage(it.msg.toString())
+                        }
                     }
+                    else -> {}
                 }
             }
         }

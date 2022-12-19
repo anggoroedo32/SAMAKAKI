@@ -85,8 +85,6 @@ class RegisterActivity : AppCompatActivity() {
                             it.getContentIfNotHandled()?.let {
                                 when(it) {
                                     is BaseResponse.Success -> {
-//                                        startActivity(Intent(this, LoginActivity::class.java))
-//                                        textMessage("Akun Anda Sudah Dibuat")
                                         showRegistrationSuccess()
                                     }
                                     is BaseResponse.Error -> {
@@ -107,8 +105,7 @@ class RegisterActivity : AppCompatActivity() {
                             it.getContentIfNotHandled()?.let {
                                 when(it) {
                                     is BaseResponse.Success -> {
-                                        startActivity(Intent(this, LoginActivity::class.java))
-                                        textMessage("Akun Anda Sudah Dibuat")
+                                        showRegistrationSuccess()
                                     }
                                     is BaseResponse.Error -> textMessage(it.msg.toString())
                                 }

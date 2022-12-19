@@ -69,32 +69,12 @@ open class SilsilahKeluargaFragment : Fragment() {
         val isiProfil = binding.wrapIsiProfil
         val token = context?.let { SessionManager.getToken(it) }
 
-//        familyTreeViewModel.findUserRelations("Bearer $token")
-//        familyTreeViewModel.findUserRelations.observe(viewLifecycleOwner) {
-//            when (it) {
-//                is BaseResponse.Success -> {
-//                    val relationData = it.data?.data?.relation
-//                    Log.d("relation_data", "hasilnya $relationData")
-//                    if (relationData.isNullOrEmpty()) {
-//                        familyTree.visibility = View.GONE
-//                        isiProfil.visibility = View.VISIBLE
-//                    } else {
-//                        isiProfil.visibility = View.GONE
-//                        familyTree.visibility = View.VISIBLE
-//                    }
-//                }
-//
-//                is BaseResponse.Error -> textMessage(it.msg.toString())
-//            }
-//        }
-
 
         //Dropdown Relationship
         val relationshipDropdown = resources.getStringArray(R.array.relationship)
         val relationshipDropdownAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, relationshipDropdown)
         val autoCompleteRelationship = binding.etHubungan
-//        autoCompleteRelationship.setText("Ibu")
         autoCompleteRelationship.setAdapter(relationshipDropdownAdapter)
 
         val toolbar = binding.toolbarHomepage
