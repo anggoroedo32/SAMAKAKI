@@ -285,8 +285,14 @@ class HomeFragment : Fragment() {
 
                                     is BaseResponse.Error -> {
                                         if (it.msg.toString().contains("belum melakukan konfirmasi email")) {
+                                            val destination = findNavController().currentDestination?.id
+                                            findNavController().popBackStack(destination!!,true)
+                                            findNavController().navigate(destination)
                                             showDialogEmailConfirmation()
                                         } else {
+                                            val destination = findNavController().currentDestination?.id
+                                            findNavController().popBackStack(destination!!,true)
+                                            findNavController().navigate(destination)
                                             textMessage(it.msg.toString())
                                         }
                                     }
