@@ -293,7 +293,7 @@
             android:layout_marginHorizontal="@dimen/dimen_35"
             android:layout_marginTop="@dimen/dimen_30"
             android:layout_marginBottom="@dimen/dimen_30"
-            android:text="@string/undang"
+            android:text="Ubah Data"
             app:backgroundTint="@color/primary_600"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
