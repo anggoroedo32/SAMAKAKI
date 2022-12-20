@@ -4,9 +4,9 @@
     package="com.qatros.samakaki">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS "/>
-<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.qatros.samakaki.App"
@@ -24,9 +24,6 @@
             android:exported="false" />
         <activity
             android:name="com.qatros.samakaki.ui.authentication.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.qatros.samakaki.ui.authentication.KodeVerifikasiActivity"
             android:exported="false" />
         <activity
             android:name="com.qatros.samakaki.ui.authentication.ForgotPasswordActivity"

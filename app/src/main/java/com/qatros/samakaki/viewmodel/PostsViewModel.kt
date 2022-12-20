@@ -24,8 +24,8 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
     private val _listAllPosts = MutableLiveData<BaseResponse<NewPostsResponse>>()
     val listAllPosts: LiveData<BaseResponse<NewPostsResponse>> = _listAllPosts
 
-    private val _listAllPostsByUser = MutableLiveData<BaseResponse<PostUserResponse>>()
-    val listAllPostsByUser: LiveData<BaseResponse<PostUserResponse>> = _listAllPostsByUser
+    private val _listAllPostsByUser = MutableLiveData<SingleLiveEvent<BaseResponse<PostUserResponse>>>()
+    val listAllPostsByUser: LiveData<SingleLiveEvent<BaseResponse<PostUserResponse>>> = _listAllPostsByUser
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -65,10 +65,13 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             try {
                 val response = repository.getAllPostsByUser(token = token)
                 if(response.code() == 200) {
-                    _listAllPostsByUser.value = BaseResponse.Success(response.body())
+                    _listAllPostsByUser.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _listAllPostsByUser.value = BaseResponse.Error("Erorr Get Posts")
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _listAllPostsByUser.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -76,7 +79,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
-                _listAllPostsByUser.postValue(BaseResponse.Error(msg = "Sebentar, sedang ada masalah"))
+                _listAllPostsByUser.postValue(SingleLiveEvent(BaseResponse.Error(msg = "Sebentar, sedang ada masalah")))
             }
         }
     }
@@ -95,8 +98,10 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                     _createPostResponse.value = BaseResponse.Success(response.body())
                     _loading.value = false
                 } else {
-                    _createPostResponse.value = BaseResponse.Error(response.message())
-                    Log.d("TAG", "createPosts: ${response.code()}")
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _createPostResponse.postValue(BaseResponse.Error(errorResponse.message))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -104,7 +109,7 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
             } catch (e: IOException) {
                 BaseResponse.Error("Cek kembali koneksi internet anda")
             } catch (e: Exception) {
-                _listAllPostsByUser.postValue(BaseResponse.Error(msg = "Sebentar, sedang ada masalah"))
+                _createPostResponse.postValue(BaseResponse.Error(msg = "Sebentar, sedang ada masalah"))
             }
         }
     }
@@ -119,9 +124,9 @@ class PostsViewModel @Inject constructor(private val repository: RemoteRepositor
                     _loading.value = false
                 } else {
                     val gson = Gson()
-                    val type = object : TypeToken<MessageResetPasswordResponse>() {}.type
-                    var errorResponse: MessageResetPasswordResponse = gson.fromJson(response.errorBody()?.string(), type)
-                    _deletePostResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message.toString())))
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _deletePostResponse.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {

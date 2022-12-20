@@ -5,10 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.qatros.samakaki.helper.SingleLiveEvent
 import com.qatros.samakaki.repository.RemoteRepository
 import com.qatros.samakaki.response.BaseResponse
 import com.qatros.samakaki.response.EditProfileResponse
 import com.qatros.samakaki.response.FindUserResponse
+import com.qatros.samakaki.response.SingleMessageResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -23,8 +27,8 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
     private val _findUser = MutableLiveData<BaseResponse<FindUserResponse>>()
     val findUser: LiveData<BaseResponse<FindUserResponse>> = _findUser
 
-    private val _editProfile = MutableLiveData<BaseResponse<EditProfileResponse>>()
-    val editProfile: LiveData<BaseResponse<EditProfileResponse>> = _editProfile
+    private val _editProfile = MutableLiveData<SingleLiveEvent<BaseResponse<EditProfileResponse>>>()
+    val editProfile: LiveData<SingleLiveEvent<BaseResponse<EditProfileResponse>>> = _editProfile
 
     private val _editPrivacy = MutableLiveData<BaseResponse<EditProfileResponse>>()
     val editPrivacy: LiveData<BaseResponse<EditProfileResponse>> = _editPrivacy
@@ -85,10 +89,13 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                 )
                 Log.e("TAG", "editProfile: $dob", )
                 if (response.code() == 200) {
-                    _editProfile.postValue(BaseResponse.Success(response.body()))
+                    _editProfile.postValue(SingleLiveEvent(BaseResponse.Success(response.body())))
                     _loading.value = false
                 } else {
-                    _editProfile.postValue(BaseResponse.Error("Error Edit Profile"))
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _editProfile.postValue(SingleLiveEvent(BaseResponse.Error(errorResponse.message)))
                     _loading.value = false
                 }
             } catch (e: HttpException) {
@@ -120,7 +127,10 @@ class ProfileViewModel @Inject constructor(private val repository: RemoteReposit
                     _editPrivacy.postValue(BaseResponse.Success(response.body()))
                     _loading.value = false
                 } else {
-                    _editPrivacy.postValue(BaseResponse.Error("Erorr Edit Privacy"))
+                    val gson = Gson()
+                    val type = object : TypeToken<SingleMessageResponse>() {}.type
+                    var errorResponse: SingleMessageResponse = gson.fromJson(response.errorBody()?.string(), type)
+                    _editPrivacy.postValue(BaseResponse.Error(errorResponse.message))
                     _loading.value = false
                 }
             } catch (e: HttpException) {

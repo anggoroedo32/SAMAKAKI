@@ -58,6 +58,10 @@ class SettingsFragment : Fragment() {
             findNavController().navigate(R.id.settingPrivacyFragment)
         }
 
+        btnSettingAbout.setOnClickListener {
+            findNavController().navigate(R.id.aboutFragment)
+        }
+
     }
 
     override fun onDestroyView() {

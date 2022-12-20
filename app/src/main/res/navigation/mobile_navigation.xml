@@ -84,7 +84,7 @@
         android:label="SettingPrivacyFragment" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.awp.samakaki.ui.menu_profile.EditProfileFragment"
+        android:name="com.qatros.samakaki.ui.menu_profile.EditProfileFragment"
         android:label="fragment_editprofile"
         tools:layout="@layout/fragment_editprofile" />
 
@@ -93,5 +93,11 @@
         android:name="com.qatros.samakaki.ui.menu_profile.EditProfileFragment"
         android:label="@string/edit_profile"
         tools:layout="@layout/fragment_editprofile" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.qatros.samakaki.ui.menu.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
